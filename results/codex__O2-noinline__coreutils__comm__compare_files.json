@@ -1,0 +1,123 @@
+[
+  {
+    "function": "compare_files",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "char **infiles",
+        "decompiled_type": "char **infiles",
+        "match": "correct",
+        "evidence_source_line": "2495: compare_files (char **infiles)",
+        "evidence_decompiled_line": "12: compare_files(char **infiles)"
+      },
+      {
+        "source_role": "函数签名/返回属性",
+        "source_type": "static _Noreturn void(char **)",
+        "decompiled_type": "void(char **)",
+        "match": "wrong",
+        "evidence_source_line": "2494-2495: static _Noreturn void compare_files (char **infiles)",
+        "evidence_decompiled_line": "11-12: void compare_files(char **infiles)"
+      },
+      {
+        "source_role": "结构体linebuffer",
+        "source_type": "struct linebuffer { idx_t size; idx_t length; char *buffer; }",
+        "decompiled_type": "struct linebuffer { ptrdiff_t size; ptrdiff_t length; char *buffer; }",
+        "match": "correct",
+        "evidence_source_line": "2085-2090: struct linebuffer has fields idx_t size, idx_t length, char *buffer",
+        "evidence_decompiled_line": "14-20: typedef ptrdiff_t idx_t; struct linebuffer has size, length, buffer in the same order"
+      },
+      {
+        "source_role": "局部变量lba",
+        "source_type": "struct linebuffer lba[2][4]",
+        "decompiled_type": "struct linebuffer linebuffer_storage[2][4]",
+        "match": "correct",
+        "evidence_source_line": "2498: struct linebuffer lba[2][4];",
+        "evidence_decompiled_line": "43-44: struct linebuffer linebuffer_storage[2][4];"
+      },
+      {
+        "source_role": "局部变量thisline",
+        "source_type": "struct linebuffer *thisline[2]",
+        "decompiled_type": "struct linebuffer *thisline[2]",
+        "match": "correct",
+        "evidence_source_line": "2502: struct linebuffer *thisline[2];",
+        "evidence_decompiled_line": "46: struct linebuffer *thisline[2];"
+      },
+      {
+        "source_role": "局部变量all_line",
+        "source_type": "struct linebuffer *all_line[2][4]",
+        "decompiled_type": "struct linebuffer *all_line[2][4]",
+        "match": "correct",
+        "evidence_source_line": "2507: struct linebuffer *all_line[2][4];",
+        "evidence_decompiled_line": "45: struct linebuffer *all_line[2][4];"
+      },
+      {
+        "source_role": "局部变量alt",
+        "source_type": "int alt[2][3]",
+        "decompiled_type": "int alt[2][2]",
+        "match": "wrong",
+        "evidence_source_line": "2510: int alt[2][3];; 2528-2530 and 2653-2655 use indices 0,1,2",
+        "evidence_decompiled_line": "47: int alt[2][2] = { { 0, 0 }, { 0, 0 } };; 131-135 only model two slots"
+      },
+      {
+        "source_role": "局部变量streams",
+        "source_type": "FILE *streams[2]",
+        "decompiled_type": "FILE *streams[2]",
+        "match": "correct",
+        "evidence_source_line": "2513: FILE *streams[2];",
+        "evidence_decompiled_line": "43: FILE *streams[2];"
+      },
+      {
+        "source_role": "局部变量total",
+        "source_type": "uintmax_t total[3]",
+        "decompiled_type": "uintmax_t column_count[3]",
+        "match": "correct",
+        "evidence_source_line": "2516: uintmax_t total[] = {0, 0, 0};",
+        "evidence_decompiled_line": "49: uintmax_t column_count[3] = { 0, 0, 0 };"
+      },
+      {
+        "source_role": "局部变量i,j",
+        "source_type": "int i, j",
+        "decompiled_type": "int i; and inner int j;",
+        "match": "correct",
+        "evidence_source_line": "2518: int i, j;",
+        "evidence_decompiled_line": "50: int i; and 53: int j;"
+      },
+      {
+        "source_role": "循环局部变量fill_up",
+        "source_type": "_Bool fill_up[2]",
+        "decompiled_type": "bool fill_up[2]",
+        "match": "correct",
+        "evidence_source_line": "2577-2582: _Bool fill_up[2] = {0,0};",
+        "evidence_decompiled_line": "48: bool fill_up[2]; and 82-83, 88-89 assign both elements"
+      },
+      {
+        "source_role": "比较分支局部变量len",
+        "source_type": "size_t len (single shortest length)",
+        "decompiled_type": "idx_t len[2] (two signed lengths)",
+        "match": "wrong",
+        "evidence_source_line": "2597-2598: size_t len = min(thisline[0]->length, thisline[1]->length) - 1; memcmp(..., len)",
+        "evidence_decompiled_line": "91,94-104: idx_t len[2]; len[0]/len[1] hold both lengths and shorter is recomputed"
+      },
+      {
+        "source_role": "局部变量order",
+        "source_type": "int order",
+        "decompiled_type": "int order",
+        "match": "correct",
+        "evidence_source_line": "2575: int order;",
+        "evidence_decompiled_line": "92: int order;"
+      },
+      {
+        "source_role": "输出计数缓冲区buf1/buf2/buf3",
+        "source_type": "char arrays with compile-time uintmax_t decimal-width bound",
+        "decompiled_type": "char count_1[32], count_2[32], count_3[32]",
+        "match": "undeterminable",
+        "evidence_source_line": "2716-2718: each bound is an expression derived from sizeof(uintmax_t) and signedness",
+        "evidence_decompiled_line": "163-165: each count buffer is declared char[32]"
+      }
+    ],
+    "reasoning": "按ABI第1参数位置对齐infiles；按数据流和数组索引对齐局部对象。linebuffer字段数量、顺序和类型别名一致。alt源码明确访问第三列而反编译仅恢复两列，属于数组布局错误；len源码是单个size_t而反编译拆成两个idx_t，类型和形状均不一致。源码函数带_Noreturn属性而反编译签名未保留。总体存在明确恢复错误，因此free_discovery判定为confirmed；计数缓冲区的精确边界依赖目标uintmax_t宽度，限定文件证据不足，标为undeterminable。"
+  }
+]

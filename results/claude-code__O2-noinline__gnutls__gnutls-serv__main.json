@@ -1,0 +1,20 @@
+[
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {"source_role":"first parameter","source_type":"int","decompiled_type":"absent; main(void)","match":"wrong","evidence_source_line":"8935: int main(int argc, char **argv)","evidence_decompiled_line":"111: int main(void)"},
+      {"source_role":"second parameter","source_type":"char **","decompiled_type":"absent; main(void)","match":"wrong","evidence_source_line":"8935: int main(int argc, char **argv)","evidence_decompiled_line":"111: int main(void)"},
+      {"source_role":"local variable ret","source_type":"int","decompiled_type":"int","match":"correct","evidence_source_line":"8937:  int ret, mtu, port;","evidence_decompiled_line":"114: \tint ret;"},
+      {"source_role":"local variable mtu","source_type":"int","decompiled_type":"int","match":"correct","evidence_source_line":"8937:  int ret, mtu, port;","evidence_decompiled_line":"117: \tint port, mtu;"},
+      {"source_role":"local variable port","source_type":"int","decompiled_type":"int","match":"correct","evidence_source_line":"8937:  int ret, mtu, port;","evidence_decompiled_line":"117: \tint port, mtu;"},
+      {"source_role":"local variable name","source_type":"char[256]","decompiled_type":"char[256]","match":"correct","evidence_source_line":"8938:  char name[256];","evidence_decompiled_line":"113: \tchar name[256];"},
+      {"source_role":"local variable cert_set","source_type":"int","decompiled_type":"no direct local; optimized or rewritten","match":"undeterminable","evidence_source_line":"8939:  int cert_set = 0;","evidence_decompiled_line":"216: \t\tfprintf(stderr, \"Warning: no private key and certificate pairs were set.\\n\");"},
+      {"source_role":"local variable use_static_dh_params","source_type":"unsigned int","decompiled_type":"int (no_dhparams)","match":"undeterminable","evidence_source_line":"8940:  unsigned use_static_dh_params = 0;","evidence_decompiled_line":"115: \tint no_dhparams;"},
+      {"source_role":"local variable i","source_type":"unsigned int","decompiled_type":"unsigned int","match":"correct","evidence_source_line":"8941:  unsigned i;","evidence_decompiled_line":"116: \tunsigned int i;"}
+    ],
+    "reasoning":"The source main has two ABI parameters, but the decompiled prototype is main(void), confirming FN-01 for both slots. ret, mtu, port, name, and i match by declaration and dataflow. cert_set has no exposed decompiled storage because the warning logic is rewritten around count conditions, so its type cannot be recovered from this function alone. use_static_dh_params aligns with the decompiled no_dhparams boolean flag, but int versus unsigned int signedness is unobservable for values restricted to 0/1; classify INT-01 as undeterminable. No explicit local structure entity is declared in either main, so no LAYOUT-01 or ST-01 judgment is made."
+  }
+]

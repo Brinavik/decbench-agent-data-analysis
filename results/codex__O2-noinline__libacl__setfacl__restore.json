@@ -1,0 +1,139 @@
+[
+  {
+    "function": "restore",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "257: FILE *file,",
+        "evidence_decompiled_line": "37: int restore(FILE *file, const char *input_name)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "const char *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "258: const char *filename)",
+        "evidence_decompiled_line": "37: int restore(FILE *file, const char *input_name)"
+      },
+      {
+        "source_role": "局部变量path_p（路径缓冲区指针）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "260: char *path_p; 274-275: read_acl_comments(file, &lineno, &path_p, &uid, &gid, &flags); 410-414: free(path_p); path_p = NULL;",
+        "evidence_decompiled_line": "41: char *path = NULL; 52: result = read_restore_entry(file, &line, &path, &uid, &gid, &flags); 144-145: free(path); path = NULL;"
+      },
+      {
+        "source_role": "局部变量st（文件状态对象）",
+        "source_type": "struct stat",
+        "decompiled_type": "struct stat",
+        "match": "correct",
+        "evidence_source_line": "261: struct stat st; 330: error = stat(path_p, &st); 342: error = do_set(path_p, &st, 0, &args);",
+        "evidence_decompiled_line": "39: struct stat st = { 0 }; 98: if (stat(path, &st) != 0 && test_mode) { 105: if (do_set(path, &st, 0, &args) == 0) {"
+      },
+      {
+        "source_role": "局部变量uid（用户ID输出及所有者参数）",
+        "source_type": "uid_t",
+        "decompiled_type": "uid_t",
+        "match": "correct",
+        "evidence_source_line": "262: uid_t uid; 274: read_acl_comments(file, &lineno, &path_p, &uid, &gid, 348-351: if (uid != ((id_t)-1) && uid != st.st_uid) st.st_uid = uid; else st.st_uid = -1;",
+        "evidence_decompiled_line": "42: uid_t uid; 52: result = read_restore_entry(file, &line, &path, &uid, &gid, &flags); 109-110: if (uid != (uid_t)-1 && uid == st.st_uid) uid = (uid_t)-1;"
+      },
+      {
+        "source_role": "局部变量gid（组ID输出及所有者参数）",
+        "source_type": "gid_t",
+        "decompiled_type": "gid_t",
+        "match": "correct",
+        "evidence_source_line": "263: gid_t gid; 274: read_acl_comments(file, &lineno, &path_p, &uid, &gid, 352-355: if (gid != ((id_t)-1) && gid != st.st_gid) st.st_gid = gid; else st.st_gid = -1;",
+        "evidence_decompiled_line": "43: gid_t gid; 52: result = read_restore_entry(file, &line, &path, &uid, &gid, &flags); 111-112: if (gid != (gid_t)-1 && gid == st.st_gid) gid = (gid_t)-1;"
+      },
+      {
+        "source_role": "局部变量flags（待恢复模式位）",
+        "source_type": "mode_t",
+        "decompiled_type": "mode_t",
+        "match": "correct",
+        "evidence_source_line": "264: mode_t mask, flags; 397: if (chmod(path_p, flags | args.mode) != 0) {",
+        "evidence_decompiled_line": "44: mode_t flags = 0; 131: if (chmod(path, args.mode | flags) != 0) {"
+      },
+      {
+        "source_role": "局部变量mask（模式位掩码）",
+        "source_type": "mode_t",
+        "decompiled_type": "无独立局部对象（折叠为常量07000）",
+        "match": "undeterminable",
+        "evidence_source_line": "264: mode_t mask, flags; 380-387: mask = 04000 | 02000 | 01000; if (chmod_required || ((st.st_mode & mask) != (flags & mask))) {",
+        "evidence_decompiled_line": "127: if (force_chmod || ((flags ^ st.st_mode) & 07000) != 0) {"
+      },
+      {
+        "source_role": "局部变量args（ACL设置参数对象）",
+        "source_type": "struct do_set_args",
+        "decompiled_type": "struct do_set_args",
+        "match": "correct",
+        "evidence_source_line": "265: struct do_set_args args = { }; 305: if (!(args.seq = seq_init())) 341-342: args.mode = 0; error = do_set(path_p, &st, 0, &args);",
+        "evidence_decompiled_line": "40: struct do_set_args args = { 0 }; 80: args.seq = seq_init(); 104-105: args.mode = 0; if (do_set(path, &st, 0, &args) == 0) {"
+      },
+      {
+        "source_role": "局部变量lineno（输入行计数）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "266: int lineno = 0, backup_line; 274: error = read_acl_comments(file, &lineno, &path_p, &uid, &gid,",
+        "evidence_decompiled_line": "46: int line = 0; 52: result = read_restore_entry(file, &line, &path, &uid, &gid, &flags);"
+      },
+      {
+        "source_role": "局部变量backup_line（本条目起始行）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "266: int lineno = 0, backup_line; 273: backup_line = lineno; 292: backup_line);",
+        "evidence_decompiled_line": "45: int entry_line = 0; 68: program_name, quote_filename(input_name), entry_line); 148: entry_line = line;"
+      },
+      {
+        "source_role": "局部变量error（调用结果及错误码）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "267: int error, status = 0; 274: error = read_acl_comments(file, &lineno, &path_p, &uid, &gid,",
+        "evidence_decompiled_line": "50: int result; 52: result = read_restore_entry(file, &line, &path, &uid, &gid, &flags);"
+      },
+      {
+        "source_role": "局部变量status（函数累计返回状态）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "267: int error, status = 0; 281: return status; 437: return status;",
+        "evidence_decompiled_line": "47: int status = 0; 57: status = 1; 154: return status;"
+      },
+      {
+        "source_role": "局部变量chmod_required（是否强制恢复模式位）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "268: int chmod_required = 0; 377: chmod_required = 1; 387: if (chmod_required || ((st.st_mode & mask) != (flags & mask))) {",
+        "evidence_decompiled_line": "107: int force_chmod = 0; 124: force_chmod = (flags & st.st_mode & (S_ISUID | S_ISGID)) != 0; 127: if (force_chmod || ((flags ^ st.st_mode) & 07000) != 0) {"
+      },
+      {
+        "source_role": "结构体struct stat（本函数可观察部分）",
+        "source_type": "struct stat；本函数可见成员st_uid、st_gid、st_mode，完整字段数量/偏移/大小在函数内不可见",
+        "decompiled_type": "struct stat；本函数可见成员st_uid、st_gid、st_mode，完整字段数量/偏移/大小在函数内不可见",
+        "match": "undeterminable",
+        "evidence_source_line": "348-355: uid/gid与st.st_uid、st.st_gid比较并赋值；372: if ((st.st_mode & flags) ...)",
+        "evidence_decompiled_line": "109-112: uid/gid与st.st_uid、st.st_gid比较；124: force_chmod = (flags & st.st_mode & (S_ISUID | S_ISGID)) != 0;"
+      },
+      {
+        "source_role": "结构体struct do_set_args（本函数可观察部分）",
+        "source_type": "struct do_set_args；本函数可见成员seq、mode，完整字段数量/偏移/大小在函数内不可见",
+        "decompiled_type": "struct do_set_args；本函数可见成员seq、mode，完整字段数量/偏移/大小在函数内不可见",
+        "match": "undeterminable",
+        "evidence_source_line": "305: if (!(args.seq = seq_init())) 341: args.mode = 0; 416-420: if (args.seq) { seq_free(args.seq); args.seq = NULL; }",
+        "evidence_decompiled_line": "80: args.seq = seq_init(); 104: args.mode = 0; 146-147: seq_free(args.seq); args.seq = NULL;"
+      }
+    ],
+    "reasoning": "按ABI位置，第1、2参数分别稳定对应FILE *和const char *，函数返回类型也均为int，未发现FN-01。局部对象依据传址输出、stat/do_set/chown/chmod调用以及释放路径的数据流对齐，未发现PTR-01或INT-01；源码mask被优化为07000常量，不能评价其独立反编译类型。函数中没有静态局部对象，因而无SC-01证据。两个结构体对象的可观察字段用途一致，但本函数不提供完整定义、字段偏移或sizeof证据，故ST-01和LAYOUT-01不能仅凭同名标签确认，相关完整布局标为undeterminable。可判定实体中没有类型恢复错误，因此free_discovery错误假设判为rejected。"
+  }
+]

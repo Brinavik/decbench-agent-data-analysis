@@ -1,0 +1,223 @@
+[
+  {
+    "function": "get_range",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "bitstr_t *",
+        "decompiled_type": "bitstr_t *",
+        "match": "correct",
+        "evidence_source_line": "727: get_range(bitstr_t * bits, int low, int high, const char *names[],",
+        "evidence_decompiled_line": "7: get_range(bitstr_t *bits, int low, int high, const char *names[], FILE *file)"
+      }
+    ],
+    "reasoning": "第1个参数 ABI 位置及指针层级一致；函数内作为 set_element 的第1个参数传递，未见 PTR-01。"
+  },
+  {
+    "function": "get_range",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第2个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "727: get_range(bitstr_t * bits, int low, int high, const char *names[],",
+        "evidence_decompiled_line": "7: get_range(bitstr_t *bits, int low, int high, const char *names[], FILE *file)"
+      }
+    ],
+    "reasoning": "第2个参数按 ABI 位置为 low，参与整数边界和 set_element 调用，类型一致。"
+  },
+  {
+    "function": "get_range",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第3个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "727: get_range(bitstr_t * bits, int low, int high, const char *names[],",
+        "evidence_decompiled_line": "7: get_range(bitstr_t *bits, int low, int high, const char *names[], FILE *file)"
+      }
+    ],
+    "reasoning": "第3个参数按 ABI 位置为 high，作为整数上界使用，类型一致。"
+  },
+  {
+    "function": "get_range",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第4个参数",
+        "source_type": "const char *[]",
+        "decompiled_type": "const char *[]",
+        "match": "correct",
+        "evidence_source_line": "727: get_range(bitstr_t * bits, int low, int high, const char *names[],",
+        "evidence_decompiled_line": "7: get_range(bitstr_t *bits, int low, int high, const char *names[], FILE *file)"
+      }
+    ],
+    "reasoning": "第4个参数指向 const char* 数组，并按原层级传给 get_number；未见 PTR-01。"
+  },
+  {
+    "function": "get_range",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第5个参数",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "728: FILE * file) {",
+        "evidence_decompiled_line": "7: get_range(bitstr_t *bits, int low, int high, const char *names[], FILE *file)"
+      }
+    ],
+    "reasoning": "第5个参数作为 FILE* 传给 get_char/unget_char，签名一致。"
+  },
+  {
+    "function": "get_range",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 ch",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "733: int ch, i, num1, num2, num3; 740-742: (ch = get_char(file))",
+        "evidence_decompiled_line": "16: int ch; 23: ch = get_char(file);"
+      }
+    ],
+    "reasoning": "ch 承载 get_char 返回值并参与 EOF/字符比较，整数类型和数据流一致。"
+  },
+  {
+    "function": "get_range",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 i",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "733: int ch, i, num1, num2, num3; 892: for (i = num1; i <= num2; i += num3)",
+        "evidence_decompiled_line": "17: int i; 119-126: i = num1; ... i += num3;"
+      }
+    ],
+    "reasoning": "i 是范围迭代索引，栈角色及整数算术一致。"
+  },
+  {
+    "function": "get_range",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 num1",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "733: int ch, i, num1, num2, num3; 746: num1 = low; 873: num1 = num2 = random() % (num2 - num1 + 1) + num1;",
+        "evidence_decompiled_line": "19: int num1; 28: num1 = low; 91-92: num1 += random() % (num2 - num1 + 1);"
+      }
+    ],
+    "reasoning": "num1 始终是范围起点/随机化后的整数，类型一致。"
+  },
+  {
+    "function": "get_range",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 num2",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "733: int ch, i, num1, num2, num3; 747: num2 = high; 849: num2 = high;",
+        "evidence_decompiled_line": "19: int num2; 29: num2 = high; 85: num2 = high;"
+      }
+    ],
+    "reasoning": "num2 始终是范围终点并参与整数比较/循环，类型一致。"
+  },
+  {
+    "function": "get_range",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 num3",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "733: int ch, i, num1, num2, num3; 737: num3 = 1; 892: i += num3",
+        "evidence_decompiled_line": "20: int num3 = 1; 107: get_number(&num3, 0, NULL, file); 125: i += num3;"
+      }
+    ],
+    "reasoning": "num3 是步长整数，初始化、传址解析和迭代用途均一致。"
+  },
+  {
+    "function": "get_range",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "局部变量 state",
+        "source_type": "range_state_t",
+        "decompiled_type": "无对应显式变量（状态机被控制流重构）",
+        "match": "undeterminable",
+        "evidence_source_line": "738: range_state_t state = R_START; 743-883: switch (state) { ... }",
+        "evidence_decompiled_line": "23-117: 通过嵌套 if/else 直接编码各状态转移，未声明 state"
+      }
+    ],
+    "reasoning": "编译优化可以消除状态枚举变量并保留等价控制流；缺少显式对应栈实体，不能据此断言 INT-01 或 FN-01。"
+  },
+  {
+    "function": "get_range",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "源码无独立对应的随机状态标志",
+        "source_type": "无",
+        "decompiled_type": "int random_range",
+        "match": "undeterminable",
+        "evidence_source_line": "751-754, 847-874: 随机分支由 state == R_RANDOM 表示",
+        "evidence_decompiled_line": "21: int random_range = 0; 36-50, 71-99: random_range 控制随机分支"
+      }
+    ],
+    "reasoning": "random_range 是状态机重构产生的辅助标量，无法证明其对应新的源码实体或类型恢复错误。"
+  },
+  {
+    "function": "get_range",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "源码无独立对应的块内变量",
+        "source_type": "无",
+        "decompiled_type": "int number_follows",
+        "match": "undeterminable",
+        "evidence_source_line": "847-858: 源码直接以 ch/is_separator 和 state 转移处理该逻辑",
+        "evidence_decompiled_line": "72: int number_follows; 78-86: number_follows = !is_separator(ch)"
+      }
+    ],
+    "reasoning": "number_follows 是控制流结构化后的临时布尔语义，源码没有可一一对应的局部变量；不能据此判定错误。"
+  }
+]

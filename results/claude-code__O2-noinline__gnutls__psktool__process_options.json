@@ -1,0 +1,163 @@
+[
+  {
+    "function": "process_options",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "int argc",
+        "decompiled_type": "int argc",
+        "match": "correct",
+        "evidence_source_line": "1224: process_options (int argc, char **argv)",
+        "evidence_decompiled_line": "93: process_options (int argc, char **argv)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "char **argv",
+        "decompiled_type": "char **argv",
+        "match": "correct",
+        "evidence_source_line": "1224: process_options (int argc, char **argv)",
+        "evidence_decompiled_line": "93: process_options (int argc, char **argv)"
+      },
+      {
+        "source_role": "局部变量 opts",
+        "source_type": "struct gnutls_cli_options *",
+        "decompiled_type": "struct psktool_options *",
+        "match": "wrong",
+        "evidence_source_line": "1226: struct gnutls_cli_options *opts = &gnutls_cli_options;",
+        "evidence_decompiled_line": "95: struct psktool_options *opts = &psktool_options;"
+      },
+      {
+        "source_role": "局部变量 opt",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "1227: int opt;",
+        "evidence_decompiled_line": "96: int opt;"
+      },
+      {
+        "source_role": "函数使用的全局选项对象",
+        "source_type": "struct gnutls_cli_options，文件作用域非 static 定义",
+        "decompiled_type": "struct psktool_options，文件作用域定义",
+        "match": "wrong",
+        "evidence_source_line": "906: struct gnutls_cli_options gnutls_cli_options;",
+        "evidence_decompiled_line": "72: struct psktool_options psktool_options;"
+      },
+      {
+        "source_role": "结构体 gnutls_cli_options",
+        "source_type": "五个成员区：present 70 个 _Bool、arg 32 个 const char *、value 5 个 int、list 2 个 struct gnutls_cli_list、enabled 70 个 _Bool",
+        "decompiled_type": "四个成员区：present 7 个 bool、arg 5 个 const char *、value 2 个 int、enabled 7 个 bool；无 list 区",
+        "match": "wrong",
+        "evidence_source_line": "185-454, 457-670: gnutls_cli_options 定义了 present/arg/value/list/enabled 及上述字段序列",
+        "evidence_decompiled_line": "15-57: psktool_options 仅定义 present/arg/value/enabled，字段数量和序列均不同"
+      },
+      {
+        "source_role": "结构体成员区 present",
+        "source_type": "70 个 _Bool 字段（debug 至 more_help）",
+        "decompiled_type": "7 个 bool 字段（debug、keysize、username、pskfile、version、help、more_help）",
+        "match": "wrong",
+        "evidence_source_line": "188-400: present 从 debug 到 more_help 共 70 个 _Bool 字段",
+        "evidence_decompiled_line": "19-27: present 仅有 7 个 bool 字段"
+      },
+      {
+        "source_role": "结构体成员区 arg",
+        "source_type": "32 个 const char * 字段",
+        "decompiled_type": "5 个 const char * 字段",
+        "match": "wrong",
+        "evidence_source_line": "403-437: arg 含 debug、earlydata、各文件名等共 32 个指针字段",
+        "evidence_decompiled_line": "30-37: arg 仅含 debug、keysize、username、pskfile、version"
+      },
+      {
+        "source_role": "结构体成员区 value",
+        "source_type": "5 个 int：debug、mtu、dh_bits、recordsize、keymatexportsize",
+        "decompiled_type": "2 个 int：debug、keysize",
+        "match": "wrong",
+        "evidence_source_line": "440-447: value 定义 5 个 int 字段",
+        "evidence_decompiled_line": "40-44: value 定义 2 个 int 字段"
+      },
+      {
+        "source_role": "结构体成员区 list",
+        "source_type": "struct { struct gnutls_cli_list alpn; struct gnutls_cli_list compress_cert; }",
+        "decompiled_type": "无对应成员区",
+        "match": "wrong",
+        "evidence_source_line": "450-454: list 含 alpn 与 compress_cert 两个 gnutls_cli_list 成员；1711-1725 使用其数据流",
+        "evidence_decompiled_line": "15-57: psktool_options 定义中不存在 list 成员"
+      },
+      {
+        "source_role": "结构体 gnutls_cli_list",
+        "source_type": "struct { const char **args; unsigned int count; }",
+        "decompiled_type": "无对应结构体",
+        "match": "wrong",
+        "evidence_source_line": "179-183: gnutls_cli_list 的字段序列为 const char **、unsigned int",
+        "evidence_decompiled_line": "15-57: 反编译选项类型及函数体没有该结构体或等价字段"
+      },
+      {
+        "source_role": "结构体成员区 enabled",
+        "source_type": "70 个 _Bool 字段（debug 至 more_help）",
+        "decompiled_type": "7 个 bool 字段（debug、keysize、username、pskfile、version、help、more_help）",
+        "match": "wrong",
+        "evidence_source_line": "457-669: enabled 从 debug 到 more_help 共 70 个 _Bool 字段",
+        "evidence_decompiled_line": "48-56: enabled 仅有 7 个 bool 字段"
+      },
+      {
+        "source_role": "more_help 分支局部变量 pid",
+        "source_type": "pid_t",
+        "decompiled_type": "pid_t",
+        "match": "correct",
+        "evidence_source_line": "2000-2017: pid_t pid; ... pid = fork();",
+        "evidence_decompiled_line": "177-185: pid_t pid; ... pid = fork ();"
+      },
+      {
+        "source_role": "more_help 分支局部变量 pfds",
+        "source_type": "int[2]",
+        "decompiled_type": "int[2]",
+        "match": "correct",
+        "evidence_source_line": "2007-2010: int pfds[2]; pipe (pfds)",
+        "evidence_decompiled_line": "179-182: int pfds[2]; pipe (pfds)"
+      },
+      {
+        "source_role": "父进程分支局部变量 args",
+        "source_type": "const char *[2]",
+        "decompiled_type": "const char *[2]",
+        "match": "correct",
+        "evidence_source_line": "2037-2058: const char *args[2]; args[0] ...; args[1] = NULL; execvp(args[0], (char * const *)args)",
+        "evidence_decompiled_line": "197-214: const char *args[2]; args[0] ...; args[1] = NULL; execvp(args[0], (char * const *)args)"
+      },
+      {
+        "source_role": "父进程分支局部变量 envvar",
+        "source_type": "const char *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "2040-2052: const char *envvar; envvar = secure_getenv (\"PAGER\")",
+        "evidence_decompiled_line": "200-210: const char *envvar; envvar = secure_getenv (\"PAGER\")"
+      },
+      {
+        "source_role": "version=c 分支局部变量 str",
+        "source_type": "const char[]",
+        "decompiled_type": "const char[]",
+        "match": "correct",
+        "evidence_source_line": "2071-2081: const char str[] = ...; fprintf(stdout, \"%s\", str)",
+        "evidence_decompiled_line": "224-232: const char str[] = ...; fprintf(stdout, \"%s\", str)"
+      },
+      {
+        "source_role": "version=v 分支局部变量 str",
+        "source_type": "const char[]",
+        "decompiled_type": "const char[]",
+        "match": "correct",
+        "evidence_source_line": "2084-2090: const char str[] = \"gnutls-cli 3.7.8\\n\"",
+        "evidence_decompiled_line": "235-239: const char str[] = \"psktool 3.7.8\\n\""
+      },
+      {
+        "source_role": "version=n 分支局部变量 str",
+        "source_type": "const char[]",
+        "decompiled_type": "const char[]",
+        "match": "correct",
+        "evidence_source_line": "2093-2118: const char str[] = ...; fprintf(stdout, \"%s\", str)",
+        "evidence_decompiled_line": "242-265: const char str[] = ...; fprintf(stdout, \"%s\", str)"
+      }
+    ],
+    "reasoning": "按 ABI 位置，argc/argv 均为第 1/2 个参数且类型一致；opt、pid、pfds、args、envvar 的栈角色、数据流和类型也一致。源码 opts 指向的全局对象在 906 行是非 static 文件作用域对象，因此 SC-01（静态局部对象被重构为全局外部对象）不成立；反编译文件同样给出文件作用域对象（72 行），但其 psktool_options 布局与源码 gnutls_cli_options 不同。源码主结构包含 70/32/5/2/70 的嵌套字段序列，反编译仅为 7/5/2/7 且无 list，构成 LAYOUT-01，并使 opts/全局对象的恢复类型错误。指针层级和 int/pid_t 宽度在可对齐实体上没有坍塌或丢失（PTR-01、INT-01 均未见证据）；函数签名在两边均为 (int, char **) -> int（FN-01 rejected）。"
+  }
+]

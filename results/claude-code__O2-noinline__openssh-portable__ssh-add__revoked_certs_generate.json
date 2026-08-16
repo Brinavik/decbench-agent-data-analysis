@@ -1,0 +1,179 @@
+[
+  {
+    "function": "revoked_certs_generate",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "函数签名及返回类型",
+        "source_type": "static int (struct revoked_certs *, struct sshbuf *)",
+        "decompiled_type": "static int (struct revoked_certs *, struct sshbuf *)",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1851-1852: static int revoked_certs_generate(struct revoked_certs *rc, struct sshbuf *buf)",
+        "evidence_decompiled_line": "ssh-add.c:70-71: static int revoked_certs_generate(struct revoked_certs *rc, struct sshbuf *buf)"
+      },
+      {
+        "source_role": "第1个参数",
+        "source_type": "struct revoked_certs *",
+        "decompiled_type": "struct revoked_certs *",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1852,1870,1887: 第1参数声明为 struct revoked_certs *rc，并用于 rc->ca_key、rc->revoked_serials",
+        "evidence_decompiled_line": "ssh-add.c:71,85,101: 第1参数声明为 struct revoked_certs *rc，并用于 rc->ca_key、rc->revoked_serials"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "struct sshbuf *",
+        "decompiled_type": "struct sshbuf *",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1852,1873,1930-1931: 第2参数声明为 struct sshbuf *buf，作为输出缓冲区传给 sshbuf_put_string/sshbuf_put_u8/sshbuf_put_stringb",
+        "evidence_decompiled_line": "ssh-add.c:71,86,126-127: 第2参数声明为 struct sshbuf *buf，并承担相同输出缓冲区数据流"
+      },
+      {
+        "source_role": "局部变量 final",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1854,1897-1900,1907: int final；保存 nrs 是否为空的布尔结果并作为 choose_next_state 第3实参",
+        "evidence_decompiled_line": "ssh-add.c:73,104-105,109-110: int final；相同布尔数据流和调用位置"
+      },
+      {
+        "source_role": "局部变量 force_new_sect",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1854,1907-1908,1914: int force_new_sect；地址作为 choose_next_state 最后实参并参与条件判断",
+        "evidence_decompiled_line": "ssh-add.c:73,109-110,118: int force_new_sect；地址和条件用途一致"
+      },
+      {
+        "source_role": "局部变量 r",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1854,1873-1876,1950,1984: int r = -1；承接 int 返回码并写入 -2",
+        "evidence_decompiled_line": "ssh-add.c:73,86-87,138-139,169-170,205: int r = SSH_ERR_INTERNAL_ERROR；承接返回码并写入 SSH_ERR_ALLOC_FAIL，最终置 0"
+      },
+      {
+        "source_role": "局部变量 i",
+        "source_type": "u_int64_t",
+        "decompiled_type": "u_int64_t",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1855,1964-1965,1981-1983: u_int64_t i；遍历 64 位 contig 并参与序列号/位图索引运算",
+        "evidence_decompiled_line": "ssh-add.c:74,151-153,166-168: u_int64_t i；相同循环及算术数据流"
+      },
+      {
+        "source_role": "局部变量 contig",
+        "source_type": "u_int64_t",
+        "decompiled_type": "u_int64_t",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1855,1904,1907,1964: u_int64_t contig；由 1 + (rs->hi - rs->lo) 计算并控制循环",
+        "evidence_decompiled_line": "ssh-add.c:74,107,109,151: u_int64_t contig；相同计算和用途"
+      },
+      {
+        "source_role": "局部变量 gap",
+        "source_type": "u_int64_t",
+        "decompiled_type": "u_int64_t",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1855,1901-1903,1907-1908: u_int64_t gap；保存相邻无符号 64 位序列号差并传给 choose_next_state",
+        "evidence_decompiled_line": "ssh-add.c:74,106,109-110: u_int64_t gap；相同差值和调用用途"
+      },
+      {
+        "source_role": "局部变量 last",
+        "source_type": "u_int64_t",
+        "decompiled_type": "u_int64_t",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1855,1908,1990: u_int64_t last = 0；保存上一范围 hi 并计算 rs->lo - last",
+        "evidence_decompiled_line": "ssh-add.c:74,110,175: u_int64_t last = 0；相同跨迭代数据流"
+      },
+      {
+        "source_role": "局部变量 bitmap_start",
+        "source_type": "u_int64_t",
+        "decompiled_type": "u_int64_t",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1855,1953-1955,1975,1983: u_int64_t bitmap_start = 0；记录位图起始序列号并参与 64 位差值",
+        "evidence_decompiled_line": "ssh-add.c:74,141-143,163: u_int64_t bitmap_start = 0；相同初始化、写出和差值用途"
+      },
+      {
+        "source_role": "局部变量 rs",
+        "source_type": "struct revoked_serial *",
+        "decompiled_type": "struct revoked_serial *",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1856,1887-1891,1903-1904: struct revoked_serial *rs；红黑树当前节点并解引用 lo/hi",
+        "evidence_decompiled_line": "ssh-add.c:75,101-107: struct revoked_serial *rs；相同树迭代和字段访问数据流"
+      },
+      {
+        "source_role": "局部变量 nrs",
+        "source_type": "struct revoked_serial *",
+        "decompiled_type": "struct revoked_serial *",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1856,1897-1903: struct revoked_serial *nrs；保存 rs 的后继并解引用 lo",
+        "evidence_decompiled_line": "ssh-add.c:75,104-106: struct revoked_serial *nrs；相同后继节点数据流"
+      },
+      {
+        "source_role": "局部变量 rki",
+        "source_type": "struct revoked_key_id *",
+        "decompiled_type": "struct revoked_key_id *",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1857,2016-2021: struct revoked_key_id *rki；遍历 revoked_key_ids 并把 rki->key_id 写入缓冲区",
+        "evidence_decompiled_line": "ssh-add.c:76,193-196: struct revoked_key_id *rki；相同树迭代和 key_id 字段用途"
+      },
+      {
+        "source_role": "局部变量 next_state",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1858,1907,1914,1937-1940: int next_state；承接 choose_next_state 返回值并驱动状态切换",
+        "evidence_decompiled_line": "ssh-add.c:79,109,118,134-135: int next_state；相同返回值和状态机用途"
+      },
+      {
+        "source_role": "局部变量 state",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1858,1907-1908,1914-1921,1962: int state = 0；作为 section 类型状态并以 u8 写出",
+        "evidence_decompiled_line": "ssh-add.c:79,109-110,118-120,126,149: int state = 0；相同状态机和写出用途"
+      },
+      {
+        "source_role": "局部变量 sect",
+        "source_type": "struct sshbuf *",
+        "decompiled_type": "struct sshbuf *",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1859,1864,1922,1931,1933: struct sshbuf *sect；由 sshbuf_new 返回并作为临时 section 缓冲区",
+        "evidence_decompiled_line": "ssh-add.c:77,81,121,127,129: struct sshbuf *sect；相同分配和缓冲区数据流"
+      },
+      {
+        "source_role": "局部变量 bitmap",
+        "source_type": "struct bitmap *",
+        "decompiled_type": "struct bitmap *",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1860-1862,1922-1926,1947,1982: struct bitmap *bitmap = NULL；由 bitmap_new 返回并传给位图 API",
+        "evidence_decompiled_line": "ssh-add.c:78,121-124,137,167: struct bitmap *bitmap = NULL；相同分配、释放和 API 参数用途"
+      },
+      {
+        "source_role": "结构体 revoked_serial",
+        "source_type": "字段序列：u_int64_t lo@0，u_int64_t hi@8，3 个 struct revoked_serial * 的 RB_ENTRY@16/@24/@32，int color@40；LP64 下大小 48",
+        "decompiled_type": "u_int64_t lo, hi; RB_ENTRY(revoked_serial) tree_entry",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1169-1172: struct revoked_serial { u_int64_t lo, hi; { left*, right*, parent*, int color; } tree_entry; }；krl.c:1903-1904 以 lo/hi 的 64 位差值使用",
+        "evidence_decompiled_line": "ssh-add.c:22-25: struct revoked_serial { u_int64_t lo, hi; RB_ENTRY(revoked_serial) tree_entry; }；ssh-add.c:106-107 以相同 lo/hi 布局访问"
+      },
+      {
+        "source_role": "结构体 revoked_key_id",
+        "source_type": "字段序列：char *key_id@0，3 个 struct revoked_key_id * 的 RB_ENTRY@8/@16/@24，int color@32；LP64 下大小 40",
+        "decompiled_type": "char *key_id; RB_ENTRY(revoked_key_id) tree_entry",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1210-1213: struct revoked_key_id { char *key_id; { left*, right*, parent*, int color; } tree_entry; }；krl.c:2022-2023 解引用 key_id",
+        "evidence_decompiled_line": "ssh-add.c:31-34: struct revoked_key_id { char *key_id; RB_ENTRY(revoked_key_id) tree_entry; }；ssh-add.c:193-196 按相同树节点和 key_id 布局访问"
+      },
+      {
+        "source_role": "结构体 revoked_certs",
+        "source_type": "字段序列：struct sshkey *ca_key@0，单指针根 revoked_serials@8，单指针根 revoked_key_ids@16，TAILQ 的 next*@24 与 prev**@32；LP64 下大小 40",
+        "decompiled_type": "struct sshkey *ca_key; struct revoked_serial_tree revoked_serials; struct revoked_key_id_tree revoked_key_ids; TAILQ_ENTRY(revoked_certs) entry",
+        "match": "correct",
+        "evidence_source_line": "krl.c:1293-1298: ca_key、两个仅含根指针的树头、以及 {tqe_next*, tqe_prev**}；krl.c:1870,1887,2017 分别访问前三字段",
+        "evidence_decompiled_line": "ssh-add.c:40-45: ca_key、revoked_serial_tree、revoked_key_id_tree、TAILQ_ENTRY；ssh-add.c:85,101,193 分别按相同顺序和用途访问"
+      }
+    ],
+    "reasoning": "按 ABI 位置，第1参数始终是 CA 撤销集合指针，第2参数始终是输出 sshbuf 指针，返回类型均为 int，未发现 FN-01。局部变量依照树迭代、64 位序列号算术、状态机、返回码和资源生命周期逐一对齐，指针层级以及整数宽度/符号均一致，未发现 PTR-01 或 INT-01。反编译结果额外命名的 u_int64_t bitmap_index 对应源码 rs->lo - bitmap_start 的无符号 64 位表达式临时值，不是源码实体被错误恢复。三个具名结构体的字段序列、LP64 偏移和大小与源码宏展开布局一致，未发现 ST-01 或 LAYOUT-01。函数没有静态局部对象，反编译也没有把任何局部对象恢复成全局 extern，未发现 SC-01。因此 free_discovery 下的类型/结构恢复错误假设被拒绝。"
+  }
+]

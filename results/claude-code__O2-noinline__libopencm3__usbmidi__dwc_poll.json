@@ -1,0 +1,101 @@
+[
+  {
+    "function": "dwc_poll",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "usbd_device *",
+        "decompiled_type": "void * (usbp)",
+        "match": "wrong",
+        "evidence_source_line": "1268: void dwc_poll(usbd_device *usbd_dev)",
+        "evidence_decompiled_line": "36: void dwc_poll(void *usbp)",
+        "reasoning": "ABI位置相同且均为单指针，但反编译结果丢失了源码明确的usbd_device结构体类型。"
+      },
+      {
+        "source_role": "局部变量 intsts",
+        "source_type": "uint32_t",
+        "decompiled_type": "uint32_t gintsts",
+        "match": "correct",
+        "evidence_source_line": "1271: uint32_t intsts = (*(volatile uint32_t *)((0x014) + ((usbd_dev->driver->base_address))));",
+        "evidence_decompiled_line": "41: uint32_t gintsts = REG(otg, 0x14);",
+        "reasoning": "两者都从全局中断状态寄存器读取32位值，并在后续位测试中承担同一数据流角色。"
+      },
+      {
+        "source_role": "局部变量 i",
+        "source_type": "int",
+        "decompiled_type": "int ep（for循环变量）及 int i（FIFO排空变量）",
+        "match": "correct",
+        "evidence_source_line": "1272: int i; 1286: for (i = 0; i < 4; i++) 1349: for (i = 0; i < usbd_dev->rxbcnt; i += 4)",
+        "evidence_decompiled_line": "53: for (int ep = 0; ep < 4; ep++) 104: int i = 0;",
+        "reasoning": "源码同一int局部承担端点循环和FIFO排空计数；反编译器拆成两个int局部，宽度和用途保持。"
+      },
+      {
+        "source_role": "局部变量 rxstsp",
+        "source_type": "uint32_t",
+        "decompiled_type": "uint32_t grxstsp",
+        "match": "correct",
+        "evidence_source_line": "1302: uint32_t rxstsp = (*(volatile uint32_t *)((0x020) + ((usbd_dev->driver->base_address))));",
+        "evidence_decompiled_line": "68: uint32_t grxstsp = REG(otg, 0x20);",
+        "reasoning": "均为从GRXSTSP偏移0x20读取的32位状态字。"
+      },
+      {
+        "source_role": "局部变量 ep",
+        "source_type": "uint8_t",
+        "decompiled_type": "uint32_t ep",
+        "match": "wrong",
+        "evidence_source_line": "1304: uint8_t ep = rxstsp & (0xf << 0);",
+        "evidence_decompiled_line": "69: uint32_t ep = grxstsp & 0xF;",
+        "reasoning": "同一EPNUM数据流可对齐，但源码明确为uint8_t，反编译局部为uint32_t，存在整数宽度恢复错误。"
+      },
+      {
+        "source_role": "局部变量 pktsts",
+        "source_type": "uint32_t",
+        "decompiled_type": "无独立局部（直接switch表达式）",
+        "match": "undeterminable",
+        "evidence_source_line": "1303: uint32_t pktsts = rxstsp & (0xf << 17);",
+        "evidence_decompiled_line": "71: switch (grxstsp & 0x1E0000)",
+        "reasoning": "反编译器可能因优化内联了该临时变量，无法判定独立局部类型恢复。"
+      },
+      {
+        "source_role": "局部变量 type",
+        "source_type": "uint8_t",
+        "decompiled_type": "无独立局部（按switch case直接分派）",
+        "match": "undeterminable",
+        "evidence_source_line": "1324-1328: uint8_t type; 按pktsts赋USB_TRANSACTION_SETUP或USB_TRANSACTION_OUT",
+        "evidence_decompiled_line": "71-94: switch分支直接调用setup_cb/out_cb，无type变量",
+        "reasoning": "type被控制流优化消除；没有反编译实体可进行宽度对齐。"
+      },
+      {
+        "source_role": "结构体 user_callback_ctr[8][3]",
+        "source_type": "usbd_endpoint_callback[8][3]，每项函数指针",
+        "decompiled_type": "ep_ops_t[4]，每项in_cb/out_cb/setup_cb三个函数指针",
+        "match": "correct",
+        "evidence_source_line": "907: usbd_endpoint_callback user_callback_ctr[8][3]; 1289-1292,1344-1345: 按[ep][transaction]访问并调用",
+        "evidence_decompiled_line": "21-26: ep_ops_t含in_cb/out_cb/setup_cb三指针; 56-57,73,85-86: ops[ep]按对应字段调用",
+        "reasoning": "源码每端点连续三项回调，事务顺序IN/OUT/SETUP与反编译字段顺序一致，字段数量和指针序列相符。"
+      },
+      {
+        "source_role": "结构体 usbd_device",
+        "source_type": "具名usbd_device结构体，含driver、force_nak、doeptsiz、rxbcnt等字段",
+        "decompiled_type": "void* usbp加硬编码偏移；另有void* ctrl",
+        "match": "undeterminable",
+        "evidence_source_line": "866-936: struct _usbd_device字段声明; 1271-1379: 通过usbd_dev->driver及具名字段访问",
+        "evidence_decompiled_line": "38-40,78-93,102-110: 通过usbp偏移0xDC、0xF0、0xEC、0x100等访问",
+        "reasoning": "若干偏移与字段用途可能对应，但反编译文件未给出完整宿主结构体字段序列及大小，无法严格证明整体布局一致。"
+      },
+      {
+        "source_role": "静态局部对象（SC-01）",
+        "source_type": "本函数无static局部对象",
+        "decompiled_type": "无对应static局部或全局外部对象",
+        "match": "correct",
+        "evidence_source_line": "1268-1383: 函数内仅自动局部，无static声明",
+        "evidence_decompiled_line": "36-158: 仅参数和自动局部，无static对象定义",
+        "reasoning": "不存在静态局部被错误重构为全局外部对象，因此SC-01不成立。"
+      }
+    ],
+    "reasoning": "按第一参数ABI、局部数据流和结构体字段序列对齐；确认intsts/rxstsp及回调表布局，确认ep宽度错误；pktsts/type因优化消除无法判定；源码无静态局部，故free_discovery整体判定rejected。"
+  }
+]

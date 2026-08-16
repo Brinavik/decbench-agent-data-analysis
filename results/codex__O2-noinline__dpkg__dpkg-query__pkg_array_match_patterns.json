@@ -1,0 +1,83 @@
+[
+  {
+    "function": "pkg_array_match_patterns",
+    "decompiler": "codex/O2-noinline",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "struct pkg_array *",
+        "decompiled_type": "struct pkg_array *",
+        "match": "correct",
+        "evidence_source_line": "1977: pkg_array_match_patterns(struct pkg_array *array,",
+        "evidence_decompiled_line": "51: pkg_array_match_patterns(struct pkg_array *array, pkg_array_apply_func *func, void *data,"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "pkg_array_visitor_func * (void (*)(struct pkg_array *, struct pkginfo *, void *))",
+        "decompiled_type": "pkg_array_apply_func * (void (*)(struct pkg_array *, struct pkginfo *, void *))",
+        "match": "correct",
+        "evidence_source_line": "1978: pkg_array_visitor_func *pkg_visitor, void *pkg_data,",
+        "evidence_decompiled_line": "36: typedef void pkg_array_apply_func(struct pkg_array *, struct pkginfo *, void *);; 51: ... pkg_array_apply_func *func ..."
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "void *",
+        "decompiled_type": "void *",
+        "match": "correct",
+        "evidence_source_line": "1978: ... void *pkg_data,",
+        "evidence_decompiled_line": "51: ... void *data,"
+      },
+      {
+        "source_role": "第4个参数",
+        "source_type": "const char *const *",
+        "decompiled_type": "const char *const patterns[] (adjusted to pointer)",
+        "match": "correct",
+        "evidence_source_line": "1979: const char *const *argv)",
+        "evidence_decompiled_line": "52: const char *const patterns[]"
+      },
+      {
+        "source_role": "局部变量 argc/ip/i/rc/found/ps",
+        "source_type": "int argc, i, ip, rc; int *found; struct pkg_spec *ps",
+        "decompiled_type": "int n_patterns, i, unmatched; int *matches; struct pkg_spec *specs",
+        "match": "correct",
+        "evidence_source_line": "1981-1983: int argc, i, ip, *found; int rc = 0; struct pkg_spec *ps;",
+        "evidence_decompiled_line": "54-58: struct pkg_spec *specs; int *matches; int n_patterns = 0; int i; int unmatched = 0;"
+      },
+      {
+        "source_role": "结构体 pkg_array",
+        "source_type": "{ int n_pkgs; struct pkginfo **pkgs; }",
+        "decompiled_type": "{ int n_pkgs; struct pkginfo **pkgs; }",
+        "match": "correct",
+        "evidence_source_line": "1060-1063: struct pkg_array { int n_pkgs; struct pkginfo **pkgs; };",
+        "evidence_decompiled_line": "16-19: struct pkg_array { int n_pkgs; struct pkginfo **pkgs; };"
+      },
+      {
+        "source_role": "结构体 pkg_spec",
+        "source_type": "char *; const struct dpkg_arch *; enum pkg_spec_flags; _Bool; _Bool; struct pkg_hash_iter *; struct pkginfo *",
+        "decompiled_type": "char *; void *; int; bool; bool; void *; void *",
+        "match": "wrong",
+        "evidence_source_line": "1098-1117: struct pkg_spec fields are name, const struct dpkg_arch *arch, enum flags, two _Bool fields, struct pkg_hash_iter *pkg_iter, struct pkginfo *pkg_next",
+        "evidence_decompiled_line": "21-29: struct pkg_spec fields use void *arch, int flags, bool fields, void *pkg_iter, void *arch_iter"
+      },
+      {
+        "source_role": "pkginfo installed field passed to matcher",
+        "source_type": "struct pkgbin * (address of pkg->installed)",
+        "decompiled_type": "const struct pkgbin * (address written as pkg->available)",
+        "match": "wrong",
+        "evidence_source_line": "2004: pkg_spec_match_pkg(&ps[ip], pkg, &pkg->installed)",
+        "evidence_decompiled_line": "78: if (pkg_spec_match_pkg(&specs[j], pkg, &pkg->available))"
+      },
+      {
+        "source_role": "动态分配对象 found/ps and corresponding frees",
+        "source_type": "m_calloc(argc, sizeof(int)); m_malloc(sizeof(*ps) * argc); free(ps); free(found);",
+        "decompiled_type": "m_calloc(n_patterns, sizeof(*matches)); m_malloc(n_patterns * sizeof(*specs)); free(specs); free(matches);",
+        "match": "correct",
+        "evidence_source_line": "1986-1988 and 2027-2028: allocations are paired with free(ps) and free(found)",
+        "evidence_decompiled_line": "63-64 and 99-100: allocations are paired with free(specs) and free(matches)"
+      }
+    ],
+    "reasoning": "按四个参数的 ABI 位置和循环/分配数据流，反编译变量与源码变量可一一对应，且动态分配对象均被发现并释放，因此 free_discovery 假设不成立。源码的 pkg_spec 指针目标类型被反编译器泛化为 void *，并将 matcher 的 installed 字段标成 available，构成独立的恢复错误；这些不是 free 发现问题。"
+  }
+]

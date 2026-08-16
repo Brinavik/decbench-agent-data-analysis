@@ -1,0 +1,107 @@
+[
+  {
+    "function": "mergelines_node",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "struct merge_node *__restrict__",
+        "decompiled_type": "struct merge_node *restrict",
+        "match": "correct",
+        "evidence_source_line": "6749-6750: mergelines_node (struct merge_node *__restrict__ node, size_t total_lines, FILE *tfp, char const *temp_output)",
+        "evidence_decompiled_line": "51-52: mergelines_node (struct merge_node *restrict node, size_t total_lines, FILE *tfp, char const *temp_output)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "6749-6750: mergelines_node (struct merge_node *__restrict__ node, size_t total_lines, FILE *tfp, char const *temp_output)",
+        "evidence_decompiled_line": "51-52: mergelines_node (struct merge_node *restrict node, size_t total_lines, FILE *tfp, char const *temp_output)"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "6750: FILE *tfp",
+        "evidence_decompiled_line": "52: FILE *tfp"
+      },
+      {
+        "source_role": "第4个参数",
+        "source_type": "char const *",
+        "decompiled_type": "char const *",
+        "match": "correct",
+        "evidence_source_line": "6750: char const *temp_output",
+        "evidence_decompiled_line": "52: char const *temp_output"
+      },
+      {
+        "source_role": "局部变量 lo_orig",
+        "source_type": "struct line *",
+        "decompiled_type": "struct line *",
+        "match": "correct",
+        "evidence_source_line": "6752: struct line *lo_orig = node->lo;",
+        "evidence_decompiled_line": "54: struct line *lo_orig = node->lo;"
+      },
+      {
+        "source_role": "局部变量 hi_orig",
+        "source_type": "struct line *",
+        "decompiled_type": "struct line *",
+        "match": "correct",
+        "evidence_source_line": "6753: struct line *hi_orig = node->hi;",
+        "evidence_decompiled_line": "55: struct line *hi_orig = node->hi;"
+      },
+      {
+        "source_role": "局部变量 to_merge",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "6754: size_t to_merge = (((total_lines) >> (2 * ((node->level) + 1))) + 1);",
+        "evidence_decompiled_line": "56: size_t to_merge = MAX_MERGE (total_lines, node->level);"
+      },
+      {
+        "source_role": "局部变量 merged_lo",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "6755: size_t merged_lo;",
+        "evidence_decompiled_line": "57: size_t merged_lo;"
+      },
+      {
+        "source_role": "局部变量 merged_hi",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "6756: size_t merged_hi;",
+        "evidence_decompiled_line": "58: size_t merged_hi;"
+      },
+      {
+        "source_role": "局部变量 dest",
+        "source_type": "struct line *",
+        "decompiled_type": "struct line *",
+        "match": "correct",
+        "evidence_source_line": "6761: struct line *dest = *node->dest;",
+        "evidence_decompiled_line": "63: struct line *dest = *node->dest;"
+      },
+      {
+        "source_role": "结构体 line",
+        "source_type": "struct line { char *; size_t; char *; char *; }",
+        "decompiled_type": "struct line { char *; size_t; char *; char *; }",
+        "match": "correct",
+        "evidence_source_line": "2818-2824: struct line { char *text; size_t length; char *keybeg; char *keylim; };",
+        "evidence_decompiled_line": "7-13: struct line { char *text; size_t length; char *keybeg; char *keylim; };"
+      },
+      {
+        "source_role": "结构体 merge_node",
+        "source_type": "fields: struct line * lo, hi, end_lo, end_hi; struct line ** dest; size_t nlo, nhi; struct merge_node * parent, lo_child, hi_child; unsigned int level; _Bool queued; pthread_mutex_t lock",
+        "decompiled_type": "fields: struct line * lo, hi, end_lo, end_hi; struct line ** dest; size_t nlo, nhi; struct merge_node * parent, lo_child, hi_child; unsigned int level; _Bool queued; pthread_mutex_t lock",
+        "match": "correct",
+        "evidence_source_line": "2899-2916: struct merge_node { struct line *lo; struct line *hi; struct line *end_lo; struct line *end_hi; struct line **dest; size_t nlo; size_t nhi; struct merge_node *parent; struct merge_node *lo_child; struct merge_node *hi_child; unsigned int level; _Bool queued; pthread_mutex_t lock; };",
+        "evidence_decompiled_line": "16-31: struct merge_node { struct line *lo; struct line *hi; struct line *end_lo; struct line *end_hi; struct line **dest; size_t nlo; size_t nhi; struct merge_node *parent; struct merge_node *lo_child; struct merge_node *hi_child; unsigned int level; _Bool queued; pthread_mutex_t lock; };"
+      }
+    ],
+    "reasoning": "按 ABI 参数序号逐一核对，四个参数签名一致；局部变量通过 node 字段、指针递减、指针差值和写出调用的数据流与源码一致。size_t、unsigned int、_Bool 等整数/布尔宽度角色未改变。struct line 与 struct merge_node 的字段数量、顺序和类型序列一致，未见指针层级坍塌、函数原型不匹配、静态局部对象外移或布局冲突证据。"
+  }
+]

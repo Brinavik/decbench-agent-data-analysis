@@ -1,0 +1,46 @@
+你是反编译类型恢复的语义复核员。请只分析下面指定的一对文件中的一个函数，不要读取或推断其他函数文件。
+
+源码文件：{source_path}
+反编译文件：{decompiled_path}
+反编译器：{decompiler}
+函数：{function}
+待审假设：{hypothesis}
+结果输出文件：{output_path}
+
+核心原则：反编译器会重命名变量和结构体，绝不能依赖名字是否一致来判断。必须依据以下维度对齐源码实体与反编译实体：
+- 函数参数的 ABI 位置序号（第 1 个参数对应第 1 个参数）；
+- 局部变量的栈上角色与数据流用途；
+- 结构体的内存布局：字段数量、偏移、大小、类型序列。
+
+请从源码独立提取本函数的参数、局部变量和结构体实体清单，再对每个可对齐实体判断类型或结构体恢复是否正确。不要猜测；证据不足时必须标记 undeterminable。
+
+待验证错误假设包括：
+SC-01 静态局部对象被重构为全局外部对象；
+ST-01 同名结构体或头文件冲突；
+PTR-01 指针层级坍塌；
+INT-01 整数宽度、符号或 typedef 丢失；
+FN-01 函数原型/签名不匹配；
+LAYOUT-01 显式结构体布局不匹配。
+
+每个结论必须有源码和反编译结果的行级证据。禁止仅凭名称对齐。请把严格合法的 JSON 数组（数组中的每个对象对应一个实体判断）写入 {output_path}，不要把大段分析写到该文件以外。对象格式如下：
+[
+  {
+    "function": "...",
+    "decompiler": "...",
+    "hypothesis": "...",
+    "verdict": "confirmed | rejected | undeterminable",
+    "entities": [
+      {
+        "source_role": "第2个参数/局部变量/结构体foo",
+        "source_type": "...",
+        "decompiled_type": "...",
+        "match": "correct | wrong | undeterminable",
+        "evidence_source_line": "源码行号及内容",
+        "evidence_decompiled_line": "反编译行号及内容"
+      }
+    ],
+    "reasoning": "简要说明按 ABI 位置、数据流和布局对齐的依据"
+  }
+]
+
+完成后确认文件已写入；若无法确定，仍必须输出 verdict=undeterminable 及具体原因。

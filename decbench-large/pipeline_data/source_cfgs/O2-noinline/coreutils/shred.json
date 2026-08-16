@@ -1,0 +1,2981 @@
+{
+  "opt": "O2-noinline",
+  "project": "coreutils",
+  "binary": "shred",
+  "generator": "pyjoern",
+  "functions": {
+    "usage": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "labels": {
+        "0": "2663.0:\nexit(status)\nFUNCTION_END\n",
+        "1": "2560.0:\nFUNCTION_START\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "2": "2569.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ((void...>\n",
+        "3": "2576.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nemit_mandatory_arg_note()\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: s)...>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nemit_ancillary_info(&quot;shred&quot;)\n"
+      },
+      "entry": [
+        1
+      ],
+      "exit": [
+        0
+      ],
+      "degenerate": false
+    },
+    "main": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "edges": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          30
+        ],
+        [
+          0,
+          31
+        ],
+        [
+          0,
+          32
+        ],
+        [
+          0,
+          33
+        ],
+        [
+          0,
+          34
+        ],
+        [
+          0,
+          35
+        ],
+        [
+          0,
+          36
+        ],
+        [
+          0,
+          47
+        ],
+        [
+          0,
+          48
+        ],
+        [
+          1,
+          15
+        ],
+        [
+          1,
+          46
+        ],
+        [
+          2,
+          14
+        ],
+        [
+          3,
+          45
+        ],
+        [
+          4,
+          45
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          5,
+          39
+        ],
+        [
+          6,
+          45
+        ],
+        [
+          7,
+          18
+        ],
+        [
+          8,
+          20
+        ],
+        [
+          9,
+          6
+        ],
+        [
+          10,
+          44
+        ],
+        [
+          11,
+          24
+        ],
+        [
+          12,
+          26
+        ],
+        [
+          13,
+          14
+        ],
+        [
+          13,
+          29
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          16,
+          1
+        ],
+        [
+          17,
+          18
+        ],
+        [
+          18,
+          2
+        ],
+        [
+          19,
+          20
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          21,
+          41
+        ],
+        [
+          22,
+          41
+        ],
+        [
+          23,
+          24
+        ],
+        [
+          24,
+          9
+        ],
+        [
+          25,
+          26
+        ],
+        [
+          26,
+          9
+        ],
+        [
+          27,
+          13
+        ],
+        [
+          27,
+          28
+        ],
+        [
+          28,
+          13
+        ],
+        [
+          29,
+          49
+        ],
+        [
+          29,
+          50
+        ],
+        [
+          30,
+          45
+        ],
+        [
+          31,
+          45
+        ],
+        [
+          32,
+          45
+        ],
+        [
+          33,
+          45
+        ],
+        [
+          34,
+          45
+        ],
+        [
+          35,
+          40
+        ],
+        [
+          35,
+          51
+        ],
+        [
+          36,
+          5
+        ],
+        [
+          37,
+          16
+        ],
+        [
+          38,
+          16
+        ],
+        [
+          39,
+          42
+        ],
+        [
+          39,
+          43
+        ],
+        [
+          40,
+          45
+        ],
+        [
+          41,
+          45
+        ],
+        [
+          42,
+          11
+        ],
+        [
+          42,
+          23
+        ],
+        [
+          43,
+          12
+        ],
+        [
+          43,
+          25
+        ],
+        [
+          44,
+          45
+        ],
+        [
+          45,
+          0
+        ],
+        [
+          45,
+          27
+        ],
+        [
+          46,
+          37
+        ],
+        [
+          46,
+          38
+        ],
+        [
+          47,
+          21
+        ],
+        [
+          47,
+          22
+        ],
+        [
+          48,
+          10
+        ],
+        [
+          48,
+          52
+        ],
+        [
+          49,
+          7
+        ],
+        [
+          49,
+          17
+        ],
+        [
+          50,
+          8
+        ],
+        [
+          50,
+          19
+        ],
+        [
+          51,
+          45
+        ],
+        [
+          52,
+          44
+        ],
+        [
+          53,
+          45
+        ]
+      ],
+      "labels": {
+        "0": "3923.0:\n<UnsupportedStmt: IDENTIFIER,c,switch(c)>\n",
+        "1": "4067.0:\ni < n_files\n",
+        "2": "None.8:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "3": "None.18:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "4": "None.21:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "5": "3949.0:\nrandom_source&amp;&amp;!(strcmp(random_source,optar... && \n",
+        "6": "3969.0:\nrandom_source = optarg\n",
+        "7": "4057.1:\n__builtin_unreachable()\n",
+        "8": "4063.1:\n__builtin_unreachable()\n",
+        "9": "None.36:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "10": "3985.7:\n<UnsupportedStmt: ['subtraction', '(off_t)-1']>\n",
+        "11": "3960.1:\n__builtin_unreachable()\n",
+        "12": "3968.1:\n__builtin_unreachable()\n",
+        "13": "None.4:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nrandint_source = randint_all_new(random_source...\n<UnsupportedStmt: ['logicalNot', '!randint_source']>\n",
+        "14": "4065.1:\nFUNCTION_START\natexit(clear_random_data)\ni = 0\n",
+        "15": "None.5:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nFUNCTION_END\n",
+        "16": "4081.0:\nfree(qname)\n<UnsupportedStmt: ['postIncrement', 'i++']>\n",
+        "17": "4057.2:\n<UnsupportedStmt: UNKNOWN,void,void>\n<UnsupportedStmt: ['cast', '(void)0']>\n",
+        "18": "None.31:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: void)0:__builtin_unreachable()>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "19": "4063.2:\n<UnsupportedStmt: UNKNOWN,void,void>\n<UnsupportedStmt: ['cast', '(void)0']>\n",
+        "20": "None.33:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: void)0:__builtin_unreachable()>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "21": "3936.1:\n<UnsupportedStmt: ['multiplication', '0x7fffffffffffffffL*2UL']>\n<UnsupportedStmt: ['addition', '0x7fffffffffffffffL*2UL+1UL']>\n",
+        "22": "3937.0:\n<UnsupportedStmt: ['sizeOf', 'sizeof(int)']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "23": "3960.2:\n<UnsupportedStmt: UNKNOWN,void,void>\n<UnsupportedStmt: ['cast', '(void)0']>\n",
+        "24": "None.48:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: void)0:__buil...>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "25": "3968.2:\n<UnsupportedStmt: UNKNOWN,void,void>\n<UnsupportedStmt: ['cast', '(void)0']>\n",
+        "26": "None.50:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: void)0:__buil...>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "27": "4030.1:\n<UnsupportedStmt: ['addition', 'argv+optind']>\nfile = argv+optind\n<UnsupportedStmt: ['subtraction', 'argc-optind']>\nn_files = argc-optind\nn_files == 0\n",
+        "28": "4036.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ((vo...>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "29": "None.29:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "30": "3926.1:\n<UnsupportedStmt: FIELD_IDENTIFIER,force,force>\n<UnsupportedStmt: ['fieldAccess', 'flags.force']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "31": "3994.1:\n<UnsupportedStmt: FIELD_IDENTIFIER,verbose,verbose>\n<UnsupportedStmt: ['fieldAccess', 'flags.verbose']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "32": "4000.1:\n<UnsupportedStmt: FIELD_IDENTIFIER,exact,exact>\n<UnsupportedStmt: ['fieldAccess', 'flags.exact']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "33": "4006.1:\n<UnsupportedStmt: FIELD_IDENTIFIER,zero_fill,zero_fill>\n<UnsupportedStmt: ['fieldAccess', 'flags.zero_fill']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "34": "4017.0:\n<UnsupportedStmt: UNKNOWN,char*,char*>\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: (void*)0)>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "35": "3974.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: (void*)0)>\n",
+        "36": "3949.3:\nstrcmp()\nstrcmp(random_source,optarg) == 0\n<UnsupportedStmt: ['logicalNot', '!(strcmp(random_source', 'optarg)==0)']>\n",
+        "37": "4074.0:\n<UnsupportedStmt: ['addressOf', '&amp;flags']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "38": "4079.2:\n<UnsupportedStmt: ['indirectIndexAccess', 'file[i]']>\n<UnsupportedStmt: ['addressOf', '&amp;flags']>\nwipefile()\n<UnsupportedStmt: &lt;operators&gt;.assignmentAnd,ok&amp;=wipefile(file[i],qname,randint_source,...>\n",
+        "39": "None.46:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "40": "3976.2:\n<UnsupportedStmt: FIELD_IDENTIFIER,remove_file,remove_file>\n<UnsupportedStmt: ['fieldAccess', 'flags.remove_file']>\nflags.remove_file = remove_wipesync\n",
+        "41": "3934.0:\n(((0x7fffffffffffffffL*2UL+1UL))&lt;((18446744... ? ( : (\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "42": "3955.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "43": "3963.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "44": "3985.5:\n!(!((off_t)0&lt;(off_t)-1)) ? ! : (\n<UnsupportedStmt: ['pointerCall', '(off_t)(!(!((off_t)0&lt;(off_t)-1))?(off_...']>\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nxnumtoumax()\nflags.size = xnumtoumax(optarg,0,0,((off_t)...\n",
+        "45": "3920.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\ngetopt_long()\nc = getopt_long(argc,argv,&quot;fn:s:uvxz&quot;,long_...\n-1 - \n(c=getopt_long(argc,argv,&quot;fn:s:uvxz&quot;,long... != \n",
+        "46": "4069.3:\n<UnsupportedStmt: ['indirectIndexAccess', 'file[i]']>\nquotearg_n_style_colon()\nxstrdup()\n*qname = xstrdup(quotearg_n_style_colon(0,sh...\n<UnsupportedStmt: ['indirectIndexAccess', 'file[i]']>\nstrcmp()\nstrcmp(file[i],&quot;-&quot;) == 0\n",
+        "47": "3932.1:\n<UnsupportedStmt: FIELD_IDENTIFIER,n_iterations,n_iterations>\n<UnsupportedStmt: ['fieldAccess', 'flags.n_iterations']>\n<UnsupportedStmt: ['multiplication', '0x7fffffffffffffffL*2UL']>\n<UnsupportedStmt: ['addition', '0x7fffffffffffffffL*2UL+1UL']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(int)']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n((0x7fffffffffffffffL*2UL+1UL)) < ((184467440...\n",
+        "48": "3985.3:\n<UnsupportedStmt: FIELD_IDENTIFIER,size,size>\n<UnsupportedStmt: ['fieldAccess', 'flags.size']>\n<UnsupportedStmt: UNKNOWN,off_t,off_t>\n<UnsupportedStmt: ['cast', '(off_t)0']>\n<UnsupportedStmt: ['subtraction', '(off_t)-1']>\n(off_t)0 < (off_t)-1\n<UnsupportedStmt: ['logicalNot', '!((off_t)0&lt;(off_t)-1)']>\n<UnsupportedStmt: ['logicalNot', '!(!((off_t)0&lt;(off_t)-1))']>\n",
+        "49": "4054.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\nrandom_source ? r : a\nquotearg_n_style_colon()\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "50": "4060.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\nrandom_source ? r : a\nquotearg_n_style_colon()\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "51": "3978.3:\n<UnsupportedStmt: FIELD_IDENTIFIER,remove_file,remove_file>\n<UnsupportedStmt: ['fieldAccess', 'flags.remove_file']>\n<UnsupportedStmt: UNKNOWN,voidconst*,voidconst*>\n<UnsupportedStmt: ['cast', '(voidconst*)(remove_methods)']>\n<UnsupportedStmt: ['indirection', '*(remove_methods)']>\n<UnsupportedStmt: ['sizeOf', 'sizeof*(remove_methods)']>\n__xargmatch_internal()\n<UnsupportedStmt: ['indirectIndexAccess', '(remove_methods)[__xargmatch_internal(&quot;--remo...']>\nflags.remove_file = ((remove_methods)[__xargma...\n",
+        "52": "3985.19:\n<UnsupportedStmt: UNKNOWN,off_t,off_t>\n<UnsupportedStmt: ['cast', '(off_t)1']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(off_t)']>\n<UnsupportedStmt: ['multiplication', 'sizeof(off_t)*8']>\n<UnsupportedStmt: ['subtraction', '(sizeof(off_t)*8)-2']>\n<UnsupportedStmt: ['shiftLeft', '(off_t)1&lt;&lt;((sizeof(off_t)*8)-2)']>\n<UnsupportedStmt: ['subtraction', '((off_t)1&lt;&lt;((sizeof(off_t)*8)-2))-1']>\n<UnsupportedStmt: ['multiplication', '(((off_t)1&lt;&lt;((sizeof(off_t)*8)-2))-1)...']>\n<UnsupportedStmt: ['addition', '(((off_t)1&lt;&lt;((sizeof(off_t)*8)-2))-1)...']>\n",
+        "53": "3889.0:\nFUNCTION_START\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['arrayInitializer', '{0', '}']>\nflags = {0,}\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['indirectIndexAccess', 'argv[0]']>\nset_program_name(argv[0])\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nbindtextdomain()\ntextdomain(&quot;coreutils&quot;)\nFUNCTION_START\natexit(close_stdout)\n<UnsupportedStmt: FIELD_IDENTIFIER,n_iterations,n_iterations>\n<UnsupportedStmt: ['fieldAccess', 'flags.n_iterations']>\nflags.n_iterations = DEFAULT_PASSES\n<UnsupportedStmt: FIELD_IDENTIFIER,size,size>\n<UnsupportedStmt: ['fieldAccess', 'flags.size']>\n-1 - \nflags.size = -1\n"
+      },
+      "entry": [
+        14,
+        53
+      ],
+      "exit": [
+        15
+      ],
+      "degenerate": false
+    },
+    "dir_name": {
+      "nodes": [
+        0
+      ],
+      "edges": [],
+      "labels": {
+        "0": "1438.0:\nFUNCTION_START\nFUNCTION_END\n"
+      },
+      "entry": [
+        0
+      ],
+      "exit": [
+        0
+      ],
+      "degenerate": true
+    },
+    "periodic_pattern": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "edges": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "labels": {
+        "0": "None.0:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "1": "2687.1:\n(r[0]!=r[1])||(r[0]!=r[2]) || \nreturn (r[0]!=r[1])||(r[0]!=r[2]);,return(r[0]!=r[1])||(r[0]!=r[2]);\n",
+        "2": "2669.0:\nFUNCTION_START\ntype <= 0\n",
+        "3": "2687.6:\n<UnsupportedStmt: ['indirectIndexAccess', 'r[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'r[2]']>\nr[0] != r[2]\n",
+        "4": "2679.1:\n<UnsupportedStmt: ['alloc', 'r[3]']>\nr[3] = \n<UnsupportedStmt: ['and', 'type&amp;0xfff']>\nbits = type&amp;0xfff\n<UnsupportedStmt: ['shiftLeft', 'bits&lt;&lt;12']>\n<UnsupportedStmt: &lt;operators&gt;.assignmentOr,bits|=bits&lt;&lt;12>\n<UnsupportedStmt: ['indirectIndexAccess', 'r[0]']>\n<UnsupportedStmt: ['arithmeticShiftRight', 'bits&gt;&gt;4']>\n<UnsupportedStmt: ['and', '(bits&gt;&gt;4)&amp;255']>\nr[0] = (bits&gt;&gt;4)&amp;255\n<UnsupportedStmt: ['indirectIndexAccess', 'r[1]']>\n<UnsupportedStmt: ['arithmeticShiftRight', 'bits&gt;&gt;8']>\n<UnsupportedStmt: ['and', '(bits&gt;&gt;8)&amp;255']>\nr[1] = (bits&gt;&gt;8)&amp;255\n<UnsupportedStmt: ['indirectIndexAccess', 'r[2]']>\n<UnsupportedStmt: ['and', 'bits&amp;255']>\nr[2] = bits&amp;255\n<UnsupportedStmt: ['indirectIndexAccess', 'r[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'r[1]']>\nr[0] != r[1]\n"
+      },
+      "entry": [
+        2
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "fillpattern": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          4
+        ]
+      ],
+      "labels": {
+        "0": "2708.0:\ni < size\n",
+        "1": "2712.0:\n<UnsupportedStmt: ['and', 'type&amp;0x1000']>\n",
+        "2": "2713.2:\ni = 0\n",
+        "3": "2713.0:\ni < size\n",
+        "4": "2706.3:\n<UnsupportedStmt: ['division', 'size/2']>\ni <= size/2\n",
+        "5": "2707.1:\n<UnsupportedStmt: ['addition', 'r+i']>\nmemcpy()\n<UnsupportedStmt: ['assignmentMultiplication', 'i*=2']>\n",
+        "6": "2709.1:\n<UnsupportedStmt: ['addition', 'r+i']>\n<UnsupportedStmt: ['subtraction', 'size-i']>\nmemcpy()\n",
+        "7": "2714.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'r[i]']>\n<UnsupportedStmt: &lt;operators&gt;.assignmentXor,r[i]^=0x80>\n<UnsupportedStmt: ['assignmentPlus', 'i+=SECTOR_SIZE']>\n",
+        "8": "2696.0:\nFUNCTION_START\n<UnsupportedStmt: ['and', 'type&amp;0xfff']>\nbits = type&amp;0xfff\n<UnsupportedStmt: ['shiftLeft', 'bits&lt;&lt;12']>\n<UnsupportedStmt: &lt;operators&gt;.assignmentOr,bits|=bits&lt;&lt;12>\n<UnsupportedStmt: ['indirectIndexAccess', 'r[0]']>\n<UnsupportedStmt: ['arithmeticShiftRight', 'bits&gt;&gt;4']>\n<UnsupportedStmt: ['and', '(bits&gt;&gt;4)&amp;255']>\nr[0] = (bits&gt;&gt;4)&amp;255\n<UnsupportedStmt: ['indirectIndexAccess', 'r[1]']>\n<UnsupportedStmt: ['arithmeticShiftRight', 'bits&gt;&gt;8']>\n<UnsupportedStmt: ['and', '(bits&gt;&gt;8)&amp;255']>\nr[1] = (bits&gt;&gt;8)&amp;255\n<UnsupportedStmt: ['indirectIndexAccess', 'r[2]']>\n<UnsupportedStmt: ['and', 'bits&amp;255']>\nr[2] = bits&amp;255\ni = 3\n"
+      },
+      "entry": [
+        8
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "passname": {
+      "nodes": [
+        0,
+        1,
+        2
+      ],
+      "edges": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "labels": {
+        "0": "2728.0:\nmemcpy()\n",
+        "1": "2722.0:\nFUNCTION_START\n<UnsupportedStmt: IDENTIFIER,data,if(data)>\n",
+        "2": "2726.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'data[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'data[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'data[2]']>\nsprintf()\n"
+      },
+      "entry": [
+        1
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "ignorable_sync_errno": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "labels": {
+        "0": "None.2:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "1": "None.3:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "2": "None.5:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "3": "None.1:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nFUNCTION_END\n",
+        "4": "2733.0:\nFUNCTION_START\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n"
+      },
+      "entry": [
+        4
+      ],
+      "exit": [
+        3
+      ],
+      "degenerate": false
+    },
+    "dosync": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "edges": [
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          8
+        ]
+      ],
+      "labels": {
+        "0": "2763.0:\nreturn 0;,return0;\n",
+        "1": "2782.0:\nreturn 0;,return0;\n",
+        "2": "2799.0:\nsync()\nreturn 0;,return0;\n",
+        "3": "2781.1:\nfsync(fd)\nfsync(fd) == 0\n",
+        "4": "2756.0:\nFUNCTION_START\nfdatasync(fd)\nfdatasync(fd) == 0\n",
+        "5": "2765.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: >\n<UnsupportedStmt: *__errno_location())>\nignorable_sync_errno(err)\n<UnsupportedStmt: ['logicalNot', '!ignorable_sync_errno(err)']>\n",
+        "6": "2784.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: >\n<UnsupportedStmt: *__errno_location())>\nignorable_sync_errno(err)\n<UnsupportedStmt: ['logicalNot', '!ignorable_sync_errno(err)']>\n",
+        "7": "2770.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ...>\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n-1 - \nreturn -1;,return-1;\n",
+        "8": "2789.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ...>\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n-1 - \nreturn -1;,return-1;\n"
+      },
+      "entry": [
+        4
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "direct_mode": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "edges": [
+        [
+          0,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          1
+        ]
+      ],
+      "labels": {
+        "0": "None.4:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "1": "None.6:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "2": "2805.0:\nFUNCTION_START\n",
+        "3": "None.1:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n0 < fd_flags\n",
+        "4": "None.7:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "5": "None.3:\n<UnsupportedStmt: >\n<UnsupportedStmt: fd_flags|...>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nnew_flags != fd_flags\n"
+      },
+      "entry": [
+        2
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "known": {
+      "nodes": [
+        0
+      ],
+      "edges": [],
+      "labels": {
+        "0": "2886.0:\nFUNCTION_START\n0 <= size\nreturn 0&lt;=size;,return0&lt;=size;\nFUNCTION_END\n"
+      },
+      "entry": [
+        0
+      ],
+      "exit": [
+        0
+      ],
+      "degenerate": false
+    },
+    "dopass": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94
+      ],
+      "edges": [
+        [
+          0,
+          43
+        ],
+        [
+          0,
+          44
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          60
+        ],
+        [
+          2,
+          60
+        ],
+        [
+          3,
+          46
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          6,
+          23
+        ],
+        [
+          6,
+          69
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          7,
+          84
+        ],
+        [
+          8,
+          82
+        ],
+        [
+          9,
+          82
+        ],
+        [
+          10,
+          45
+        ],
+        [
+          11,
+          43
+        ],
+        [
+          11,
+          44
+        ],
+        [
+          11,
+          92
+        ],
+        [
+          12,
+          24
+        ],
+        [
+          12,
+          70
+        ],
+        [
+          13,
+          12
+        ],
+        [
+          14,
+          1
+        ],
+        [
+          15,
+          16
+        ],
+        [
+          15,
+          17
+        ],
+        [
+          16,
+          18
+        ],
+        [
+          16,
+          19
+        ],
+        [
+          17,
+          44
+        ],
+        [
+          17,
+          48
+        ],
+        [
+          18,
+          19
+        ],
+        [
+          19,
+          20
+        ],
+        [
+          20,
+          64
+        ],
+        [
+          20,
+          65
+        ],
+        [
+          21,
+          20
+        ],
+        [
+          22,
+          1
+        ],
+        [
+          23,
+          63
+        ],
+        [
+          23,
+          67
+        ],
+        [
+          24,
+          11
+        ],
+        [
+          25,
+          43
+        ],
+        [
+          25,
+          44
+        ],
+        [
+          25,
+          51
+        ],
+        [
+          26,
+          21
+        ],
+        [
+          27,
+          26
+        ],
+        [
+          28,
+          52
+        ],
+        [
+          29,
+          73
+        ],
+        [
+          29,
+          93
+        ],
+        [
+          30,
+          43
+        ],
+        [
+          30,
+          44
+        ],
+        [
+          31,
+          32
+        ],
+        [
+          31,
+          74
+        ],
+        [
+          32,
+          29
+        ],
+        [
+          33,
+          1
+        ],
+        [
+          34,
+          1
+        ],
+        [
+          35,
+          77
+        ],
+        [
+          36,
+          78
+        ],
+        [
+          36,
+          94
+        ],
+        [
+          37,
+          34
+        ],
+        [
+          37,
+          87
+        ],
+        [
+          38,
+          76
+        ],
+        [
+          39,
+          37
+        ],
+        [
+          39,
+          55
+        ],
+        [
+          40,
+          39
+        ],
+        [
+          41,
+          58
+        ],
+        [
+          42,
+          59
+        ],
+        [
+          43,
+          15
+        ],
+        [
+          43,
+          47
+        ],
+        [
+          44,
+          1
+        ],
+        [
+          44,
+          61
+        ],
+        [
+          45,
+          3
+        ],
+        [
+          45,
+          46
+        ],
+        [
+          46,
+          4
+        ],
+        [
+          46,
+          83
+        ],
+        [
+          47,
+          15
+        ],
+        [
+          48,
+          16
+        ],
+        [
+          48,
+          44
+        ],
+        [
+          49,
+          27
+        ],
+        [
+          49,
+          53
+        ],
+        [
+          50,
+          29
+        ],
+        [
+          50,
+          31
+        ],
+        [
+          51,
+          54
+        ],
+        [
+          51,
+          71
+        ],
+        [
+          52,
+          62
+        ],
+        [
+          52,
+          66
+        ],
+        [
+          53,
+          26
+        ],
+        [
+          54,
+          76
+        ],
+        [
+          54,
+          79
+        ],
+        [
+          55,
+          37
+        ],
+        [
+          56,
+          38
+        ],
+        [
+          57,
+          38
+        ],
+        [
+          58,
+          65
+        ],
+        [
+          58,
+          75
+        ],
+        [
+          59,
+          56
+        ],
+        [
+          59,
+          57
+        ],
+        [
+          61,
+          14
+        ],
+        [
+          61,
+          22
+        ],
+        [
+          62,
+          11
+        ],
+        [
+          62,
+          12
+        ],
+        [
+          62,
+          13
+        ],
+        [
+          63,
+          7
+        ],
+        [
+          64,
+          49
+        ],
+        [
+          64,
+          50
+        ],
+        [
+          65,
+          28
+        ],
+        [
+          65,
+          86
+        ],
+        [
+          66,
+          1
+        ],
+        [
+          67,
+          63
+        ],
+        [
+          68,
+          25
+        ],
+        [
+          69,
+          23
+        ],
+        [
+          70,
+          24
+        ],
+        [
+          71,
+          85
+        ],
+        [
+          72,
+          30
+        ],
+        [
+          72,
+          33
+        ],
+        [
+          73,
+          41
+        ],
+        [
+          73,
+          89
+        ],
+        [
+          74,
+          32
+        ],
+        [
+          75,
+          65
+        ],
+        [
+          76,
+          35
+        ],
+        [
+          76,
+          77
+        ],
+        [
+          77,
+          85
+        ],
+        [
+          78,
+          21
+        ],
+        [
+          79,
+          42
+        ],
+        [
+          79,
+          90
+        ],
+        [
+          80,
+          36
+        ],
+        [
+          81,
+          21
+        ],
+        [
+          82,
+          10
+        ],
+        [
+          82,
+          45
+        ],
+        [
+          83,
+          1
+        ],
+        [
+          84,
+          0
+        ],
+        [
+          85,
+          43
+        ],
+        [
+          85,
+          44
+        ],
+        [
+          85,
+          72
+        ],
+        [
+          86,
+          52
+        ],
+        [
+          87,
+          81
+        ],
+        [
+          87,
+          88
+        ],
+        [
+          88,
+          34
+        ],
+        [
+          89,
+          58
+        ],
+        [
+          90,
+          59
+        ],
+        [
+          91,
+          8
+        ],
+        [
+          91,
+          9
+        ],
+        [
+          92,
+          25
+        ],
+        [
+          92,
+          68
+        ],
+        [
+          93,
+          36
+        ],
+        [
+          93,
+          80
+        ],
+        [
+          94,
+          39
+        ],
+        [
+          94,
+          40
+        ]
+      ],
+      "labels": {
+        "0": "2988.0:\noffset = 0\n",
+        "1": "3216.0:\nalignfree(pbuf)\n",
+        "2": "3218.2:\n-1 - \n",
+        "3": "None.4:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "4": "2963.0:\ntype >= 0\n",
+        "5": "2971.0:\npassname()\n",
+        "6": "2965.4:\nknown(size)\n",
+        "7": "2975.0:\n<UnsupportedStmt: IDENTIFIER,n,if(n)>\n",
+        "8": "2912.0:\n<UnsupportedStmt: ['multiplication', '60*1024']>\n",
+        "9": "2912.1:\n<UnsupportedStmt: ['multiplication', '64*1024']>\n",
+        "10": "2941.3:\nsize < output_size\n",
+        "11": "None.13:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "12": "3119.0:\ndone&amp;&amp;*previous_human_offset && \n",
+        "13": "3119.1:\n<UnsupportedStmt: ['indirection', '*previous_human_offset']>\n",
+        "14": "None.9:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "15": "2995.0:\nknown(size)&amp;&amp;size-offset&lt;output_size && \n",
+        "16": "3003.0:\ntype < 0\n",
+        "17": "2997.0:\nsize < offset\n",
+        "18": "3004.0:\nrandread()\n",
+        "19": "3006.2:\nsoff = 0\n",
+        "20": "3006.0:\nsoff < lim\n",
+        "21": "3006.1:\n<UnsupportedStmt: ['assignmentPlus', 'soff+=ssize']>\n",
+        "22": "None.20:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "23": "2965.2:\nknown(size)&amp;&amp;size&lt;(((output_size+2)/3)... && \n",
+        "24": "None.18:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "25": "3140.0:\ndone||!(strcmp(previous_human_offset,human_... || \n",
+        "26": "3010.0:\n(ssize&lt;=lim-soff) ? ( : s\n",
+        "27": "3010.3:\n__builtin_unreachable()\n",
+        "28": "3099.5:\n<UnsupportedStmt: ['subtraction', '(off_t)-1']>\n",
+        "29": "None.29:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "30": "None.31:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "31": "3013.2:\nssize == 0\n",
+        "32": "None.32:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "33": "None.45:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "34": "None.41:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "35": "3162.0:\nhuman_offset = human_size\n",
+        "36": "None.46:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "37": "None.48:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "38": "3154.0:\noff&lt;=((uintmax_t)(!(!((uintmax_t)0&lt;(uin... ? o : f\n",
+        "39": "None.54:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "40": "3066.0:\nknown(size)\n",
+        "41": "3020.5:\n<UnsupportedStmt: ['subtraction', '(off_t)-1']>\n",
+        "42": "3154.6:\n<UnsupportedStmt: ['subtraction', '(uintmax_t)-1']>\n",
+        "43": "2994.0:\nlim = output_size\nknown(size)\n",
+        "44": "3197.1:\ndosync()\ndosync(fd,qname) != 0\n",
+        "45": "2941.1:\n0&lt;size&amp;&amp;size&lt;output_size && \ntry_without_directio = 0&lt;size&amp;&amp;size&lt;outpu...\n<UnsupportedStmt: ['logicalNot', '!try_without_directio']>\n",
+        "46": "2947.1:\ndorewind()\n<UnsupportedStmt: ['logicalNot', '!dorewind(fd', 'st)']>\n",
+        "47": "2995.3:\n<UnsupportedStmt: ['subtraction', 'size-offset']>\nsize-offset < output_size\n",
+        "48": "2999.1:\n<UnsupportedStmt: ['subtraction', 'size-offset']>\nlim = size-offset\n<UnsupportedStmt: ['logicalNot', '!lim']>\n",
+        "49": "3010.4:\n<UnsupportedStmt: ['subtraction', 'lim-soff']>\nssize <= lim-soff\n",
+        "50": "3013.1:\nknown(size)\n<UnsupportedStmt: ['logicalNot', '!known(size)']>\n",
+        "51": "3142.1:\nknown(size)\n<UnsupportedStmt: ['logicalNot', '!known(size)']>\n",
+        "52": "3099.3:\n!(!((off_t)0&lt;(off_t)-1)) ? ! : (\n<UnsupportedStmt: ['pointerCall', '(off_t)(!(!((off_t)0&lt;(off_t)-1))?(off_...']>\n<UnsupportedStmt: ['subtraction', '((off_t)(!(!((off_t)0&lt;(off_t)-1))?(off...']>\n((off_t)(!(!((off_t)0 < (off_t)-1))?(off...\n",
+        "53": "3010.5:\n<UnsupportedStmt: UNKNOWN,void,void>\n<UnsupportedStmt: ['cast', '(void)0']>\n",
+        "54": "3151.0:\noff = offset\nsize == 0\n",
+        "55": "3067.1:\n<UnsupportedStmt: ['or', 'soff|SECTOR_MASK']>\n(soff|SECTOR_MASK) < lim\n",
+        "56": "3155.1:\n<UnsupportedStmt: ['multiplication', 'off*100']>\n<UnsupportedStmt: ['division', 'off*100/size']>\n",
+        "57": "3156.1:\n<UnsupportedStmt: ['division', 'size/100']>\n<UnsupportedStmt: ['division', 'off/(size/100)']>\n",
+        "58": "3020.3:\n!(!((off_t)0&lt;(off_t)-1)) ? ! : (\n<UnsupportedStmt: ['pointerCall', '(off_t)(!(!((off_t)0&lt;(off_t)-1))?(off_...']>\n<UnsupportedStmt: ['subtraction', '((off_t)(!(!((off_t)0&lt;(off_t)-1))?(off...']>\nsoff <= ((off_t)(!(!((off_t)0&lt;(off_t)-1)...\n",
+        "59": "3154.4:\n!(!((uintmax_t)0&lt;(uintmax_t)-1)) ? ! : (\n<UnsupportedStmt: ['pointerCall', '(uintmax_t)(!(!((uintmax_t)0&lt;(uintmax_t)...']>\n<UnsupportedStmt: ['division', '((uintmax_t)(!(!((uintmax_t)0&lt;(uintmax_t)...']>\noff <= ((uintmax_t)(!(!((uintmax_t)0&lt;(uin...\n",
+        "60": "3218.1:\nother_error ? o : t\nreturn other_error?-1:write_error;,returnother_error?-1:write_error;\nFUNCTION_END\n",
+        "61": "3200.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "62": "3112.0:\n<UnsupportedStmt: ['assignmentPlus', 'offset+=soff']>\noffset == size\ndone = offset==size\n",
+        "63": "2965.1:\nknown(size)&amp;&amp;size&lt;(((output_size+2)/3)... ? k : n\nlim = known(size)&amp;&amp;size&lt;(((output_size+2...\nfillpattern()\npassname()\n",
+        "64": "3008.2:\n<UnsupportedStmt: ['addition', 'pbuf+soff']>\n<UnsupportedStmt: ['subtraction', 'lim-soff']>\nwrite()\nssize = write(fd,pbuf+soff,lim-soff)\n0 < ssize\n",
+        "65": "3099.14:\n<UnsupportedStmt: UNKNOWN,off_t,off_t>\n<UnsupportedStmt: ['cast', '(off_t)0']>\n<UnsupportedStmt: ['subtraction', '(off_t)-1']>\n(off_t)0 < (off_t)-1\n<UnsupportedStmt: ['logicalNot', '!((off_t)0&lt;(off_t)-1)']>\n<UnsupportedStmt: ['logicalNot', '!(!((off_t)0&lt;(off_t)-1))']>\n",
+        "66": "3102.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ...>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "67": "2965.8:\n<UnsupportedStmt: ['addition', 'output_size+2']>\n<UnsupportedStmt: ['division', '(output_size+2)/3']>\n<UnsupportedStmt: ['multiplication', '((output_size+2)/3)*3']>\n",
+        "68": "3140.3:\nstrcmp()\nstrcmp(previous_human_offset,human_offset) == 0\n<UnsupportedStmt: ['logicalNot', '!(strcmp(previous_human_offset', 'human_offset)...']>\n",
+        "69": "2965.10:\n<UnsupportedStmt: ['addition', 'output_size+2']>\n<UnsupportedStmt: ['division', '(output_size+2)/3']>\n<UnsupportedStmt: ['multiplication', '((output_size+2)/3)*3']>\nsize < (((output_size+2)/3)*3)\n",
+        "70": "3121.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "71": "3144.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "72": "3178.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "73": "3020.14:\n<UnsupportedStmt: UNKNOWN,off_t,off_t>\n<UnsupportedStmt: ['cast', '(off_t)0']>\n<UnsupportedStmt: ['subtraction', '(off_t)-1']>\n(off_t)0 < (off_t)-1\n<UnsupportedStmt: ['logicalNot', '!((off_t)0&lt;(off_t)-1)']>\n<UnsupportedStmt: ['logicalNot', '!(!((off_t)0&lt;(off_t)-1))']>\n",
+        "74": "3014.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "75": "3021.1:\n<UnsupportedStmt: ['indirection', '*sizep']>\n<UnsupportedStmt: ['addition', 'offset+soff']>\nsize = offset+soff\n*sizep = size=offset+soff\n",
+        "76": "None.42:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['or', 'human_ceiling|human_progress_opts']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: IDENTIFIER,done,if(done)>\n",
+        "77": "3164.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "78": "None.52:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nssize = 0\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "79": "3154.15:\n<UnsupportedStmt: UNKNOWN,uintmax_t,uintmax_t>\n<UnsupportedStmt: ['cast', '(uintmax_t)0']>\n<UnsupportedStmt: ['subtraction', '(uintmax_t)-1']>\n(uintmax_t)0 < (uintmax_t)-1\n<UnsupportedStmt: ['logicalNot', '!((uintmax_t)0&lt;(uintmax_t)-1)']>\n<UnsupportedStmt: ['logicalNot', '!(!((uintmax_t)0&lt;(uintmax_t)-1))']>\n",
+        "80": "3036.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "81": "3075.1:\n<UnsupportedStmt: ['subtraction', 'soff1-soff']>\nssize = soff1-soff\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "82": "None.3:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['addition', 'output_size+2']>\n<UnsupportedStmt: ['division', '(output_size+2)/3']>\n<UnsupportedStmt: ['multiplication', '((output_size+2)/3)*3']>\nxalignalloc()\n*pbuf = xalignalloc(page_size,(((output_size...\n<UnsupportedStmt: ['alloc', 'pass_string[7]']>\npass_string[7] = \n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['sizeOf', 'sizeof(uintmax_t)']>\n<UnsupportedStmt: ['multiplication', '2*sizeof(uintmax_t)']>\n<UnsupportedStmt: ['multiplication', '2*sizeof(uintmax_t)*8']>\n<UnsupportedStmt: ['multiplication', '2*sizeof(uintmax_t)*8*146']>\n<UnsupportedStmt: ['division', '2*sizeof(uintmax_t)*8*146/485']>\n<UnsupportedStmt: ['addition', '2*sizeof(uintmax_t)*8*146/485+1']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['multiplication', '(2*sizeof(uintmax_t)*8*146/485+1)*...']>\n<UnsupportedStmt: ['subtraction', '(2*sizeof(uintmax_t)*8*146/485+1)*...']>\n<UnsupportedStmt: ['addition', '(2*sizeof(uintmax_t)*8*146/485+1)*...']>\n<UnsupportedStmt: ['addition', '(2*sizeof(uintmax_t)*8*146/485+1)*...']>\n<UnsupportedStmt: ['addition', '((2*sizeof(uintmax_t)*8*146/485+1)*...']>\n<UnsupportedStmt: ['alloc', 'previous_offset_buf[((2*sizeof(uintmax_t)*...']>\nprevious_offset_buf[((2*sizeof(uintmax_t)*... = \n0 < size\n",
+        "83": "2950.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: *__errno_location()...>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "84": "2978.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ((vo...>\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: (void*)0)...>\nprevious_human_offset = &quot;&quot;\n",
+        "85": "3172.0:\nstrcpy()\nprevious_human_offset = previous_offset_buf\n<UnsupportedStmt: ['addition', 'now+VERBOSE_UPDATE']>\nthresh = now+VERBOSE_UPDATE\ndosync()\ndosync(fd,qname) != 0\n",
+        "86": "3099.17:\n<UnsupportedStmt: UNKNOWN,off_t,off_t>\n<UnsupportedStmt: ['cast', '(off_t)1']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(off_t)']>\n<UnsupportedStmt: ['multiplication', 'sizeof(off_t)*8']>\n<UnsupportedStmt: ['subtraction', '(sizeof(off_t)*8)-2']>\n<UnsupportedStmt: ['shiftLeft', '(off_t)1&lt;&lt;((sizeof(off_t)*8)-2)']>\n<UnsupportedStmt: ['subtraction', '((off_t)1&lt;&lt;((sizeof(off_t)*8)-2))-1']>\n<UnsupportedStmt: ['multiplication', '(((off_t)1&lt;&lt;((sizeof(off_t)*8)-2))-1)...']>\n<UnsupportedStmt: ['addition', '(((off_t)1&lt;&lt;((sizeof(off_t)*8)-2))-1)...']>\n",
+        "87": "3069.2:\n<UnsupportedStmt: ['or', 'soff|SECTOR_MASK']>\n<UnsupportedStmt: ['addition', '(soff|SECTOR_MASK)+1']>\nsoff1 = (soff|SECTOR_MASK)+1\n<UnsupportedStmt: ['addition', 'offset+soff1']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n-1 - \n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "88": "3082.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: *__e...>\n",
+        "89": "3020.17:\n<UnsupportedStmt: UNKNOWN,off_t,off_t>\n<UnsupportedStmt: ['cast', '(off_t)1']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(off_t)']>\n<UnsupportedStmt: ['multiplication', 'sizeof(off_t)*8']>\n<UnsupportedStmt: ['subtraction', '(sizeof(off_t)*8)-2']>\n<UnsupportedStmt: ['shiftLeft', '(off_t)1&lt;&lt;((sizeof(off_t)*8)-2)']>\n<UnsupportedStmt: ['subtraction', '((off_t)1&lt;&lt;((sizeof(off_t)*8)-2))-1']>\n<UnsupportedStmt: ['multiplication', '(((off_t)1&lt;&lt;((sizeof(off_t)*8)-2))-1)...']>\n<UnsupportedStmt: ['addition', '(((off_t)1&lt;&lt;((sizeof(off_t)*8)-2))-1)...']>\n",
+        "90": "3154.18:\n<UnsupportedStmt: UNKNOWN,uintmax_t,uintmax_t>\n<UnsupportedStmt: ['cast', '(uintmax_t)1']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(uintmax_t)']>\n<UnsupportedStmt: ['multiplication', 'sizeof(uintmax_t)*8']>\n<UnsupportedStmt: ['subtraction', '(sizeof(uintmax_t)*8)-2']>\n<UnsupportedStmt: ['shiftLeft', '(uintmax_t)1&lt;&lt;((sizeof(uintmax_t)*8)-2)']>\n<UnsupportedStmt: ['subtraction', '((uintmax_t)1&lt;&lt;((sizeof(uintmax_t)*8)-2...']>\n<UnsupportedStmt: ['multiplication', '(((uintmax_t)1&lt;&lt;((sizeof(uintmax_t)*8)-...']>\n<UnsupportedStmt: ['addition', '(((uintmax_t)1&lt;&lt;((sizeof(uintmax_t)*8)-...']>\n",
+        "91": "2893.0:\nFUNCTION_START\n<UnsupportedStmt: ['indirection', '*sizep']>\nsize = *sizep\nnow = 0\ngetpagesize()\npage_size = getpagesize()\n<UnsupportedStmt: ['multiplication', '60*1024']>\n<UnsupportedStmt: ['modulo', '(60*1024)%3']>\n(60*1024)%3 == 0\n_Static_assert((60*1024)\nperiodic_pattern(type)\n",
+        "92": "3124.12:\n<UnsupportedStmt: ['sizeOf', 'sizeof(uintmax_t)']>\n<UnsupportedStmt: ['multiplication', '2*sizeof(uintmax_t)']>\n<UnsupportedStmt: ['multiplication', '2*sizeof(uintmax_t)*8']>\n<UnsupportedStmt: ['multiplication', '2*sizeof(uintmax_t)*8*146']>\n<UnsupportedStmt: ['division', '2*sizeof(uintmax_t)*8*146/485']>\n<UnsupportedStmt: ['addition', '2*sizeof(uintmax_t)*8*146/485+1']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['multiplication', '(2*sizeof(uintmax_t)*8*146/485+1)*...']>\n<UnsupportedStmt: ['subtraction', '(2*sizeof(uintmax_t)*8*146/485+1)*...']>\n<UnsupportedStmt: ['addition', '(2*sizeof(uintmax_t)*8*146/485+1)*...']>\n<UnsupportedStmt: ['addition', '(2*sizeof(uintmax_t)*8*146/485+1)*...']>\n<UnsupportedStmt: ['addition', '((2*sizeof(uintmax_t)*8*146/485+1)*...']>\n<UnsupportedStmt: ['alloc', 'offset_buf[((2*sizeof(uintmax_t)*8*146/...']>\noffset_buf[((2*sizeof(uintmax_t)*8*146/... = \n<UnsupportedStmt: ['sizeOf', 'sizeof(uintmax_t)']>\n<UnsupportedStmt: ['multiplication', '2*sizeof(uintmax_t)']>\n<UnsupportedStmt: ['multiplication', '2*sizeof(uintmax_t)*8']>\n<UnsupportedStmt: ['multiplication', '2*sizeof(uintmax_t)*8*146']>\n<UnsupportedStmt: ['division', '2*sizeof(uintmax_t)*8*146/485']>\n<UnsupportedStmt: ['addition', '2*sizeof(uintmax_t)*8*146/485+1']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['multiplication', '(2*sizeof(uintmax_t)*8*146/485+1)*...']>\n<UnsupportedStmt: ['subtraction', '(2*sizeof(uintmax_t)*8*146/485+1)*...']>\n<UnsupportedStmt: ['addition', '(2*sizeof(uintmax_t)*8*146/485+1)*...']>\n<UnsupportedStmt: ['addition', '(2*sizeof(uintmax_t)*8*146/485+1)*...']>\n<UnsupportedStmt: ['addition', '((2*sizeof(uintmax_t)*8*146/485+1)*...']>\n<UnsupportedStmt: ['alloc', 'size_buf[((2*sizeof(uintmax_t)*8*146/4...']>\nsize_buf[((2*sizeof(uintmax_t)*8*146/4... = \n<UnsupportedStmt: ['or', 'human_autoscale|human_SI']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nhuman_progress_opts = (human_autoscale|human_...\n<UnsupportedStmt: ['or', 'human_floor|human_progress_opts']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: off...>\n",
+        "93": "3027.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: >\n<UnsupportedStmt: *__err...>\n<UnsupportedStmt: ['sizeOf', 'sizeof(uintmax_t)']>\n<UnsupportedStmt: ['multiplication', 'sizeof(uintmax_t)*8']>\n<UnsupportedStmt: UNKNOWN,__typeof__(uintmax_t),__typeof__(uintmax_t)>\n<UnsupportedStmt: ['cast', '(__typeof__(uintmax_t))0']>\n<UnsupportedStmt: UNKNOWN,__typeof__(uintmax_t),__typeof__(uintmax_t)>\n-1 - \n<UnsupportedStmt: ['cast', '(__typeof__(uintmax_t))-1']>\n(__typeof__(uintmax_t))0 < (__typeof__(uintm...\n<UnsupportedStmt: ['logicalNot', '!((__typeof__(uintmax_t))0&lt;(__typeof__(ui...']>\n<UnsupportedStmt: ['subtraction', '(sizeof(uintmax_t)*8)-(!((__typeof__(uin...']>\n<UnsupportedStmt: ['multiplication', '((sizeof(uintmax_t)*8)-(!((__typeof__(ui...']>\n<UnsupportedStmt: ['addition', '((sizeof(uintmax_t)*8)-(!((__typeof__(ui...']>\n<UnsupportedStmt: ['division', '(((sizeof(uintmax_t)*8)-(!((__typeof__(u...']>\n<UnsupportedStmt: UNKNOWN,__typeof__(uintmax_t),__typeof__(uintmax_t)>\n<UnsupportedStmt: ['cast', '(__typeof__(uintmax_t))0']>\n<UnsupportedStmt: UNKNOWN,__typeof__(uintmax_t),__typeof__(uintmax_t)>\n-1 - \n<UnsupportedStmt: ['cast', '(__typeof__(uintmax_t))-1']>\n(__typeof__(uintmax_t))0 < (__typeof__(uintm...\n<UnsupportedStmt: ['logicalNot', '!((__typeof__(uintmax_t))0&lt;(__typeof__(ui...']>\n<UnsupportedStmt: ['addition', '((((sizeof(uintmax_t)*8)-(!((__typeof__(...']>\n<UnsupportedStmt: ['addition', '(((((sizeof(uintmax_t)*8)-(!((__typeof__...']>\n<UnsupportedStmt: ['alloc', 'buf[((((((sizeof(uintmax_t)*8)-(!((__type...']>\nbuf[((((((sizeof(uintmax_t)*8)-(!((__type... = \n<UnsupportedStmt: ['logicalNot', '!try_without_directio']>\n",
+        "94": "3051.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['addition', 'offset+soff']>\numaxtostr()\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['multiplication', '60*1024']>\n<UnsupportedStmt: ['modulo', '(60*1024)%SECTOR_SIZE']>\n(60*1024)%SECTOR_SIZE == 0\n_Static_assert((60*1024)\n<UnsupportedStmt: ['multiplication', '64*1024']>\n<UnsupportedStmt: ['modulo', '(64*1024)%SECTOR_SIZE']>\n(64*1024)%SECTOR_SIZE == 0\n_Static_assert((64*1024)\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n"
+      },
+      "entry": [
+        91
+      ],
+      "exit": [
+        60
+      ],
+      "degenerate": false
+    },
+    "genpattern": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          22
+        ],
+        [
+          2,
+          25
+        ],
+        [
+          3,
+          15
+        ],
+        [
+          3,
+          21
+        ],
+        [
+          4,
+          16
+        ],
+        [
+          4,
+          23
+        ],
+        [
+          5,
+          21
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          18
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          7,
+          17
+        ],
+        [
+          8,
+          21
+        ],
+        [
+          9,
+          19
+        ],
+        [
+          9,
+          20
+        ],
+        [
+          10,
+          1
+        ],
+        [
+          11,
+          15
+        ],
+        [
+          11,
+          21
+        ],
+        [
+          12,
+          9
+        ],
+        [
+          13,
+          0
+        ],
+        [
+          13,
+          14
+        ],
+        [
+          14,
+          15
+        ],
+        [
+          14,
+          21
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          15,
+          4
+        ],
+        [
+          16,
+          6
+        ],
+        [
+          16,
+          24
+        ],
+        [
+          17,
+          9
+        ],
+        [
+          17,
+          12
+        ],
+        [
+          18,
+          7
+        ],
+        [
+          19,
+          17
+        ],
+        [
+          19,
+          21
+        ],
+        [
+          20,
+          19
+        ],
+        [
+          21,
+          1
+        ],
+        [
+          22,
+          10
+        ],
+        [
+          23,
+          5
+        ],
+        [
+          23,
+          11
+        ],
+        [
+          24,
+          15
+        ],
+        [
+          24,
+          21
+        ],
+        [
+          25,
+          10
+        ]
+      ],
+      "labels": {
+        "0": "3256.0:\nreturn ;,return;\n",
+        "1": "3315.0:\nn < num\n",
+        "2": "3317.0:\naccum <= randpasses\n",
+        "3": "3271.0:\np = patterns\n",
+        "4": "3273.0:\nk < 0\n",
+        "5": "3278.0:\n<UnsupportedStmt: ['assignmentPlus', 'randpasses+=n']>\n",
+        "6": "3291.1:\nn < 2\n",
+        "7": "3291.0:\nn&lt;2||3*n&lt;(size_t)k || \n",
+        "8": "3293.0:\n<UnsupportedStmt: ['assignmentPlus', 'randpasses+=n']>\n",
+        "9": "3300.0:\nn==(size_t)k||randint_choose(s,k)&lt;n || \n",
+        "10": "3330.0:\n<UnsupportedStmt: ['assignmentMinus', 'accum-=randpasses']>\n<UnsupportedStmt: ['postIncrement', 'n++']>\n",
+        "11": "3281.0:\n<UnsupportedStmt: ['assignmentPlus', 'randpasses+=k']>\n<UnsupportedStmt: ['assignmentMinus', 'n-=k']>\n",
+        "12": "3300.4:\nrandint_choose()\nrandint_choose(s,k) < n\n",
+        "13": "3245.0:\nFUNCTION_START\n<UnsupportedStmt: ['logicalNot', '!num']>\n",
+        "14": "3259.0:\np = patterns\nrandpasses = 0\nd = dest\nn = num\n",
+        "15": "3268.2:\n<UnsupportedStmt: ['postIncrement', 'p++']>\n<UnsupportedStmt: ['indirection', '*p++']>\nk = *p++\n<UnsupportedStmt: ['logicalNot', '!k']>\n",
+        "16": "3284.2:\n<UnsupportedStmt: UNKNOWN,size_t,size_t>\n<UnsupportedStmt: ['cast', '(size_t)k']>\n(size_t)k <= n\n",
+        "17": "3300.5:\n<UnsupportedStmt: UNKNOWN,size_t,size_t>\n<UnsupportedStmt: ['cast', '(size_t)k']>\nn == (size_t)k\n",
+        "18": "3291.3:\n<UnsupportedStmt: ['multiplication', '3*n']>\n<UnsupportedStmt: UNKNOWN,size_t,size_t>\n<UnsupportedStmt: ['cast', '(size_t)k']>\n3*n < (size_t)k\n",
+        "19": "3305.0:\n<UnsupportedStmt: ['postIncrement', 'p++']>\n<UnsupportedStmt: ['postDecrement', 'k--']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: n==(size_t...>\n",
+        "20": "3302.3:\n<UnsupportedStmt: ['postIncrement', 'd++']>\n<UnsupportedStmt: ['indirection', '*d++']>\n<UnsupportedStmt: ['indirection', '*p']>\n*d++ = *p\n<UnsupportedStmt: ['postDecrement', 'n--']>\n",
+        "21": "3312.1:\n<UnsupportedStmt: ['subtraction', 'num-randpasses']>\ntop = num-randpasses\n<UnsupportedStmt: ['postDecrement', 'randpasses--']>\naccum = randpasses\nn = 0\n",
+        "22": "3319.1:\n<UnsupportedStmt: ['subtraction', 'num-1']>\n<UnsupportedStmt: ['assignmentPlus', 'accum+=num-1']>\n<UnsupportedStmt: ['postIncrement', 'top++']>\n<UnsupportedStmt: ['indirectIndexAccess', 'dest[top++]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'dest[n]']>\ndest[top++] = dest[n]\n<UnsupportedStmt: ['indirectIndexAccess', 'dest[n]']>\n-1 - \ndest[n] = -1\n",
+        "23": "3275.1:\n-k - \nk = -k\n<UnsupportedStmt: UNKNOWN,size_t,size_t>\n<UnsupportedStmt: ['cast', '(size_t)k']>\n(size_t)k >= n\n",
+        "24": "3286.2:\n<UnsupportedStmt: ['sizeOf', 'sizeof(int)']>\n<UnsupportedStmt: ['multiplication', 'k*sizeof(int)']>\nmemcpy()\n<UnsupportedStmt: ['assignmentPlus', 'p+=k']>\n<UnsupportedStmt: ['assignmentPlus', 'd+=k']>\n<UnsupportedStmt: ['assignmentMinus', 'n-=k']>\n",
+        "25": "3325.3:\n<UnsupportedStmt: ['subtraction', 'top-n']>\nrandint_choose()\n<UnsupportedStmt: ['addition', 'n+randint_choose(s', 'top-n)']>\nswap = n+randint_choose(s,top-n)\n<UnsupportedStmt: ['indirectIndexAccess', 'dest[n]']>\nk = dest[n]\n<UnsupportedStmt: ['indirectIndexAccess', 'dest[n]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'dest[swap]']>\ndest[n] = dest[swap]\n<UnsupportedStmt: ['indirectIndexAccess', 'dest[swap]']>\ndest[swap] = k\n"
+      },
+      "entry": [
+        13
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "do_wipefd": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81
+      ],
+      "edges": [
+        [
+          0,
+          45
+        ],
+        [
+          0,
+          46
+        ],
+        [
+          1,
+          26
+        ],
+        [
+          1,
+          68
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          49
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          51
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          52
+        ],
+        [
+          6,
+          25
+        ],
+        [
+          6,
+          32
+        ],
+        [
+          7,
+          70
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          9,
+          53
+        ],
+        [
+          9,
+          57
+        ],
+        [
+          10,
+          50
+        ],
+        [
+          10,
+          58
+        ],
+        [
+          11,
+          70
+        ],
+        [
+          12,
+          14
+        ],
+        [
+          12,
+          15
+        ],
+        [
+          13,
+          73
+        ],
+        [
+          14,
+          50
+        ],
+        [
+          14,
+          62
+        ],
+        [
+          15,
+          14
+        ],
+        [
+          16,
+          31
+        ],
+        [
+          17,
+          16
+        ],
+        [
+          17,
+          35
+        ],
+        [
+          18,
+          33
+        ],
+        [
+          18,
+          36
+        ],
+        [
+          19,
+          34
+        ],
+        [
+          19,
+          39
+        ],
+        [
+          20,
+          37
+        ],
+        [
+          20,
+          40
+        ],
+        [
+          21,
+          41
+        ],
+        [
+          21,
+          76
+        ],
+        [
+          22,
+          42
+        ],
+        [
+          23,
+          43
+        ],
+        [
+          24,
+          6
+        ],
+        [
+          24,
+          55
+        ],
+        [
+          25,
+          3
+        ],
+        [
+          25,
+          28
+        ],
+        [
+          27,
+          44
+        ],
+        [
+          27,
+          67
+        ],
+        [
+          28,
+          3
+        ],
+        [
+          29,
+          7
+        ],
+        [
+          29,
+          26
+        ],
+        [
+          30,
+          50
+        ],
+        [
+          31,
+          10
+        ],
+        [
+          32,
+          11
+        ],
+        [
+          33,
+          12
+        ],
+        [
+          33,
+          61
+        ],
+        [
+          34,
+          31
+        ],
+        [
+          34,
+          63
+        ],
+        [
+          35,
+          16
+        ],
+        [
+          36,
+          33
+        ],
+        [
+          37,
+          12
+        ],
+        [
+          38,
+          50
+        ],
+        [
+          39,
+          34
+        ],
+        [
+          40,
+          37
+        ],
+        [
+          41,
+          76
+        ],
+        [
+          42,
+          38
+        ],
+        [
+          43,
+          38
+        ],
+        [
+          43,
+          64
+        ],
+        [
+          44,
+          5
+        ],
+        [
+          44,
+          8
+        ],
+        [
+          46,
+          9
+        ],
+        [
+          46,
+          59
+        ],
+        [
+          47,
+          54
+        ],
+        [
+          47,
+          69
+        ],
+        [
+          48,
+          10
+        ],
+        [
+          48,
+          72
+        ],
+        [
+          49,
+          0
+        ],
+        [
+          50,
+          24
+        ],
+        [
+          50,
+          25
+        ],
+        [
+          51,
+          4
+        ],
+        [
+          51,
+          71
+        ],
+        [
+          52,
+          2
+        ],
+        [
+          53,
+          47
+        ],
+        [
+          53,
+          48
+        ],
+        [
+          54,
+          30
+        ],
+        [
+          54,
+          50
+        ],
+        [
+          55,
+          11
+        ],
+        [
+          56,
+          13
+        ],
+        [
+          56,
+          73
+        ],
+        [
+          58,
+          50
+        ],
+        [
+          59,
+          9
+        ],
+        [
+          60,
+          18
+        ],
+        [
+          60,
+          75
+        ],
+        [
+          61,
+          20
+        ],
+        [
+          61,
+          78
+        ],
+        [
+          62,
+          21
+        ],
+        [
+          62,
+          79
+        ],
+        [
+          63,
+          17
+        ],
+        [
+          63,
+          74
+        ],
+        [
+          64,
+          22
+        ],
+        [
+          64,
+          80
+        ],
+        [
+          65,
+          27
+        ],
+        [
+          65,
+          66
+        ],
+        [
+          66,
+          27
+        ],
+        [
+          68,
+          26
+        ],
+        [
+          69,
+          50
+        ],
+        [
+          69,
+          60
+        ],
+        [
+          70,
+          24
+        ],
+        [
+          70,
+          25
+        ],
+        [
+          70,
+          56
+        ],
+        [
+          71,
+          4
+        ],
+        [
+          72,
+          19
+        ],
+        [
+          72,
+          77
+        ],
+        [
+          73,
+          7
+        ],
+        [
+          73,
+          29
+        ],
+        [
+          74,
+          17
+        ],
+        [
+          75,
+          18
+        ],
+        [
+          76,
+          23
+        ],
+        [
+          76,
+          81
+        ],
+        [
+          77,
+          19
+        ],
+        [
+          78,
+          20
+        ],
+        [
+          79,
+          21
+        ],
+        [
+          80,
+          42
+        ],
+        [
+          81,
+          43
+        ]
+      ],
+      "labels": {
+        "0": "None.1:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "1": "None.2:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "2": "None.5:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "3": "3553.0:\nflags-&gt;remove_file&amp;&amp;ftruncate(fd,0)!=0 && \n",
+        "4": "None.9:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "5": "None.13:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: 0...>\n",
+        "6": "3519.0:\n<UnsupportedStmt: IDENTIFIER,size,if(size)>\n",
+        "7": "3530.1:\n<UnsupportedStmt: ['postIncrement', 'i++']>\n",
+        "8": "3383.0:\nisatty(fd)\n",
+        "9": "None.23:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "10": "None.25:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "11": "3530.2:\ni = 0\n",
+        "12": "3440.0:\nsize&amp;&amp;size&lt;((0&lt;(st).st_blksize&amp;&amp;(st).st... && \n",
+        "13": "3533.3:\n<UnsupportedStmt: ['indirectIndexAccess', 'passarray[i]']>\n",
+        "14": "3444.0:\nremainder != 0\n",
+        "15": "3443.0:\ni_size = size\n",
+        "16": "3492.0:\n(0&lt;(st).st_blksize&amp;&amp;(st).st_blksize&lt;=((si... ? ( : 0\n",
+        "17": "3492.1:\n0&lt;(st).st_blksize&amp;&amp;(st).st_blksize&lt;=((siz... && \n",
+        "18": "3437.3:\n0&lt;(st).st_blksize&amp;&amp;(st).st_blksize&lt;=((siz... && \n",
+        "19": "3486.1:\n0&lt;(st).st_blksize&amp;&amp;(st).st_blksize&lt;=((siz... && \n",
+        "20": "3440.3:\n0&lt;(st).st_blksize&amp;&amp;(st).st_blksize&lt;=((siz... && \n",
+        "21": "3446.3:\n0&lt;(st).st_blksize&amp;&amp;(st).st_blksize&lt;=((siz... && \n",
+        "22": "3457.4:\n<UnsupportedStmt: ['subtraction', '(off_t)-1']>\n",
+        "23": "3453.4:\n<UnsupportedStmt: ['subtraction', '(off_t)-1']>\n",
+        "24": "3511.0:\npn = n\n<UnsupportedStmt: IDENTIFIER,i_size,if(i_size)>\n",
+        "25": "3553.3:\n<UnsupportedStmt: FIELD_IDENTIFIER,remove_file,remove_file>\n<UnsupportedStmt: ['indirectFieldAccess', 'flags-&gt;remove_file']>\n",
+        "26": "3580.0:\nfree(passarray)\nreturn ok;,returnok;\n",
+        "27": "3362.1:\n<UnsupportedStmt: ['addressOf', '&amp;st']>\nfstat()\n",
+        "28": "3553.4:\nftruncate()\nftruncate(fd,0) != 0\n",
+        "29": "None.41:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nerr < 0\n",
+        "30": "3475.1:\n-1 - \nsize = -1\n",
+        "31": "None.40:\n<UnsupportedStmt: >\n<UnsupportedStmt: (0&lt;(st).st_blks...>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "32": "3521.0:\npass_size = size\nsize = 0\n",
+        "33": "3437.2:\n(0&lt;(st).st_blksize&amp;&amp;(st).st_blksize&lt;=((si... ? ( : 0\n<UnsupportedStmt: ['modulo', 'size%((0&lt;(st).st_blksize&amp;&amp;(st).st_blksize...']>\nremainder = size%((0&lt;(st).st_blksize&amp;&amp;(st...\n",
+        "34": "3486.0:\n(0&lt;(st).st_blksize&amp;&amp;(st).st_blksize&lt;=((si... ? ( : 0\n<UnsupportedStmt: >\n<UnsupportedStmt: (0&lt;(st).st_blksi...>\n",
+        "35": "3492.5:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_blksize,st_blksize>\n<UnsupportedStmt: ['fieldAccess', '(st).st_blksize']>\n",
+        "36": "3437.7:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_blksize,st_blksize>\n<UnsupportedStmt: ['fieldAccess', '(st).st_blksize']>\n",
+        "37": "3440.2:\n(0&lt;(st).st_blksize&amp;&amp;(st).st_blksize&lt;=((si... ? ( : 0\nsize < ((0&lt;(st).st_blksize&amp;&amp;(st).st_blksize...\n",
+        "38": "None.44:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "39": "3486.5:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_blksize,st_blksize>\n<UnsupportedStmt: ['fieldAccess', '(st).st_blksize']>\n",
+        "40": "3440.7:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_blksize,st_blksize>\n<UnsupportedStmt: ['fieldAccess', '(st).st_blksize']>\n",
+        "41": "3446.7:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_blksize,st_blksize>\n<UnsupportedStmt: ['fieldAccess', '(st).st_blksize']>\n",
+        "42": "3457.2:\n!(!((off_t)0&lt;(off_t)-1)) ? ! : (\n<UnsupportedStmt: ['pointerCall', '(off_t)(!(!((off_t)0&lt;(off_t)-1))?(off_...']>\n<UnsupportedStmt: ['subtraction', '((off_t)(!(!((off_t)0&lt;(off_t)-1))?(off...']>\n",
+        "43": "3453.2:\n!(!((off_t)0&lt;(off_t)-1)) ? ! : (\n<UnsupportedStmt: ['pointerCall', '(off_t)(!(!((off_t)0&lt;(off_t)-1))?(off_...']>\n<UnsupportedStmt: ['subtraction', '((off_t)(!(!((off_t)0&lt;(off_t)-1))?(off...']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "44": "3381.1:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_mode,st_mode>\n<UnsupportedStmt: ['fieldAccess', 'st.st_mode']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: 00...>\n",
+        "45": "3396.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ((vo...>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "46": "3406.1:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_mode,st_mode>\n<UnsupportedStmt: ['fieldAccess', 'st.st_mode']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "47": "3428.1:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_mode,st_mode>\n<UnsupportedStmt: ['fieldAccess', 'st.st_mode']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "48": "3481.1:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_mode,st_mode>\n<UnsupportedStmt: ['fieldAccess', 'st.st_mode']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "49": "3391.1:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_mode,st_mode>\n<UnsupportedStmt: ['fieldAccess', 'st.st_mode']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "50": "3502.2:\n<UnsupportedStmt: FIELD_IDENTIFIER,n_iterations,n_iterations>\n<UnsupportedStmt: ['indirectFieldAccess', 'flags-&gt;n_iterations']>\ngenpattern()\nrandint_get_source(s)\nrs = randint_get_source(s)\n",
+        "51": "3556.1:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_mode,st_mode>\n<UnsupportedStmt: ['fieldAccess', 'st.st_mode']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "52": "3386.1:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_mode,st_mode>\n<UnsupportedStmt: ['fieldAccess', 'st.st_mode']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "53": "3421.4:\n<UnsupportedStmt: FIELD_IDENTIFIER,n_iterations,n_iterations>\n<UnsupportedStmt: ['indirectFieldAccess', 'flags-&gt;n_iterations']>\n<UnsupportedStmt: ['indirection', '*passarray']>\n<UnsupportedStmt: ['sizeOf', 'sizeof*passarray']>\nxnmalloc()\npassarray = xnmalloc(flags-&gt;n_iterations,size...\n<UnsupportedStmt: FIELD_IDENTIFIER,size,size>\n<UnsupportedStmt: ['indirectFieldAccess', 'flags-&gt;size']>\nsize = flags-&gt;size\n-1 - \nsize == -1\n",
+        "54": "None.38:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nsize <= 0\n",
+        "55": "3515.0:\npass_size = i_size\ni_size = 0\npn = 0\n",
+        "56": "3532.0:\nerr = 0\n<UnsupportedStmt: FIELD_IDENTIFIER,n_iterations,n_iterations>\n<UnsupportedStmt: ['indirectFieldAccess', 'flags-&gt;n_iterations']>\ni < flags-&gt;n_iterations\n",
+        "57": "3411.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ((vo...>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "58": "3499.2:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_size,st_size>\n<UnsupportedStmt: ['fieldAccess', 'st.st_size']>\ni_size = st.st_size\n",
+        "59": "3408.2:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_size,st_size>\n<UnsupportedStmt: ['fieldAccess', 'st.st_size']>\nst.st_size < 0\n",
+        "60": "3437.11:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_blksize,st_blksize>\n<UnsupportedStmt: ['fieldAccess', '(st).st_blksize']>\n0 < (st).st_blksize\n",
+        "61": "3440.11:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_blksize,st_blksize>\n<UnsupportedStmt: ['fieldAccess', '(st).st_blksize']>\n0 < (st).st_blksize\n",
+        "62": "3446.11:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_blksize,st_blksize>\n<UnsupportedStmt: ['fieldAccess', '(st).st_blksize']>\n0 < (st).st_blksize\n",
+        "63": "3492.9:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_blksize,st_blksize>\n<UnsupportedStmt: ['fieldAccess', '(st).st_blksize']>\n0 < (st).st_blksize\n",
+        "64": "3457.13:\n<UnsupportedStmt: UNKNOWN,off_t,off_t>\n<UnsupportedStmt: ['cast', '(off_t)0']>\n<UnsupportedStmt: ['subtraction', '(off_t)-1']>\n(off_t)0 < (off_t)-1\n<UnsupportedStmt: ['logicalNot', '!((off_t)0&lt;(off_t)-1)']>\n<UnsupportedStmt: ['logicalNot', '!(!((off_t)0&lt;(off_t)-1))']>\n",
+        "65": "3339.0:\nFUNCTION_START\ni_size = 0\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nn = 0\n<UnsupportedStmt: FIELD_IDENTIFIER,verbose,verbose>\n<UnsupportedStmt: ['indirectFieldAccess', 'flags-&gt;verbose']>\n",
+        "66": "3360.4:\n<UnsupportedStmt: FIELD_IDENTIFIER,n_iterations,n_iterations>\n<UnsupportedStmt: ['indirectFieldAccess', 'flags-&gt;n_iterations']>\n<UnsupportedStmt: FIELD_IDENTIFIER,zero_fill,zero_fill>\n<UnsupportedStmt: ['indirectFieldAccess', 'flags-&gt;zero_fill']>\n<UnsupportedStmt: ['addition', 'flags-&gt;n_iterations+flags-&gt;zero_fill']>\nn = flags-&gt;n_iterations+flags-&gt;zero_fill\n",
+        "67": "3365.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: *__errno_location()...>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "68": "3567.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: *__errno_location()...>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "69": "3432.2:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_size,st_size>\n<UnsupportedStmt: ['fieldAccess', 'st.st_size']>\nsize = st.st_size\n<UnsupportedStmt: FIELD_IDENTIFIER,exact,exact>\n<UnsupportedStmt: ['indirectFieldAccess', 'flags-&gt;exact']>\n<UnsupportedStmt: ['logicalNot', '!flags-&gt;exact']>\n",
+        "70": "3530.6:\n<UnsupportedStmt: FIELD_IDENTIFIER,n_iterations,n_iterations>\n<UnsupportedStmt: ['indirectFieldAccess', 'flags-&gt;n_iterations']>\n<UnsupportedStmt: FIELD_IDENTIFIER,zero_fill,zero_fill>\n<UnsupportedStmt: ['indirectFieldAccess', 'flags-&gt;zero_fill']>\n<UnsupportedStmt: ['addition', 'flags-&gt;n_iterations+flags-&gt;zero_fill']>\ni < flags-&gt;n_iterations+flags-&gt;zero_fill\n",
+        "71": "3560.0:\n<UnsupportedStmt: ['addressOf', '&amp;st']>\n<UnsupportedStmt: FIELD_IDENTIFIER,st_mode,st_mode>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['addressOf', '&amp;st']>\n<UnsupportedStmt: FIELD_IDENTIFIER,st_mode,st_mode>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "72": "3484.1:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_size,st_size>\n<UnsupportedStmt: ['fieldAccess', 'st.st_size']>\n<UnsupportedStmt: FIELD_IDENTIFIER,st_blksize,st_blksize>\n<UnsupportedStmt: ['fieldAccess', '(st).st_blksize']>\n0 < (st).st_blksize\n",
+        "73": "3533.1:\ni&lt;flags-&gt;n_iterations ? i : &\ntype = i&lt;flags-&gt;n_iterations?passarray[i]:0\n<UnsupportedStmt: ['addressOf', '&amp;st']>\n<UnsupportedStmt: ['addressOf', '&amp;pass_size']>\n<UnsupportedStmt: ['addition', 'i+1']>\ndopass()\nerr = dopass(fd,&amp;st,qname,&amp;pass_size,type,...\n<UnsupportedStmt: IDENTIFIER,err,if(err)>\n",
+        "74": "3492.10:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_blksize,st_blksize>\n<UnsupportedStmt: ['fieldAccess', '(st).st_blksize']>\n<UnsupportedStmt: ['subtraction', '(size_t)-1']>\n<UnsupportedStmt: ['division', '((size_t)-1)/8']>\n<UnsupportedStmt: ['addition', '((size_t)-1)/8+1']>\n(st).st_blksize <= ((size_t)-1)/8+1\n",
+        "75": "3437.12:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_blksize,st_blksize>\n<UnsupportedStmt: ['fieldAccess', '(st).st_blksize']>\n<UnsupportedStmt: ['subtraction', '(size_t)-1']>\n<UnsupportedStmt: ['division', '((size_t)-1)/8']>\n<UnsupportedStmt: ['addition', '((size_t)-1)/8+1']>\n(st).st_blksize <= ((size_t)-1)/8+1\n",
+        "76": "3446.2:\n(0&lt;(st).st_blksize&amp;&amp;(st).st_blksize&lt;=((si... ? ( : 0\n<UnsupportedStmt: ['subtraction', '((0&lt;(st).st_blksize&amp;&amp;(st).st_blksize&lt;=((s...']>\nsize_incr = ((0&lt;(st).st_blksize&amp;&amp;(st).st_bl...\n<UnsupportedStmt: UNKNOWN,off_t,off_t>\n<UnsupportedStmt: ['cast', '(off_t)0']>\n<UnsupportedStmt: ['subtraction', '(off_t)-1']>\n(off_t)0 < (off_t)-1\n<UnsupportedStmt: ['logicalNot', '!((off_t)0&lt;(off_t)-1)']>\n<UnsupportedStmt: ['logicalNot', '!(!((off_t)0&lt;(off_t)-1))']>\n",
+        "77": "3486.10:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_blksize,st_blksize>\n<UnsupportedStmt: ['fieldAccess', '(st).st_blksize']>\n<UnsupportedStmt: ['subtraction', '(size_t)-1']>\n<UnsupportedStmt: ['division', '((size_t)-1)/8']>\n<UnsupportedStmt: ['addition', '((size_t)-1)/8+1']>\n(st).st_blksize <= ((size_t)-1)/8+1\n",
+        "78": "3440.12:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_blksize,st_blksize>\n<UnsupportedStmt: ['fieldAccess', '(st).st_blksize']>\n<UnsupportedStmt: ['subtraction', '(size_t)-1']>\n<UnsupportedStmt: ['division', '((size_t)-1)/8']>\n<UnsupportedStmt: ['addition', '((size_t)-1)/8+1']>\n(st).st_blksize <= ((size_t)-1)/8+1\n",
+        "79": "3446.12:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_blksize,st_blksize>\n<UnsupportedStmt: ['fieldAccess', '(st).st_blksize']>\n<UnsupportedStmt: ['subtraction', '(size_t)-1']>\n<UnsupportedStmt: ['division', '((size_t)-1)/8']>\n<UnsupportedStmt: ['addition', '((size_t)-1)/8+1']>\n(st).st_blksize <= ((size_t)-1)/8+1\n",
+        "80": "3457.16:\n<UnsupportedStmt: UNKNOWN,off_t,off_t>\n<UnsupportedStmt: ['cast', '(off_t)1']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(off_t)']>\n<UnsupportedStmt: ['multiplication', 'sizeof(off_t)*8']>\n<UnsupportedStmt: ['subtraction', '(sizeof(off_t)*8)-2']>\n<UnsupportedStmt: ['shiftLeft', '(off_t)1&lt;&lt;((sizeof(off_t)*8)-2)']>\n<UnsupportedStmt: ['subtraction', '((off_t)1&lt;&lt;((sizeof(off_t)*8)-2))-1']>\n<UnsupportedStmt: ['multiplication', '(((off_t)1&lt;&lt;((sizeof(off_t)*8)-2))-1)...']>\n<UnsupportedStmt: ['addition', '(((off_t)1&lt;&lt;((sizeof(off_t)*8)-2))-1)...']>\n",
+        "81": "3453.16:\n<UnsupportedStmt: UNKNOWN,off_t,off_t>\n<UnsupportedStmt: ['cast', '(off_t)1']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(off_t)']>\n<UnsupportedStmt: ['multiplication', 'sizeof(off_t)*8']>\n<UnsupportedStmt: ['subtraction', '(sizeof(off_t)*8)-2']>\n<UnsupportedStmt: ['shiftLeft', '(off_t)1&lt;&lt;((sizeof(off_t)*8)-2)']>\n<UnsupportedStmt: ['subtraction', '((off_t)1&lt;&lt;((sizeof(off_t)*8)-2))-1']>\n<UnsupportedStmt: ['multiplication', '(((off_t)1&lt;&lt;((sizeof(off_t)*8)-2))-1)...']>\n<UnsupportedStmt: ['addition', '(((off_t)1&lt;&lt;((sizeof(off_t)*8)-2))-1)...']>\n"
+      },
+      "entry": [
+        65
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "incname": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "edges": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          7,
+          4
+        ]
+      ],
+      "labels": {
+        "0": "None.0:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "1": "3642.0:\n<UnsupportedStmt: ['postDecrement', 'len--']>\n",
+        "2": "None.7:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "3": "3637.0:\nFUNCTION_START\n",
+        "4": "None.2:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['indirectIndexAccess', 'p[1]']>\n",
+        "5": "3668.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'name[len]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'nameset[0]']>\nname[len] = nameset[0]\n",
+        "6": "3661.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'name[len]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'p[1]']>\nname[len] = p[1]\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "7": "3644.2:\n<UnsupportedStmt: ['indirectIndexAccess', 'name[len]']>\nstrchr()\n*p = strchr(nameset,name[len])\n<UnsupportedStmt: UNKNOWN,void,void>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: IDENTIFIER,p,if(p)>\n"
+      },
+      "entry": [
+        3
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "wipename": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "edges": [
+        [
+          0,
+          15
+        ],
+        [
+          0,
+          27
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          1,
+          22
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          16
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          23
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          18
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          9,
+          17
+        ],
+        [
+          10,
+          17
+        ],
+        [
+          11,
+          20
+        ],
+        [
+          11,
+          21
+        ],
+        [
+          12,
+          14
+        ],
+        [
+          12,
+          28
+        ],
+        [
+          13,
+          1
+        ],
+        [
+          14,
+          0
+        ],
+        [
+          14,
+          24
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          15,
+          16
+        ],
+        [
+          16,
+          27
+        ],
+        [
+          16,
+          29
+        ],
+        [
+          17,
+          26
+        ],
+        [
+          17,
+          30
+        ],
+        [
+          18,
+          9
+        ],
+        [
+          19,
+          11
+        ],
+        [
+          20,
+          12
+        ],
+        [
+          20,
+          13
+        ],
+        [
+          21,
+          20
+        ],
+        [
+          22,
+          23
+        ],
+        [
+          23,
+          7
+        ],
+        [
+          23,
+          25
+        ],
+        [
+          24,
+          0
+        ],
+        [
+          25,
+          7
+        ],
+        [
+          26,
+          2
+        ],
+        [
+          28,
+          0
+        ],
+        [
+          29,
+          27
+        ],
+        [
+          30,
+          26
+        ],
+        [
+          31,
+          11
+        ],
+        [
+          31,
+          19
+        ]
+      ],
+      "labels": {
+        "0": "3783.0:\n0 <= dir_fd\n",
+        "1": "3715.0:\nlen != 0\n",
+        "2": "3715.1:\n<UnsupportedStmt: ['postDecrement', 'len--']>\n",
+        "3": "None.10:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "4": "None.14:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "5": "3737.0:\n<UnsupportedStmt: IDENTIFIER,rename_ok,if(rename_ok)>\n",
+        "6": "3739.1:\n0 <= dir_fd\n",
+        "7": "None.18:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "8": "3735.0:\nincname()\n",
+        "9": "3739.0:\n0&lt;=dir_fd&amp;&amp;dosync(dir_fd,qdir)!=0 && \n",
+        "10": "None.23:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "11": "3707.1:\n<UnsupportedStmt: FIELD_IDENTIFIER,verbose,verbose>\n<UnsupportedStmt: ['indirectFieldAccess', 'flags-&gt;verbose']>\n",
+        "12": "3764.1:\nunlink(oldname)\nunlink(oldname) != 0\n",
+        "13": "3715.3:\nbase_len(base)\nlen = base_len(base)\n",
+        "14": "3777.1:\n<UnsupportedStmt: FIELD_IDENTIFIER,verbose,verbose>\n<UnsupportedStmt: ['indirectFieldAccess', 'flags-&gt;verbose']>\n",
+        "15": "3785.1:\ndosync()\ndosync(dir_fd,qdir) != 0\n",
+        "16": "3789.1:\nclose(dir_fd)\nclose(dir_fd) != 0\n",
+        "17": "3743.1:\n<UnsupportedStmt: FIELD_IDENTIFIER,verbose,verbose>\n<UnsupportedStmt: ['indirectFieldAccess', 'flags-&gt;verbose']>\n",
+        "18": "3739.3:\ndosync()\ndosync(dir_fd,qdir) != 0\n",
+        "19": "None.17:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "20": "3714.2:\n<UnsupportedStmt: FIELD_IDENTIFIER,remove_file,remove_file>\n<UnsupportedStmt: ['indirectFieldAccess', 'flags-&gt;remove_file']>\nflags-&gt;remove_file != remove_unlink\n",
+        "21": "3709.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ((void...>\n",
+        "22": "3717.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'nameset[0]']>\nmemset()\n<UnsupportedStmt: ['indirectIndexAccess', 'base[len]']>\nbase[len] = 0\n",
+        "23": "3723.0:\n-100 - \n-100 - \n<UnsupportedStmt: ['shiftLeft', '1&lt;&lt;0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "24": "3779.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ((void...>\n",
+        "25": "3732.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "26": "3760.3:\n<UnsupportedStmt: ['subtraction', 'base-newname']>\n<UnsupportedStmt: ['addition', 'oldname+(base-newname)']>\n<UnsupportedStmt: ['addition', 'len+1']>\nmemcpy(oldname+(base-newname)\n",
+        "27": "3803.0:\nfree(newname)\nfree(dir)\nfree(qdir)\nreturn ok;,returnok;\nFUNCTION_END\n",
+        "28": "3767.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: *__errno_location()...>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "29": "3792.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: *__errno_locatio...>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "30": "3749.1:\nfirst ? f : i\n*old = first?qoldname:oldname\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "31": "3675.0:\nFUNCTION_START\nxstrdup(oldname)\n*newname = xstrdup(oldname)\nlast_component(newname)\n*base = last_component(newname)\ndir_name(newname)\n*dir = dir_name(newname)\nquotearg_n_style_colon()\nxstrdup()\n*qdir = xstrdup(quotearg_n_style_colon(0,she...\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n-1 - \ndir_fd = -1\n<UnsupportedStmt: FIELD_IDENTIFIER,remove_file,remove_file>\n<UnsupportedStmt: ['indirectFieldAccess', 'flags-&gt;remove_file']>\nflags-&gt;remove_file == remove_wipesync\n"
+      },
+      "entry": [
+        31
+      ],
+      "exit": [
+        27
+      ],
+      "degenerate": false
+    },
+    "wipefile": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          11
+        ],
+        [
+          2,
+          12
+        ],
+        [
+          2,
+          14
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          8,
+          1
+        ],
+        [
+          9,
+          5
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          10,
+          13
+        ],
+        [
+          11,
+          2
+        ],
+        [
+          12,
+          3
+        ],
+        [
+          12,
+          6
+        ],
+        [
+          12,
+          15
+        ],
+        [
+          13,
+          5
+        ],
+        [
+          13,
+          9
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          15,
+          6
+        ]
+      ],
+      "labels": {
+        "0": "3872.0:\nreturn ok;,returnok;\n",
+        "1": "None.2:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: *__errno_location(...>\n",
+        "2": "3842.0:\nfd < 0\n",
+        "3": "3870.0:\nok&amp;&amp;flags-&gt;remove_file && \n",
+        "4": "None.4:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: *__errno_location(...>\n",
+        "5": "None.12:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "6": "3870.2:\n<UnsupportedStmt: FIELD_IDENTIFIER,remove_file,remove_file>\n<UnsupportedStmt: ['indirectFieldAccess', 'flags-&gt;remove_file']>\n",
+        "7": "3871.1:\nwipename()\nok = wipename(name,qname,flags)\n",
+        "8": "None.13:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "9": "3831.1:\n<UnsupportedStmt: FIELD_IDENTIFIER,force,force>\n<UnsupportedStmt: ['indirectFieldAccess', 'flags-&gt;force']>\n",
+        "10": "3808.0:\nFUNCTION_START\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nfd < 0\n",
+        "11": "None.19:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "12": "3856.1:\ndo_wipefd()\nok = do_wipefd(fd,qname,s,flags)\nclose(fd)\nclose(fd) != 0\n",
+        "13": "3828.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "14": "3845.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: *__errno_location()...>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "15": "3860.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: *__errno_location()...>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n"
+      },
+      "entry": [
+        10
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "clear_random_data": {
+      "nodes": [
+        0
+      ],
+      "edges": [],
+      "labels": {
+        "0": "3882.0:\nFUNCTION_START\nrandint_all_free(randint_source)\nFUNCTION_END\n"
+      },
+      "entry": [
+        0
+      ],
+      "exit": [
+        0
+      ],
+      "degenerate": false
+    }
+  }
+}

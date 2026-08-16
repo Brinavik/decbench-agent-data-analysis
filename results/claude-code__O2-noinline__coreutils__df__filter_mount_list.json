@@ -1,0 +1,123 @@
+[
+  {
+    "function": "filter_mount_list",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数 devices_only",
+        "source_type": "_Bool (bool)",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "3831-3833: filter_mount_list (_Bool devices_only)",
+        "evidence_decompiled_line": "74: filter_mount_list (bool devices_only)"
+      },
+      {
+        "source_role": "局部变量 me",
+        "source_type": "struct mount_entry *",
+        "decompiled_type": "struct mount_entry *",
+        "match": "correct",
+        "evidence_source_line": "3835: struct mount_entry *me;",
+        "evidence_decompiled_line": "76: struct mount_entry *me;"
+      },
+      {
+        "source_role": "局部变量 device_list",
+        "source_type": "struct devlist *",
+        "decompiled_type": "struct devlist *",
+        "match": "correct",
+        "evidence_source_line": "3838-3840: struct devlist *device_list = NULL;",
+        "evidence_decompiled_line": "79: struct devlist *device_list = NULL;"
+      },
+      {
+        "source_role": "局部变量 mount_list_size",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "3841: int mount_list_size = 0;",
+        "evidence_decompiled_line": "80: int mount_list_size = 0;"
+      },
+      {
+        "source_role": "局部变量 buf",
+        "source_type": "struct stat",
+        "decompiled_type": "struct stat",
+        "match": "correct",
+        "evidence_source_line": "3860: struct stat buf;",
+        "evidence_decompiled_line": "93: struct stat buf;"
+      },
+      {
+        "source_role": "局部变量 discard_me",
+        "source_type": "struct mount_entry *",
+        "decompiled_type": "struct mount_entry *",
+        "match": "correct",
+        "evidence_source_line": "3861-3863: struct mount_entry *discard_me = NULL;",
+        "evidence_decompiled_line": "135,147,149,154-156: struct mount_entry *discard; ... free_mount_entry (discard);"
+      },
+      {
+        "source_role": "局部变量 seen_dev",
+        "source_type": "struct devlist *",
+        "decompiled_type": "struct devlist *",
+        "match": "correct",
+        "evidence_source_line": "3881: struct devlist *seen_dev = devlist_for_dev (buf.st_dev);",
+        "evidence_decompiled_line": "107-111: (devlist = devlist_for_dev (buf.st_dev)) ... struct mount_entry *seen_dev = devlist->me;"
+      },
+      {
+        "source_role": "局部变量 target_nearer_root",
+        "source_type": "_Bool",
+        "decompiled_type": "size_t 比较结果的 bool",
+        "match": "correct",
+        "evidence_source_line": "3886-3888: _Bool target_nearer_root = strlen (...) > strlen (...);",
+        "evidence_decompiled_line": "113-114,139: size_t seen_dir_len/me_dir_len; condition (seen_dir_len > me_dir_len)"
+      },
+      {
+        "source_role": "局部变量 source_below_root",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "3891-3899: _Bool source_below_root = ...;",
+        "evidence_decompiled_line": "117-120: bool source_below_root = ...;"
+      },
+      {
+        "source_role": "局部变量 devlist",
+        "source_type": "struct devlist *",
+        "decompiled_type": "struct devlist *",
+        "match": "correct",
+        "evidence_source_line": "3945-3949: struct devlist *devlist = xmalloc (...); devlist->me/dev_num/next ...",
+        "evidence_decompiled_line": "94,167-170: struct devlist *devlist = NULL; devlist = xmalloc (...); devlist->dev_num/me/next ..."
+      },
+      {
+        "source_role": "局部变量 hash_entry",
+        "source_type": "struct devlist *",
+        "decompiled_type": "struct devlist *",
+        "match": "correct",
+        "evidence_source_line": "3951-3957: struct devlist *hash_entry = hash_insert (...); hash_entry->seen_last = devlist;",
+        "evidence_decompiled_line": "172-175: struct devlist *hashed = hash_insert (...); hashed->seen_last = devlist;"
+      },
+      {
+        "source_role": "局部变量 next",
+        "source_type": "struct devlist *",
+        "decompiled_type": "struct devlist *",
+        "match": "correct",
+        "evidence_source_line": "3974-3976: struct devlist *next = device_list->next; ... device_list = next;",
+        "evidence_decompiled_line": "189,197: struct devlist *next = device_list->next; device_list = next;"
+      },
+      {
+        "source_role": "结构体 mount_entry",
+        "source_type": "字段至少包含 me_remote/me_dummy/me_type/me_mountdir/me_dev/me_mntroot/me_devname/me_next",
+        "decompiled_type": "显式 struct mount_entry，10 字段含 4 个 unsigned bit-field",
+        "match": "undeterminable",
+        "evidence_source_line": "3868-3871, 3887-3899, 3900-3920, 3947-3959: 对上述字段的访问",
+        "evidence_decompiled_line": "9-24: struct mount_entry 的显式字段声明"
+      },
+      {
+        "source_role": "结构体 devlist",
+        "source_type": "字段 dev_num、me、next、seen_last 的 devlist 指针实体",
+        "decompiled_type": "struct devlist { dev_t dev_num; mount_entry *me; devlist *next; devlist *seen_last; }",
+        "match": "undeterminable",
+        "evidence_source_line": "3881-3888, 3924-3925, 3945-3957: 对 devlist 字段的访问",
+        "evidence_decompiled_line": "28-35: struct devlist 的显式字段声明"
+      }
+    ],
+    "reasoning": "按 ABI 位置和局部数据流逐项对齐后，参数及指针/标量类型均一致；free_mount_entry/free 的释放对象在两份代码中均为 mount_entry* 或 devlist*，未发现 free_discovery 导致的类型恢复错误。结构体显式布局因源码函数范围缺少声明与偏移证据而不可判定。"
+  }
+]

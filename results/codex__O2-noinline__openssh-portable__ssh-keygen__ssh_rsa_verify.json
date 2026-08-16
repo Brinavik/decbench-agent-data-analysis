@@ -1,0 +1,29 @@
+[
+  {
+    "function": "ssh_rsa_verify",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {"source_role":"第1个参数","source_type":"const struct sshkey *","decompiled_type":"const struct sshkey *","match":"correct","evidence_source_line":"804-805: int ssh_rsa_verify(const struct sshkey *key,","evidence_decompiled_line":"53-54: ssh_rsa_verify(const struct sshkey *key, const u_char *sig, size_t siglen,"},
+      {"source_role":"第2个参数","source_type":"const u_char *","decompiled_type":"const u_char *","match":"correct","evidence_source_line":"805: const u_char *sig, size_t siglen, const u_char *data,","evidence_decompiled_line":"53-54: const u_char *sig, size_t siglen,"},
+      {"source_role":"第3个参数","source_type":"size_t","decompiled_type":"size_t","match":"correct","evidence_source_line":"805: const u_char *sig, size_t siglen, const u_char *data,","evidence_decompiled_line":"53-54: const u_char *sig, size_t siglen,"},
+      {"source_role":"第4个参数","source_type":"const u_char *","decompiled_type":"const u_char *","match":"correct","evidence_source_line":"805: const u_char *sig, size_t siglen, const u_char *data,","evidence_decompiled_line":"54: const u_char *data, size_t datalen, const char *alg_ident)"},
+      {"source_role":"第5个参数","source_type":"size_t","decompiled_type":"size_t","match":"correct","evidence_source_line":"805-806: ... const u_char *data, size_t datalen,","evidence_decompiled_line":"54: const u_char *data, size_t datalen, const char *alg_ident)"},
+      {"source_role":"第6个参数","source_type":"const char *","decompiled_type":"const char *","match":"correct","evidence_source_line":"806: const char *alg);","evidence_decompiled_line":"54: ... const char *alg_ident)"},
+      {"source_role":"局部变量 rsa_n","source_type":"const BIGNUM *","decompiled_type":"const BIGNUM *","match":"correct","evidence_source_line":"1259: const BIGNUM *rsa_n;","evidence_decompiled_line":"56: const BIGNUM *rsa_n;"},
+      {"source_role":"局部变量 sigtype","source_type":"char *","decompiled_type":"char *","match":"correct","evidence_source_line":"1260-1262: char *sigtype = ((void *)0);","evidence_decompiled_line":"57: char *ktype = NULL;"},
+      {"source_role":"局部变量 hash_alg","source_type":"int","decompiled_type":"int","match":"correct","evidence_source_line":"1263: int hash_alg, want_alg, ret = -1;","evidence_decompiled_line":"58: int hash_alg, want_hash_alg, ret = SSH_ERR_INTERNAL_ERROR;"},
+      {"source_role":"局部变量 want_alg","source_type":"int","decompiled_type":"int","match":"correct","evidence_source_line":"1263: int hash_alg, want_alg, ret = -1;","evidence_decompiled_line":"58: int hash_alg, want_hash_alg, ret = SSH_ERR_INTERNAL_ERROR;"},
+      {"source_role":"局部变量 ret","source_type":"int","decompiled_type":"int","match":"correct","evidence_source_line":"1263: int hash_alg, want_alg, ret = -1;","evidence_decompiled_line":"58: int hash_alg, want_hash_alg, ret = SSH_ERR_INTERNAL_ERROR;"},
+      {"source_role":"局部变量 len,diff,modlen,dlen","source_type":"size_t each","decompiled_type":"size_t each","match":"correct","evidence_source_line":"1264: size_t len = 0, diff, modlen, dlen;","evidence_decompiled_line":"59: size_t len = 0, diff, modlen, dlen;"},
+      {"source_role":"局部变量 b","source_type":"struct sshbuf *","decompiled_type":"struct sshbuf *","match":"correct","evidence_source_line":"1265-1267: struct sshbuf *b = ((void *)0);","evidence_decompiled_line":"60: struct sshbuf *b = NULL;"},
+      {"source_role":"局部变量 digest","source_type":"u_char[64]","decompiled_type":"u_char[SSH_DIGEST_MAX_LENGTH] (64 bytes)","match":"correct","evidence_source_line":"1268: u_char digest[64], ...","evidence_decompiled_line":"61: u_char digest[SSH_DIGEST_MAX_LENGTH], ..."},
+      {"source_role":"局部变量 osigblob","source_type":"u_char *","decompiled_type":"u_char *","match":"correct","evidence_source_line":"1268: ... *osigblob, *sigblob = ((void *)0);","evidence_decompiled_line":"61: ... *osig, *sigblob = NULL;"},
+      {"source_role":"局部变量 sigblob","source_type":"u_char *","decompiled_type":"u_char *","match":"correct","evidence_source_line":"1268-1270: ... *sigblob = ((void *)0);","evidence_decompiled_line":"61: ... *sigblob = NULL;"},
+      {"source_role":"结构体 sshkey","source_type":"完整布局含 type/flags/rsa/dsa/ecdsa/xmss/sk/cert/shielded 等字段","decompiled_type":"仅 int type; int flags; RSA *rsa","match":"wrong","evidence_source_line":"635-666: struct sshkey contains type, flags, rsa, dsa, ecdsa_nid, ecdsa, ed25519/xmss/sk/cert/shielded fields","evidence_decompiled_line":"12-16: struct sshkey { int type; int flags; RSA *rsa; };"}
+    ],
+    "reasoning":"函数无静态局部对象；源码与反编译函数均为六个 ABI 参数，局部变量按栈角色和数据流逐一对应，未见指针层级或整数宽度错误。反编译器将参数 alg 重命名为 alg_ident、sigtype 重命名为 ktype 等仅是重命名。其 sshkey 仅保留本函数访问的前三个字段，未恢复源码完整结构布局，属于结构体布局信息不完整，但这不是 free_discovery（静态局部对象被发现为全局/外部对象）现象，因此该假设驳回。"
+  }
+]
+

@@ -1,0 +1,123 @@
+[
+  {
+    "function": "pkg_array_match_patterns",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "struct pkg_array *",
+        "decompiled_type": "struct pkg_array *",
+        "match": "correct",
+        "evidence_source_line": "源码1977行: pkg_array_match_patterns(struct pkg_array *array,",
+        "evidence_decompiled_line": "反编译49行: pkg_array_match_patterns(struct pkg_array *array,"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "pkg_array_visitor_func *",
+        "decompiled_type": "pkg_array_visitor_func *",
+        "match": "correct",
+        "evidence_source_line": "源码1978行: pkg_array_visitor_func *pkg_visitor, void *pkg_data,",
+        "evidence_decompiled_line": "反编译50行: pkg_array_visitor_func *pkg_visitor, void *pkg_data,"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "void *",
+        "decompiled_type": "void *",
+        "match": "correct",
+        "evidence_source_line": "源码1978行: pkg_array_visitor_func *pkg_visitor, void *pkg_data,",
+        "evidence_decompiled_line": "反编译50行: pkg_array_visitor_func *pkg_visitor, void *pkg_data,"
+      },
+      {
+        "source_role": "第4个参数",
+        "source_type": "const char *const *",
+        "decompiled_type": "const char *const *",
+        "match": "correct",
+        "evidence_source_line": "源码1979行: const char *const *argv)",
+        "evidence_decompiled_line": "反编译51行: const char *const *argv)"
+      },
+      {
+        "source_role": "局部变量 argc、i、ip",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码1981行: int argc, i, ip, *found;",
+        "evidence_decompiled_line": "反编译53行: int argc, i, ip;"
+      },
+      {
+        "source_role": "局部变量 found",
+        "source_type": "int *",
+        "decompiled_type": "int *",
+        "match": "correct",
+        "evidence_source_line": "源码1981行: int argc, i, ip, *found;；源码1986行: found = m_calloc(argc, sizeof(int));；源码2028行: free(found);",
+        "evidence_decompiled_line": "反编译56行: int *found;；反编译61行: found = m_calloc(argc, sizeof(found[0]));；反编译96行: free(found);"
+      },
+      {
+        "source_role": "局部变量 rc",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码1982行: int rc = 0;；源码2030行: return rc;",
+        "evidence_decompiled_line": "反编译54行: int rc = 0;；反编译98行: return rc;"
+      },
+      {
+        "source_role": "局部变量 ps",
+        "source_type": "struct pkg_spec *",
+        "decompiled_type": "struct pkg_spec *",
+        "match": "correct",
+        "evidence_source_line": "源码1983行: struct pkg_spec *ps;；源码1988行: ps = m_malloc(sizeof(*ps) * argc);；源码2027行: free(ps);",
+        "evidence_decompiled_line": "反编译55行: struct pkg_spec *ps;；反编译63行: ps = m_malloc(sizeof(*ps) * argc);；反编译95行: free(ps);"
+      },
+      {
+        "source_role": "局部变量 pkg",
+        "source_type": "struct pkginfo *",
+        "decompiled_type": "struct pkginfo *",
+        "match": "correct",
+        "evidence_source_line": "源码1995行: struct pkginfo *pkg;；源码2002行: pkg = array->pkgs[i];",
+        "evidence_decompiled_line": "反编译70行: struct pkginfo *pkg = array->pkgs[ip];"
+      },
+      {
+        "source_role": "局部变量 pkg_found",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "源码1997-2000行: _Bool pkg_found = 0;",
+        "evidence_decompiled_line": "反编译71行: bool pkg_found = false;"
+      },
+      {
+        "source_role": "结构体 pkg_array",
+        "source_type": "至少含 n_pkgs 与可索引的 pkginfo 指针成员；完整布局未在本函数中声明",
+        "decompiled_type": "struct pkg_array { int n_pkgs; struct pkginfo **pkgs; }",
+        "match": "undeterminable",
+        "evidence_source_line": "源码1994行: for (i = 0; i < array->n_pkgs; i++) {；源码2002行: pkg = array->pkgs[i];",
+        "evidence_decompiled_line": "反编译14-17行: struct pkg_array { int n_pkgs; struct pkginfo **pkgs; };"
+      },
+      {
+        "source_role": "结构体 pkg_spec",
+        "source_type": "被 sizeof(*ps) 分配并按数组元素取址；字段及大小未在本函数中声明",
+        "decompiled_type": "struct pkg_spec { char _opaque[0x28]; }",
+        "match": "undeterminable",
+        "evidence_source_line": "源码1988行: ps = m_malloc(sizeof(*ps) * argc);；源码1990行: pkg_spec_init(&ps[ip], PKG_SPEC_PATTERNS | PKG_SPEC_ARCH_WILDCARD);",
+        "evidence_decompiled_line": "反编译19-21行: struct pkg_spec { char _opaque[0x28]; };；反编译63行: ps = m_malloc(sizeof(*ps) * argc);"
+      },
+      {
+        "source_role": "结构体 pkginfo 的 installed 成员",
+        "source_type": "installed 成员的地址（完整成员类型和偏移未在本函数中声明）",
+        "decompiled_type": "位于 _pad[0x48] 之后的 struct pkgbin * installed",
+        "match": "undeterminable",
+        "evidence_source_line": "源码2004行: if (pkg_spec_match_pkg(&ps[ip], pkg, &pkg->installed)) {",
+        "evidence_decompiled_line": "反编译9-12行: struct pkginfo { char _pad[0x48]; struct pkgbin *installed; };；反编译75行: (struct pkgbin *)&pkg->installed"
+      },
+      {
+        "source_role": "函数类型 pkg_array_visitor_func",
+        "source_type": "仅能由第2个 ABI 参数及转交调用确定为函数指针类型；被调用函数的完整原型未在本函数中声明",
+        "decompiled_type": "void (struct pkg_array *, struct pkginfo *, void *)",
+        "match": "undeterminable",
+        "evidence_source_line": "源码1978行: pkg_array_visitor_func *pkg_visitor, void *pkg_data,；源码2017行: pkg_array_foreach(array, pkg_visitor, pkg_data);",
+        "evidence_decompiled_line": "反编译28-29行: typedef void pkg_array_visitor_func(struct pkg_array *array, struct pkginfo *pkg, void *pkg_data);；反编译85行: pkg_array_foreach(array, pkg_visitor, pkg_data);"
+      }
+    ],
+    "reasoning": "按四个 ABI 参数位置，声明完全一致；局部变量按分配、索引、计数和返回的数据流对应。两个堆对象 ps 与 found 都在源码1976-2031行范围内分别分配并调用 free，反编译95-96行也分别释放同一对应指针，因此 free_discovery 没有漏发现。结构体完整布局和 visitor 的完整调用签名不能从限定的源码函数体独立证明；尤其 installed 的真实成员类型和偏移缺少本函数内的声明，故不将反编译中的指针字段或偏移猜测为错误。"
+  }
+]

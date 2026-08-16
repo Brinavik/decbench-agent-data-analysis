@@ -1,0 +1,139 @@
+[
+  {
+    "function": "cmp",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "函数参数",
+        "source_type": "void (无参数)",
+        "decompiled_type": "void (无参数)",
+        "match": "correct",
+        "evidence_source_line": "1379-1380: cmp (void)",
+        "evidence_decompiled_line": "59-60: cmp (void)"
+      },
+      {
+        "source_role": "局部变量 at_line_start",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "1382-1385: _Bool at_line_start = 1;",
+        "evidence_decompiled_line": "62: bool at_line_start = true;"
+      },
+      {
+        "source_role": "局部变量 line_number",
+        "source_type": "off_t",
+        "decompiled_type": "off_t",
+        "match": "correct",
+        "evidence_source_line": "1386: off_t line_number = 1;",
+        "evidence_decompiled_line": "63: off_t line_number = 1;"
+      },
+      {
+        "source_role": "局部变量 byte_number",
+        "source_type": "off_t",
+        "decompiled_type": "off_t",
+        "match": "correct",
+        "evidence_source_line": "1387: off_t byte_number = 1;",
+        "evidence_decompiled_line": "64: off_t byte_number = 1;"
+      },
+      {
+        "source_role": "局部变量 remaining",
+        "source_type": "intmax_t",
+        "decompiled_type": "intmax_t",
+        "match": "correct",
+        "evidence_source_line": "1388: intmax_t remaining = bytes;",
+        "evidence_decompiled_line": "65: intmax_t remaining = bytes;"
+      },
+      {
+        "source_role": "局部变量 read0/read1",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "1389: size_t read0, read1;",
+        "evidence_decompiled_line": "66: size_t read0, read1;"
+      },
+      {
+        "source_role": "局部变量 first_diff/smaller",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "1390-1391: size_t first_diff; size_t smaller;",
+        "evidence_decompiled_line": "67-68: size_t first_diff; size_t smaller;"
+      },
+      {
+        "source_role": "局部变量 buffer0/buffer1",
+        "source_type": "size_t *",
+        "decompiled_type": "word * (word is unsigned long)",
+        "match": "undeterminable",
+        "evidence_source_line": "1392-1393: size_t *buffer0 = buffer[0]; size_t *buffer1 = buffer[1];",
+        "evidence_decompiled_line": "13: typedef unsigned long word; 69-70: word *buffer0 = buffer[0]; word *buffer1 = buffer[1];"
+      },
+      {
+        "source_role": "局部变量 buf0/buf1",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1394-1395: char *buf0 = (char *) buffer0; char *buf1 = (char *) buffer1;",
+        "evidence_decompiled_line": "71-72: char *buf0 = (char *) buffer0; char *buf1 = (char *) buffer1;"
+      },
+      {
+        "source_role": "局部变量 differing/f/offset_width",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "1396-1399: int differing = 0; int f; int offset_width;",
+        "evidence_decompiled_line": "73-74: int differing = 0; int offset_width;"
+      },
+      {
+        "source_role": "函数内静态对象 char_message/byte_msgid",
+        "source_type": "static char const []",
+        "decompiled_type": "无对应静态对象（局部 char const *msgid 指向字符串字面量）",
+        "match": "undeterminable",
+        "evidence_source_line": "1536-1537, 1545-1547: static char const char_message[] = ...; static char const byte_msgid[] = ...;",
+        "evidence_decompiled_line": "184-185: char const *msgid = \"%s %s differ: byte %s, line %s\\n\"; char const *msg = _(msgid);"
+      },
+      {
+        "source_role": "局部变量 byte_number_max/file_bytes/ig",
+        "source_type": "off_t",
+        "decompiled_type": "off_t",
+        "match": "correct",
+        "evidence_source_line": "1402: off_t byte_number_max; 1412: off_t file_bytes; 1423: off_t ig;",
+        "evidence_decompiled_line": "79: off_t byte_number_max; 83: stat_buf[...].st_size - file_position(...); 96: off_t ig;"
+      },
+      {
+        "source_role": "局部变量 bytes_to_read/r",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "1429: size_t bytes_to_read; 1430: size_t r;",
+        "evidence_decompiled_line": "101-102: size_t bytes_to_read; size_t r;"
+      },
+      {
+        "source_role": "局部消息缓冲区 byte_buf/line_buf/s0/s1",
+        "source_type": "char arrays",
+        "decompiled_type": "char arrays",
+        "match": "correct",
+        "evidence_source_line": "1527-1528, 1562-1563: char byte_buf[...], line_buf[...], s0[5], s1[5];",
+        "evidence_decompiled_line": "174-175, 192-195: char byte_buf[...], line_buf[...], s0[5], s1[5];"
+      },
+      {
+        "source_role": "局部变量 byte_num/line_num/shorter_file",
+        "source_type": "char const *",
+        "decompiled_type": "char const *",
+        "match": "correct",
+        "evidence_source_line": "1529-1530, 1619, 1632, 1637-1638: char const *...",
+        "evidence_decompiled_line": "176-177, 264, 271, 276-277: char const *..."
+      },
+      {
+        "source_role": "局部变量 use_byte_message",
+        "source_type": "_Bool",
+        "decompiled_type": "无对应变量（直接条件表达式）",
+        "match": "undeterminable",
+        "evidence_source_line": "1549-1553: _Bool use_byte_message = ...;",
+        "evidence_decompiled_line": "186-188: if (msg == msgid && !hard_locale (LC_MESSAGES)) msg = ...;"
+      }
+    ],
+    "reasoning": "cmp 在两份文件中均为无参数函数，参数 ABI 完全一致。大多数局部变量按声明和用途逐一对应，整数及字符指针类型一致。buffer0/buffer1 在源码按 size_t* 声明，而反编译器使用 unsigned long* typedef word；当前片段不足以证明 typedef 身份与目标 size_t 完全等价，因此标记 undeterminable。源码函数内 static 消息数组在反编译结果中被字符串字面量/局部指针折叠，未发现重构为外部全局对象的证据，故 free_discovery 假设 rejected；静态对象实体本身的恢复标记 undeterminable。"
+  }
+]

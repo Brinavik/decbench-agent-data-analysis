@@ -1,0 +1,166 @@
+[
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "137: main(int argc, char *argv[])",
+        "evidence_decompiled_line": "32: main(int argc, char **argv)",
+        "reasoning": ""
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "char *[]（函数参数位置调整后为 char **）",
+        "decompiled_type": "char **",
+        "match": "correct",
+        "evidence_source_line": "137: main(int argc, char *argv[])",
+        "evidence_decompiled_line": "32: main(int argc, char **argv)"
+      },
+      {
+        "source_role": "局部变量 file",
+        "source_type": "char *",
+        "decompiled_type": "未单独重构；以 argv[optind] 表达式直接代替",
+        "match": "undeterminable",
+        "evidence_source_line": "139: char *file;；218: file = argv[optind];",
+        "evidence_decompiled_line": "102-104: for (; optind < argc; optind++) / if (list_acl(argv[optind]) == 0)",
+        "reasoning": ""
+      },
+      {
+        "source_role": "局部变量 switch_flag",
+        "source_type": "int",
+        "decompiled_type": "未单独重构",
+        "match": "undeterminable",
+        "evidence_source_line": "140: int switch_flag = 0;；172-174: if (switch_flag) usage(); switch_flag = 1;",
+        "evidence_decompiled_line": "94-96: if (getopt(argc, argv, \"bdlRDBr\") != -1) usage();",
+        "reasoning": ""
+      },
+      {
+        "source_role": "局部变量 args_required",
+        "source_type": "int",
+        "decompiled_type": "int（nargs）",
+        "match": "correct",
+        "evidence_source_line": "141: int args_required = 2;；212: if ((argc - optind) < args_required)",
+        "evidence_decompiled_line": "35: int nargs = 0;；98: if (argc - optind < nargs)"
+      },
+      {
+        "source_role": "局部变量 failed（累计失败数角色）",
+        "source_type": "int",
+        "decompiled_type": "int（n）",
+        "match": "correct",
+        "evidence_source_line": "142: int failed = 0;；219-220: if (!list_acl(file)) failed++;；306: failed += set_acl(acl, dacl, argv[optind]);",
+        "evidence_decompiled_line": "36: int n = 0;；103-104: if (list_acl(argv[optind]) == 0) n++;；162: n += do_set(acl, dacl, argv[optind]);"
+      },
+      {
+        "source_role": "局部变量 failed（acl_check 返回状态角色）",
+        "source_type": "int",
+        "decompiled_type": "int（status）",
+        "match": "correct",
+        "evidence_source_line": "258-259: failed = acl_check(acl, &c); if (failed < 0)",
+        "evidence_decompiled_line": "37: int status;；142-143: status = acl_check(acl, &c); if (status < 0)"
+      },
+      {
+        "source_role": "局部变量 c",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "143: int c;；171: while ((c = getopt(argc, argv, \"bdlRDBr\")) != -1)",
+        "evidence_decompiled_line": "34: int c;；53: c = getopt(argc, argv, \"bdlRDBr\")"
+      },
+      {
+        "source_role": "局部变量 dflag",
+        "source_type": "int",
+        "decompiled_type": "int（opt_d）",
+        "match": "correct",
+        "evidence_source_line": "144: int dflag = 0;；181-183: case 'd': dflag = 1; args_required = 2;",
+        "evidence_decompiled_line": "44: int opt_d = 0;；78-80: case 'd': opt_d = 1; nargs = 2;"
+      },
+      {
+        "source_role": "局部变量 bflag",
+        "source_type": "int",
+        "decompiled_type": "int（opt_b）",
+        "match": "correct",
+        "evidence_source_line": "145: int bflag = 0;；177-179: case 'b': bflag = 1; args_required = 3;",
+        "evidence_decompiled_line": "43: int opt_b = 0;；74-76: case 'b': opt_b = 1; nargs = 3;"
+      },
+      {
+        "source_role": "局部变量 Rflag",
+        "source_type": "int",
+        "decompiled_type": "int（opt_R）",
+        "match": "correct",
+        "evidence_source_line": "146: int Rflag = 0;；185-187: case 'R': Rflag = 1; args_required = 1;",
+        "evidence_decompiled_line": "41: int opt_R = 0;；70-72: case 'R': opt_R = 1; nargs = 1;"
+      },
+      {
+        "source_role": "局部变量 Dflag",
+        "source_type": "int",
+        "decompiled_type": "int（opt_D）",
+        "match": "correct",
+        "evidence_source_line": "147: int Dflag = 0;；189-191: case 'D': Dflag = 1; args_required = 1;",
+        "evidence_decompiled_line": "40: int opt_D = 0;；66-68: case 'D': opt_D = 1; nargs = 1;"
+      },
+      {
+        "source_role": "局部变量 Bflag",
+        "source_type": "int",
+        "decompiled_type": "int（opt_B）",
+        "match": "correct",
+        "evidence_source_line": "148: int Bflag = 0;；193-195: case 'B': Bflag = 1; args_required = 1;",
+        "evidence_decompiled_line": "39: int opt_B = 0;；62-64: case 'B': opt_B = 1; nargs = 1;"
+      },
+      {
+        "source_role": "局部变量 lflag",
+        "source_type": "int",
+        "decompiled_type": "int（opt_l）",
+        "match": "correct",
+        "evidence_source_line": "149: int lflag = 0;；197-199: case 'l': lflag = 1; args_required = 1;",
+        "evidence_decompiled_line": "42: int opt_l = 0;；82-84: case 'l': opt_l = 1; nargs = 1;"
+      },
+      {
+        "source_role": "局部变量 acl",
+        "source_type": "acl_t，即 struct __acl_ext *",
+        "decompiled_type": "acl_t，即 void *",
+        "match": "wrong",
+        "evidence_source_line": "3: struct __acl_ext;；11: typedef struct __acl_ext *acl_t;；150-152: acl_t acl = ((void *)0);",
+        "evidence_decompiled_line": "12: typedef void *acl_t;；38: acl_t acl = NULL, dacl = NULL;"
+      },
+      {
+        "source_role": "局部变量 dacl",
+        "source_type": "acl_t，即 struct __acl_ext *",
+        "decompiled_type": "acl_t，即 void *",
+        "match": "wrong",
+        "evidence_source_line": "3: struct __acl_ext;；11: typedef struct __acl_ext *acl_t;；153-155: acl_t dacl = ((void *)0);",
+        "evidence_decompiled_line": "12: typedef void *acl_t;；38: acl_t acl = NULL, dacl = NULL;"
+      },
+      {
+        "source_role": "main 使用的文件作用域静态对象 program",
+        "source_type": "static char *（内部链接）",
+        "decompiled_type": "char *（非 static，外部链接；progname）",
+        "match": "wrong",
+        "evidence_source_line": "98: static char *program;；157-159: program = __xpg_basename(argv[0]);",
+        "evidence_decompiled_line": "23: char *progname;；46: progname = basename(argv[0]);"
+      },
+      {
+        "source_role": "main 使用的文件作用域静态对象 rflag",
+        "source_type": "static int（内部链接）",
+        "decompiled_type": "int（非 static，外部链接）",
+        "match": "wrong",
+        "evidence_source_line": "99: static int rflag;；201-203: case 'r': rflag = 1; args_required = 1;",
+        "evidence_decompiled_line": "24: int rflag;；86-88: case 'r': rflag = 1; nargs = 1;"
+      },
+      {
+        "source_role": "不完整结构体 __acl_ext（由 main 的 acl_t 局部变量引用）",
+        "source_type": "仅前向声明，字段数量、偏移、大小和字段类型序列均未知",
+        "decompiled_type": "未声明结构体；对应指针被表示为 void *",
+        "match": "undeterminable",
+        "evidence_source_line": "3: struct __acl_ext;；11: typedef struct __acl_ext *acl_t;",
+        "evidence_decompiled_line": "12: typedef void *acl_t;"
+      }
+    ],
+    "reasoning": "按 main 的两个 ABI 参数位置对齐，int 与 char ** 均正确。局部变量按 getopt 结果、参数个数检查、失败计数、acl_check 状态和各选项分支的数据流对齐；源码的 failed 被合理拆成 int n 与 int status。file 与 switch_flag 在反编译结果中被表达式和控制流消除，没有独立存储实体，故不猜测其恢复类型。acl/dacl 都是一层指针，故不能据此确认 PTR-01，但源码保留了不透明的 struct __acl_ext 指向类型，而反编译结果泛化为 void *，类型恢复不完整；因源码只有前向声明，LAYOUT-01 无法判断。main 使用的 program 与 rflag 在源码是文件作用域 static，而反编译结果重构为非 static 定义，确认 SC-01 类的内部链接对象外部化。未发现 FN-01；没有证据确认 ST-01、PTR-01 或 LAYOUT-01。"
+  }
+]

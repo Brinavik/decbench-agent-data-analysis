@@ -1,0 +1,23 @@
+[
+  {
+    "function": "get_range",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {"source_role":"第1个参数","source_type":"bitstr_t *","decompiled_type":"bitstr_t *","match":"correct","evidence_source_line":"源码727行: get_range(bitstr_t * bits, int low, int high, const char *names[],","evidence_decompiled_line":"反编译24行: int get_range(bitstr_t *bits, int low, int high, const char *names[], FILE *file)"},
+      {"source_role":"第2个参数","source_type":"int","decompiled_type":"int","match":"correct","evidence_source_line":"源码727行: get_range(bitstr_t * bits, int low, int high, const char *names[],","evidence_decompiled_line":"反编译24行: int get_range(bitstr_t *bits, int low, int high, const char *names[], FILE *file)"},
+      {"source_role":"第3个参数","source_type":"int","decompiled_type":"int","match":"correct","evidence_source_line":"源码727行: get_range(bitstr_t * bits, int low, int high, const char *names[],","evidence_decompiled_line":"反编译24行: int get_range(bitstr_t *bits, int low, int high, const char *names[], FILE *file)"},
+      {"source_role":"第4个参数","source_type":"const char *[] (const char **)","decompiled_type":"const char *[] (const char **)","match":"correct","evidence_source_line":"源码727-728行: ... const char *names[], FILE * file","evidence_decompiled_line":"反编译24行: ... const char *names[], FILE *file"},
+      {"source_role":"第5个参数","source_type":"FILE *","decompiled_type":"FILE *","match":"correct","evidence_source_line":"源码727-728行: ... FILE * file)","evidence_decompiled_line":"反编译24行: ... FILE *file)"},
+      {"source_role":"局部变量 ch","source_type":"int","decompiled_type":"int","match":"correct","evidence_source_line":"源码733行: int ch, i, num1, num2, num3;","evidence_decompiled_line":"反编译27行: int ch; 及反编译31行以后对 ch 的使用"},
+      {"source_role":"局部变量 i","source_type":"int","decompiled_type":"int","match":"correct","evidence_source_line":"源码733行: int ch, i, num1, num2, num3;","evidence_decompiled_line":"反编译26行: int i, num1, num2, num3;"},
+      {"source_role":"局部变量 num1","source_type":"int","decompiled_type":"int","match":"correct","evidence_source_line":"源码733行: int ch, i, num1, num2, num3;","evidence_decompiled_line":"反编译26行: int i, num1, num2, num3;"},
+      {"source_role":"局部变量 num2","source_type":"int","decompiled_type":"int","match":"correct","evidence_source_line":"源码733行: int ch, i, num1, num2, num3;","evidence_decompiled_line":"反编译26行: int i, num1, num2, num3;"},
+      {"source_role":"局部变量 num3","source_type":"int","decompiled_type":"int","match":"correct","evidence_source_line":"源码733行: int ch, i, num1, num2, num3;","evidence_decompiled_line":"反编译26行: int i, num1, num2, num3;"},
+      {"source_role":"局部变量 state","source_type":"range_state_t (枚举)","decompiled_type":"无显式对应局部变量（控制流扁平化）","match":"undeterminable","evidence_source_line":"源码738行: range_state_t state = R_START;","evidence_decompiled_line":"反编译31-124行: 通过条件分支实现状态逻辑，未声明 state"},
+      {"source_role":"静态局部对象","source_type":"本函数无 static 局部对象","decompiled_type":"未发现对应对象","match":"correct","evidence_source_line":"源码726-738行: 局部声明中仅有自动变量，无 static 局部对象","evidence_decompiled_line":"反编译24-29行: 仅声明参数和自动局部变量，无外部/全局对象引用"}
+    ],
+    "reasoning":"五个参数按 ABI 位置逐一对应，指针层级与 const/FILE 类型一致；ch、i、num1-3 均由声明确认是 int。range_state_t state 在优化后被控制流消除，枚举类型恢复不可确定。源码不存在 static 局部对象，因此 free_discovery 关于静态局部对象被重构为全局外部对象的假设不成立。"
+  }
+]

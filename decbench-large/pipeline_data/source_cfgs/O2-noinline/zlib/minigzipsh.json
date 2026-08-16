@@ -1,0 +1,775 @@
+{
+  "opt": "O2-noinline",
+  "project": "zlib",
+  "binary": "minigzipsh",
+  "generator": "pyjoern",
+  "functions": {
+    "main": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "edges": [
+        [
+          0,
+          35
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          24
+        ],
+        [
+          2,
+          36
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          47
+        ],
+        [
+          4,
+          48
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          38
+        ],
+        [
+          7,
+          21
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          8,
+          14
+        ],
+        [
+          9,
+          7
+        ],
+        [
+          10,
+          21
+        ],
+        [
+          11,
+          38
+        ],
+        [
+          12,
+          10
+        ],
+        [
+          13,
+          28
+        ],
+        [
+          13,
+          49
+        ],
+        [
+          14,
+          30
+        ],
+        [
+          14,
+          50
+        ],
+        [
+          15,
+          27
+        ],
+        [
+          16,
+          27
+        ],
+        [
+          17,
+          16
+        ],
+        [
+          18,
+          24
+        ],
+        [
+          18,
+          43
+        ],
+        [
+          19,
+          18
+        ],
+        [
+          19,
+          44
+        ],
+        [
+          20,
+          19
+        ],
+        [
+          20,
+          45
+        ],
+        [
+          22,
+          35
+        ],
+        [
+          23,
+          2
+        ],
+        [
+          23,
+          26
+        ],
+        [
+          24,
+          3
+        ],
+        [
+          24,
+          25
+        ],
+        [
+          25,
+          3
+        ],
+        [
+          26,
+          2
+        ],
+        [
+          27,
+          8
+        ],
+        [
+          27,
+          21
+        ],
+        [
+          28,
+          27
+        ],
+        [
+          29,
+          38
+        ],
+        [
+          30,
+          27
+        ],
+        [
+          31,
+          27
+        ],
+        [
+          32,
+          27
+        ],
+        [
+          33,
+          38
+        ],
+        [
+          34,
+          38
+        ],
+        [
+          35,
+          1
+        ],
+        [
+          35,
+          23
+        ],
+        [
+          36,
+          6
+        ],
+        [
+          36,
+          37
+        ],
+        [
+          37,
+          11
+        ],
+        [
+          37,
+          39
+        ],
+        [
+          38,
+          2
+        ],
+        [
+          39,
+          29
+        ],
+        [
+          39,
+          40
+        ],
+        [
+          40,
+          33
+        ],
+        [
+          40,
+          41
+        ],
+        [
+          41,
+          34
+        ],
+        [
+          41,
+          42
+        ],
+        [
+          42,
+          20
+        ],
+        [
+          42,
+          46
+        ],
+        [
+          43,
+          38
+        ],
+        [
+          44,
+          18
+        ],
+        [
+          45,
+          19
+        ],
+        [
+          46,
+          20
+        ],
+        [
+          47,
+          7
+        ],
+        [
+          47,
+          9
+        ],
+        [
+          48,
+          10
+        ],
+        [
+          48,
+          12
+        ],
+        [
+          49,
+          15
+        ],
+        [
+          49,
+          31
+        ],
+        [
+          50,
+          32
+        ],
+        [
+          50,
+          51
+        ],
+        [
+          51,
+          16
+        ],
+        [
+          51,
+          17
+        ],
+        [
+          52,
+          0
+        ],
+        [
+          52,
+          22
+        ]
+      ],
+      "labels": {
+        "0": "476.0:\n<UnsupportedStmt: ['postIncrement', 'bname++']>\n",
+        "1": "482.0:\nuncompr = 1\n",
+        "2": "486.0:\nargc > 0\n",
+        "3": "506.0:\nargc == 0\n",
+        "4": "509.0:\n<UnsupportedStmt: IDENTIFIER,uncompr,if(uncompr)>\n",
+        "5": "531.0:\n<UnsupportedStmt: IDENTIFIER,copyout,if(copyout)>\n",
+        "6": "488.0:\ncopyout = 1\n",
+        "7": "None.1:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "8": "535.0:\n<UnsupportedStmt: IDENTIFIER,uncompr,if(uncompr)>\n",
+        "9": "515.0:\nerror(&quot;can'tgzdopenstdin&quot;)\n",
+        "10": "None.5:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "11": "490.0:\nuncompr = 1\n",
+        "12": "525.0:\nerror(&quot;can'tgzdopenstdout&quot;)\n",
+        "13": "536.0:\n<UnsupportedStmt: IDENTIFIER,copyout,if(copyout)>\n",
+        "14": "552.0:\n<UnsupportedStmt: IDENTIFIER,copyout,if(copyout)>\n",
+        "15": "None.13:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "16": "567.0:\ngz_compress()\n",
+        "17": "565.0:\nerror(&quot;can'tgzdopenstdout&quot;)\n",
+        "18": "497.0:\n(*argv)[0]=='-'&amp;&amp;(*argv)[1]&gt;='1'&amp;&amp;(*arg... && \n",
+        "19": "497.1:\n(*argv)[0]=='-'&amp;&amp;(*argv)[1]&gt;='1'&amp;&amp;(*arg... && \n",
+        "20": "497.2:\n(*argv)[0]=='-'&amp;&amp;(*argv)[1]&gt;='1' && \n",
+        "21": "576.0:\nreturn 0;,return0;\nFUNCTION_END\n",
+        "22": "478.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'argv[0]']>\nbname = argv[0]\n",
+        "23": "483.1:\nstrcmp()\n<UnsupportedStmt: ['logicalNot', '!strcmp(bname', '&quot;zcat&quot;)']>\n",
+        "24": "504.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'outmode[3]']>\noutmode[3] == ''\n",
+        "25": "505.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'outmode[3]']>\noutmode[3] = 0\n",
+        "26": "484.1:\nuncompr = 1\ncopyout = uncompr=1\n",
+        "27": "574.0:\n<UnsupportedStmt: ['postIncrement', 'argv++']>\n<UnsupportedStmt: ['preDecrement', '--argc']>\n",
+        "28": "549.1:\n<UnsupportedStmt: ['indirection', '*argv']>\nfile_uncompress(*argv)\n",
+        "29": "492.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'outmode[3]']>\noutmode[3] = 'f'\n",
+        "30": "571.1:\n<UnsupportedStmt: ['indirection', '*argv']>\nfile_compress()\n",
+        "31": "543.0:\n<UnsupportedStmt: ['indirection', '*argv']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "32": "558.1:\n<UnsupportedStmt: ['indirection', '*argv']>\nperror(*argv)\n",
+        "33": "494.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'outmode[3]']>\noutmode[3] = 'h'\n",
+        "34": "496.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'outmode[3]']>\noutmode[3] = 'R'\n",
+        "35": "479.1:\n<UnsupportedStmt: ['postDecrement', 'argc--']>\n<UnsupportedStmt: ['postIncrement', 'argv++']>\n<UnsupportedStmt: ['expressionList', 'argc--', 'argv++']>\nstrcmp()\n<UnsupportedStmt: ['logicalNot', '!strcmp(bname', '&quot;gunzip&quot;)']>\n",
+        "36": "487.2:\n<UnsupportedStmt: ['indirection', '*argv']>\nstrcmp()\nstrcmp(*argv,&quot;-c&quot;) == 0\n",
+        "37": "489.2:\n<UnsupportedStmt: ['indirection', '*argv']>\nstrcmp()\nstrcmp(*argv,&quot;-d&quot;) == 0\n",
+        "38": "502.1:\n<UnsupportedStmt: ['postDecrement', 'argc--']>\n<UnsupportedStmt: ['postIncrement', 'argv++']>\n<UnsupportedStmt: ['expressionList', 'argc--', 'argv++']>\n",
+        "39": "491.2:\n<UnsupportedStmt: ['indirection', '*argv']>\nstrcmp()\nstrcmp(*argv,&quot;-f&quot;) == 0\n",
+        "40": "493.2:\n<UnsupportedStmt: ['indirection', '*argv']>\nstrcmp()\nstrcmp(*argv,&quot;-h&quot;) == 0\n",
+        "41": "495.2:\n<UnsupportedStmt: ['indirection', '*argv']>\nstrcmp()\nstrcmp(*argv,&quot;-r&quot;) == 0\n",
+        "42": "497.10:\n<UnsupportedStmt: ['indirection', '*argv']>\n<UnsupportedStmt: ['indirectIndexAccess', '(*argv)[0]']>\n(*argv)[0] == '-'\n",
+        "43": "499.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'outmode[2]']>\n<UnsupportedStmt: ['indirection', '*argv']>\n<UnsupportedStmt: ['indirectIndexAccess', '(*argv)[1]']>\noutmode[2] = (*argv)[1]\n",
+        "44": "498.2:\n<UnsupportedStmt: ['indirection', '*argv']>\n<UnsupportedStmt: ['indirectIndexAccess', '(*argv)[2]']>\n(*argv)[2] == 0\n",
+        "45": "497.9:\n<UnsupportedStmt: ['indirection', '*argv']>\n<UnsupportedStmt: ['indirectIndexAccess', '(*argv)[1]']>\n(*argv)[1] <= '9'\n",
+        "46": "497.11:\n<UnsupportedStmt: ['indirection', '*argv']>\n<UnsupportedStmt: ['indirectIndexAccess', '(*argv)[1]']>\n(*argv)[1] >= '1'\n",
+        "47": "None.6:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: (void*)0)>\n",
+        "48": "None.9:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: (void*)0)>\n",
+        "49": "537.2:\n<UnsupportedStmt: ['indirection', '*argv']>\ngzopen()\nfile = gzopen(*argv,&quot;rb&quot;)\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: (void...>\n",
+        "50": "553.2:\n<UnsupportedStmt: ['indirection', '*argv']>\nfopen()\n*in = fopen(*argv,&quot;rb&quot;)\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: (void*)0)>\n",
+        "51": "None.17:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: (v...>\n",
+        "52": "458.0:\nFUNCTION_START\ncopyout = 0\nuncompr = 0\n<UnsupportedStmt: ['alloc', 'outmode[20]']>\noutmode[20] = \n<UnsupportedStmt: ['sizeOf', 'sizeof(outmode)']>\nsnprintf()\n<UnsupportedStmt: ['indirectIndexAccess', 'argv[0]']>\nprog = argv[0]\n<UnsupportedStmt: ['indirectIndexAccess', 'argv[0]']>\nstrrchr()\nbname = strrchr(argv[0],'/')\n<UnsupportedStmt: IDENTIFIER,bname,if(bname)>\n"
+      },
+      "entry": [
+        52
+      ],
+      "exit": [
+        21
+      ],
+      "degenerate": false
+    },
+    "error": {
+      "nodes": [
+        0
+      ],
+      "edges": [],
+      "labels": {
+        "0": "288.0:\nFUNCTION_START\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nexit(1)\nFUNCTION_END\n"
+      },
+      "entry": [
+        0
+      ],
+      "exit": [
+        0
+      ],
+      "degenerate": false
+    },
+    "gz_compress": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "edges": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          4
+        ]
+      ],
+      "labels": {
+        "0": "326.2:\nerror(&quot;failedgzclose&quot;)\n",
+        "1": "321.0:\nlen == 0\n",
+        "2": "318.0:\nperror(&quot;fread&quot;)\nexit(1)\n",
+        "3": "301.0:\nFUNCTION_START\n<UnsupportedStmt: ['alloc', 'buf[16384]']>\nbuf[16384] = \n",
+        "4": "316.2:\n<UnsupportedStmt: UNKNOWN,int,int>\n<UnsupportedStmt: ['sizeOf', 'sizeof(buf)']>\nfread()\n<UnsupportedStmt: ['cast', '(int)fread(buf', '1', 'sizeof(buf)', 'in)']>\nlen = (int)fread(buf,1,sizeof(buf),in)\nferror(in)\n",
+        "5": "325.0:\nfclose(in)\ngzclose(out)\ngzclose(out) != 0\n",
+        "6": "323.5:\n<UnsupportedStmt: UNKNOWN,unsigned,unsigned>\n<UnsupportedStmt: ['cast', '(unsigned)len']>\ngzwrite()\ngzwrite(out,buf,(unsigned)len) != len\n",
+        "7": "323.6:\n<UnsupportedStmt: ['addressOf', '&amp;err']>\ngzerror()\nerror()\n"
+      },
+      "entry": [
+        3
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "gz_uncompress": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          9
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          9,
+          4
+        ],
+        [
+          9,
+          7
+        ]
+      ],
+      "labels": {
+        "0": "345.0:\nfclose(out)\n",
+        "1": "345.1:\nerror(&quot;failedfclose&quot;)\n",
+        "2": "347.2:\nerror(&quot;failedgzclose&quot;)\n",
+        "3": "339.0:\nlen == 0\n",
+        "4": "342.0:\nerror(&quot;failedfwrite&quot;)\n",
+        "5": "347.1:\ngzclose(in)\ngzclose(in) != 0\n",
+        "6": "328.0:\nFUNCTION_START\n<UnsupportedStmt: ['alloc', 'buf[16384]']>\nbuf[16384] = \n",
+        "7": "337.2:\n<UnsupportedStmt: ['sizeOf', 'sizeof(buf)']>\ngzread()\nlen = gzread(in,buf,sizeof(buf))\nlen < 0\n",
+        "8": "338.3:\n<UnsupportedStmt: ['addressOf', '&amp;err']>\ngzerror()\nerror()\n",
+        "9": "341.2:\n<UnsupportedStmt: UNKNOWN,int,int>\n<UnsupportedStmt: UNKNOWN,unsigned,unsigned>\n<UnsupportedStmt: ['cast', '(unsigned)len']>\nfwrite()\n<UnsupportedStmt: ['cast', '(int)fwrite(buf', '1', '(unsigned)len', 'out)']>\n(int)fwrite(buf,1,(unsigned)len,out) != len\n"
+      },
+      "entry": [
+        6
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "file_compress": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "edges": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "labels": {
+        "0": "None.2:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nexit(1)\n",
+        "1": "381.0:\nperror(file)\nexit(1)\n",
+        "2": "None.3:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nexit(1)\n",
+        "3": "393.0:\ngz_compress()\nunlink(file)\nFUNCTION_END\n",
+        "4": "371.1:\n<UnsupportedStmt: ['sizeOf', 'sizeof(outfile)']>\nsnprintf()\nfopen()\nin = fopen(file,&quot;rb&quot;)\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: (void*)0)>\n",
+        "5": "384.1:\ngzopen()\nout = gzopen(outfile,mode)\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: (void*)0)>\n",
+        "6": "355.0:\nFUNCTION_START\n<UnsupportedStmt: ['alloc', 'outfile[1024]']>\noutfile[1024] = \nstrlen(file)\nstrlen(&quot;.gz&quot;)\n<UnsupportedStmt: ['addition', 'strlen(file)+strlen(&quot;.gz&quot;)']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(outfile)']>\nstrlen(file)+strlen(&quot;.gz&quot;) >= sizeof(outfile)\n"
+      },
+      "entry": [
+        6
+      ],
+      "exit": [
+        3
+      ],
+      "degenerate": false
+    },
+    "file_uncompress": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "edges": [
+        [
+          0,
+          9
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          9,
+          6
+        ],
+        [
+          10,
+          6
+        ],
+        [
+          11,
+          1
+        ],
+        [
+          11,
+          5
+        ]
+      ],
+      "labels": {
+        "0": "424.0:\nlen&gt;(sizeof(&quot;.gz&quot;)-1)&amp;&amp;strcmp(file+len-(siz... && \n",
+        "1": "None.2:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nexit(1)\n",
+        "2": "None.3:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nexit(1)\n",
+        "3": "450.0:\nperror(file)\nexit(1)\n",
+        "4": "454.0:\ngz_uncompress()\nunlink(infile)\nFUNCTION_END\n",
+        "5": "419.1:\n<UnsupportedStmt: ['sizeOf', 'sizeof(buf)']>\nsnprintf()\n<UnsupportedStmt: ['sizeOf', 'sizeof(&quot;.gz&quot;)']>\n<UnsupportedStmt: ['subtraction', 'sizeof(&quot;.gz&quot;)-1']>\nlen > (sizeof(&quot;.gz&quot;)-1)\n",
+        "6": "437.1:\ngzopen()\nin = gzopen(infile,&quot;rb&quot;)\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: (void*)0)>\n",
+        "7": "446.1:\nfopen()\nout = fopen(outfile,&quot;wb&quot;)\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: (void*)0)>\n",
+        "8": "424.7:\n<UnsupportedStmt: ['addition', 'file+len']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(&quot;.gz&quot;)']>\n<UnsupportedStmt: ['subtraction', 'sizeof(&quot;.gz&quot;)-1']>\n<UnsupportedStmt: ['subtraction', 'file+len-(sizeof(&quot;.gz&quot;)-1)']>\nstrcmp(file+len-(sizeof(&quot;.gz&quot;)-1)\nstrcmp(file+len-(sizeof(&quot;.gz&quot;)-1),&quot;.gz&quot;) == 0\n",
+        "9": "425.0:\ninfile = file\noutfile = buf\n<UnsupportedStmt: ['subtraction', 'len-3']>\n<UnsupportedStmt: ['indirectIndexAccess', 'outfile[len-3]']>\noutfile[len-3] = '\\0'\n",
+        "10": "429.0:\noutfile = file\ninfile = buf\n<UnsupportedStmt: ['addition', 'buf+len']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(buf)']>\n<UnsupportedStmt: ['subtraction', 'sizeof(buf)-len']>\nsnprintf()\n",
+        "11": "402.0:\nFUNCTION_START\n<UnsupportedStmt: ['alloc', 'buf[1024]']>\nbuf[1024] = \nstrlen(file)\nlen = strlen(file)\nstrlen(&quot;.gz&quot;)\n<UnsupportedStmt: ['addition', 'len+strlen(&quot;.gz&quot;)']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(buf)']>\nlen+strlen(&quot;.gz&quot;) >= sizeof(buf)\n"
+      },
+      "entry": [
+        11
+      ],
+      "exit": [
+        4
+      ],
+      "degenerate": false
+    }
+  }
+}

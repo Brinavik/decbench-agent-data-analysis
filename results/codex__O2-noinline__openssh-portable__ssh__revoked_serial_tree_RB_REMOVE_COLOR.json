@@ -1,0 +1,67 @@
+[
+  {
+    "function": "revoked_serial_tree_RB_REMOVE_COLOR",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "struct revoked_serial_tree *",
+        "decompiled_type": "struct rb_tree *",
+        "match": "correct",
+        "evidence_source_line": "源码1174行：struct revoked_serial_tree { struct revoked_serial *rbh_root; };；1175行函数签名的第1个参数为 struct revoked_serial_tree *head",
+        "evidence_decompiled_line": "反编译20行：第1个参数为 struct rb_tree *tree；10-12行：struct rb_tree 仅含 struct rb_node *root，且26行使用 tree->root"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "struct revoked_serial *",
+        "decompiled_type": "struct rb_node *",
+        "match": "correct",
+        "evidence_source_line": "源码1175行：函数第2个参数为 struct revoked_serial *parent，随后以 parent->tree_entry.rbe_left/rbe_right/rbe_parent 驱动删除修复流程",
+        "evidence_decompiled_line": "反编译20-21行：第2个参数为 struct rb_node *parent；27-28行及33-45行以 parent->left/right/parent 执行同一数据流角色"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "struct revoked_serial *",
+        "decompiled_type": "struct rb_node *",
+        "match": "correct",
+        "evidence_source_line": "源码1175-1177行：函数第3个参数 elm 在循环条件中与 head->rbh_root 比较，并检查 elm->tree_entry.rbe_color",
+        "evidence_decompiled_line": "反编译21行：第3个参数为 struct rb_node *node；26行与 tree->root 比较并检查 node->color"
+      },
+      {
+        "source_role": "局部变量tmp",
+        "source_type": "struct revoked_serial *",
+        "decompiled_type": "struct rb_node * sibling",
+        "match": "correct",
+        "evidence_source_line": "源码1175行：声明 struct revoked_serial *tmp；1177行将 tmp 赋为 parent 的 right，后续作为同级节点读写颜色和子指针",
+        "evidence_decompiled_line": "反编译23行：声明 struct rb_node *sibling；28-31行将 sibling 赋为 parent->right，后续作为同级节点读写 color 和子指针"
+      },
+      {
+        "source_role": "局部变量oleft/oright（分支内旋转枢轴）",
+        "source_type": "struct revoked_serial *",
+        "decompiled_type": "struct rb_node * pivot",
+        "match": "correct",
+        "evidence_source_line": "源码1183行声明 oleft 并赋值 tmp->tree_entry.rbe_left；1189行声明 oright 并赋值 tmp->tree_entry.rbe_right；两者均仅在互斥分支中作为旋转枢轴使用",
+        "evidence_decompiled_line": "反编译24行声明 pivot；62-74行赋 pivot=sibling->left 并旋转，135-147行赋 pivot=sibling->right 并在互斥分支中旋转"
+      },
+      {
+        "source_role": "结构体revoked_serial_tree",
+        "source_type": "struct { struct revoked_serial *rbh_root; }",
+        "decompiled_type": "struct rb_tree { struct rb_node *root; }",
+        "match": "correct",
+        "evidence_source_line": "源码1174行：结构体只有一个根指针字段 rbh_root",
+        "evidence_decompiled_line": "反编译10-12行：结构体只有一个根指针字段 root"
+      },
+      {
+        "source_role": "结构体revoked_serial",
+        "source_type": "struct { u_int64_t lo; u_int64_t hi; struct { struct revoked_serial *rbe_left; struct revoked_serial *rbe_right; struct revoked_serial *rbe_parent; int rbe_color; } tree_entry; }",
+        "decompiled_type": "struct rb_node { unsigned char data[16]; struct rb_node *left; struct rb_node *right; struct rb_node *parent; int color; }",
+        "match": "wrong",
+        "evidence_source_line": "源码1169-1172行：lo、hi 是两个 u_int64_t，随后嵌套 tree_entry 含三个同类型指针和 int rbe_color",
+        "evidence_decompiled_line": "反编译2-8行：前16字节被恢复为 unsigned char data[16]，其后为三个指针和 int color；4-7行字段偏移用途与源码 tree_entry 一致，但前两个显式整数成员未恢复"
+      }
+    ],
+    "reasoning": "按 ABI 序号及循环、旋转数据流，三个参数和指针局部变量均可对应；两种节点结构的链接区从第16字节起具有相同的三个指针加 int 布局，但反编译将源码的两个 u_int64_t 显式字段合并为字节数组，故存在 LAYOUT-01/INT-01 结构恢复问题。源码1175-1189行和反编译19-177行均未出现 free、释放调用或可识别的释放对象；仅凭该函数无法判定 free_discovery 假设，结论为 undeterminable。"
+  }
+]

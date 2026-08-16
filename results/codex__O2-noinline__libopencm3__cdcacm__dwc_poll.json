@@ -1,0 +1,101 @@
+[
+  {
+    "function": "dwc_poll",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "usbd_device *",
+        "decompiled_type": "usbd_device *",
+        "match": "correct",
+        "evidence_source_line": "1268: void dwc_poll(usbd_device *usbd_dev)",
+        "evidence_decompiled_line": "105: void dwc_poll(usbd_device *usbd_dev)",
+        "reasoning": "函数签名的第1个ABI参数均为指向usbd_device的指针，且函数内均通过该指针访问driver、回调及设备状态。"
+      },
+      {
+        "source_role": "局部变量 intsts",
+        "source_type": "uint32_t",
+        "decompiled_type": "uint32_t",
+        "match": "correct",
+        "evidence_source_line": "1271: uint32_t intsts = (*(volatile uint32_t *)((0x014) + ((usbd_dev->driver->base_address))));",
+        "evidence_decompiled_line": "107: uint32_t intsts = OTG_GINTSTS(usbd_dev);",
+        "reasoning": "两者均从32位GINTSTS寄存器读取并用于位掩码判断。"
+      },
+      {
+        "source_role": "局部变量 i（循环索引）",
+        "source_type": "int",
+        "decompiled_type": "uint8_t ep（随后另有uint32_t i）",
+        "match": "wrong",
+        "evidence_source_line": "1272: int i;\n1286: for (i = 0; i < 4; i++)\n1349: for (i = 0; i < usbd_dev->rxbcnt; i += 4)",
+        "evidence_decompiled_line": "108: uint8_t ep;\n117: for (ep = 0; ep < 4; ep++)\n170: uint32_t i;\n172: for (i = 0; i < usbd_dev->rxbcnt; i += 4)",
+        "reasoning": "源码复用一个int循环变量；反编译器将首个循环索引恢复为uint8_t ep并另建uint32_t i。ep的窄化类型与源码i不一致，虽在当前范围0..3内不影响值，但属于整数宽度恢复错误。"
+      },
+      {
+        "source_role": "局部变量 rxstsp",
+        "source_type": "uint32_t",
+        "decompiled_type": "uint32_t",
+        "match": "correct",
+        "evidence_source_line": "1302: uint32_t rxstsp = (*(volatile uint32_t *)((0x020) + ((usbd_dev->driver->base_address))));",
+        "evidence_decompiled_line": "129: uint32_t rxstsp = OTG_GRXSTSP(usbd_dev);",
+        "reasoning": "均读取32位GRXSTSP寄存器并派生包状态、端点和字节计数。"
+      },
+      {
+        "source_role": "局部变量 pktsts",
+        "source_type": "uint32_t",
+        "decompiled_type": "uint32_t",
+        "match": "correct",
+        "evidence_source_line": "1303: uint32_t pktsts = rxstsp & (0xf << 17);",
+        "evidence_decompiled_line": "130: uint32_t pktsts = rxstsp & OTG_GRXSTSP_PKTSTS_MASK;",
+        "reasoning": "均以32位值保存GRXSTSP的包状态字段并进行相同分支比较。"
+      },
+      {
+        "source_role": "局部变量 ep",
+        "source_type": "uint8_t",
+        "decompiled_type": "uint8_t rx_ep",
+        "match": "correct",
+        "evidence_source_line": "1304: uint8_t ep = rxstsp & (0xf << 0);",
+        "evidence_decompiled_line": "131: uint8_t rx_ep = rxstsp & OTG_GRXSTSP_EPNUM_MASK;",
+        "reasoning": "按数据流均为从状态寄存器低4位提取的端点号，类型均为uint8_t；名称变化不影响ABI或用途对齐。"
+      },
+      {
+        "source_role": "局部变量 type",
+        "source_type": "uint8_t",
+        "decompiled_type": "无独立变量（switch case直接分派事务类型）",
+        "match": "undeterminable",
+        "evidence_source_line": "1324: uint8_t type;\n1325-1329: 根据pktsts赋值SETUP或OUT",
+        "evidence_decompiled_line": "133-167: switch (pktsts)直接处理SETUP_COMPLETE、OUT_COMPLETE、OUT_DATA、SETUP_DATA",
+        "reasoning": "反编译结果以内联switch替代type局部变量，控制流语义可对应但无法证明是否存在同一独立存储实体，因此类型恢复不可判定。"
+      },
+      {
+        "source_role": "结构体 _usbd_device",
+        "source_type": "完整设备结构，含嵌套control_state、回调表、driver指针、fifo_mem_top、force_nak、doeptsiz、rxbcnt",
+        "decompiled_type": "显式字段加opaque字节数组的扁平结构",
+        "match": "undeterminable",
+        "evidence_source_line": "866-936: struct _usbd_device字段声明；907 user_callback_ctr，914 driver，922-935硬件状态字段",
+        "evidence_decompiled_line": "25-49: struct _usbd_device以_opaque数组及control_state/control_req等字段重构",
+        "reasoning": "本函数访问字段的相对顺序和基本宽度大体可由占位数组解释，但opaque区域及嵌套control_state的完整偏移无法仅凭本函数证明，故整体布局不可判定。"
+      },
+      {
+        "source_role": "结构体 _usbd_device.control_state",
+        "source_type": "struct usb_control_state（含state、req、ctrl_buf、ctrl_len、complete、needs_zlp）",
+        "decompiled_type": "uint8_t control_state，另列struct usb_setup_data control_req",
+        "match": "wrong",
+        "evidence_source_line": "886-899: 嵌套struct usb_control_state control_state，含req等字段",
+        "evidence_decompiled_line": "31-38: uint8_t control_state; struct usb_setup_data control_req; ...",
+        "reasoning": "同一源码嵌套结构被拆平，control_state在反编译声明中仅为1字节且不再承载完整结构类型；这是结构体实体类型恢复不匹配。"
+      },
+      {
+        "source_role": "结构体 _usbd_driver（被访问字段）",
+        "source_type": "driver指针指向结构，base_address为uint32_t、rx_fifo_size为uint16_t",
+        "decompiled_type": "const struct _usbd_driver *；base_address uint32_t、rx_fifo_size uint16_t",
+        "match": "correct",
+        "evidence_source_line": "914: const struct _usbd_driver *driver;\n984-988: uint32_t base_address; uint16_t rx_fifo_size",
+        "evidence_decompiled_line": "42: const struct _usbd_driver *driver;\n17-23: operations[44]; uint32_t base_address; ... uint16_t rx_fifo_size",
+        "reasoning": "本函数实际使用的两个字段类型及其位宽一致；前置函数指针区以44字节opaque数组表示，与布局大小相容。"
+      }
+    ],
+    "reasoning": "按第1参数ABI位置、局部变量数据流和字段布局逐项比对；未发现静态局部被外置为全局的证据，函数签名及主要32位寄存器实体一致，但循环索引宽度及control_state结构实体恢复不一致，整体opaque布局仍有不可判定部分。"
+  }
+]

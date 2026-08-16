@@ -1,0 +1,75 @@
+[
+  {
+    "function": "_usbd_standard_request_device",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "函数返回值",
+        "source_type": "enum usbd_request_return_codes",
+        "decompiled_type": "enum usbd_request_return_codes",
+        "match": "correct",
+        "evidence_source_line": "970-971: enum usbd_request_return_codes / _usbd_standard_request_device(usbd_device *usbd_dev,",
+        "evidence_decompiled_line": "47: enum usbd_request_return_codes _usbd_standard_request_device("
+      },
+      {
+        "source_role": "第1个参数",
+        "source_type": "usbd_device *",
+        "decompiled_type": "usbd_device *",
+        "match": "correct",
+        "evidence_source_line": "971: _usbd_standard_request_device(usbd_device *usbd_dev,",
+        "evidence_decompiled_line": "48: usbd_device *usbd_dev, struct usb_setup_data *req,"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "struct usb_setup_data *",
+        "decompiled_type": "struct usb_setup_data *",
+        "match": "correct",
+        "evidence_source_line": "972: struct usb_setup_data *req, uint8_t **buf,",
+        "evidence_decompiled_line": "48: usbd_device *usbd_dev, struct usb_setup_data *req,"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "uint8_t **",
+        "decompiled_type": "uint8_t **",
+        "match": "correct",
+        "evidence_source_line": "972: struct usb_setup_data *req, uint8_t **buf,",
+        "evidence_decompiled_line": "49: uint8_t **buf, uint16_t *len)"
+      },
+      {
+        "source_role": "第4个参数",
+        "source_type": "uint16_t *",
+        "decompiled_type": "uint16_t *",
+        "match": "correct",
+        "evidence_source_line": "973: uint16_t *len)",
+        "evidence_decompiled_line": "49: uint8_t **buf, uint16_t *len)"
+      },
+      {
+        "source_role": "局部变量command",
+        "source_type": "enum usbd_request_return_codes (*)(usbd_device *, struct usb_setup_data *, uint8_t **, uint16_t *)",
+        "decompiled_type": "enum usbd_request_return_codes (*)(usbd_device *, struct usb_setup_data *, uint8_t **, uint16_t *)",
+        "match": "correct",
+        "evidence_source_line": "975-979: enum usbd_request_return_codes (*command)(usbd_device *usbd_dev, struct usb_setup_data *req, uint8_t **buf, uint16_t *len) = ((void *)0);；1025: return command(usbd_dev, req, buf, len);",
+        "evidence_decompiled_line": "51-53: enum usbd_request_return_codes (*command)(usbd_device *, struct usb_setup_data *, uint8_t **, uint16_t *) = 0;；82: return command(usbd_dev, req, buf, len);"
+      },
+      {
+        "source_role": "结构体usb_setup_data（第2个参数指向对象）",
+        "source_type": "packed struct，字段序列/偏移/大小：uint8_t@0, uint8_t@1, uint16_t@2, uint16_t@4, uint16_t@6；总大小8字节",
+        "decompiled_type": "packed struct，字段序列/偏移/大小：uint8_t@0, uint8_t@1, uint16_t@2, uint16_t@4, uint16_t@6；总大小8字节",
+        "match": "correct",
+        "evidence_source_line": "64-70: struct usb_setup_data { uint8_t bmRequestType; uint8_t bRequest; uint16_t wValue; uint16_t wIndex; uint16_t wLength; } __attribute__((packed));；981: switch (req->bRequest)",
+        "evidence_decompiled_line": "6-12: struct usb_setup_data { uint8_t bmRequestType; uint8_t bRequest; uint16_t wValue; uint16_t wIndex; uint16_t wLength; } __attribute__((packed));；55: switch (req->bRequest)"
+      },
+      {
+        "source_role": "结构体_usbd_device（第1个参数指向对象）",
+        "source_type": "struct _usbd_device（源码在397-467行给出完整布局）",
+        "decompiled_type": "不完整类型struct _usbd_device（仅typedef为usbd_device）",
+        "match": "undeterminable",
+        "evidence_source_line": "397: struct _usbd_device {；467: };；1025: return command(usbd_dev, req, buf, len);",
+        "evidence_decompiled_line": "4: typedef struct _usbd_device usbd_device;；82: return command(usbd_dev, req, buf, len);"
+      }
+    ],
+    "reasoning": "按ABI位置，第1至第4参数依次保持usbd_device *、struct usb_setup_data *、uint8_t **、uint16_t *，返回枚举类型也一致。唯一局部实体command是自动存储期函数指针，初始化为空，随后保存同签名处理函数并以四个原参数调用；反编译结果没有把静态局部对象重构为外部全局对象，因此SC-01不成立。usb_setup_data两侧均为packed，五字段的宽度、顺序、推导偏移及总大小一致，未见ST-01或LAYOUT-01；双重指针和uint16_t宽度也保留，未见PTR-01、INT-01或FN-01。_usbd_device在反编译侧没有显式布局且本函数仅透传该指针、不解引用，故其布局无法从本函数确定，但这不是显式布局不匹配的证据。"
+  }
+]

@@ -1,0 +1,87 @@
+[
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "函数签名（无参数）",
+        "source_type": "int (void)",
+        "decompiled_type": "int (void)",
+        "match": "correct",
+        "evidence_source_line": "2573-2574: int / main(void)",
+        "evidence_decompiled_line": "12: int main(void)"
+      }
+    ],
+    "reasoning": "源码与反编译结果都声明 main 返回 int 且参数列表为 void；不存在 ABI 参数位置错配，FN-01 在该实体上被排除。"
+  },
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 addr（当前 SDRAM 字节地址）",
+        "source_type": "uint8_t *",
+        "decompiled_type": "uint8_t *",
+        "match": "correct",
+        "evidence_source_line": "2577: uint8_t *addr; 2593-2594: addr = ((uint8_t *)(0xd0000000)); / addr = dump_page(addr, (void *)(0)); 2636: addr += 256; 2642: addr += 16;",
+        "evidence_decompiled_line": "14: uint8_t *address; 33: address = sub_8000524((uint8_t *)0xd0000000u, 0); 98: address += 0x100; 105: address += 0x10;"
+      }
+    ],
+    "reasoning": "不依赖名称：两者都保存 dump_page 对应调用的返回地址，并以 0x100 或 0x10 字节步长移动后传入页面/行输出调用；指针层级和 uint8_t 元素尺度一致，PTR-01 被排除。"
+  },
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "局部变量 i（首次 256 字节递增填充循环的整数索引）",
+        "source_type": "int",
+        "decompiled_type": "uint8_t *",
+        "match": "wrong",
+        "evidence_source_line": "2576: int i; 2589-2590: for (i = 0; i < 256; i++) { / *(addr + i) = i;",
+        "evidence_decompiled_line": "15: uint8_t *p; 26-29: for (p = (uint8_t *)0xd0000000u; p != (uint8_t *)0xd0000100u; ++p) { *p = (uint8_t)(uintptr_t)p; }"
+      }
+    ],
+    "reasoning": "按数据流对齐，源码整数索引 i 与基址相加以逐字节写入；反编译将同一循环的归纳量恢复为直接递增的 uint8_t 指针 p。循环语义等价，但源级实体的类型从 int 变为指针，属于明确的类型恢复差异（INT-01/PTR-01），不是名称差异。"
+  },
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "局部变量 i（Fill Increment 分支的整数索引）",
+        "source_type": "int",
+        "decompiled_type": "unsigned int",
+        "match": "wrong",
+        "evidence_source_line": "2576: int i; 2605-2606: for (i = 0; i < 256; i++) { / *(addr+i) = i;",
+        "evidence_decompiled_line": "61: unsigned int i; 64-65: for (i = 0; i != 0x100; ++i) { / address[i] = (uint8_t)i;"
+      }
+    ],
+    "reasoning": "按循环计数、0 到 255 的边界和字节数组下标用途可直接对齐。反编译保留了整数宽度类别，但把源码明确的有符号 int 恢复为 unsigned int，因此 INT-01（符号丢失/改变）被确认。"
+  },
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "局部变量 c（命令字符）",
+        "source_type": "char",
+        "decompiled_type": "uint8_t",
+        "match": "undeterminable",
+        "evidence_source_line": "2578: char c; 2597: switch (c = console_getc(1)) { 2601: switch (c = console_getc(1)) {",
+        "evidence_decompiled_line": "16: uint8_t command; 37: command = sub_800020c(1); 39: switch (command) { 43: command = sub_800020c(1);"
+      }
+    ],
+    "reasoning": "按两次读取后作为 switch 控制值的数据流可对齐，且两者均为 1 字节字符类值。但源码 plain char 的有符号性由目标 ABI/编译选项决定，指定函数文本不足以证明它等同于或不同于 uint8_t；因此不能确认 INT-01，也不能判定完全正确。源码 main 中没有静态局部对象或结构体实体，故 SC-01、ST-01 和 LAYOUT-01 在本函数内无可审实体。"
+  }
+]

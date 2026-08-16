@@ -1,0 +1,2787 @@
+
+
+
+
+__inline
+
+
+
+
+
+static const char *
+pgettext_aux (const char *domain,
+       const char *msg_ctxt_id, const char *msgid,
+       int category)
+{
+  const char *translation = dcgettext (domain, msg_ctxt_id, category);
+  if (translation == msg_ctxt_id)
+    return msgid;
+  else
+    return translation;
+}
+
+
+__inline
+
+
+
+
+
+static const char *
+npgettext_aux (const char *domain,
+        const char *msg_ctxt_id, const char *msgid,
+        const char *msgid_plural, unsigned long int n,
+        int category)
+{
+  const char *translation =
+    dcngettext (domain, msg_ctxt_id, msgid_plural, n, category);
+  if (translation == msg_ctxt_id || translation == msgid_plural)
+    return (n == 1 ? msgid : msgid_plural);
+  else
+    return translation;
+}
+__inline
+
+
+
+
+
+static const char *
+dcpgettext_expr (const char *domain,
+   const char *msgctxt, const char *msgid,
+   int category)
+{
+  size_t msgctxt_len = strlen (msgctxt) + 1;
+  size_t msgid_len = strlen (msgid) + 1;
+  const char *translation;
+
+  char msg_ctxt_id[msgctxt_len + msgid_len];
+    {
+      memcpy (msg_ctxt_id, msgctxt, msgctxt_len - 1);
+      msg_ctxt_id[msgctxt_len - 1] = '\004';
+      memcpy (msg_ctxt_id + msgctxt_len, msgid, msgid_len);
+      translation = dcgettext (domain, msg_ctxt_id, category);
+
+
+
+
+      if (translation != msg_ctxt_id)
+ return translation;
+    }
+  return msgid;
+}
+
+
+
+
+
+
+
+__inline
+
+
+
+
+
+static const char *
+dcnpgettext_expr (const char *domain,
+    const char *msgctxt, const char *msgid,
+    const char *msgid_plural, unsigned long int n,
+    int category)
+{
+  size_t msgctxt_len = strlen (msgctxt) + 1;
+  size_t msgid_len = strlen (msgid) + 1;
+  const char *translation;
+
+  char msg_ctxt_id[msgctxt_len + msgid_len];
+    {
+      memcpy (msg_ctxt_id, msgctxt, msgctxt_len - 1);
+      msg_ctxt_id[msgctxt_len - 1] = '\004';
+      memcpy (msg_ctxt_id + msgctxt_len, msgid, msgid_len);
+      translation = dcngettext (domain, msg_ctxt_id, msgid_plural, n, category);
+
+
+
+
+      if (!(translation == msg_ctxt_id || translation == msgid_plural))
+ return translation;
+    }
+  return (n == 1 ? msgid : msgid_plural);
+}
+
+
+
+
+
+
+void dpkg_locales_init(const char *package);
+void dpkg_locales_done(void);
+
+struct dpkg_locale {
+ void *oldloc;
+};
+
+struct dpkg_locale dpkg_locale_switch_C(void);
+void dpkg_locale_switch_back(struct dpkg_locale loc);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void dpkg_set_progname(const char *name);
+const char *dpkg_get_progname(void);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+extern volatile int onerr_abort;
+
+enum {
+ ehflag_normaltidy = (1UL << (0)),
+ ehflag_bombout = (1UL << (1)),
+ ehflag_recursiveerror = (1UL << (2)),
+};
+
+typedef void error_handler_func(void);
+typedef void error_printer_func(const char *emsg, const void *data);
+
+void print_fatal_error(const char *emsg, const void *data);
+void catch_fatal_error(void);
+
+void push_error_context_jump(jmp_buf *jumper,
+                             error_printer_func *printer,
+                             const void *printer_data);
+void push_error_context_func(error_handler_func *handler,
+                             error_printer_func *printer,
+                             const void *printer_data);
+void push_error_context(void);
+void pop_error_context(int flagset);
+
+void push_cleanup_fallback(void (*f1)(int argc, void **argv), int flagmask1,
+                           void (*f2)(int argc, void **argv), int flagmask2,
+                           unsigned int nargs, ...);
+void push_cleanup(void (*call)(int argc, void **argv), int flagmask,
+                  unsigned int nargs, ...);
+void push_checkpoint(int mask, int value);
+void pop_cleanup(int flagset);
+
+void ohshitv(const char *fmt, va_list args)
+ __attribute__((noreturn)) __attribute__((format(printf, 1, 0)));
+void ohshit(const char *fmt, ...) __attribute__((noreturn)) __attribute__((format(printf, 1, 1 + 1)));
+void ohshite(const char *fmt, ...) __attribute__((noreturn)) __attribute__((format(printf, 1, 1 + 1)));
+
+void do_internerr(const char *file, int line, const char *func,
+                  const char *fmt, ...)
+ __attribute__((noreturn)) __attribute__((format(printf, 4, 4 + 1)));
+
+
+
+
+
+
+
+
+
+
+
+
+
+void dpkg_set_report_piped_mode(int mode);
+void dpkg_set_report_buffer(FILE *fp);
+
+typedef void dpkg_warning_printer_func(const char *msg, void *data);
+
+void dpkg_warning_printer(const char *msg, void *data);
+void dpkg_set_warning_printer(dpkg_warning_printer_func *printer, void *data);
+
+int warning_get_count(void);
+void warningv(const char *fmt, va_list args) __attribute__((format(printf, 1, 0)));
+void warning(const char *fmt, ...) __attribute__((format(printf, 1, 1 + 1)));
+
+void notice(const char *fmt, ...) __attribute__((format(printf, 1, 1 + 1)));
+
+void info(const char *fmt, ...) __attribute__((format(printf, 1, 1 + 1)));
+
+
+
+
+
+
+
+
+static inline 
+             _Bool
+
+str_is_unset(const char *str)
+{
+ return str == 
+              ((void *)0) 
+                        || str[0] == '\0';
+}
+
+
+
+
+static inline 
+             _Bool
+
+str_is_set(const char *str)
+{
+ return str != 
+              ((void *)0) 
+                        && str[0] != '\0';
+}
+
+
+_Bool 
+    str_match_end(const char *str, const char *end);
+
+unsigned int str_fnv_hash(const char *str);
+
+char *str_concat(char *dst, ...) __attribute__((sentinel));
+char *str_fmt(const char *fmt, ...) __attribute__((format(printf, 1, 1 + 1)));
+char *str_escape_fmt(char *dest, const char *src, size_t n);
+char *str_quote_meta(const char *src);
+char *str_strip_quotes(char *str);
+char *str_rtrim_spaces(const char *str, char *str_end);
+
+struct str_crop_info {
+ int str_bytes;
+ int max_bytes;
+};
+
+int str_width(const char *str);
+void str_gen_crop(const char *str, int max_width, struct str_crop_info *crop);
+
+
+
+
+
+
+
+
+
+
+
+
+void dpkg_program_init(const char *progname);
+void dpkg_program_done(void);
+
+
+
+
+
+
+
+extern const char *log_file;
+void log_message(const char *fmt, ...) __attribute__((format(printf, 1, 1 + 1)));
+
+void statusfd_add(int fd);
+void statusfd_send(const char *fmt, ...) __attribute__((format(printf, 1, 1 + 1)));
+
+
+
+void cu_closestream(int argc, void **argv);
+void cu_closepipe(int argc, void **argv);
+void cu_closedir(int argc, void **argv);
+void cu_closefd(int argc, void **argv);
+void cu_filename(int argc, void **argv);
+
+
+
+void setcloexec(int fd, const char *fn);
+void *m_malloc(size_t);
+void *m_calloc(size_t nmemb, size_t size);
+void *m_realloc(void *, size_t);
+char *m_strdup(const char *str);
+char *m_strndup(const char *str, size_t n);
+int m_asprintf(char **strp, const char *fmt, ...) __attribute__((format(printf, 2, 2 + 1)));
+int m_vasprintf(char **strp, const char *fmt, va_list args)
+ __attribute__((format(printf, 2, 0)));
+int m_dup(int oldfd);
+void m_dup2(int oldfd, int newfd);
+void m_pipe(int fds[2]);
+void m_output(FILE *f, const char *name);
+
+
+
+int fgets_checked(char *buf, size_t bufsz, FILE *f, const char *fn);
+int fgets_must(char *buf, size_t bufsz, FILE *f, const char *fn);
+
+
+
+
+
+
+
+
+struct varbuf {
+ size_t used, size;
+ char *buf;
+};
+
+
+
+
+
+struct varbuf *varbuf_new(size_t size);
+void varbuf_init(struct varbuf *v, size_t size);
+void varbuf_grow(struct varbuf *v, size_t need_size);
+void varbuf_trunc(struct varbuf *v, size_t used_size);
+char *varbuf_detach(struct varbuf *v);
+void varbuf_reset(struct varbuf *v);
+void varbuf_destroy(struct varbuf *v);
+void varbuf_free(struct varbuf *v);
+
+void varbuf_add_char(struct varbuf *v, int c);
+void varbuf_dup_char(struct varbuf *v, int c, size_t n);
+void varbuf_map_char(struct varbuf *v, int c_src, int c_dst);
+
+void varbuf_add_buf(struct varbuf *v, const void *s, size_t size);
+void varbuf_end_str(struct varbuf *v);
+const char *varbuf_get_str(struct varbuf *v);
+
+int varbuf_printf(struct varbuf *v, const char *fmt, ...) __attribute__((format(printf, 2, 2 + 1)));
+int varbuf_vprintf(struct varbuf *v, const char *fmt, va_list va)
+ __attribute__((format(printf, 2, 0)));
+
+struct varbuf_state {
+ size_t used;
+};
+
+void varbuf_snapshot(struct varbuf *v, struct varbuf_state *vs);
+void varbuf_rollback(struct varbuf *v, struct varbuf_state *vs);
+
+
+
+
+
+struct dpkg_version {
+
+ unsigned int epoch;
+
+ const char *version;
+
+ const char *revision;
+};
+enum dpkg_relation {
+
+ DPKG_RELATION_NONE = 0,
+
+ DPKG_RELATION_EQ = (1UL << (0)),
+
+ DPKG_RELATION_LT = (1UL << (1)),
+
+ DPKG_RELATION_LE = DPKG_RELATION_LT | DPKG_RELATION_EQ,
+
+ DPKG_RELATION_GT = (1UL << (2)),
+
+ DPKG_RELATION_GE = DPKG_RELATION_GT | DPKG_RELATION_EQ,
+};
+
+void dpkg_version_blank(struct dpkg_version *version);
+
+_Bool 
+    dpkg_version_is_informative(const struct dpkg_version *version);
+int dpkg_version_compare(const struct dpkg_version *a,
+                         const struct dpkg_version *b);
+
+_Bool 
+    dpkg_version_relate(const struct dpkg_version *a,
+                         enum dpkg_relation rel,
+                         const struct dpkg_version *b);
+
+
+
+
+
+
+
+
+
+
+
+
+enum dpkg_arch_type {
+ DPKG_ARCH_NONE,
+ DPKG_ARCH_EMPTY,
+ DPKG_ARCH_ILLEGAL,
+ DPKG_ARCH_WILDCARD,
+ DPKG_ARCH_ALL,
+ DPKG_ARCH_NATIVE,
+ DPKG_ARCH_FOREIGN,
+ DPKG_ARCH_UNKNOWN,
+};
+
+struct dpkg_arch {
+ struct dpkg_arch *next;
+ const char *name;
+ enum dpkg_arch_type type;
+};
+
+const char *dpkg_arch_name_is_illegal(const char *name) __attribute__((nonnull(1)));
+struct dpkg_arch *dpkg_arch_find(const char *name);
+struct dpkg_arch *dpkg_arch_get(enum dpkg_arch_type type);
+struct dpkg_arch *dpkg_arch_get_list(void);
+void dpkg_arch_reset_list(void);
+
+const char *dpkg_arch_describe(const struct dpkg_arch *arch);
+
+struct dpkg_arch *dpkg_arch_add(const char *name);
+void dpkg_arch_unmark(struct dpkg_arch *arch);
+void dpkg_arch_load_list(void);
+void dpkg_arch_save_list(void);
+
+void varbuf_add_archqual(struct varbuf *vb, const struct dpkg_arch *arch);
+
+
+
+
+
+
+
+
+
+
+
+
+
+enum deptype {
+  dep_suggests,
+  dep_recommends,
+  dep_depends,
+  dep_predepends,
+  dep_breaks,
+  dep_conflicts,
+  dep_provides,
+  dep_replaces,
+  dep_enhances
+};
+
+struct dependency {
+  struct pkginfo *up;
+  struct dependency *next;
+  struct deppossi *list;
+  enum deptype type;
+};
+
+struct deppossi {
+  struct dependency *up;
+  struct pkgset *ed;
+  struct deppossi *next, *rev_next, *rev_prev;
+  const struct dpkg_arch *arch;
+  struct dpkg_version version;
+  enum dpkg_relation verrel;
+  
+ _Bool 
+      arch_is_implicit;
+  
+ _Bool 
+      cyclebreak;
+};
+
+struct arbitraryfield {
+  struct arbitraryfield *next;
+  const char *name;
+  const char *value;
+};
+
+struct conffile {
+  struct conffile *next;
+  const char *name;
+  const char *hash;
+  
+ _Bool 
+      obsolete;
+  
+ _Bool 
+      remove_on_upgrade;
+};
+
+struct archivedetails {
+  struct archivedetails *next;
+  const char *name;
+  const char *msdosname;
+  const char *size;
+  const char *md5sum;
+};
+
+enum pkgmultiarch {
+ PKG_MULTIARCH_NO,
+ PKG_MULTIARCH_SAME,
+ PKG_MULTIARCH_ALLOWED,
+ PKG_MULTIARCH_FOREIGN,
+};
+
+
+
+
+
+
+struct pkgbin {
+  struct dependency *depends;
+
+  
+ _Bool 
+      essential;
+
+  
+ _Bool 
+      is_protected;
+  enum pkgmultiarch multiarch;
+  const struct dpkg_arch *arch;
+
+
+  const char *pkgname_archqual;
+  const char *description;
+  const char *maintainer;
+  const char *source;
+  const char *installedsize;
+  const char *origin;
+  const char *bugs;
+  struct dpkg_version version;
+  struct conffile *conffiles;
+  struct arbitraryfield *arbs;
+};
+struct trigpend {
+  struct trigpend *next;
+  const char *name;
+};
+
+
+
+
+struct trigaw {
+  struct pkginfo *aw, *pend;
+  struct trigaw *samepend_next;
+  struct {
+    struct trigaw *next, *prev;
+  } sameaw;
+};
+
+
+struct perpackagestate;
+
+enum pkgwant {
+ PKG_WANT_UNKNOWN,
+ PKG_WANT_INSTALL,
+ PKG_WANT_HOLD,
+ PKG_WANT_DEINSTALL,
+ PKG_WANT_PURGE,
+
+ PKG_WANT_SENTINEL,
+};
+
+enum pkgeflag {
+ PKG_EFLAG_OK = 0,
+ PKG_EFLAG_REINSTREQ = 1,
+};
+
+enum pkgstatus {
+ PKG_STAT_NOTINSTALLED,
+ PKG_STAT_CONFIGFILES,
+ PKG_STAT_HALFINSTALLED,
+ PKG_STAT_UNPACKED,
+ PKG_STAT_HALFCONFIGURED,
+ PKG_STAT_TRIGGERSAWAITED,
+ PKG_STAT_TRIGGERSPENDING,
+ PKG_STAT_INSTALLED,
+};
+
+enum pkgpriority {
+ PKG_PRIO_REQUIRED,
+ PKG_PRIO_IMPORTANT,
+ PKG_PRIO_STANDARD,
+ PKG_PRIO_OPTIONAL,
+ PKG_PRIO_EXTRA,
+ PKG_PRIO_OTHER,
+ PKG_PRIO_UNKNOWN,
+ PKG_PRIO_UNSET = -1,
+};
+
+
+
+
+
+
+struct pkginfo {
+  struct pkgset *set;
+  struct pkginfo *arch_next;
+
+  enum pkgwant want;
+
+  enum pkgeflag eflag;
+  enum pkgstatus status;
+  enum pkgpriority priority;
+  const char *otherpriority;
+  const char *section;
+  struct dpkg_version configversion;
+  struct pkgbin installed;
+  struct pkgbin available;
+  struct perpackagestate *clientdata;
+
+  struct archivedetails *archives;
+
+  struct {
+
+    struct trigaw *head, *tail;
+  } trigaw;
+
+
+  struct trigaw *othertrigaw_head;
+  struct trigpend *trigpend_head;
+  struct fsys_namenode_list *files;
+  off_t files_list_phys_offs;
+  
+ _Bool 
+      files_list_valid;
+
+
+  
+ _Bool 
+      status_dirty;
+};
+
+
+
+
+struct pkgset {
+  struct pkgset *next;
+  const char *name;
+  struct pkginfo pkg;
+  struct {
+    struct deppossi *available;
+    struct deppossi *installed;
+  } depended;
+  int installed_instances;
+};
+
+
+
+const char *dpkg_db_set_dir(const char *dir);
+const char *dpkg_db_get_dir(void);
+char *dpkg_db_get_path(const char *pathpart);
+
+
+
+
+
+
+
+
+
+enum atomic_file_flags {
+ ATOMIC_FILE_NORMAL = 0,
+ ATOMIC_FILE_BACKUP = (1UL << (0)),
+ ATOMIC_FILE_MKPATH = (1UL << (1)),
+};
+
+struct atomic_file {
+ enum atomic_file_flags flags;
+ char *name;
+ char *name_new;
+ FILE *fp;
+};
+
+struct atomic_file *
+atomic_file_new(const char *filename, enum atomic_file_flags flags);
+void atomic_file_open(struct atomic_file *file);
+void atomic_file_sync(struct atomic_file *file);
+void atomic_file_close(struct atomic_file *file);
+void atomic_file_commit(struct atomic_file *file);
+void atomic_file_remove(struct atomic_file *file);
+void atomic_file_free(struct atomic_file *file);
+
+
+
+
+
+
+
+enum modstatdb_rw {
+
+  msdbrw_readonly,
+  msdbrw_needsuperuserlockonly,
+  msdbrw_writeifposs,
+  msdbrw_write,
+  msdbrw_needsuperuser,
+
+
+  msdbrw_available_readonly = (1UL << (8)),
+  msdbrw_available_write = (1UL << (9)),
+  msdbrw_available_mask = 0xff00,
+};
+
+void modstatdb_init(void);
+void modstatdb_done(void);
+
+_Bool 
+    modstatdb_is_locked(void);
+
+_Bool 
+    modstatdb_can_lock(void);
+void modstatdb_lock(void);
+void modstatdb_unlock(void);
+enum modstatdb_rw modstatdb_open(enum modstatdb_rw reqrwflags);
+enum modstatdb_rw modstatdb_get_status(void);
+void modstatdb_note(struct pkginfo *pkg);
+void modstatdb_note_ifwrite(struct pkginfo *pkg);
+void modstatdb_checkpoint(void);
+void modstatdb_shutdown(void);
+
+
+
+void pkgset_blank(struct pkgset *set);
+int pkgset_installed_instances(struct pkgset *set);
+
+void pkg_blank(struct pkginfo *pp);
+void pkgbin_blank(struct pkgbin *pkgbin);
+
+_Bool 
+    pkg_is_informative(struct pkginfo *pkg, struct pkgbin *info);
+
+struct pkgset *
+pkg_hash_find_set(const char *name);
+struct pkginfo *
+pkg_hash_get_singleton(struct pkgset *set);
+struct pkginfo *
+pkg_hash_find_singleton(const char *name);
+struct pkginfo *
+pkg_hash_get_pkg(struct pkgset *set, const struct dpkg_arch *arch);
+struct pkginfo *
+pkg_hash_find_pkg(const char *name, const struct dpkg_arch *arch);
+int
+pkg_hash_count_set(void);
+int
+pkg_hash_count_pkg(void);
+void
+pkg_hash_reset(void);
+
+struct pkg_hash_iter *
+pkg_hash_iter_new(void);
+struct pkgset *
+pkg_hash_iter_next_set(struct pkg_hash_iter *iter);
+struct pkginfo *
+pkg_hash_iter_next_pkg(struct pkg_hash_iter *iter);
+void
+pkg_hash_iter_free(struct pkg_hash_iter *iter);
+
+void
+pkg_hash_report(FILE *);
+
+
+
+enum parsedbflags {
+
+  pdb_single_stanza = (1UL << (0)),
+
+  pdb_recordavailable = (1UL << (1)),
+
+  pdb_rejectstatus = (1UL << (2)),
+
+  pdb_weakclassification = (1UL << (3)),
+
+  pdb_ignore_archives = (1UL << (4)),
+
+  pdb_ignoreolder = (1UL << (5)),
+
+  pdb_lax_version_parser = (1UL << (6)),
+
+  pdb_lax_stanza_parser = (1UL << (9)),
+
+  pdb_lax_parser = pdb_lax_stanza_parser | pdb_lax_version_parser,
+
+  pdb_close_fd = (1UL << (7)),
+
+  pdb_dash_is_stdin = (1UL << (8)),
+
+  pdb_allow_empty = (1UL << (9)),
+
+
+
+  pdb_parse_status = pdb_lax_parser | pdb_weakclassification |
+      pdb_allow_empty,
+  pdb_parse_update = pdb_parse_status | pdb_single_stanza,
+  pdb_parse_available = pdb_recordavailable | pdb_rejectstatus |
+      pdb_lax_parser | pdb_allow_empty,
+  pdb_parse_binary = pdb_recordavailable | pdb_rejectstatus |
+      pdb_single_stanza,
+};
+
+const char *pkg_name_is_illegal(const char *p);
+
+const struct fieldinfo *
+find_field_info(const struct fieldinfo *fields, const char *fieldname);
+const struct arbitraryfield *
+find_arbfield_info(const struct arbitraryfield *arbs, const char *fieldname);
+
+int parsedb(const char *filename, enum parsedbflags, struct pkginfo **donep);
+void copy_dependency_links(struct pkginfo *pkg,
+                           struct dependency **updateme,
+                           struct dependency *newdepends,
+                           
+                          _Bool 
+                               available);
+
+
+
+
+
+
+
+
+
+
+
+struct namevalue {
+ const char *name;
+ int value;
+ int length;
+};
+
+
+
+
+const struct namevalue *namevalue_find_by_name(const struct namevalue *head,
+                                               const char *str);
+
+
+
+
+
+extern const struct namevalue booleaninfos[];
+extern const struct namevalue multiarchinfos[];
+extern const struct namevalue priorityinfos[];
+extern const struct namevalue statusinfos[];
+extern const struct namevalue eflaginfos[];
+extern const struct namevalue wantinfos[];
+
+
+
+
+
+
+
+
+
+enum dpkg_msg_type {
+ DPKG_MSG_NONE,
+ DPKG_MSG_WARN,
+ DPKG_MSG_ERROR,
+};
+
+struct dpkg_error {
+ enum dpkg_msg_type type;
+
+ int syserrno;
+ char *str;
+};
+
+
+
+
+
+
+_Bool 
+    dpkg_has_error(struct dpkg_error *err);
+
+int dpkg_put_warn(struct dpkg_error *err, const char *fmt, ...)
+ __attribute__((format(printf, 2, 2 + 1)));
+int dpkg_put_error(struct dpkg_error *err, const char *fmt, ...)
+ __attribute__((format(printf, 2, 2 + 1)));
+int dpkg_put_errno(struct dpkg_error *err, const char *fmt, ...)
+ __attribute__((format(printf, 2, 2 + 1)));
+
+void dpkg_error_print(struct dpkg_error *err, const char *fmt, ...)
+ __attribute__((format(printf, 2, 2 + 1)));
+
+void dpkg_error_move(struct dpkg_error *dst, struct dpkg_error *src);
+void dpkg_error_destroy(struct dpkg_error *err);
+
+
+
+
+
+enum versiondisplayepochwhen { vdew_never, vdew_nonambig, vdew_always };
+void varbufversion(struct varbuf *, const struct dpkg_version *,
+                   enum versiondisplayepochwhen);
+int parseversion(struct dpkg_version *version, const char *,
+                 struct dpkg_error *err);
+const char *versiondescribe(const struct dpkg_version *,
+                            enum versiondisplayepochwhen);
+const char *versiondescribe_c(const struct dpkg_version *version,
+                              enum versiondisplayepochwhen vdew);
+
+enum pkg_name_arch_when {
+
+  pnaw_never,
+
+  pnaw_nonambig,
+
+  pnaw_foreign,
+
+  pnaw_always,
+};
+
+void varbuf_add_pkgbin_name(struct varbuf *vb, const struct pkginfo *pkg,
+                            const struct pkgbin *pkgbin,
+                            enum pkg_name_arch_when pnaw);
+
+const char *
+pkgbin_name_archqual(const struct pkginfo *pkg, const struct pkgbin *pkgbin);
+
+const char *
+pkgbin_name(struct pkginfo *pkg, struct pkgbin *pkgbin,
+            enum pkg_name_arch_when pnaw);
+const char *
+pkg_name(struct pkginfo *pkg, enum pkg_name_arch_when pnaw);
+
+const char *
+pkgbin_name_const(const struct pkginfo *pkg, const struct pkgbin *pkgbin,
+                  enum pkg_name_arch_when pnaw);
+const char *
+pkg_name_const(const struct pkginfo *pkg, enum pkg_name_arch_when pnaw);
+
+void
+pkg_source_version(struct dpkg_version *version,
+                   const struct pkginfo *pkg, const struct pkgbin *pkgbin);
+
+void
+varbuf_add_source_version(struct varbuf *vb,
+                          const struct pkginfo *pkg, const struct pkgbin *pkgbin);
+
+const char *pkg_want_name(const struct pkginfo *pkg);
+const char *pkg_status_name(const struct pkginfo *pkg);
+const char *pkg_eflag_name(const struct pkginfo *pkg);
+
+const char *pkg_priority_name(const struct pkginfo *pkg);
+
+
+
+void writerecord(FILE*, const char*,
+                 const struct pkginfo *, const struct pkgbin *);
+
+enum writedb_flags {
+
+  wdb_dump_available = (1UL << (0)),
+
+  wdb_must_sync = (1UL << (1)),
+};
+
+void writedb_records(FILE *fp, const char *filename, enum writedb_flags flags);
+void writedb(const char *filename, enum writedb_flags flags);
+
+
+
+void varbufrecord(struct varbuf *, const struct pkginfo *,
+                  const struct pkgbin *);
+void varbufdependency(struct varbuf *vb, struct dependency *dep);
+
+
+
+
+_Bool 
+    versionsatisfied(struct pkgbin *it, struct deppossi *against);
+
+_Bool 
+    deparchsatisfied(struct pkgbin *it, const struct dpkg_arch *arch,
+                      struct deppossi *against);
+
+_Bool 
+    archsatisfied(struct pkgbin *it, struct deppossi *against);
+
+
+_Bool
+
+pkg_virtual_deppossi_satisfied(struct deppossi *dependee,
+                               struct deppossi *provider);
+
+
+void *nfmalloc(size_t);
+char *nfstrsave(const char*);
+char *nfstrnsave(const char*, size_t);
+void nffreeall(void);
+
+
+
+
+
+
+
+
+
+
+
+
+typedef int pkg_sorter_func(const void *a, const void *b);
+
+void pkgset_link_pkg(struct pkgset *set, struct pkginfo *pkg);
+
+void pkg_set_status(struct pkginfo *pkg, enum pkgstatus status);
+void pkg_set_eflags(struct pkginfo *pkg, enum pkgeflag eflag);
+void pkg_clear_eflags(struct pkginfo *pkg, enum pkgeflag eflag);
+void pkg_reset_eflags(struct pkginfo *pkg);
+void pkg_copy_eflags(struct pkginfo *pkg_dst, struct pkginfo *pkg_src);
+void pkg_set_want(struct pkginfo *pkg, enum pkgwant want);
+
+
+
+
+
+
+struct buffer_data {
+ union {
+  void *ptr;
+  int i;
+ } arg;
+ int type;
+};
+off_t buffer_copy_IntPtr(int i, int typeIn,
+                         void *f, int typeDigest,
+                         void *p, int typeOut,
+                         off_t limit, struct dpkg_error *err)
+ __attribute__((warn_unused_result));
+off_t buffer_copy_IntInt(int i1, int typeIn,
+                         void *f, int typeDigest,
+                         int i2, int typeOut,
+                         off_t limit, struct dpkg_error *err)
+ __attribute__((warn_unused_result));
+off_t buffer_skip_Int(int I, int T, off_t limit, struct dpkg_error *err)
+ __attribute__((warn_unused_result));
+off_t buffer_digest(const void *buf, void *hash, int typeDigest, off_t length);
+
+
+
+
+
+
+
+
+
+
+
+
+struct file_stat {
+ uid_t uid;
+ gid_t gid;
+ mode_t mode;
+
+
+
+ char *uname;
+ char *gname;
+};
+
+void file_copy_perms(const char *src, const char *dst);
+
+int
+file_slurp(const char *filename, struct varbuf *vb, struct dpkg_error *err);
+
+enum file_lock_flags {
+ FILE_LOCK_NOWAIT,
+ FILE_LOCK_WAIT,
+};
+
+
+_Bool 
+    file_is_locked(int lockfd, const char *filename);
+void file_lock(int *lockfd, enum file_lock_flags flags, const char *filename,
+               const char *filedesc);
+void file_unlock(int fd, const char *filename, const char *filedesc);
+void file_show(const char *filename);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+size_t path_trim_slash_slashdot(char *path);
+const char *path_skip_slash_dotslash(const char *path);
+const char *path_basename(const char *path);
+char *path_quote_filename(char *dst, const char *src, size_t size);
+
+char *path_make_temp_template(const char *suffix);
+
+int secure_unlink_statted(const char *pathname, const struct stat *stab);
+int secure_unlink(const char *pathname);
+int secure_remove(const char *pathname);
+
+void path_remove_tree(const char *pathname);
+
+
+
+
+
+
+
+
+
+
+
+
+enum subproc_flags {
+
+ SUBPROC_NORMAL = 0,
+
+ SUBPROC_WARN = (1UL << (0)),
+
+ SUBPROC_NOPIPE = (1UL << (1)),
+
+ SUBPROC_NOCHECK = (1UL << (2)),
+
+ SUBPROC_RETERROR = (1UL << (3)),
+
+ SUBPROC_RETSIGNO = (1UL << (3)),
+};
+
+void subproc_signals_ignore(const char *name);
+void subproc_signals_cleanup(int argc, void **argv);
+void subproc_signals_restore(void);
+
+pid_t subproc_fork(void);
+int subproc_reap(pid_t pid, const char *desc, enum subproc_flags flags);
+
+
+
+
+
+struct command {
+
+ const char *name;
+
+ const char *filename;
+ int argc;
+ int argv_size;
+ const char **argv;
+};
+
+void command_init(struct command *cmd, const char *filename, const char *name);
+void command_destroy(struct command *cmd);
+
+void command_add_arg(struct command *cmd, const char *arg);
+void command_add_argl(struct command *cmd, const char **argv);
+void command_add_argv(struct command *cmd, va_list args);
+void command_add_args(struct command *cmd, ...) __attribute__((sentinel));
+
+void command_exec(struct command *cmd) __attribute__((noreturn));
+
+void command_shell(const char *cmd, const char *name) __attribute__((noreturn));
+
+
+
+
+
+
+
+
+
+
+
+
+struct pager;
+
+void
+pager_enable(
+            _Bool 
+                 enable);
+
+const char *
+pager_get_exec(void);
+
+struct pager *
+pager_spawn(const char *desc);
+
+void
+pager_reap(struct pager *pager);
+
+
+
+
+struct pkginfo;
+
+
+
+
+enum fsys_hash_find_flags {
+
+ FHFF_NOCOPY = (1UL << (0)),
+
+ FHFF_NONE = (1UL << (1)),
+};
+
+enum fsys_namenode_flags {
+
+ FNNF_NEW_CONFF = (1UL << (0)),
+
+ FNNF_NEW_INARCHIVE = (1UL << (1)),
+
+ FNNF_OLD_CONFF = (1UL << (2)),
+
+ FNNF_OBS_CONFF = (1UL << (3)),
+
+ FNNF_ELIDE_OTHER_LISTS = (1UL << (4)),
+
+ FNNF_NO_ATOMIC_OVERWRITE = (1UL << (5)),
+
+ FNNF_PLACED_ON_DISK = (1UL << (6)),
+ FNNF_DEFERRED_FSYNC = (1UL << (7)),
+ FNNF_DEFERRED_RENAME = (1UL << (8)),
+
+ FNNF_FILTERED = (1UL << (9)),
+
+ FNNF_RM_CONFF_ON_UPGRADE = (1UL << (10)),
+};
+
+
+
+
+struct file_ondisk_id {
+ dev_t id_dev;
+ ino_t id_ino;
+};
+
+struct fsys_namenode {
+ struct fsys_namenode *next;
+ const char *name;
+ struct pkg_list *packages;
+ struct fsys_diversion *divert;
+
+
+
+
+
+
+ struct file_stat *statoverride;
+
+ struct trigfileint *trig_interested;
+
+
+
+
+
+
+
+ enum fsys_namenode_flags flags;
+
+
+ const char *oldhash;
+
+
+ const char *newhash;
+
+ struct file_ondisk_id *file_ondisk_id;
+};
+
+struct fsys_namenode_list {
+ struct fsys_namenode_list *next;
+ struct fsys_namenode *namenode;
+};
+
+
+
+
+struct fsys_namenode_queue {
+ struct fsys_namenode_list *head, **tail;
+};
+struct fsys_diversion {
+ struct fsys_namenode *useinstead;
+ struct fsys_namenode *camefrom;
+ struct pkgset *pkgset;
+
+
+ struct fsys_diversion *next;
+};
+
+struct fsys_node_pkgs_iter;
+struct fsys_node_pkgs_iter *
+fsys_node_pkgs_iter_new(struct fsys_namenode *fnn);
+struct pkginfo *
+fsys_node_pkgs_iter_next(struct fsys_node_pkgs_iter *iter);
+void
+fsys_node_pkgs_iter_free(struct fsys_node_pkgs_iter *iter);
+
+void
+fsys_hash_init(void);
+void
+fsys_hash_reset(void);
+void
+fsys_hash_report(FILE *file);
+int
+fsys_hash_entries(void);
+
+struct fsys_hash_iter;
+struct fsys_hash_iter *
+fsys_hash_iter_new(void);
+struct fsys_namenode *
+fsys_hash_iter_next(struct fsys_hash_iter *iter);
+void
+fsys_hash_iter_free(struct fsys_hash_iter *iter);
+
+struct fsys_namenode *
+fsys_hash_find_node(const char *filename, enum fsys_hash_find_flags flags);
+
+struct fsys_hash_rev_iter {
+ struct fsys_namenode_list *todo;
+};
+
+void
+fsys_hash_rev_iter_init(struct fsys_hash_rev_iter *iter,
+                        struct fsys_namenode_list *files);
+struct fsys_namenode *
+fsys_hash_rev_iter_next(struct fsys_hash_rev_iter *iter);
+void
+fsys_hash_rev_iter_abort(struct fsys_hash_rev_iter *iter);
+
+const char *dpkg_fsys_set_dir(const char *dir);
+const char *dpkg_fsys_get_dir(void);
+char *dpkg_fsys_get_path(const char *pathpart);
+
+
+const char *trig_name_is_illegal(const char *p);
+
+enum trig_options {
+ TRIG_AWAIT,
+ TRIG_NOAWAIT,
+};
+
+struct trigfileint {
+ struct pkginfo *pkg;
+ struct pkgbin *pkgbin;
+ struct fsys_namenode *fnn;
+ enum trig_options options;
+ struct trigfileint *samefile_next;
+ struct {
+  struct trigfileint *next, *prev;
+ } inoverall;
+};
+
+
+
+
+
+
+struct trig_hooks {
+ void (*enqueue_deferred)(struct pkginfo *pend);
+ void (*transitional_activate)(enum modstatdb_rw cstatus);
+
+ struct fsys_namenode *(*namenode_find)(const char *filename, 
+                                                             _Bool 
+                                                                  nonew);
+ struct trigfileint **(*namenode_interested)(struct fsys_namenode *fnn);
+
+
+ const char *(*namenode_name)(struct fsys_namenode *fnn);
+};
+void trig_override_hooks(const struct trig_hooks *hooks);
+
+void trig_file_activate_byname(const char *trig, struct pkginfo *aw);
+void trig_file_activate(struct fsys_namenode *trig, struct pkginfo *aw);
+void trig_path_activate(struct fsys_namenode *trig, struct pkginfo *aw);
+
+
+_Bool 
+    trig_note_pend_core(struct pkginfo *pend, const char *trig );
+
+_Bool 
+    trig_note_pend(struct pkginfo *pend, const char *trig );
+
+_Bool 
+    trig_note_aw(struct pkginfo *pend, struct pkginfo *aw);
+void trig_clear_awaiters(struct pkginfo *notpend);
+
+typedef void trig_awaited_pend_foreach_func(struct pkginfo *pkg);
+
+void trig_awaited_pend_enqueue(struct pkginfo *pend);
+void trig_awaited_pend_foreach(trig_awaited_pend_foreach_func *func);
+void trig_awaited_pend_free(void);
+
+void trig_fixup_awaiters(enum modstatdb_rw cstatus);
+
+void trig_file_interests_ensure(void);
+void trig_file_interests_save(void);
+
+typedef void trig_parse_cicb(const char *trig, struct pkginfo *pkg,
+                             struct pkgbin *pkgbin, enum trig_options to);
+void trig_cicb_interest_delete(const char *trig, struct pkginfo *pkg,
+                             struct pkgbin *pkgbin, enum trig_options to);
+void trig_cicb_interest_add(const char *trig, struct pkginfo *pkg,
+                             struct pkgbin *pkgbin, enum trig_options to);
+void trig_cicb_statuschange_activate(const char *trig, struct pkginfo *pkg,
+                             struct pkgbin *pkgbin, enum trig_options to);
+void trig_parse_ci(const char *file, trig_parse_cicb *interest,
+                   trig_parse_cicb *activate, struct pkginfo *pkg,
+                   struct pkgbin *pkgbin);
+
+void trig_incorporate(enum modstatdb_rw cstatus);
+
+
+
+
+struct pkginfo;
+
+void ensure_diversions(void);
+
+enum statdb_parse_flags {
+ STATDB_PARSE_NORMAL = 0,
+ STATDB_PARSE_LAX = 1,
+};
+
+uid_t statdb_parse_uid(const char *str);
+gid_t statdb_parse_gid(const char *str);
+mode_t statdb_parse_mode(const char *str);
+void ensure_statoverrides(enum statdb_parse_flags flags);
+
+
+
+
+void ensure_packagefiles_available(struct pkginfo *pkg);
+void ensure_allinstfiles_available(void);
+void ensure_allinstfiles_available_quiet(void);
+void note_must_reread_files_inpackage(struct pkginfo *pkg);
+void parse_filehash(struct pkginfo *pkg, struct pkgbin *pkgbin);
+void write_filelist_except(struct pkginfo *pkg, struct pkgbin *pkgbin,
+                           struct fsys_namenode_list *list, enum fsys_namenode_flags mask);
+void write_filehash_except(struct pkginfo *pkg, struct pkgbin *pkgbin,
+                           struct fsys_namenode_list *list, enum fsys_namenode_flags mask);
+
+
+enum debugflags {
+ dbg_general = 01,
+ dbg_scripts = 02,
+ dbg_eachfile = 010,
+ dbg_eachfiledetail = 0100,
+ dbg_conff = 020,
+ dbg_conffdetail = 0200,
+ dbg_depcon = 040,
+ dbg_depcondetail = 0400,
+ dbg_veryverbose = 01000,
+ dbg_stupidlyverbose = 02000,
+ dbg_triggers = 010000,
+ dbg_triggersdetail = 020000,
+ dbg_triggersstupid = 040000,
+};
+
+void debug_set_output(FILE *output, const char *filename);
+void debug_set_mask(int mask);
+
+_Bool 
+    debug_has_flag(int flag);
+void debug(int flag, const char *fmt, ...) __attribute__((format(printf, 2, 2 + 1)));
+
+
+
+
+
+
+
+
+
+
+
+
+struct pkg_list {
+ struct pkg_list *next;
+ struct pkginfo *pkg;
+};
+
+struct pkg_list *pkg_list_new(struct pkginfo *pkg, struct pkg_list *next);
+void pkg_list_free(struct pkg_list *head);
+void pkg_list_prepend(struct pkg_list **head, struct pkginfo *pkg);
+
+
+
+
+
+
+
+
+
+
+
+
+
+typedef int action_func(const char *const *argv);
+
+struct cmdinfo {
+  const char *olong;
+  char oshort;
+
+
+
+
+
+
+
+  int takesvalue;
+  int *iassignto;
+  const char **sassignto;
+  void (*call)(const struct cmdinfo*, const char *value);
+
+  int arg_int;
+  void *arg_ptr;
+
+  action_func *action;
+};
+
+void badusage(const char *fmt, ...) __attribute__((noreturn)) __attribute__((format(printf, 1, 1 + 1)));
+
+
+
+void dpkg_options_load(const char *prog, const struct cmdinfo *cmdinfos);
+void dpkg_options_parse(const char *const **argvp,
+                        const struct cmdinfo *cmdinfos, const char *help_str);
+
+long dpkg_options_parse_arg_int(const struct cmdinfo *cmd, const char *str);
+
+struct pkginfo *
+dpkg_options_parse_pkgname(const struct cmdinfo *cmd, const char *name);
+
+
+
+
+extern const struct cmdinfo *cipaction;
+
+void setaction(const struct cmdinfo *cip, const char *value);
+void setobsolete(const struct cmdinfo *cip, const char *value);
+
+
+enum force_flags {
+ FORCE_ARCHITECTURE = (1UL << (0)),
+ FORCE_BAD_PATH = (1UL << (1)),
+ FORCE_BAD_VERIFY = (1UL << (2)),
+ FORCE_BAD_VERSION = (1UL << (3)),
+ FORCE_BREAKS = (1UL << (4)),
+ FORCE_CONFF_ASK = (1UL << (5)),
+ FORCE_CONFF_DEF = (1UL << (6)),
+ FORCE_CONFF_MISS = (1UL << (7)),
+ FORCE_CONFF_NEW = (1UL << (8)),
+ FORCE_CONFF_OLD = (1UL << (9)),
+ FORCE_CONFIGURE_ANY = (1UL << (10)),
+ FORCE_CONFLICTS = (1UL << (11)),
+ FORCE_DEPENDS = (1UL << (12)),
+ FORCE_DEPENDS_VERSION = (1UL << (13)),
+ FORCE_DOWNGRADE = (1UL << (14)),
+ FORCE_HOLD = (1UL << (15)),
+ FORCE_NON_ROOT = (1UL << (16)),
+ FORCE_OVERWRITE = (1UL << (17)),
+ FORCE_OVERWRITE_DIR = (1UL << (18)),
+ FORCE_OVERWRITE_DIVERTED = (1UL << (19)),
+ FORCE_REMOVE_ESSENTIAL = (1UL << (20)),
+ FORCE_REMOVE_REINSTREQ = (1UL << (21)),
+ FORCE_SCRIPT_CHROOTLESS = (1UL << (22)),
+ FORCE_UNSAFE_IO = (1UL << (23)),
+ FORCE_STATOVERRIDE_ADD = (1UL << (24)),
+ FORCE_STATOVERRIDE_DEL = (1UL << (25)),
+ FORCE_SECURITY_MAC = (1UL << (26)),
+ FORCE_REMOVE_PROTECTED = (1UL << (27)),
+ FORCE_ALL = 0xffffffff,
+};
+
+
+_Bool
+
+in_force(int flags);
+void
+set_force(int flags);
+void
+reset_force(int flags);
+
+char *
+get_force_string(void);
+
+void
+parse_force(const char *value, 
+                              _Bool 
+                                   set);
+
+void
+set_force_default(int mask);
+void
+set_force_option(const struct cmdinfo *cip, const char *value);
+void
+reset_force_option(const struct cmdinfo *cip, const char *value);
+
+void
+forcibleerr(int forceflag, const char *format, ...) __attribute__((format(printf, 2, 2 + 1)));
+int
+forcible_nonroot_error(int rc);
+
+
+struct fsys_namenode_list;
+struct fsys_namenode;
+
+enum pkg_istobe {
+
+ PKG_ISTOBE_NORMAL,
+
+ PKG_ISTOBE_REMOVE,
+
+ PKG_ISTOBE_INSTALLNEW,
+
+ PKG_ISTOBE_DECONFIGURE,
+
+ PKG_ISTOBE_PREINSTALL,
+};
+
+enum pkg_cycle_color {
+ PKG_CYCLE_WHITE,
+ PKG_CYCLE_GRAY,
+ PKG_CYCLE_BLACK,
+};
+
+struct perpackagestate {
+  enum pkg_istobe istobe;
+
+
+  enum pkg_cycle_color color;
+
+  
+ _Bool 
+      enqueued;
+
+  int replacingfilesandsaid;
+  int cmdline_seen;
+
+
+  struct pkg_list *trigprocdeferred;
+};
+
+enum action {
+ act_unset,
+
+ act_unpack,
+ act_configure,
+ act_install,
+ act_triggers,
+ act_remove,
+ act_purge,
+ act_verify,
+ act_commandfd,
+
+ act_status,
+ act_listpackages,
+ act_listfiles,
+ act_searchfiles,
+ act_controlpath,
+ act_controllist,
+ act_controlshow,
+
+ act_cmpversions,
+
+ act_arch_add,
+ act_arch_remove,
+ act_printarch,
+ act_printforeignarches,
+
+ act_assertpredep,
+ act_assertepoch,
+ act_assertlongfilenames,
+ act_assertmulticonrep,
+ act_assertmultiarch,
+ act_assertverprovides,
+ act_assert_protected,
+
+ act_validate_pkgname,
+ act_validate_trigname,
+ act_validate_archname,
+ act_validate_version,
+
+ act_audit,
+ act_unpackchk,
+ act_predeppackage,
+
+ act_getselections,
+ act_setselections,
+ act_clearselections,
+
+ act_avail,
+ act_printavail,
+ act_avclear,
+ act_avreplace,
+ act_avmerge,
+ act_forgetold,
+};
+
+extern const char *const statusstrings[];
+
+extern int f_robot;
+extern int f_pending, f_recursive, f_alsoselect, f_skipsame, f_noact;
+extern int f_autodeconf, f_nodebsig;
+extern int f_triggers;
+
+extern 
+      _Bool 
+           abort_processing;
+extern int errabort;
+extern const char *instdir;
+extern struct pkg_list *ignoredependss;
+
+struct invoke_hook {
+ struct invoke_hook *next;
+ char *command;
+};
+
+struct invoke_list {
+ struct invoke_hook *head, **tail;
+};
+
+
+
+void ensure_package_clientdata(struct pkginfo *pkg);
+
+
+
+int archivefiles(const char *const *argv);
+void process_archive(const char *filename);
+
+_Bool 
+    wanttoinstall(struct pkginfo *pkg);
+
+
+
+int forgetold(const char *const *argv);
+int updateavailable(const char *const *argv);
+
+
+
+int audit(const char *const *argv);
+int unpackchk(const char *const *argv);
+int assertepoch(const char *const *argv);
+int assertpredep(const char *const *argv);
+int assertlongfilenames(const char *const *argv);
+int assertmulticonrep(const char *const *argv);
+int assertmultiarch(const char *const *argv);
+int assertverprovides(const char *const *argv);
+int assert_protected(const char *const *argv);
+int validate_pkgname(const char *const *argv);
+int validate_trigname(const char *const *argv);
+int validate_archname(const char *const *argv);
+int validate_version(const char *const *argv);
+int predeppackage(const char *const *argv);
+int printarch(const char *const *argv);
+int printinstarch(const char *const *argv);
+int print_foreign_arches(const char *const *argv);
+int cmpversions(const char *const *argv);
+
+
+
+
+_Bool 
+    verify_set_output(const char *name);
+int verify(const char *const *argv);
+
+
+
+int getselections(const char *const *argv);
+int setselections(const char *const *argv);
+int clearselections(const char *const *argv);
+
+
+
+void md5hash(struct pkginfo *pkg, char *hashbuf, const char *fn);
+void enqueue_package(struct pkginfo *pkg);
+void enqueue_package_mark_seen(struct pkginfo *pkg);
+void process_queue(void);
+int packages(const char *const *argv);
+void removal_bulk(struct pkginfo *pkg);
+int conffderef(struct pkginfo *pkg, struct varbuf *result, const char *in);
+
+enum dep_check {
+  DEP_CHECK_HALT = 0,
+  DEP_CHECK_DEFER = 1,
+  DEP_CHECK_OK = 2,
+};
+
+enum dep_check dependencies_ok(struct pkginfo *pkg, struct pkginfo *removing,
+                               struct varbuf *aemsgs);
+enum dep_check breakses_ok(struct pkginfo *pkg, struct varbuf *aemsgs);
+
+void deferred_remove(struct pkginfo *pkg);
+void deferred_configure(struct pkginfo *pkg);
+enum dependtry {
+ DEPEND_TRY_NORMAL = 1,
+ DEPEND_TRY_CYCLES = 2,
+ DEPEND_TRY_TRIGGERS = 3,
+ DEPEND_TRY_TRIGGERS_CYCLES = 4,
+ DEPEND_TRY_FORCE_DEPENDS_VERSION = 5,
+ DEPEND_TRY_FORCE_DEPENDS = 6,
+ DEPEND_TRY_LAST,
+};
+
+extern enum dependtry dependtry;
+extern int sincenothing;
+
+
+
+void cu_prermremove(int argc, void **argv);
+
+
+
+void print_error_perpackage(const char *emsg, const void *data);
+void print_error_perarchive(const char *emsg, const void *data);
+int reportbroken_retexitstatus(int ret);
+
+_Bool 
+    skip_due_to_hold(struct pkginfo *pkg);
+
+
+
+struct stat;
+
+
+_Bool 
+    ignore_depends(struct pkginfo *pkg);
+
+_Bool 
+    force_breaks(struct deppossi *possi);
+
+_Bool 
+    force_depends(struct deppossi *possi);
+
+_Bool 
+    force_conflicts(struct deppossi *possi);
+void
+conffile_mark_obsolete(struct pkginfo *pkg, struct fsys_namenode *namenode);
+void pkg_conffiles_mark_old(struct pkginfo *pkg);
+
+_Bool 
+    find_command(const char *prog);
+void checkpath(void);
+
+struct fsys_namenode *
+namenodetouse(struct fsys_namenode *namenode,
+              struct pkginfo *pkg, struct pkgbin *pkgbin);
+
+int maintscript_installed(struct pkginfo *pkg, const char *scriptname,
+                          const char *desc, ...) __attribute__((sentinel));
+int maintscript_new(struct pkginfo *pkg,
+                    const char *scriptname, const char *desc,
+                    const char *cidir, char *cidirrest, ...)
+ __attribute__((sentinel));
+int maintscript_fallback(struct pkginfo *pkg,
+                         const char *scriptname, const char *desc,
+                         const char *cidir, char *cidirrest,
+                         const char *ifok, const char *iffallback);
+
+
+
+
+int maintscript_postinst(struct pkginfo *pkg, ...) __attribute__((sentinel));
+void post_postinst_tasks(struct pkginfo *pkg, enum pkgstatus new_status);
+
+void clear_istobes(void);
+
+_Bool
+
+dir_is_used_by_others(struct fsys_namenode *namenode, struct pkginfo *pkg);
+
+_Bool
+
+dir_is_used_by_pkg(struct fsys_namenode *namenode, struct pkginfo *pkg,
+                   struct fsys_namenode_list *list);
+
+_Bool
+
+dir_has_conffiles(struct fsys_namenode *namenode, struct pkginfo *pkg);
+
+void log_action(const char *action, struct pkginfo *pkg, struct pkgbin *pkgbin);
+
+
+
+void dpkg_selabel_load(void);
+void dpkg_selabel_set_context(const char *matchpath, const char *path, mode_t mode);
+void dpkg_selabel_close(void);
+
+
+
+enum trigproc_type {
+
+ TRIGPROC_TRY_DEFERRED,
+
+ TRIGPROC_TRY_QUEUED,
+
+ TRIGPROC_REQUIRED,
+};
+
+void trigproc_install_hooks(void);
+void trigproc_populate_deferred(void);
+void trigproc_run_deferred(void);
+void trigproc_reset_cycle(void);
+
+void trigproc(struct pkginfo *pkg, enum trigproc_type type);
+
+void trig_activate_packageprocessing(struct pkginfo *pkg);
+
+
+
+enum which_pkgbin {
+  wpb_installed,
+  wpb_available,
+  wpb_by_istobe,
+};
+
+struct deppossi_pkg_iterator;
+
+struct deppossi_pkg_iterator *
+deppossi_pkg_iter_new(struct deppossi *possi, enum which_pkgbin wpb);
+struct pkginfo *
+deppossi_pkg_iter_next(struct deppossi_pkg_iterator *iter);
+void
+deppossi_pkg_iter_free(struct deppossi_pkg_iterator *iter);
+
+
+_Bool 
+    depisok(struct dependency *dep, struct varbuf *whynot,
+             struct pkginfo **fixbyrm, struct pkginfo **fixbytrigaw,
+             
+            _Bool 
+                 allowunconfigd);
+struct cyclesofarlink;
+
+_Bool 
+    findbreakcycle(struct pkginfo *pkg);
+void describedepcon(struct varbuf *addto, struct dependency *dep);
+
+enum conffopt {
+ CFOF_PROMPT = (1UL << (0)),
+ CFOF_KEEP = (1UL << (1)),
+ CFOF_INSTALL = (1UL << (2)),
+ CFOF_BACKUP = (1UL << (3)),
+ CFOF_NEW_CONFF = (1UL << (4)),
+ CFOF_IS_NEW = (1UL << (5)),
+ CFOF_IS_OLD = (1UL << (6)),
+ CFOF_USER_DEL = (1UL << (7)),
+
+ CFO_KEEP = CFOF_KEEP,
+ CFO_IDENTICAL = CFOF_KEEP,
+ CFO_INSTALL = CFOF_INSTALL,
+ CFO_NEW_CONFF = CFOF_NEW_CONFF | CFOF_INSTALL,
+ CFO_PROMPT = CFOF_PROMPT,
+ CFO_PROMPT_KEEP = CFOF_PROMPT | CFOF_KEEP,
+ CFO_PROMPT_INSTALL = CFOF_PROMPT | CFOF_INSTALL,
+};
+
+static int conffoptcells[2][2] = {
+
+ { CFO_KEEP, CFO_INSTALL },
+ { CFO_KEEP, CFO_PROMPT_KEEP },
+};
+
+static int
+show_prompt(const char *cfgfile, const char *realold, const char *realnew,
+            int useredited, int distedited, enum conffopt what)
+{
+ const char *s;
+ int c, cc;
+
+
+
+ tcflush(
+        0
+                    , 
+                      0
+                              );
+
+ fputs("\n", 
+            stderr
+                  );
+ if (strcmp(cfgfile, realold) == 0)
+  fprintf(
+         stderr
+               , gettext("Configuration file '%s'\n"), cfgfile);
+ else
+  fprintf(
+         stderr
+               , gettext("Configuration file '%s' (actually '%s')\n"),
+          cfgfile, realold);
+
+ if (what & CFOF_IS_NEW) {
+  fprintf(
+         stderr
+               ,
+          gettext(" ==> File on system created by you or by a script.\n" " ==> File also in package provided by package maintainer.\n")
+                                                                          );
+ } else {
+  fprintf(
+         stderr
+               , !useredited ?
+          gettext("     Not modified since installation.\n") :
+          !(what & CFOF_USER_DEL) ?
+          gettext(" ==> Modified (by you or by a script) since installation.\n") :
+          gettext(" ==> Deleted (by you or by a script) since installation.\n"));
+
+  fprintf(
+         stderr
+               , distedited ?
+          gettext(" ==> Package distributor has shipped an updated version.\n") :
+          gettext("     Version in package is the same as at last installation.\n"));
+ }
+
+
+
+
+ if (!(in_force(FORCE_CONFF_DEF) && (what & (CFOF_INSTALL | CFOF_KEEP)))) {
+  if (in_force(FORCE_CONFF_NEW)) {
+   fprintf(
+          stderr
+                ,
+           gettext(" ==> Using new file as you requested.\n"));
+   return 'y';
+  } else if (in_force(FORCE_CONFF_OLD)) {
+   fprintf(
+          stderr
+                ,
+           gettext(" ==> Using current old file as you requested.\n"));
+   return 'n';
+  }
+ }
+
+
+ if (in_force(FORCE_CONFF_DEF)) {
+  if (what & CFOF_KEEP) {
+   fprintf(
+          stderr
+                ,
+           gettext(" ==> Keeping old config file as default.\n"));
+   return 'n';
+  } else if (what & CFOF_INSTALL) {
+   fprintf(
+          stderr
+                ,
+           gettext(" ==> Using new config file as default.\n"));
+   return 'y';
+  }
+ }
+
+ fprintf(
+        stderr
+              ,
+         gettext("   What would you like to do about it ?  Your options are:\n" "    Y or I  : install the package maintainer's version\n" "    N or O  : keep your currently-installed version\n" "      D     : show the differences between the versions\n" "      Z     : start a shell to examine the situation\n")
+
+
+
+                                                                    );
+
+ if (what & CFOF_KEEP)
+  fprintf(
+         stderr
+               ,
+          gettext(" The default action is to keep your current version.\n"));
+ else if (what & CFOF_INSTALL)
+  fprintf(
+         stderr
+               ,
+          gettext(" The default action is to install the new version.\n"));
+
+ s = path_basename(cfgfile);
+ fprintf(
+        stderr
+              , "*** %s (Y/I/N/O/D/Z) %s ? ", s,
+         (what & CFOF_KEEP) ? gettext("[default=N]") :
+         (what & CFOF_INSTALL) ? gettext("[default=Y]") :
+         gettext("[no default]"));
+
+ if (ferror(
+           stderr
+                 ))
+  ohshite(gettext("error writing to stderr, discovered before conffile prompt"));
+
+ cc = 0;
+ while ((c = getchar()) != 
+                          (-1) 
+                              && c != '\n')
+  if (!
+      ((*__ctype_b_loc ())[(int) ((
+      c
+      ))] & (unsigned short int) _ISspace) 
+                 && !cc)
+   cc = tolower(c);
+
+ if (c == 
+         (-1)
+            ) {
+  if (ferror(
+            stdin
+                 ))
+   ohshite(gettext("read error on stdin at conffile prompt"));
+  ohshit(gettext("end of file on stdin at conffile prompt"));
+ }
+
+ if (!cc) {
+  if (what & CFOF_KEEP)
+   return 'n';
+  else if (what & CFOF_INSTALL)
+   return 'y';
+ }
+
+ return cc;
+}
+
+
+
+
+
+
+
+static void
+show_diff(const char *old, const char *new)
+{
+ struct pager *pager;
+ pid_t pid;
+
+ pager = pager_spawn(gettext("conffile difference visualizer"));
+
+ pid = subproc_fork();
+ if (!pid) {
+
+  struct command cmd;
+
+  command_init(&cmd, "diff", gettext("conffile difference visualizer"));
+  command_add_arg(&cmd, "diff");
+  command_add_arg(&cmd, "-Nu");
+  command_add_arg(&cmd, old);
+  command_add_arg(&cmd, new);
+  command_exec(&cmd);
+ }
+
+
+ subproc_reap(pid, gettext("conffile difference visualizer"), SUBPROC_NOCHECK);
+ pager_reap(pager);
+}
+static void
+spawn_shell(const char *confold, const char *confnew)
+{
+ pid_t pid;
+
+ fputs(gettext("Useful environment variables:\n"), 
+                                            stderr
+                                                  );
+ fputs(" - DPKG_SHELL_REASON\n", 
+                                stderr
+                                      );
+ fputs(" - DPKG_CONFFILE_OLD\n", 
+                                stderr
+                                      );
+ fputs(" - DPKG_CONFFILE_NEW\n", 
+                                stderr
+                                      );
+ fputs(gettext("Type 'exit' when you're done.\n"), 
+                                            stderr
+                                                  );
+
+ pid = subproc_fork();
+ if (!pid) {
+
+  setenv("DPKG_SHELL_REASON", "conffile-prompt", 1);
+  setenv("DPKG_CONFFILE_OLD", confold, 1);
+  setenv("DPKG_CONFFILE_NEW", confnew, 1);
+
+  command_shell(
+               ((void *)0)
+                   , gettext("conffile shell"));
+ }
+
+
+ subproc_reap(pid, gettext("conffile shell"), SUBPROC_NOCHECK);
+}
+static enum conffopt
+promptconfaction(struct pkginfo *pkg, const char *cfgfile,
+                 const char *realold, const char *realnew,
+                 int useredited, int distedited, enum conffopt what)
+{
+ int cc;
+
+ if (!(what & CFOF_PROMPT))
+  return what;
+
+ statusfd_send("status: %s : %s : '%s' '%s' %i %i ",
+               cfgfile, "conffile-prompt",
+               realold, realnew, useredited, distedited);
+
+ do {
+  cc = show_prompt(cfgfile, realold, realnew,
+                   useredited, distedited, what);
+
+
+  if (cc == 'd')
+   show_diff(realold, realnew);
+
+  if (cc == 'z')
+   spawn_shell(realold, realnew);
+ } while (!strchr("yino", cc));
+
+ log_message("conffile %s %s", cfgfile,
+             (cc == 'i' || cc == 'y') ? "install" : "keep");
+
+ what &= CFOF_USER_DEL;
+
+ switch (cc) {
+ case 'i':
+ case 'y':
+  what |= CFOF_INSTALL | CFOF_BACKUP;
+  break;
+
+ case 'n':
+ case 'o':
+  what |= CFOF_KEEP | CFOF_BACKUP;
+  break;
+
+ default:
+  do_internerr("configure.c", 325, __func__, "unknown response '%d'", cc);
+ }
+
+ return what;
+}
+static void
+deferred_configure_ghost_conffile(struct pkginfo *pkg, struct conffile *conff)
+{
+ struct pkginfo *otherpkg;
+ struct conffile *otherconff;
+
+ for (otherpkg = &pkg->set->pkg; otherpkg; otherpkg = otherpkg->arch_next) {
+  if (otherpkg == pkg)
+   continue;
+  if (otherpkg->status <= PKG_STAT_HALFCONFIGURED)
+   continue;
+
+  for (otherconff = otherpkg->installed.conffiles; otherconff;
+       otherconff = otherconff->next) {
+   if (otherconff->obsolete || otherconff->remove_on_upgrade)
+    continue;
+
+
+
+
+   if (strcmp(otherconff->name, conff->name) == 0) {
+    conff->hash = otherconff->hash;
+    modstatdb_note(pkg);
+    return;
+   }
+  }
+ }
+}
+
+static void
+deferred_configure_conffile(struct pkginfo *pkg, struct conffile *conff)
+{
+ struct fsys_namenode *usenode;
+ char currenthash[32 + 1], newdisthash[32 + 1];
+ int useredited, distedited;
+ enum conffopt what;
+ struct stat stab;
+ struct varbuf cdr = { 0, 0, 
+                    ((void *)0) 
+                    }, cdr2 = { 0, 0, 
+                                        ((void *)0) 
+                                        };
+ char *cdr2rest;
+ int rc;
+
+ usenode = namenodetouse(fsys_hash_find_node(conff->name, FHFF_NOCOPY),
+                                pkg, &pkg->installed);
+
+ rc = conffderef(pkg, &cdr, usenode->name);
+ if (rc == -1) {
+  conff->hash = "-";
+  return;
+ }
+ md5hash(pkg, currenthash, cdr.buf);
+
+ varbuf_reset(&cdr2);
+ varbuf_add_buf(&cdr2, cdr.buf, strlen(cdr.buf));
+ varbuf_end_str(&cdr2);
+
+ varbuf_grow(&cdr2, 50);
+ cdr2rest = cdr2.buf + strlen(cdr.buf);
+
+
+ strcpy(cdr2rest, ".dpkg-new");
+
+ if (lstat(cdr2.buf, &stab)) {
+  if (
+     (*__errno_location ()) 
+           == 
+              2
+                    ) {
+
+
+   deferred_configure_ghost_conffile(pkg, conff);
+   return;
+  }
+  ohshite(gettext("unable to stat new distributed conffile '%.250s'"),
+          cdr2.buf);
+ }
+ md5hash(pkg, newdisthash, cdr2.buf);
+
+
+
+ if (!stat(cdr.buf, &stab))
+  file_copy_perms(cdr.buf, cdr2.buf);
+ else if (
+         (*__errno_location ()) 
+               != 
+                  2
+                        )
+  ohshite(gettext("unable to stat current installed conffile '%.250s'"),
+          cdr.buf);
+
+
+ if (strcmp(currenthash, newdisthash) == 0) {
+
+
+  useredited = -1;
+  distedited = -1;
+  what = CFO_IDENTICAL;
+ } else if (strcmp(currenthash, "nonexistent") == 0 && in_force(FORCE_CONFF_MISS)) {
+  fprintf(
+         stderr
+               ,
+          gettext("\n" "Configuration file '%s', does not exist on system.\n" "Installing new config file as you requested.\n")
+
+                                                             ,
+          usenode->name);
+  what = CFO_NEW_CONFF;
+  useredited = -1;
+  distedited = -1;
+ } else if (strcmp(conff->hash, "newconffile") == 0) {
+  if (strcmp(currenthash, "nonexistent") == 0) {
+   what = CFO_NEW_CONFF;
+   useredited = -1;
+   distedited = -1;
+  } else {
+   useredited = 1;
+   distedited = 1;
+   what = conffoptcells[useredited][distedited] |
+          CFOF_IS_NEW;
+  }
+ } else {
+  useredited = strcmp(conff->hash, currenthash) != 0;
+  distedited = strcmp(conff->hash, newdisthash) != 0;
+
+  if (in_force(FORCE_CONFF_ASK) && useredited)
+   what = CFO_PROMPT_KEEP;
+  else
+   what = conffoptcells[useredited][distedited];
+
+  if (strcmp(currenthash, "nonexistent") == 0)
+   what |= CFOF_USER_DEL;
+ }
+
+ debug(dbg_conff,
+       "deferred_configure '%s' (= '%s') useredited=%d distedited=%d what=%o",
+       usenode->name, cdr.buf, useredited, distedited, what);
+
+ what = promptconfaction(pkg, usenode->name, cdr.buf, cdr2.buf,
+                         useredited, distedited, what);
+
+ switch (what & ~(CFOF_IS_NEW | CFOF_USER_DEL)) {
+ case CFO_KEEP | CFOF_BACKUP:
+  strcpy(cdr2rest, ".dpkg-old");
+  if (unlink(cdr2.buf) && 
+                         (*__errno_location ()) 
+                               != 
+                                  2
+                                        )
+   warning(gettext("%s: failed to remove old backup '%.250s': %s"),
+           pkg_name(pkg, pnaw_nonambig), cdr2.buf,
+           strerror(
+                   (*__errno_location ())
+                        ));
+
+  varbuf_add_buf(&cdr, ".dpkg-dist", strlen(".dpkg-dist"));
+  varbuf_end_str(&cdr);
+  strcpy(cdr2rest, ".dpkg-new");
+  trig_path_activate(usenode, pkg);
+  if (rename(cdr2.buf, cdr.buf))
+   warning(gettext("%s: failed to rename '%.250s' to '%.250s': %s"),
+           pkg_name(pkg, pnaw_nonambig), cdr2.buf, cdr.buf,
+           strerror(
+                   (*__errno_location ())
+                        ));
+  break;
+ case CFO_KEEP:
+  strcpy(cdr2rest, ".dpkg-new");
+  if (unlink(cdr2.buf))
+   warning(gettext("%s: failed to remove '%.250s': %s"),
+           pkg_name(pkg, pnaw_nonambig), cdr2.buf,
+           strerror(
+                   (*__errno_location ())
+                        ));
+  break;
+ case CFO_INSTALL | CFOF_BACKUP:
+  strcpy(cdr2rest, ".dpkg-dist");
+  if (unlink(cdr2.buf) && 
+                         (*__errno_location ()) 
+                               != 
+                                  2
+                                        )
+   warning(gettext("%s: failed to remove old distributed version '%.250s': %s"),
+           pkg_name(pkg, pnaw_nonambig), cdr2.buf,
+           strerror(
+                   (*__errno_location ())
+                        ));
+  strcpy(cdr2rest, ".dpkg-old");
+  if (unlink(cdr2.buf) && 
+                         (*__errno_location ()) 
+                               != 
+                                  2
+                                        )
+   warning(gettext("%s: failed to remove '%.250s' (before overwrite): %s"),
+           pkg_name(pkg, pnaw_nonambig), cdr2.buf,
+           strerror(
+                   (*__errno_location ())
+                        ));
+  if (!(what & CFOF_USER_DEL))
+   if (link(cdr.buf, cdr2.buf))
+    warning(gettext("%s: failed to link '%.250s' to '%.250s': %s"),
+            pkg_name(pkg, pnaw_nonambig), cdr.buf,
+            cdr2.buf, strerror(
+                              (*__errno_location ())
+                                   ));
+
+ case CFO_INSTALL:
+  printf(gettext("Installing new version of config file %s ...\n"),
+         usenode->name);
+
+ case CFO_NEW_CONFF:
+  strcpy(cdr2rest, ".dpkg-new");
+  trig_path_activate(usenode, pkg);
+  if (rename(cdr2.buf, cdr.buf))
+   ohshite(gettext("unable to install '%.250s' as '%.250s'"),
+           cdr2.buf, cdr.buf);
+  break;
+ default:
+  do_internerr("configure.c", 526, __func__, "unknown conffopt '%d'", what);
+ }
+
+ conff->hash = nfstrsave(newdisthash);
+ modstatdb_note(pkg);
+
+ varbuf_destroy(&cdr);
+ varbuf_destroy(&cdr2);
+}
+
+
+
+
+
+
+void
+deferred_configure(struct pkginfo *pkg)
+{
+ struct varbuf aemsgs = { 0, 0, 
+                       ((void *)0) 
+                       };
+ struct conffile *conff;
+ struct pkginfo *otherpkg;
+ enum dep_check ok;
+
+ if (pkg->status == PKG_STAT_NOTINSTALLED)
+  ohshit(gettext("no package named '%s' is installed, cannot configure"),
+         pkg_name(pkg, pnaw_nonambig));
+ if (pkg->status == PKG_STAT_INSTALLED)
+  ohshit(gettext("package %.250s is already installed and configured"),
+         pkg_name(pkg, pnaw_nonambig));
+ if (pkg->status != PKG_STAT_UNPACKED &&
+     pkg->status != PKG_STAT_HALFCONFIGURED)
+  ohshit(gettext("package %.250s is not ready for configuration\n" " cannot configure (current status '%.250s')")
+                                                         ,
+         pkg_name(pkg, pnaw_nonambig),
+         pkg_status_name(pkg));
+
+ for (otherpkg = &pkg->set->pkg; otherpkg; otherpkg = otherpkg->arch_next) {
+  if (otherpkg == pkg)
+   continue;
+  if (otherpkg->status <= PKG_STAT_CONFIGFILES)
+   continue;
+
+  if (otherpkg->status < PKG_STAT_UNPACKED)
+   ohshit(gettext("package %s cannot be configured because " "%s is not ready (current status '%s')")
+                                                    ,
+          pkg_name(pkg, pnaw_always),
+          pkg_name(otherpkg, pnaw_always),
+          pkg_status_name(otherpkg));
+
+  if (dpkg_version_compare(&pkg->installed.version,
+                           &otherpkg->installed.version))
+   ohshit(gettext("package %s %s cannot be configured because " "%s is at a different version (%s)")
+                                                ,
+          pkg_name(pkg, pnaw_always),
+          versiondescribe(&pkg->installed.version,
+                          vdew_nonambig),
+          pkg_name(otherpkg, pnaw_always),
+          versiondescribe(&otherpkg->installed.version,
+                          vdew_nonambig));
+ }
+
+ if (dependtry >= DEPEND_TRY_CYCLES)
+  if (findbreakcycle(pkg))
+   sincenothing = 0;
+
+ ok = dependencies_ok(pkg, 
+                          ((void *)0)
+                              , &aemsgs);
+ if (ok == DEP_CHECK_DEFER) {
+  varbuf_destroy(&aemsgs);
+  ensure_package_clientdata(pkg);
+  pkg->clientdata->istobe = PKG_ISTOBE_INSTALLNEW;
+  enqueue_package(pkg);
+  return;
+ }
+
+ trigproc_reset_cycle();
+ ok = breakses_ok(pkg, &aemsgs) ? ok : DEP_CHECK_HALT;
+ if (ok == DEP_CHECK_HALT) {
+  sincenothing = 0;
+  varbuf_end_str(&aemsgs);
+  notice(gettext("dependency problems prevent configuration of %s:\n%s"),
+         pkg_name(pkg, pnaw_nonambig), aemsgs.buf);
+  varbuf_destroy(&aemsgs);
+  ohshit(gettext("dependency problems - leaving unconfigured"));
+ } else if (aemsgs.used) {
+  varbuf_end_str(&aemsgs);
+  notice(gettext("%s: dependency problems, but configuring anyway as you requested:\n%s"),
+         pkg_name(pkg, pnaw_nonambig), aemsgs.buf);
+ }
+ varbuf_destroy(&aemsgs);
+ sincenothing = 0;
+
+ if (pkg->eflag & PKG_EFLAG_REINSTREQ)
+  forcibleerr(FORCE_REMOVE_REINSTREQ,
+              gettext("package is in a very bad inconsistent state; you should\n" " reinstall it before attempting configuration")
+                                                                );
+
+ printf(gettext("Setting up %s (%s) ...\n"), pkg_name(pkg, pnaw_nonambig),
+        versiondescribe(&pkg->installed.version, vdew_nonambig));
+ log_action("configure", pkg, &pkg->installed);
+
+ trig_activate_packageprocessing(pkg);
+
+ if (f_noact) {
+  pkg_set_status(pkg, PKG_STAT_INSTALLED);
+  ensure_package_clientdata(pkg);
+  pkg->clientdata->istobe = PKG_ISTOBE_NORMAL;
+  return;
+ }
+
+ if (pkg->status == PKG_STAT_UNPACKED) {
+  debug(dbg_general, "deferred_configure updating conffiles");
+  modstatdb_note(pkg);
+
+
+
+
+
+
+
+  for (conff = pkg->installed.conffiles; conff; conff = conff->next) {
+   if (conff->obsolete || conff->remove_on_upgrade)
+    continue;
+   deferred_configure_conffile(pkg, conff);
+  }
+
+  pkg_set_status(pkg, PKG_STAT_HALFCONFIGURED);
+ }
+
+ if (pkg->status != PKG_STAT_HALFCONFIGURED)
+  do_internerr("configure.c", 672, __func__, "package %s in state %s, instead of half-configured", pkg_name(pkg, pnaw_always), pkg_status_name(pkg))
+                                                             ;
+
+ modstatdb_note(pkg);
+
+ maintscript_postinst(pkg, "configure",
+                      dpkg_version_is_informative(&pkg->configversion) ?
+                      versiondescribe(&pkg->configversion,
+                                      vdew_nonambig) : "",
+                      
+                     ((void *)0)
+                         );
+
+ pkg_reset_eflags(pkg);
+ pkg->trigpend_head = 
+                     ((void *)0)
+                         ;
+ post_postinst_tasks(pkg, PKG_STAT_INSTALLED);
+}
+int
+conffderef(struct pkginfo *pkg, struct varbuf *result, const char *in)
+{
+ static struct varbuf target = { 0, 0, 
+                              ((void *)0) 
+                              };
+ struct stat stab;
+ ssize_t r;
+ int loopprotect;
+
+ varbuf_reset(result);
+ varbuf_add_buf(result, instdir, strlen(instdir));
+ varbuf_add_buf(result, in, strlen(in));
+ varbuf_end_str(result);
+
+ loopprotect = 0;
+
+ for (;;) {
+  debug(dbg_conffdetail, "conffderef in='%s' current working='%s'",
+        in, result->buf);
+  if (lstat(result->buf, &stab)) {
+   if (
+      (*__errno_location ()) 
+            != 
+               2
+                     )
+    warning(gettext("%s: unable to stat config file '%s'\n" " (= '%s'): %s")
+                              ,
+            pkg_name(pkg, pnaw_nonambig), in,
+            result->buf, strerror(
+                                 (*__errno_location ())
+                                      ));
+   debug(dbg_conffdetail, "conffderef nonexistent");
+   return 0;
+  } else if (
+            ((((
+            stab.st_mode
+            )) & 0170000) == (0100000))
+                                 ) {
+   debug(dbg_conff, "conffderef in='%s' result='%s'",
+         in, result->buf);
+   return 0;
+  } else if (
+            ((((
+            stab.st_mode
+            )) & 0170000) == (0120000))
+                                 ) {
+   debug(dbg_conffdetail, "conffderef symlink loopprotect=%d",
+         loopprotect);
+   if (loopprotect++ >= 25) {
+    warning(gettext("%s: config file '%s' is a circular link\n" " (= '%s')")
+                          ,
+            pkg_name(pkg, pnaw_nonambig), in,
+            result->buf);
+    return -1;
+   }
+
+   varbuf_reset(&target);
+   varbuf_grow(&target, stab.st_size + 1);
+   r = readlink(result->buf, target.buf, target.size);
+   if (r < 0) {
+    warning(gettext("%s: unable to readlink conffile '%s'\n" " (= '%s'): %s")
+                              ,
+            pkg_name(pkg, pnaw_nonambig), in,
+            result->buf, strerror(
+                                 (*__errno_location ())
+                                      ));
+    return -1;
+   } else if (r != stab.st_size) {
+    warning(gettext("symbolic link '%.250s' size has " "changed from %jd to %zd")
+                                        ,
+            result->buf, (intmax_t)stab.st_size, r);
+
+
+    if (r > stab.st_size)
+     return -1;
+   }
+   varbuf_trunc(&target, r);
+   varbuf_end_str(&target);
+
+   debug(dbg_conffdetail,
+         "conffderef readlink gave %zd, '%s'",
+         r, target.buf);
+
+   if (target.buf[0] == '/') {
+    varbuf_reset(result);
+    varbuf_add_buf(result, instdir, strlen(instdir));
+    debug(dbg_conffdetail,
+          "conffderef readlink absolute");
+   } else {
+    for (r = result->used - 1; r > 0 && result->buf[r] != '/'; r--)
+     ;
+    if (r < 0) {
+     warning(gettext("%s: conffile '%.250s' resolves to degenerate filename\n" " ('%s' is a symlink to '%s')")
+                                              ,
+             pkg_name(pkg, pnaw_nonambig),
+             in, result->buf, target.buf);
+     return -1;
+    }
+    if (result->buf[r] == '/')
+     r++;
+    varbuf_trunc(result, r);
+    debug(dbg_conffdetail,
+          "conffderef readlink relative to '%.*s'",
+          (int)result->used, result->buf);
+   }
+   varbuf_add_buf(result, target.buf, target.used);
+   varbuf_end_str(result);
+  } else {
+   warning(gettext("%s: conffile '%.250s' is not a plain file or symlink (= '%s')"),
+           pkg_name(pkg, pnaw_nonambig), in, result->buf);
+   return -1;
+  }
+ }
+}
+void
+md5hash(struct pkginfo *pkg, char *hashbuf, const char *fn)
+{
+ struct dpkg_error err;
+ static int fd;
+
+ fd = open(fn, 
+              00
+                      );
+
+ if (fd >= 0) {
+  push_cleanup(cu_closefd, ehflag_bombout, 1, &fd);
+  if (buffer_copy_IntPtr(fd, 0, hashbuf, 5, 
+     ((void *)0)
+     , 3, -1, &err) < 0)
+   ohshit(gettext("cannot compute MD5 hash for file '%s': %s"),
+          fn, err.str);
+  pop_cleanup(ehflag_normaltidy);
+  close(fd);
+ } else if (
+           (*__errno_location ()) 
+                 == 
+                    2
+                          ) {
+  strcpy(hashbuf, "nonexistent");
+ } else {
+  warning(gettext("%s: unable to open %s for hash: %s"),
+          pkg_name(pkg, pnaw_nonambig), fn, strerror(
+                                                    (*__errno_location ())
+                                                         ));
+  strcpy(hashbuf, "-");
+ }
+}

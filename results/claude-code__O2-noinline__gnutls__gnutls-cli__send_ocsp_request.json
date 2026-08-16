@@ -1,0 +1,169 @@
+[
+  {
+    "function": "send_ocsp_request",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "清理路径中 ud.data 的释放调用",
+        "source_type": "free(void *)",
+        "decompiled_type": "free(void *)",
+        "match": "correct",
+        "evidence_source_line": "7051: free(ud.data);",
+        "evidence_decompiled_line": "172: free(ud.data);"
+      },
+      {
+        "source_role": "清理路径中动态 url 的释放调用",
+        "source_type": "free(void *)",
+        "decompiled_type": "free(void *)",
+        "match": "correct",
+        "evidence_source_line": "7052-7053: if (url != server) free(url);",
+        "evidence_decompiled_line": "173-174: if (url != server) free(url);"
+      }
+    ],
+    "reasoning": "两处调用均由相同的清理条件和相同的局部数据流触发；反编译结果没有把 C 库 free 误恢复为其他外部对象。"
+  },
+  {
+    "function": "send_ocsp_request",
+    "decompiler": "claude-code",
+    "hypothesis": "FN-01",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "函数返回值及第1至第5个参数",
+        "source_type": "int (const char *, gnutls_x509_crt_t, gnutls_x509_crt_t, gnutls_datum_t *, gnutls_datum_t *)",
+        "decompiled_type": "int (const char *, gnutls_x509_crt_t, gnutls_x509_crt_t, gnutls_datum_t *, gnutls_datum_t *)",
+        "match": "correct",
+        "evidence_source_line": "6905-6907: int send_ocsp_request(const char *server, gnutls_x509_crt_t cert, gnutls_x509_crt_t issuer, gnutls_datum_t *resp_data, gnutls_datum_t *nonce)",
+        "evidence_decompiled_line": "53-55: int send_ocsp_request(const char *server, gnutls_x509_crt_t cert, gnutls_x509_crt_t issuer, gnutls_datum_t *data, gnutls_datum_t *nonce)"
+      }
+    ],
+    "reasoning": "按 ABI 位置比较，返回值和五个参数的指针层级均一致；第4个参数在两者都接收最终响应的 data/size 写入（源码7036-7046，反编译161-168），不是根据变量名对齐。"
+  },
+  {
+    "function": "send_ocsp_request",
+    "decompiler": "claude-code",
+    "hypothesis": "PTR-01",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "局部变量 hostname",
+        "source_type": "const char *",
+        "decompiled_type": "char *",
+        "match": "wrong",
+        "evidence_source_line": "6916: const char *hostname; 6974: hostname = host_from_url(url, &port, &path);",
+        "evidence_decompiled_line": "62: char *hostname; 110: hostname = get_hostname(url, &port, &path);"
+      },
+      {
+        "source_role": "局部变量 path",
+        "source_type": "const char *",
+        "decompiled_type": "char *",
+        "match": "wrong",
+        "evidence_source_line": "6917: const char *path = \"\"; 6988: snprintf(..., path, hostname, ...);",
+        "evidence_decompiled_line": "63: char *path; 121-128: snprintf(..., path, hostname, req.size);"
+      },
+      {
+        "source_role": "局部变量 p",
+        "source_type": "unsigned char *",
+        "decompiled_type": "unsigned char *",
+        "match": "correct",
+        "evidence_source_line": "6915: unsigned char *p; 7024: p = memmem(ud.data, ud.size, ...);",
+        "evidence_decompiled_line": "65: unsigned char *p; 153: p = memmem(ud.data, ud.size, ...);"
+      }
+    ],
+    "reasoning": "hostname 和 path 都由同一次 URL 分解调用产生，并随后分别进入相同的只读格式化数据流，故可按用途对齐；反编译丢失了两个一级指针指向对象的 const 限定。p 的层级及元素类型相同。"
+  },
+  {
+    "function": "send_ocsp_request",
+    "decompiler": "claude-code",
+    "hypothesis": "INT-01",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "局部变量 ret",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "6910: int ret; 7011: ret = socket_recv(&hd, buffer, sizeof(buffer));",
+        "evidence_decompiled_line": "66: int ret; 140: ret = socket_recv(&hd, buffer, sizeof(buffer));"
+      },
+      {
+        "source_role": "局部变量 i",
+        "source_type": "unsigned int (unsigned)",
+        "decompiled_type": "unsigned int",
+        "match": "correct",
+        "evidence_source_line": "6918: unsigned i; 6932: ... cert, i++, ...",
+        "evidence_decompiled_line": "73: unsigned int i; 78: ... cert, i, ..."
+      },
+      {
+        "source_role": "局部变量 headers_size",
+        "source_type": "unsigned int",
+        "decompiled_type": "无独立局部变量（strlen 调用内联到 socket_send 参数）",
+        "match": "undeterminable",
+        "evidence_source_line": "6919: unsigned int headers_size = 0, port; 6990: headers_size = strlen(headers); 7004: socket_send(&hd, headers, headers_size);",
+        "evidence_decompiled_line": "133: socket_send(&hd, headers, strlen(headers));"
+      }
+    ],
+    "reasoning": "ret 与 i 的声明和接收/循环数据流相符。headers_size 已被优化消除，不能将不存在的独立反编译变量判作错误；而 gnutls_datum_t 的 size 字段宽度需依赖函数外的源码 typedef，按范围限制不可确定。"
+  },
+  {
+    "function": "send_ocsp_request",
+    "decompiler": "claude-code",
+    "hypothesis": "LAYOUT-01",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "结构体 gnutls_datum_t（局部 ud、req 及第4个参数）",
+        "source_type": "gnutls_datum_t；函数内可见 data 与 size 字段用途",
+        "decompiled_type": "struct { unsigned char *data; unsigned int size; }",
+        "match": "undeterminable",
+        "evidence_source_line": "6909-6911: gnutls_datum_t ud; ... gnutls_datum_t req; 7036-7046: resp_data->size/data 被读取和写入",
+        "evidence_decompiled_line": "11-14: struct { unsigned char *data; unsigned int size; }; 161-168: data->size/data 被写入和使用"
+      },
+      {
+        "source_role": "结构体 socket_st（局部 hd）",
+        "source_type": "socket_st",
+        "decompiled_type": "struct { int fd; char *hostname; char *service; int secure; char _reserved[240]; }",
+        "match": "undeterminable",
+        "evidence_source_line": "6920: socket_st hd; 6992-7004: &hd 仅传给 socket_open2 和 socket_send",
+        "evidence_decompiled_line": "17-23: socket_st 的显式字段布局；130-134: &hd 仅传给 socket_open2 和 socket_send"
+      }
+    ],
+    "reasoning": "两个类型都能按局部栈对象角色和调用数据流对应，但本函数范围没有源码中的字段声明、偏移或 sizeof 值。不能仅凭反编译器给出的结构体名或字段名确认布局。"
+  },
+  {
+    "function": "send_ocsp_request",
+    "decompiler": "claude-code",
+    "hypothesis": "SC-01",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "函数内静态局部对象",
+        "source_type": "本函数范围内不存在",
+        "decompiled_type": "本函数范围内不存在；buffer 在函数外被声明为 static",
+        "match": "undeterminable",
+        "evidence_source_line": "6905-7056: send_ocsp_request 的函数体中没有 static 局部声明",
+        "evidence_decompiled_line": "50-51: static char buffer[MAX_BUF + 1]; 位于第53行函数定义之前"
+      }
+    ],
+    "reasoning": "SC-01 的前提是存在可对齐的源码静态局部对象；该函数没有此类实体，无法确认或反驳静态局部到外部对象的重构错误。"
+  },
+  {
+    "function": "send_ocsp_request",
+    "decompiler": "claude-code",
+    "hypothesis": "ST-01",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "函数使用的命名结构体类型",
+        "source_type": "gnutls_datum_t, socket_st",
+        "decompiled_type": "gnutls_datum_t, socket_st",
+        "match": "undeterminable",
+        "evidence_source_line": "6909-6920: 函数仅声明 gnutls_datum_t 与 socket_st 类型的对象，未定义其标签或头文件来源",
+        "evidence_decompiled_line": "9-23: 反编译结果自行给出 gnutls_x509_crt_t、gnutls_datum_t 与 socket_st 的声明"
+      }
+    ],
+    "reasoning": "同名结构体或头文件冲突需要源码类型定义或包含关系作为证据；函数体只有类型使用点，严格按限定范围不能推断该错误。"
+  }
+]

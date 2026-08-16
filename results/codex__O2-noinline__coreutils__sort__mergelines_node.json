@@ -1,0 +1,128 @@
+[
+  {
+    "function": "mergelines_node",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "函数返回类型与原型（不含存储类/链接属性）",
+        "source_type": "void (struct merge_node *restrict, size_t, FILE *, char const *)",
+        "decompiled_type": "void (struct merge_node *restrict, size_t, FILE *, char const *)",
+        "match": "correct",
+        "evidence_source_line": "6748-6750: static void / mergelines_node (struct merge_node *__restrict__ node, size_t total_lines, / FILE *tfp, char const *temp_output)",
+        "evidence_decompiled_line": "32-34: void / mergelines_node (struct merge_node *restrict node, size_t total_lines, / FILE *tfp, char const *temp_output)",
+        "reasoning": "返回类型和四个参数的顺序、指针层级及限定符一致；源码的 static 是链接属性，不属于函数类型本身，也不是 SC-01 所述的静态局部对象。"
+      },
+      {
+        "source_role": "第1个参数",
+        "source_type": "struct merge_node *restrict",
+        "decompiled_type": "struct merge_node *restrict",
+        "match": "correct",
+        "evidence_source_line": "6749: mergelines_node (struct merge_node *__restrict__ node, size_t total_lines,",
+        "evidence_decompiled_line": "33: mergelines_node (struct merge_node *restrict node, size_t total_lines,",
+        "reasoning": "按第1个 ABI 参数位置对齐；函数体均通过该指针访问 lo、hi、dest、nlo、nhi、level 等字段，指针层级未坍塌。"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "6749: mergelines_node (struct merge_node *__restrict__ node, size_t total_lines,",
+        "evidence_decompiled_line": "33: mergelines_node (struct merge_node *restrict node, size_t total_lines,",
+        "reasoning": "按第2个 ABI 参数位置对齐；两者均作为无符号尺寸值参与右移并生成合并计数。"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "6750: FILE *tfp, char const *temp_output)",
+        "evidence_decompiled_line": "34: FILE *tfp, char const *temp_output)",
+        "reasoning": "按第3个 ABI 参数位置对齐；在输出分支中均原样作为 write_unique 的第2个参数传递。"
+      },
+      {
+        "source_role": "第4个参数",
+        "source_type": "char const *",
+        "decompiled_type": "char const *",
+        "match": "correct",
+        "evidence_source_line": "6750: FILE *tfp, char const *temp_output)",
+        "evidence_decompiled_line": "34: FILE *tfp, char const *temp_output)",
+        "reasoning": "按第4个 ABI 参数位置对齐；在输出分支中均原样作为 write_unique 的第3个参数传递，const 与指针层级一致。"
+      },
+      {
+        "source_role": "局部变量 lo_orig",
+        "source_type": "struct line *",
+        "decompiled_type": "struct line *",
+        "match": "correct",
+        "evidence_source_line": "6752: struct line *lo_orig = node->lo;",
+        "evidence_decompiled_line": "36: struct line *lo_orig = node->lo;",
+        "reasoning": "按数据流对齐为进入函数时保存的 lo 游标；末尾与更新后的 node->lo 做同类型指针差。"
+      },
+      {
+        "source_role": "局部变量 hi_orig",
+        "source_type": "struct line *",
+        "decompiled_type": "struct line *",
+        "match": "correct",
+        "evidence_source_line": "6753: struct line *hi_orig = node->hi;",
+        "evidence_decompiled_line": "37: struct line *hi_orig = node->hi;",
+        "reasoning": "按数据流对齐为进入函数时保存的 hi 游标；末尾与更新后的 node->hi 做同类型指针差。"
+      },
+      {
+        "source_role": "局部变量 to_merge",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "6754: size_t to_merge = (((total_lines) >> (2 * ((node->level) + 1))) + 1);",
+        "evidence_decompiled_line": "38: size_t to_merge = (total_lines >> (2 * node->level + 2)) + 1;",
+        "reasoning": "初始化表达式代数等价，且两者都作为递减至零的合并额度；整数宽度与 size_t typedef 均保留。"
+      },
+      {
+        "source_role": "局部变量 merged_lo",
+        "source_type": "size_t",
+        "decompiled_type": "内联的 size_t 值表达式，无独立局部存储",
+        "match": "correct",
+        "evidence_source_line": "6755,6768,6806: size_t merged_lo; / merged_lo = lo_orig - node->lo; / merged_lo = lo_orig - node->lo;",
+        "evidence_decompiled_line": "66,112: (size_t) (lo_orig - node->lo) == node->nlo / node->nlo -= lo_orig - node->lo;",
+        "reasoning": "源码局部量被优化后直接内联；反编译在比较处明确恢复为 size_t，并将同一指针差用于更新 size_t 字段 nlo，因此类型语义可对齐。"
+      },
+      {
+        "source_role": "局部变量 merged_hi",
+        "source_type": "size_t",
+        "decompiled_type": "内联的 size_t 值表达式，无独立局部存储",
+        "match": "correct",
+        "evidence_source_line": "6756,6769,6807: size_t merged_hi; / merged_hi = hi_orig - node->hi; / merged_hi = hi_orig - node->hi;",
+        "evidence_decompiled_line": "57,113: (size_t) (hi_orig - node->hi) == node->nhi / node->nhi -= hi_orig - node->hi;",
+        "reasoning": "源码局部量被优化后直接内联；反编译在比较处明确恢复为 size_t，并将同一指针差用于更新 size_t 字段 nhi，因此类型语义可对齐。"
+      },
+      {
+        "source_role": "分支局部变量 dest",
+        "source_type": "struct line *",
+        "decompiled_type": "struct line *",
+        "match": "correct",
+        "evidence_source_line": "6761: struct line *dest = *node->dest;",
+        "evidence_decompiled_line": "42: struct line *dest = *node->dest;",
+        "reasoning": "两者均由 struct line ** 字段解引用得到，随后按 struct line 元素递减并写入，指针层级恢复正确。"
+      },
+      {
+        "source_role": "结构体 line",
+        "source_type": "struct line { char *; size_t; char *; char *; }",
+        "decompiled_type": "struct line { char *; size_t; char *; char *; }",
+        "match": "correct",
+        "evidence_source_line": "2818-2824: struct line { char *text; size_t length; char *keybeg; char *keylim; };",
+        "evidence_decompiled_line": "5-11: struct line { char *text; size_t length; char *keybeg; char *keylim; };",
+        "reasoning": "不依赖字段名比较时，字段数量均为4，类型序列均为指针、size_t、指针、指针；在目标 ABI 下对应偏移序列一致。"
+      },
+      {
+        "source_role": "结构体 merge_node",
+        "source_type": "13字段：5个指针字段（第5个为 struct line **）、2个 size_t、3个 struct merge_node *、unsigned int、_Bool、pthread_mutex_t",
+        "decompiled_type": "12字段：5个指针字段（第5个为 struct line **）、2个 size_t、3个 struct merge_node *、unsigned int、unsigned char；缺少尾部 pthread_mutex_t",
+        "match": "wrong",
+        "evidence_source_line": "2899-2916: struct merge_node 的字段依次为 lo, hi, end_lo, end_hi, dest, nlo, nhi, parent, lo_child, hi_child, unsigned int level, _Bool queued, pthread_mutex_t lock;",
+        "evidence_decompiled_line": "13-27: struct merge_node 的字段依次为 lo, hi, end_lo, end_hi, dest, nlo, nhi, parent, lo_child, hi_child, unsigned int level, unsigned char queued，随后结构体结束;",
+        "reasoning": "前11个字段可按本函数中的访问数据流和类型序列对齐；随后源码的 _Bool 被恢复成 unsigned char，虽通常同为1字节但语义类型错误（INT-01），并且源码尾部 pthread_mutex_t 字段完全缺失，使字段数量和完整结构体大小不一致（LAYOUT-01）。本函数无静态局部对象，不能据此确认 SC-01；也无证据支持 ST-01、PTR-01 或 FN-01。"
+      }
+    ],
+    "reasoning": "按 ABI 位置，四个参数和返回原型一致；按数据流，lo_orig、hi_orig、to_merge、dest 直接对应，merged_lo/merged_hi 被优化为同一 size_t 指针差表达式。struct line 的字段数量与类型序列一致。struct merge_node 的前部布局足以解释本函数全部字段访问，但完整声明把源码 _Bool 错写为 unsigned char，并遗漏尾部 pthread_mutex_t lock，因此 free_discovery 下可明确确认 INT-01 与 LAYOUT-01；其余列举错误假设在本函数证据范围内不成立或无直接证据。"
+  }
+]

@@ -1,0 +1,179 @@
+[
+  {
+    "function": "output_diff3_edscript",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "函数返回值",
+        "source_type": "_Bool",
+        "decompiled_type": "int",
+        "match": "wrong",
+        "evidence_source_line": "源码 2304-2307: static _Bool output_diff3_edscript (FILE *outputfile, struct diff3_block *diff,",
+        "evidence_decompiled_line": "反编译 41-42: int output_diff3_edscript(FILE *output, struct diff3_block *blocks, const int file_order[3],"
+      },
+      {
+        "source_role": "第1个参数",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "源码 2307: output_diff3_edscript (FILE *outputfile, struct diff3_block *diff,",
+        "evidence_decompiled_line": "反编译 42: output_diff3_edscript(FILE *output, struct diff3_block *blocks, const int file_order[3],"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "struct diff3_block *",
+        "decompiled_type": "struct diff3_block *",
+        "match": "correct",
+        "evidence_source_line": "源码 2307,2324: 参数为 struct diff3_block *diff；b = reverse_diff3_blocklist (diff) 后按 b->next 遍历",
+        "evidence_decompiled_line": "反编译 42,47,49: 参数为 struct diff3_block *blocks；block = reverse_diff3_blocklist(blocks) 后按 block->next 遍历"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "int const mapping[3]（参数调整后为 const int *）",
+        "decompiled_type": "const int file_order[3]（参数调整后为 const int *）",
+        "match": "correct",
+        "evidence_source_line": "源码 2308,2347-2348: int const mapping[3]，mapping[0] 用于选择 b->ranges 的文件维度",
+        "evidence_decompiled_line": "反编译 42,82-84: const int file_order[3]，file_order[0..2] 用于选择 block->ranges 的文件维度"
+      },
+      {
+        "source_role": "第4个参数",
+        "source_type": "int const rev_mapping[3]（参数调整后为 const int *）",
+        "decompiled_type": "const int type_map[3]（参数调整后为 const int *）",
+        "match": "correct",
+        "evidence_source_line": "源码 2308,2328-2330: rev_mapping[b->correspond - DIFF_1ST] 作为三项类型映射表读取",
+        "evidence_decompiled_line": "反编译 43,60: type_map[block->type - DIFF_1ST] 作为三项类型映射表读取"
+      },
+      {
+        "source_role": "第5个参数",
+        "source_type": "char const *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "源码 2309,2383-2384: char const *file0，作为 fprintf 的 %s 参数读取",
+        "evidence_decompiled_line": "反编译 43,96-97: const char *file0_name，作为 fprintf 的 %s 参数读取"
+      },
+      {
+        "source_role": "第6个参数",
+        "source_type": "char const *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "源码 2309,2368: char const *file1，作为 fprintf 的 %s 参数读取",
+        "evidence_decompiled_line": "反编译 44,113: const char *file1_name，作为 fprintf 的 %s 参数读取"
+      },
+      {
+        "source_role": "第7个参数",
+        "source_type": "char const *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "源码 2309,2375: char const *file2，作为 fprintf 的 %s 参数读取",
+        "evidence_decompiled_line": "反编译 44,92,118: const char *file2_name，作为 fprintf 的 %s 参数读取"
+      },
+      {
+        "source_role": "局部变量 conflicts_found",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "源码 2315-2318,2352-2354,2427: 初始化为 0、置 1并作为返回值",
+        "evidence_decompiled_line": "反编译 46,102,126,153: bool conflicts_found=false、置 true 并返回"
+      },
+      {
+        "source_role": "局部变量 b",
+        "source_type": "struct diff3_block *",
+        "decompiled_type": "struct diff3_block *",
+        "match": "correct",
+        "evidence_source_line": "源码 2322,2324: struct diff3_block *b；由 reverse_diff3_blocklist(diff) 得到并沿 b->next 遍历",
+        "evidence_decompiled_line": "反编译 47,49: struct diff3_block *block；由 reverse_diff3_blocklist(blocks) 得到并沿 block->next 遍历"
+      },
+      {
+        "source_role": "局部变量 leading_dot",
+        "source_type": "_Bool",
+        "decompiled_type": "bool（被拆分为多个作用域内的 dot）",
+        "match": "correct",
+        "evidence_source_line": "源码 2311-2313,2360-2376,2385-2395: 保存 dotlines 的布尔结果并传给 undotlines",
+        "evidence_decompiled_line": "反编译 98-101,108-125,146-147: bool dot 保存 output_diff3_block 的布尔结果并传给 finish_ed_command"
+      },
+      {
+        "source_role": "局部变量 conflict",
+        "source_type": "_Bool",
+        "decompiled_type": "bool special_show_all，且另一分支直接使用 bool 全局 flagging",
+        "match": "correct",
+        "evidence_source_line": "源码 2319-2321,2338-2350: conflict 被赋布尔值并控制冲突脚本分支",
+        "evidence_decompiled_line": "反编译 51,66,89,106: bool special_show_all 控制一种冲突分支，bool flagging 直接控制另一冲突分支"
+      },
+      {
+        "source_role": "局部变量 type",
+        "source_type": "enum diff_type",
+        "decompiled_type": "无单一对应局部量；使用 enum diff_type 字段 block->type 与 int file 分担数据流",
+        "match": "undeterminable",
+        "evidence_source_line": "源码 2327-2335: enum diff_type type 由 correspond 和 rev_mapping 计算后进入 switch",
+        "evidence_decompiled_line": "反编译 53-80: 直接比较 block->type，并在 60 行以 int const file 接收 type_map 的结果；优化后角色被拆分"
+      },
+      {
+        "source_role": "局部变量 low0",
+        "source_type": "printint（typedef long int）",
+        "decompiled_type": "lin/long（struct line_range first.first）",
+        "match": "correct",
+        "evidence_source_line": "源码 542,2332,2347: printint low0；low0 = b->ranges[mapping[0]][0]",
+        "evidence_decompiled_line": "反编译 6,18,82,96: lin 为 long；first.first 来自 block->ranges[file_order[0]] 并以 %ld 输出"
+      },
+      {
+        "source_role": "局部变量 high0",
+        "source_type": "printint（typedef long int）",
+        "decompiled_type": "lin/long（struct line_range first.last）",
+        "match": "correct",
+        "evidence_source_line": "源码 542,2332,2348: printint high0；high0 = b->ranges[mapping[0]][1]",
+        "evidence_decompiled_line": "反编译 6,19,82,91: lin 为 long；first.last 来自 block->ranges[file_order[0]] 并以 %ld 输出"
+      },
+      {
+        "source_role": "结构体 diff3_block",
+        "source_type": "{ enum diff_type; lin[3][2]; char **[3]; size_t *[3]; struct diff3_block * }",
+        "decompiled_type": "{ enum diff_type; struct line_range[3]; char **[3]; size_t *[3]; struct diff3_block * }",
+        "match": "correct",
+        "evidence_source_line": "源码 939-945: correspond；ranges[3][2]；lines[3]；lengths[3]；next，且 lin=ptrdiff_t（541行）",
+        "evidence_decompiled_line": "反编译 16-29: line_range 含两个 lin；diff3_block 依次为 enum、line_range[3]、char **[3]、size_t *[3]、next；lin=long（6行）"
+      },
+      {
+        "source_role": "本函数读取的静态对象 simple_only",
+        "source_type": "static _Bool（文件作用域内部链接）",
+        "decompiled_type": "extern bool（外部链接声明）",
+        "match": "wrong",
+        "evidence_source_line": "源码 973-975,2344: static _Bool simple_only；在 DIFF_ALL 分支读取",
+        "evidence_decompiled_line": "反编译 31,55,75: extern bool simple_only；在对应过滤分支读取"
+      },
+      {
+        "source_role": "本函数读取的静态对象 overlap_only",
+        "source_type": "static _Bool（文件作用域内部链接）",
+        "decompiled_type": "extern bool（外部链接声明）",
+        "match": "wrong",
+        "evidence_source_line": "源码 978-980,2341: static _Bool overlap_only；在 DIFF_3RD 分支读取",
+        "evidence_decompiled_line": "反编译 32,70: extern bool overlap_only；在映射为 file==2 的过滤分支读取"
+      },
+      {
+        "source_role": "本函数读取的静态对象 show_2nd",
+        "source_type": "static _Bool（文件作用域内部链接）",
+        "decompiled_type": "extern bool（反编译命名为 show_all，外部链接声明）",
+        "match": "wrong",
+        "evidence_source_line": "源码 983-985,2338,2365-2369: static _Bool show_2nd；控制第二文件分支及 ||||||| 内容输出",
+        "evidence_decompiled_line": "反编译 33,64-67,111-115: extern bool show_all；按相同控制用途决定对应分支及 ||||||| 内容输出"
+      },
+      {
+        "source_role": "本函数读取的静态对象 flagging",
+        "source_type": "static _Bool（文件作用域内部链接）",
+        "decompiled_type": "extern bool（外部链接声明）",
+        "match": "wrong",
+        "evidence_source_line": "源码 963-965,2344: static _Bool flagging；决定 DIFF_ALL 是否进入冲突输出",
+        "evidence_decompiled_line": "反编译 34,106: extern bool flagging；直接控制对应冲突输出分支"
+      },
+      {
+        "source_role": "本函数读取的静态对象 finalwrite",
+        "source_type": "static _Bool（文件作用域内部链接）",
+        "decompiled_type": "extern bool（外部链接声明）",
+        "match": "wrong",
+        "evidence_source_line": "源码 989-991,2425-2426: static _Bool finalwrite；控制输出 w\\nq\\n",
+        "evidence_decompiled_line": "反编译 35,150-151: extern bool finalwrite；控制输出 w\\nq\\n"
+      }
+    ],
+    "reasoning": "按参数 ABI 序号及实际用途对齐，七个参数的指针层级、const 属性和数组参数调整均一致，未发现 PTR-01。源码 _Bool 返回值被恢复为 int，确认 FN-01/INT-01。源码中本函数读取的五个文件作用域 static _Bool 对象在反编译结果中均声明为 extern bool，依据各自控制分支而非名称对齐，确认 SC-01（内部链接静态对象被外部化）。diff3_block 的字段序列与 64 位布局等价：二维 lin[3][2] 被合法重构为三个连续的双 lin line_range，后续三组指针数组和 next 顺序一致，拒绝 LAYOUT-01；没有同名头文件冲突证据，拒绝 ST-01。局部 enum type 经优化拆成枚举字段读取和映射整数，无法证明单一局部变量类型，故该实体为 undeterminable。"
+  }
+]

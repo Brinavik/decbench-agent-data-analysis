@@ -1,0 +1,99 @@
+[
+  {
+    "function": "get_range",
+    "decompiler": "codex O2-noinline",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "bitstr_t *",
+        "decompiled_type": "bitstr_t * (bitstr_t 为 unsigned char)",
+        "match": "correct",
+        "evidence_source_line": "727: get_range(bitstr_t * bits, int low, int high, const char *names[],\n728:   FILE * file) {",
+        "evidence_decompiled_line": "5: typedef unsigned char bitstr_t;\n15-16: get_range(bitstr_t *bits, int low, int high, const char *const *names, FILE *file)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "727: get_range(bitstr_t * bits, int low, int high, const char *names[],",
+        "evidence_decompiled_line": "15-16: get_range(bitstr_t *bits, int low, int high, const char *const *names, FILE *file)"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "727: get_range(bitstr_t * bits, int low, int high, const char *names[],",
+        "evidence_decompiled_line": "15-16: get_range(bitstr_t *bits, int low, int high, const char *const *names, FILE *file)"
+      },
+      {
+        "source_role": "第4个参数",
+        "source_type": "const char ** (数组参数调整后的指针类型)",
+        "decompiled_type": "const char *const *",
+        "match": "correct",
+        "evidence_source_line": "727: get_range(bitstr_t * bits, int low, int high, const char *names[],",
+        "evidence_decompiled_line": "10-11: get_number(int *value, int low, const char *const *names, FILE *file);\n15-16: ... const char *const *names ..."
+      },
+      {
+        "source_role": "第5个参数",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "728:   FILE * file) {",
+        "evidence_decompiled_line": "7-8: extern int get_char(FILE *file);\n15-16: ... FILE *file)"
+      },
+      {
+        "source_role": "局部变量 ch",
+        "source_type": "int",
+        "decompiled_type": "int ch",
+        "match": "correct",
+        "evidence_source_line": "733: int ch, i, num1, num2, num3;\n740-742: (ch = get_char(file))",
+        "evidence_decompiled_line": "18: int ch;\n26: ch = get_char(file);"
+      },
+      {
+        "source_role": "局部变量 i",
+        "source_type": "int",
+        "decompiled_type": "int value (循环索引)",
+        "match": "correct",
+        "evidence_source_line": "733: int ch, i, num1, num2, num3;\n892: for (i = num1; i <= num2; i += num3)",
+        "evidence_decompiled_line": "22: int value;\n115: for (value = first; value <= last; value += step)"
+      },
+      {
+        "source_role": "局部变量 num1",
+        "source_type": "int",
+        "decompiled_type": "int first",
+        "match": "correct",
+        "evidence_source_line": "733: int ch, i, num1, num2, num3;\n746: num1 = low;\n873: num1 = num2 = random() % (num2 - num1 + 1) + num1;",
+        "evidence_decompiled_line": "19: int first;\n31: first = low;\n98-99: value = first + random() % (last - first + 1); first = value;"
+      },
+      {
+        "source_role": "局部变量 num2",
+        "source_type": "int",
+        "decompiled_type": "int last",
+        "match": "correct",
+        "evidence_source_line": "733: int ch, i, num1, num2, num3;\n849: num2 = high;\n824: get_number(&num2, low, names, file)",
+        "evidence_decompiled_line": "20: int last;\n44: last = high;\n47: get_number(&last, low, names, file)"
+      },
+      {
+        "source_role": "局部变量 num3",
+        "source_type": "int",
+        "decompiled_type": "int step",
+        "match": "correct",
+        "evidence_source_line": "733: int ch, i, num1, num2, num3;\n737: num3 = 1;\n782: get_number(&num3, 0, (const char **)0, file)",
+        "evidence_decompiled_line": "21: int step = 1;\n106: get_number(&step, 0, NULL, file)"
+      },
+      {
+        "source_role": "局部变量 state",
+        "source_type": "range_state_t (枚举)",
+        "decompiled_type": "无显式 state；控制流由 allow_step/random_range 等 int 标志表达",
+        "match": "undeterminable",
+        "evidence_source_line": "738: range_state_t state = R_START;\n743: switch (state) {",
+        "evidence_decompiled_line": "23-24: int allow_step = 0; int random_range = 0;\n30-113: 条件分支直接展开，无 state 对象"
+      }
+    ],
+    "reasoning": "五个参数按 ABI 顺序及调用用途均保持指针/整数/FILE* 角色；第4参数的 const 限定差异不改变数组参数调整后的指针层级。num1/num2/num3/i/ch 分别由 first/last/step/value/ch 承担相同数据流和 int 宽度。源码枚举 state 在优化结果中被控制流展平，无法据此断言枚举类型被错误恢复，因此该实体标为 undeterminable。函数内没有静态局部对象，也没有显式结构体布局可供 SC-01/ST-01/LAYOUT-01 验证；现有证据不支持 free_discovery 错误。"
+  }
+]

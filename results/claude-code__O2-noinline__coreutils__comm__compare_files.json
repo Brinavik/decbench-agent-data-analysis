@@ -1,0 +1,240 @@
+[
+  {
+    "function": "compare_files",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数 infiles",
+        "source_type": "char **",
+        "decompiled_type": "char **",
+        "match": "correct",
+        "evidence_source_line": "2494-2495: static _Noreturn void compare_files (char **infiles)",
+        "evidence_decompiled_line": "49-50: static void compare_files (char **infiles)"
+      }
+    ],
+    "reasoning": "按函数 ABI 第1个参数均为 char **；反编译结果省略 _Noreturn，但该说明符不改变 C 函数 ABI 类型。"
+  },
+  {
+    "function": "compare_files",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 lba",
+        "source_type": "struct linebuffer [2][4]",
+        "decompiled_type": "struct linebuffer [2][4]",
+        "match": "correct",
+        "evidence_source_line": "2498: struct linebuffer lba[2][4];",
+        "evidence_decompiled_line": "52-53: struct linebuffer lba[2][4];"
+      }
+    ],
+    "reasoning": "二维数组维度和元素结构体类型在函数内声明及按 lba[i][j] 的数据流用途一致。"
+  },
+  {
+    "function": "compare_files",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 thisline",
+        "source_type": "struct linebuffer *[2]",
+        "decompiled_type": "struct linebuffer *[2]",
+        "match": "correct",
+        "evidence_source_line": "2502: struct linebuffer *thisline[2];",
+        "evidence_decompiled_line": "55-57: struct linebuffer *thisline[2];"
+      }
+    ],
+    "reasoning": "两项数组元素均为指向 linebuffer 的一级指针，并通过 thisline[i]->field 使用，指针层级未坍塌。"
+  },
+  {
+    "function": "compare_files",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 all_line",
+        "source_type": "struct linebuffer *[2][4]",
+        "decompiled_type": "struct linebuffer *[2][4]",
+        "match": "correct",
+        "evidence_source_line": "2507: struct linebuffer *all_line[2][4];",
+        "evidence_decompiled_line": "59-60: struct linebuffer *all_line[2][4];"
+      }
+    ],
+    "reasoning": "二维指针数组的维度、元素指针层级及 all_line[i][alt[i][0]] 访问用途均一致。"
+  },
+  {
+    "function": "compare_files",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "局部变量 alt",
+        "source_type": "int [2][3]",
+        "decompiled_type": "int [2][2]",
+        "match": "wrong",
+        "evidence_source_line": "2510: int alt[2][3];; 2528-2530 and 2653-2655: alt[i][2] is explicitly used",
+        "evidence_decompiled_line": "62-64: int alt[2][2];; 160-161: only alt[i][1] and alt[i][0] are maintained"
+      }
+    ],
+    "reasoning": "源码的显式第三列 alt[i][2] 属于栈对象布局且用于保存前前一缓冲区索引；反编译声明只有两列，布局不匹配（LAYOUT-01）。"
+  },
+  {
+    "function": "compare_files",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 streams",
+        "source_type": "FILE *[2]",
+        "decompiled_type": "FILE *[2]",
+        "match": "correct",
+        "evidence_source_line": "2513: FILE *streams[2];",
+        "evidence_decompiled_line": "66-67: FILE *streams[2];"
+      }
+    ],
+    "reasoning": "数组元素均为 FILE 一级指针，按 streams[i] 传给文件操作函数，指针层级一致。"
+  },
+  {
+    "function": "compare_files",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 total",
+        "source_type": "uintmax_t [3]",
+        "decompiled_type": "uintmax_t [3]",
+        "match": "correct",
+        "evidence_source_line": "2516: uintmax_t total[] = {0, 0, 0};",
+        "evidence_decompiled_line": "69-70: uintmax_t total[3];; 100: total[0] = total[1] = total[2] = 0;"
+      }
+    ],
+    "reasoning": "源码初始化器确定 total 有三个 uintmax_t 元素，反编译结果显式恢复为同样的三元素数组，宽度和无符号 typedef 一致。"
+  },
+  {
+    "function": "compare_files",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 i, j",
+        "source_type": "int, int",
+        "decompiled_type": "int, int",
+        "match": "correct",
+        "evidence_source_line": "2518: int i, j;",
+        "evidence_decompiled_line": "72: int i, j;"
+      }
+    ],
+    "reasoning": "两个循环索引均按 int 比较、递增并作为数组下标使用，声明一致。"
+  },
+  {
+    "function": "compare_files",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "循环体局部变量 order",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "2575: int order;",
+        "evidence_decompiled_line": "104: int order;"
+      }
+    ],
+    "reasoning": "order 接收比较函数返回值并参与 -1/0/1 分支，源码与反编译均为 int。"
+  },
+  {
+    "function": "compare_files",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "循环体局部变量 fill_up",
+        "source_type": "_Bool [2]",
+        "decompiled_type": "bool [2]",
+        "match": "correct",
+        "evidence_source_line": "2577-2582: _Bool fill_up[2] = {0, 0};",
+        "evidence_decompiled_line": "105: bool fill_up[2] = { false, false };"
+      }
+    ],
+    "reasoning": "C 的 bool 是 _Bool 的宏/别名语义，数组长度和按布尔条件读取用途一致。"
+  },
+  {
+    "function": "compare_files",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "total_option 分支局部变量 buf1, buf2, buf3",
+        "source_type": "char [INT_BUFSIZE_BOUND_UINTMAX]（宏展开表达式）",
+        "decompiled_type": "char [INT_BUFSIZE_BOUND_UINTMAX]",
+        "match": "correct",
+        "evidence_source_line": "2716-2718: char buf1[...]; char buf2[...]; char buf3[...];",
+        "evidence_decompiled_line": "183-185: char buf1[INT_BUFSIZE_BOUND_UINTMAX]; char buf2[...]; char buf3[...];"
+      }
+    ],
+    "reasoning": "三者均为用于 umaxtostr 输出 uintmax_t 的 char 缓冲区；源码为该宏的预处理展开，反编译恢复为宏名，元素类型和数量一致。"
+  },
+  {
+    "function": "compare_files",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "结构体 linebuffer 的字段布局",
+        "source_type": "函数内仅见 struct linebuffer 标签及 ->buffer/->length 访问，完整定义未出现",
+        "decompiled_type": "struct linebuffer { size_t size; size_t length; char *buffer; }",
+        "match": "undeterminable",
+        "evidence_source_line": "2498, 2502, 2507 and 2593-2601: struct linebuffer declarations and buffer/length accesses only",
+        "evidence_decompiled_line": "8-13: struct linebuffer has size_t size, size_t length, char *buffer"
+      }
+    ],
+    "reasoning": "按要求需依据字段数量、偏移、大小、类型序列判断布局；指定源码函数未提供 linebuffer 定义，不能从这些访问唯一推出完整布局（ST-01/LAYOUT-01 不可确定）。"
+  },
+  {
+    "function": "compare_files",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "静态局部对象",
+        "source_type": "函数体内未声明静态局部对象",
+        "decompiled_type": "函数体内未声明静态局部对象",
+        "match": "correct",
+        "evidence_source_line": "2496-2518: 函数体局部声明均为自动存储对象，无 static 局部声明",
+        "evidence_decompiled_line": "51-72: 函数体局部声明均为自动存储对象，无 static 局部声明"
+      }
+    ],
+    "reasoning": "指定函数内不存在可被重构为全局外部对象的静态局部对象，因此 SC-01 不成立。"
+  },
+  {
+    "function": "compare_files",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "函数原型/签名",
+        "source_type": "_Noreturn void (char **)",
+        "decompiled_type": "void (char **)",
+        "match": "correct",
+        "evidence_source_line": "2494-2495: static _Noreturn void compare_files (char **infiles)",
+        "evidence_decompiled_line": "49-50: static void compare_files (char **infiles)"
+      }
+    ],
+    "reasoning": "参数 ABI 位置和返回类型均为 char ** -> void；_Noreturn 是函数说明符而非改变函数类型的参数/返回 ABI，因此 FN-01 未确认。"
+  }
+]

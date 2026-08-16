@@ -1,0 +1,107 @@
+[
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "2709: main (int argc, char **argv)",
+        "evidence_decompiled_line": "139: main (int argc, char **argv)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "char **",
+        "decompiled_type": "char **",
+        "match": "correct",
+        "evidence_source_line": "2709: main (int argc, char **argv)",
+        "evidence_decompiled_line": "139: main (int argc, char **argv)"
+      },
+      {
+        "source_role": "局部变量（getopt 返回值）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "2711: int c;",
+        "evidence_decompiled_line": "141: int c;"
+      },
+      {
+        "source_role": "局部变量（是否已设置日期的标志）",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "2713-2716: _Bool date_set = 0;",
+        "evidence_decompiled_line": "142: bool date_set = false;"
+      },
+      {
+        "source_role": "局部变量（逐文件 touch 的累计成功标志）",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "2718-2721: _Bool ok = 1;；2962-2963: ok &= touch (argv[optind]);",
+        "evidence_decompiled_line": "143: bool ok = true;；318-319: ok &= touch (argv[optind]);"
+      },
+      {
+        "source_role": "局部变量（-d 的日期字符串）",
+        "source_type": "char const *",
+        "decompiled_type": "char const *",
+        "match": "correct",
+        "evidence_source_line": "2722-2724: char const *flex_date = ((void *)0);；2757-2759: flex_date = optarg;",
+        "evidence_decompiled_line": "144: char const *flexible_date = NULL;；168-170: flexible_date = optarg;"
+      },
+      {
+        "source_role": "局部变量 ref_stats（结构体 stat）",
+        "source_type": "struct stat",
+        "decompiled_type": "struct stat",
+        "match": "correct",
+        "evidence_source_line": "2842: struct stat ref_stats;；2845-2846: lstat/stat (ref_file, &ref_stats)",
+        "evidence_decompiled_line": "231: struct stat ref_stats;；234: (no_dereference ? lstat : stat) (ref_file, &ref_stats)"
+      },
+      {
+        "source_role": "局部变量 now（结构体 timespec）",
+        "source_type": "struct timespec",
+        "decompiled_type": "struct timespec",
+        "match": "correct",
+        "evidence_source_line": "2880-2882: struct timespec now; gettime (&now);",
+        "evidence_decompiled_line": "253-255: struct timespec now; gettime (&now);"
+      },
+      {
+        "source_role": "局部变量 notnow（结构体 timespec）",
+        "source_type": "struct timespec",
+        "decompiled_type": "struct timespec",
+        "match": "correct",
+        "evidence_source_line": "2897-2900: struct timespec notnow, notnow1; notnow.tv_sec = now.tv_sec ^ 1; notnow.tv_nsec = now.tv_nsec;",
+        "evidence_decompiled_line": "268-271: struct timespec notnow, notnow_ts; notnow.tv_sec = now.tv_sec ^ 1; notnow.tv_nsec = now.tv_nsec;"
+      },
+      {
+        "source_role": "局部变量 notnow1（结构体 timespec，重新解析的结果）",
+        "source_type": "struct timespec",
+        "decompiled_type": "struct timespec",
+        "match": "correct",
+        "evidence_source_line": "2897,2900-2902: struct timespec notnow, notnow1; get_reldate (&notnow1, flex_date, &notnow); 比较 notnow1 的 tv_sec/tv_nsec",
+        "evidence_decompiled_line": "268,272-274: struct timespec notnow, notnow_ts; parse_datetime (&notnow_ts, flexible_date, &notnow); 比较 notnow_ts 的 tv_sec/tv_nsec"
+      },
+      {
+        "source_role": "局部变量 tm（本地时间结果指针）",
+        "source_type": "struct tm const *",
+        "decompiled_type": "struct tm const *",
+        "match": "correct",
+        "evidence_source_line": "2924: struct tm const *tm = localtime (&newtime[0].tv_sec);",
+        "evidence_decompiled_line": "293: struct tm const *tm = localtime (&newtime[0].tv_sec);"
+      },
+      {
+        "source_role": "结构体布局：struct stat 与 struct timespec",
+        "source_type": "main 中仅可见 struct stat 对象及 timespec 的 tv_sec/tv_nsec 字段访问",
+        "decompiled_type": "main 中仅可见 struct stat 对象及 timespec 的 tv_sec/tv_nsec 字段访问",
+        "match": "undeterminable",
+        "evidence_source_line": "2842-2846: struct stat ref_stats 仅作为地址传递；2880-2883 与 2897-2902: timespec 的 tv_sec/tv_nsec 访问",
+        "evidence_decompiled_line": "231-239: struct stat ref_stats 仅作为地址传递；253-257 与 268-274: timespec 的 tv_sec/tv_nsec 访问"
+      }
+    ],
+    "reasoning": "第1、2个参数按 ABI 位置直接对应。其余局部对象按初始化、赋给 optarg、作为 stat/lstat 输出缓冲区、作为 gettime/日期解析的 timespec 缓冲区，以及 localtime 返回值的后续字段读取等数据流对应，而非按名称对应。所有可判定的基本类型、const 限定和指针层级一致；main 内不存在静态局部对象，故无 SC-01 证据。函数体未给出 struct stat 或 struct timespec 的完整字段序列、偏移和大小，因而 LAYOUT-01 不能仅据该函数判定。"
+  }
+]

@@ -1,0 +1,172 @@
+[
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "2709: main (int argc, char **argv)",
+        "evidence_decompiled_line": "17: main(int argc, char **argv)"
+      }
+    ],
+    "reasoning": "该实体的参数位置和类型在源码与反编译结果中一致。"
+  },
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第2个参数",
+        "source_type": "char **",
+        "decompiled_type": "char **",
+        "match": "correct",
+        "evidence_source_line": "2709: main (int argc, char **argv)",
+        "evidence_decompiled_line": "17: main(int argc, char **argv)"
+      }
+    ],
+    "reasoning": "未见 PTR-01 或 FN-01 参数签名错误。"
+  },
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 c",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "2711: int c;",
+        "evidence_decompiled_line": "86: int c;"
+      }
+    ],
+    "reasoning": "局部变量栈角色和数据流一致。"
+  },
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 date_set（反编译数据流分段为 date_set/timestamps_specified）",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "2713-2715: _Bool date_set = 0;",
+        "evidence_decompiled_line": "80-81: bool date_set = false; bool timestamps_specified; 166: timestamps_specified = date_set;"
+      }
+    ],
+    "reasoning": "_Bool 与 C bool 均为布尔标量；timestamps_specified 延续 date_set 的后半段数据流，不构成不同类型实体。"
+  },
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 ok",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "2718-2720: _Bool ok = 1;",
+        "evidence_decompiled_line": "243: bool ok = true;"
+      }
+    ],
+    "reasoning": "块作用域位置改变不影响其栈角色或数据流。"
+  },
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 flex_date",
+        "source_type": "char const *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "2722-2724: char const *flex_date = ((void *)0);",
+        "evidence_decompiled_line": "79: const char *flex_date = NULL;"
+      }
+    ],
+    "reasoning": "PTR-01 未发生。"
+  },
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "条件局部结构体 ref_stats",
+        "source_type": "struct stat",
+        "decompiled_type": "struct stat",
+        "match": "correct",
+        "evidence_source_line": "2842: struct stat ref_stats;",
+        "evidence_decompiled_line": "85: struct stat ref_stats;"
+      }
+    ],
+    "reasoning": "未观察到 LAYOUT-01；完整 struct stat 布局在该函数内不可独立验证。"
+  },
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部结构体 now、notnow、notnow1",
+        "source_type": "struct timespec",
+        "decompiled_type": "struct timespec (now, not_now, reparsed)",
+        "match": "correct",
+        "evidence_source_line": "2880: struct timespec now; 2897: struct timespec notnow, notnow1;",
+        "evidence_decompiled_line": "82-84: struct timespec now; struct timespec not_now; struct timespec reparsed;"
+      }
+    ],
+    "reasoning": "timespec 的两个字段及大小可由显式字段访问验证，未见布局错误。"
+  },
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "局部变量 tm",
+        "source_type": "struct tm const *",
+        "decompiled_type": "struct tm *",
+        "match": "wrong",
+        "evidence_source_line": "2924: struct tm const *tm = localtime (&newtime[0].tv_sec);",
+        "evidence_decompiled_line": "213: struct tm *tm; 219: tm = localtime(&newtime[0].tv_sec);"
+      }
+    ],
+    "reasoning": "这是局部指针类型限定符恢复错误；未造成层级坍塌，但不是严格类型匹配。"
+  },
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "函数内引用的静态/全局表 time_args、time_masks、longopts",
+        "source_type": "由函数引用可见，具体存储类别及完整数组布局未在函数内声明",
+        "decompiled_type": "static const char *const time_args[]; static const int time_types[]; static const struct option long_options[]",
+        "match": "undeterminable",
+        "evidence_source_line": "2741-2743: getopt_long(..., longopts, ...); 2804-2806: time_masks[__xargmatch_internal(..., time_masks, sizeof *(time_masks), ...)]",
+        "evidence_decompiled_line": "33-48: static time_args, time_types, long_options declarations; 98: getopt_long(..., long_options, ...); 138-140: time_types[__xargmatch_internal(..., time_args, time_types, sizeof time_types[0], ...)]"
+      }
+    ],
+    "reasoning": "SC-01/LAYOUT-01 对这些表在函数范围内证据不足，严格标记 undeterminable。"
+  }
+]

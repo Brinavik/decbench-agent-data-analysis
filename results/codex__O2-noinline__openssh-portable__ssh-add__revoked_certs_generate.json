@@ -1,0 +1,211 @@
+[
+  {
+    "function": "revoked_certs_generate",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "函数返回值",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "1851-1852: static int revoked_certs_generate(struct revoked_certs *rc, struct sshbuf *buf)",
+        "evidence_decompiled_line": "52-53: int revoked_certs_generate(struct revoked_certs *rc, struct sshbuf *buf)"
+      },
+      {
+        "source_role": "第1个参数",
+        "source_type": "struct revoked_certs *",
+        "decompiled_type": "struct revoked_certs *",
+        "match": "correct",
+        "evidence_source_line": "1852: revoked_certs_generate(struct revoked_certs *rc, struct sshbuf *buf)",
+        "evidence_decompiled_line": "53: revoked_certs_generate(struct revoked_certs *rc, struct sshbuf *buf)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "struct sshbuf *",
+        "decompiled_type": "struct sshbuf *",
+        "match": "correct",
+        "evidence_source_line": "1852: revoked_certs_generate(struct revoked_certs *rc, struct sshbuf *buf)",
+        "evidence_decompiled_line": "53: revoked_certs_generate(struct revoked_certs *rc, struct sshbuf *buf)"
+      },
+      {
+        "source_role": "局部变量 final",
+        "source_type": "int",
+        "decompiled_type": "无独立变量；以 nrs == NULL 的 int 比较表达式内联",
+        "match": "correct",
+        "evidence_source_line": "1854: int final, force_new_sect, r = -1; 1897-1908: nrs = ...; final = nrs == NULL; ... choose_next_state(..., final, ...)",
+        "evidence_decompiled_line": "82-87: nrs = revoked_serial_next(rs); ... choose_next_state(state, contig, nrs == NULL, ..., &force_new_sect)"
+      },
+      {
+        "source_role": "局部变量 force_new_sect",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "1854: int final, force_new_sect, r = -1; 1908: ..., &force_new_sect)",
+        "evidence_decompiled_line": "67: int r, state = 0, next_state, force_new_sect; 87: &force_new_sect)"
+      },
+      {
+        "source_role": "局部变量 r",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "1854: int final, force_new_sect, r = -1; 2032: return r;",
+        "evidence_decompiled_line": "67: int r, state = 0, next_state, force_new_sect; 174: return r;"
+      },
+      {
+        "source_role": "局部变量 i",
+        "source_type": "u_int64_t",
+        "decompiled_type": "uint64_t",
+        "match": "correct",
+        "evidence_source_line": "1855: u_int64_t i, contig, gap, last = 0, bitmap_start = 0; 1964-1965: for (i = 0; i < contig; i++) ... rs->lo + i",
+        "evidence_decompiled_line": "66: uint64_t contig, next_gap, i; 119-120: for (i = 0; i < contig; i++) ... rs->lo + i"
+      },
+      {
+        "source_role": "局部变量 contig",
+        "source_type": "u_int64_t",
+        "decompiled_type": "uint64_t",
+        "match": "correct",
+        "evidence_source_line": "1855: u_int64_t i, contig, gap, last = 0, bitmap_start = 0; 1904: contig = 1 + (rs->hi - rs->lo);",
+        "evidence_decompiled_line": "66: uint64_t contig, next_gap, i; 83: contig = rs->hi - rs->lo + 1;"
+      },
+      {
+        "source_role": "局部变量 gap",
+        "source_type": "u_int64_t",
+        "decompiled_type": "uint64_t (next_gap)",
+        "match": "correct",
+        "evidence_source_line": "1855: u_int64_t i, contig, gap, last = 0, bitmap_start = 0; 1901-1903: gap = nrs == NULL ? 0 : nrs->lo - rs->hi;",
+        "evidence_decompiled_line": "66: uint64_t contig, next_gap, i; 84: next_gap = nrs == NULL ? 0 : nrs->lo - rs->hi;"
+      },
+      {
+        "source_role": "局部变量 last",
+        "source_type": "u_int64_t",
+        "decompiled_type": "uint64_t (last_serial)",
+        "match": "correct",
+        "evidence_source_line": "1855: ... last = 0 ...; 1908: ... rs->lo - last ...; 1990: last = rs->hi;",
+        "evidence_decompiled_line": "65: uint64_t bitmap_start = 0, last_serial = 0; 86: ... rs->lo - last_serial ...; 144: last_serial = rs->hi;"
+      },
+      {
+        "source_role": "局部变量 bitmap_start",
+        "source_type": "u_int64_t",
+        "decompiled_type": "uint64_t",
+        "match": "correct",
+        "evidence_source_line": "1855: ... bitmap_start = 0; 1953-1955: bitmap_start = rs->lo; sshbuf_put_u64(sect, bitmap_start)",
+        "evidence_decompiled_line": "65: uint64_t bitmap_start = 0, last_serial = 0; 111-112: bitmap_start = rs->lo; sshbuf_put_u64(sect, bitmap_start)"
+      },
+      {
+        "source_role": "局部变量 rs",
+        "source_type": "struct revoked_serial *",
+        "decompiled_type": "struct revoked_serial *",
+        "match": "correct",
+        "evidence_source_line": "1856: struct revoked_serial *rs, *nrs; 1887-1904: rs 遍历 revoked_serials 并读取 rs->lo/hi",
+        "evidence_decompiled_line": "61: struct revoked_serial *rs, *nrs; 80-84: rs 遍历 revoked_serials 并读取 rs->lo/hi"
+      },
+      {
+        "source_role": "局部变量 nrs",
+        "source_type": "struct revoked_serial *",
+        "decompiled_type": "struct revoked_serial *",
+        "match": "correct",
+        "evidence_source_line": "1856: struct revoked_serial *rs, *nrs; 1897-1903: nrs = ...NEXT(rs); ... nrs->lo",
+        "evidence_decompiled_line": "61: struct revoked_serial *rs, *nrs; 82-84: nrs = revoked_serial_next(rs); ... nrs->lo"
+      },
+      {
+        "source_role": "局部变量 rki",
+        "source_type": "struct revoked_key_id *",
+        "decompiled_type": "struct revoked_key_id *",
+        "match": "correct",
+        "evidence_source_line": "1857: struct revoked_key_id *rki; 2016-2020: rki 遍历 revoked_key_ids 并读取 rki->key_id",
+        "evidence_decompiled_line": "62: struct revoked_key_id *rki; 160-162: rki 遍历 revoked_key_ids 并读取 rki->key_id"
+      },
+      {
+        "source_role": "局部变量 next_state",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "1858: int next_state, state = 0; 1907: next_state = choose_next_state(...)",
+        "evidence_decompiled_line": "67: int r, state = 0, next_state, force_new_sect; 85: next_state = choose_next_state(...)"
+      },
+      {
+        "source_role": "局部变量 state",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "1858: int next_state, state = 0; 1917: switch (state)",
+        "evidence_decompiled_line": "67: int r, state = 0, next_state, force_new_sect; 117: switch (state)"
+      },
+      {
+        "source_role": "局部变量 sect",
+        "source_type": "struct sshbuf *",
+        "decompiled_type": "struct sshbuf *",
+        "match": "correct",
+        "evidence_source_line": "1859: struct sshbuf *sect; 1864: sect = sshbuf_new();",
+        "evidence_decompiled_line": "63: struct sshbuf *sect; 69: sect = sshbuf_new();"
+      },
+      {
+        "source_role": "局部变量 bitmap",
+        "source_type": "struct bitmap *",
+        "decompiled_type": "struct bitmap *",
+        "match": "correct",
+        "evidence_source_line": "1860-1862: struct bitmap *bitmap = NULL; 1947: bitmap = bitmap_new();",
+        "evidence_decompiled_line": "64: struct bitmap *bitmap = NULL; 107: bitmap = bitmap_new();"
+      },
+      {
+        "source_role": "结构体 revoked_serial",
+        "source_type": "struct revoked_serial { uint64 lo@0; uint64 hi@8; tree_entry { left@16; right@24; parent@32; int color@40; padding }; }，LP64 下大小 48",
+        "decompiled_type": "struct revoked_serial { uint64_t lo@0; uint64_t hi@8; left@16; right@24; parent@32; }，LP64 下大小 40",
+        "match": "wrong",
+        "evidence_source_line": "1169-1172: struct revoked_serial { u_int64_t lo, hi; struct { struct revoked_serial *rbe_left; ... *rbe_parent; int rbe_color; } tree_entry; };",
+        "evidence_decompiled_line": "9-15: struct revoked_serial { uint64_t lo; uint64_t hi; struct revoked_serial *left; *right; *parent; };"
+      },
+      {
+        "source_role": "结构体 revoked_key_id",
+        "source_type": "struct revoked_key_id { char *key_id@0; tree_entry { left@8; right@16; parent@24; int color@32; padding }; }，LP64 下大小 40",
+        "decompiled_type": "struct revoked_key_id { char *key_id@0; left@8; right@16; parent@24; }，LP64 下大小 32",
+        "match": "wrong",
+        "evidence_source_line": "1210-1213: struct revoked_key_id { char *key_id; struct { struct revoked_key_id *rbe_left; ... *rbe_parent; int rbe_color; } tree_entry; };",
+        "evidence_decompiled_line": "17-22: struct revoked_key_id { char *key_id; struct revoked_key_id *left; *right; *parent; };"
+      },
+      {
+        "source_role": "结构体 revoked_serial_tree",
+        "source_type": "struct revoked_serial_tree { struct revoked_serial *rbh_root; }，嵌入 revoked_certs",
+        "decompiled_type": "未恢复独立结构体；在 revoked_certs 中折叠为 struct revoked_serial *",
+        "match": "wrong",
+        "evidence_source_line": "1174: struct revoked_serial_tree { struct revoked_serial *rbh_root; }; 1295: struct revoked_serial_tree revoked_serials;",
+        "evidence_decompiled_line": "24-28: struct revoked_certs { ... struct revoked_serial *revoked_serials; ... }; 80: revoked_serial_min(rc->revoked_serials)"
+      },
+      {
+        "source_role": "结构体 revoked_key_id_tree",
+        "source_type": "struct revoked_key_id_tree { struct revoked_key_id *rbh_root; }，嵌入 revoked_certs",
+        "decompiled_type": "未恢复独立结构体；在 revoked_certs 中折叠为 struct revoked_key_id *",
+        "match": "wrong",
+        "evidence_source_line": "1215: struct revoked_key_id_tree { struct revoked_key_id *rbh_root; }; 1296: struct revoked_key_id_tree revoked_key_ids;",
+        "evidence_decompiled_line": "24-28: struct revoked_certs { ... struct revoked_key_id *revoked_key_ids; }; 160: revoked_key_id_min(rc->revoked_key_ids)"
+      },
+      {
+        "source_role": "结构体 revoked_certs",
+        "source_type": "struct revoked_certs { sshkey *@0; revoked_serial_tree@8; revoked_key_id_tree@16; entry { revoked_certs *@24; revoked_certs **@32 }; }，LP64 下大小 40",
+        "decompiled_type": "struct revoked_certs { sshkey *@0; revoked_serial *@8; revoked_key_id *@16; }，LP64 下大小 24",
+        "match": "wrong",
+        "evidence_source_line": "1293-1298: struct revoked_certs { struct sshkey *ca_key; struct revoked_serial_tree revoked_serials; struct revoked_key_id_tree revoked_key_ids; struct { struct revoked_certs *tqe_next; struct revoked_certs **tqe_prev; } entry; };",
+        "evidence_decompiled_line": "24-28: struct revoked_certs { struct sshkey *ca_key; struct revoked_serial *revoked_serials; struct revoked_key_id *revoked_key_ids; };"
+      },
+      {
+        "source_role": "结构体 sshbuf",
+        "source_type": "struct sshbuf（本指定源码片段中仅按指针使用，布局不可由本函数确定）",
+        "decompiled_type": "struct sshbuf（前向声明、不透明）",
+        "match": "undeterminable",
+        "evidence_source_line": "1852,1859: 参数 buf 与局部 sect 均为 struct sshbuf *",
+        "evidence_decompiled_line": "5: struct sshbuf; 53,63: 参数 buf 与局部 sect 均为 struct sshbuf *"
+      },
+      {
+        "source_role": "结构体 bitmap",
+        "source_type": "struct bitmap（本指定源码片段中仅按指针使用，布局不可由本函数确定）",
+        "decompiled_type": "struct bitmap（前向声明、不透明）",
+        "match": "undeterminable",
+        "evidence_source_line": "1860: struct bitmap *bitmap = NULL; 1947: bitmap_new()",
+        "evidence_decompiled_line": "7: struct bitmap; 64: struct bitmap *bitmap = NULL"
+      }
+    ],
+    "reasoning": "按 ABI 位置，第1、2参数及 int 返回类型一致；各局部变量按创建、循环迭代、算术和被调用参数位置可对齐，未发现 PTR-01、INT-01 或 FN-01。源码没有静态局部对象，故无 SC-01 证据；也没有仅凭同名冲突即可支持 ST-01 的证据。free_discovery 判为 confirmed，因为存在明确的 LAYOUT-01：反编译结构体只恢复了本函数访问所需的前缀，revoked_serial 和 revoked_key_id 均遗漏 RB 颜色字段，两个单根树包装结构被折叠为根指针，revoked_certs 还遗漏尾部 entry 两字段，导致字段序列及完整大小不匹配。"
+  }
+]

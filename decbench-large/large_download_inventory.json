@@ -1,0 +1,834 @@
+[
+  {
+    "project": "bash",
+    "opt_level": "O2-noinline",
+    "binary": "man2html",
+    "function": "scan_format",
+    "source_paths": [
+      "sources/bash/man2html.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/bash/man2html.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/bash/man2html.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "coreutils",
+    "opt_level": "O2-noinline",
+    "binary": "chown",
+    "function": "usage",
+    "source_paths": [
+      "sources/coreutils/chown.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/coreutils/chown.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/coreutils/chown.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "coreutils",
+    "opt_level": "O2-noinline",
+    "binary": "comm",
+    "function": "compare_files",
+    "source_paths": [
+      "sources/coreutils/comm.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/coreutils/comm.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/coreutils/comm.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "coreutils",
+    "opt_level": "O2-noinline",
+    "binary": "cp",
+    "function": "copy_reg",
+    "source_paths": [
+      "sources/coreutils/copy.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/coreutils/cp.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/coreutils/cp.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "coreutils",
+    "opt_level": "O2-noinline",
+    "binary": "df",
+    "function": "filter_mount_list",
+    "source_paths": [
+      "sources/coreutils/df.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/coreutils/df.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/coreutils/df.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "coreutils",
+    "opt_level": "O2-noinline",
+    "binary": "shred",
+    "function": "dopass",
+    "source_paths": [
+      "sources/coreutils/shred.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/coreutils/shred.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/coreutils/shred.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "coreutils",
+    "opt_level": "O2-noinline",
+    "binary": "sort",
+    "function": "mergelines_node",
+    "source_paths": [
+      "sources/coreutils/sort.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/coreutils/sort.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/coreutils/sort.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "coreutils",
+    "opt_level": "O2-noinline",
+    "binary": "touch",
+    "function": "main",
+    "source_paths": [
+      "sources/coreutils/touch.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/coreutils/touch.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/coreutils/touch.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "cronie",
+    "opt_level": "O2-noinline",
+    "binary": "crontab",
+    "function": "get_range",
+    "source_paths": [
+      "sources/cronie/entry.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/cronie/crontab.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/cronie/crontab.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "cronie",
+    "opt_level": "O2-noinline",
+    "binary": "cronnext",
+    "function": "get_range",
+    "source_paths": [
+      "sources/cronie/entry.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/cronie/cronnext.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/cronie/cronnext.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "diffutils",
+    "opt_level": "O2-noinline",
+    "binary": "cmp",
+    "function": "cmp",
+    "source_paths": [
+      "sources/diffutils/cmp.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/diffutils/cmp.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/diffutils/cmp.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "diffutils",
+    "opt_level": "O2-noinline",
+    "binary": "diff3",
+    "function": "output_diff3_edscript",
+    "source_paths": [
+      "sources/diffutils/diff3.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/diffutils/diff3.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/diffutils/diff3.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "dpkg",
+    "opt_level": "O2-noinline",
+    "binary": "dpkg-divert",
+    "function": "diversion_add",
+    "source_paths": [
+      "sources/dpkg/divertcmd.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/dpkg/dpkg-divert.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/dpkg/dpkg-divert.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "dpkg",
+    "opt_level": "O2-noinline",
+    "binary": "dpkg-query",
+    "function": "pkg_array_match_patterns",
+    "source_paths": [
+      "sources/dpkg/querycmd.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/dpkg/dpkg-query.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/dpkg/dpkg-query.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "e2fsprogs",
+    "opt_level": "O2-noinline",
+    "binary": "e2fsck",
+    "function": "check_ea_in_inode",
+    "source_paths": [
+      "sources/e2fsprogs/pass1.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/e2fsprogs/e2fsck.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/e2fsprogs/e2fsck.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "gnutls",
+    "opt_level": "O2-noinline",
+    "binary": "certtool",
+    "function": "yyparse",
+    "source_paths": [
+      "sources/gnutls/parse-datetime.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/gnutls/certtool.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/gnutls/certtool.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "gnutls",
+    "opt_level": "O2-noinline",
+    "binary": "psktool",
+    "function": "process_options",
+    "source_paths": [
+      "sources/gnutls/psktool-options.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/gnutls/psktool.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/gnutls/psktool.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "gnutls",
+    "opt_level": "O2-noinline",
+    "binary": "gnutls-cli",
+    "function": "send_ocsp_request",
+    "source_paths": [
+      "sources/gnutls/ocsptool-common.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/gnutls/gnutls-cli.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/gnutls/gnutls-cli.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "gnutls",
+    "opt_level": "O2-noinline",
+    "binary": "gnutls-serv",
+    "function": "main",
+    "source_paths": [
+      "sources/gnutls/certtool.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/gnutls/gnutls-serv.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/gnutls/gnutls-serv.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "gnutls",
+    "opt_level": "O2-noinline",
+    "binary": "ocsptool",
+    "function": "socket_open2",
+    "source_paths": [
+      "sources/gnutls/socket.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/gnutls/ocsptool.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/gnutls/ocsptool.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "gnutls",
+    "opt_level": "O2-noinline",
+    "binary": "systemkey",
+    "function": "print_list",
+    "source_paths": [
+      "sources/gnutls/common.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/gnutls/systemkey.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/gnutls/systemkey.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "libacl",
+    "opt_level": "O2-noinline",
+    "binary": "chacl",
+    "function": "main",
+    "source_paths": [
+      "sources/libacl/chacl.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/libacl/chacl.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/libacl/chacl.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "libacl",
+    "opt_level": "O2-noinline",
+    "binary": "setfacl",
+    "function": "restore",
+    "source_paths": [
+      "sources/libacl/setfacl.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/libacl/setfacl.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/libacl/setfacl.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "libopencm3",
+    "opt_level": "O2-noinline",
+    "binary": "cdcacm",
+    "function": "dwc_poll",
+    "source_paths": [
+      "sources/libopencm3/usb_dwc_common.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/libopencm3/cdcacm.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/libopencm3/cdcacm.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "libopencm3",
+    "opt_level": "O2-noinline",
+    "binary": "msc",
+    "function": "_usbd_standard_request_device",
+    "source_paths": [
+      "sources/libopencm3/usb_standard.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/libopencm3/msc.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/libopencm3/msc.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "libopencm3",
+    "opt_level": "O2-noinline",
+    "binary": "sdram",
+    "function": "main",
+    "source_paths": [
+      "sources/libopencm3/sdram.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/libopencm3/sdram.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/libopencm3/sdram.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "libopencm3",
+    "opt_level": "O2-noinline",
+    "binary": "usbmidi",
+    "function": "dwc_poll",
+    "source_paths": [
+      "sources/libopencm3/usb_dwc_common.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/libopencm3/usbmidi.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/libopencm3/usbmidi.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "openssh-portable",
+    "opt_level": "O2-noinline",
+    "binary": "ssh",
+    "function": "revoked_serial_tree_RB_REMOVE_COLOR",
+    "source_paths": [
+      "sources/openssh-portable/krl.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/openssh-portable/ssh.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/openssh-portable/ssh.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "openssh-portable",
+    "opt_level": "O2-noinline",
+    "binary": "ssh-add",
+    "function": "revoked_certs_generate",
+    "source_paths": [
+      "sources/openssh-portable/krl.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/openssh-portable/ssh-add.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/openssh-portable/ssh-add.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "openssh-portable",
+    "opt_level": "O2-noinline",
+    "binary": "ssh-keygen",
+    "function": "ssh_rsa_verify",
+    "source_paths": [
+      "sources/openssh-portable/ssh-rsa.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/openssh-portable/ssh-keygen.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/openssh-portable/ssh-keygen.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "openssh-portable",
+    "opt_level": "O2-noinline",
+    "binary": "ssh-keyscan",
+    "function": "argv_split",
+    "source_paths": [
+      "sources/openssh-portable/auth2-pubkey.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/openssh-portable/ssh-keyscan.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/openssh-portable/ssh-keyscan.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "openssh-portable",
+    "opt_level": "O2-noinline",
+    "binary": "ssh-pkcs11-helper",
+    "function": "pkcs11_fetch_rsa_pubkey",
+    "source_paths": [
+      "sources/openssh-portable/ssh-pkcs11.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/openssh-portable/ssh-pkcs11-helper.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/openssh-portable/ssh-pkcs11-helper.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "openssh-portable",
+    "opt_level": "O2-noinline",
+    "binary": "ssh-sk-helper",
+    "function": "cert_parse",
+    "source_paths": [
+      "sources/openssh-portable/sshkey.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/openssh-portable/ssh-sk-helper.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/openssh-portable/ssh-sk-helper.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "shadow",
+    "opt_level": "O2-noinline",
+    "binary": "groupmod",
+    "function": "grp_update",
+    "source_paths": [
+      "sources/shadow/groupmod.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/shadow/groupmod.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/shadow/groupmod.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "shadow",
+    "opt_level": "O2-noinline",
+    "binary": "grpunconv",
+    "function": "main",
+    "source_paths": [
+      "sources/shadow/grpunconv.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/shadow/grpunconv.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/shadow/grpunconv.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "shadow",
+    "opt_level": "O2-noinline",
+    "binary": "login",
+    "function": "main",
+    "source_paths": [
+      "sources/shadow/login.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/shadow/login.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/shadow/login.c",
+    "claude-code_downloaded": false,
+    "claude-code_contains_function": false
+  },
+  {
+    "project": "shadow",
+    "opt_level": "O2-noinline",
+    "binary": "newusers",
+    "function": "close_files",
+    "source_paths": [
+      "sources/shadow/newusers.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/shadow/newusers.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/shadow/newusers.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "shadow",
+    "opt_level": "O2-noinline",
+    "binary": "useradd",
+    "function": "grp_update",
+    "source_paths": [
+      "sources/shadow/useradd.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/shadow/useradd.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/shadow/useradd.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "shadow",
+    "opt_level": "O2-noinline",
+    "binary": "vipw",
+    "function": "main",
+    "source_paths": [
+      "sources/shadow/vipw.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/shadow/vipw.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/shadow/vipw.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "shadow",
+    "opt_level": "O2-noinline",
+    "binary": "usermod",
+    "function": "update_gshadow",
+    "source_paths": [
+      "sources/shadow/usermod.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/shadow/usermod.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/shadow/usermod.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "sysvinit",
+    "opt_level": "O2-noinline",
+    "binary": "bootlogd",
+    "function": "main",
+    "source_paths": [
+      "sources/sysvinit/bootlogd.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/sysvinit/bootlogd.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/sysvinit/bootlogd.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "sysvinit",
+    "opt_level": "O2-noinline",
+    "binary": "init",
+    "function": "check_init_fifo",
+    "source_paths": [
+      "sources/sysvinit/init.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/sysvinit/init.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/sysvinit/init.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "sysvinit",
+    "opt_level": "O2-noinline",
+    "binary": "killall5",
+    "function": "readproc",
+    "source_paths": [
+      "sources/sysvinit/killall5.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/sysvinit/killall5.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/sysvinit/killall5.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "sysvinit",
+    "opt_level": "O2-noinline",
+    "binary": "last",
+    "function": "list",
+    "source_paths": [
+      "sources/sysvinit/last.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/sysvinit/last.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/sysvinit/last.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "sysvinit",
+    "opt_level": "O2-noinline",
+    "binary": "shutdown",
+    "function": "wall",
+    "source_paths": [
+      "sources/sysvinit/dowall.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/sysvinit/shutdown.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/sysvinit/shutdown.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "sysvinit",
+    "opt_level": "O2-noinline",
+    "binary": "sulogin",
+    "function": "getpasswd",
+    "source_paths": [
+      "sources/sysvinit/sulogin.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/sysvinit/sulogin.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/sysvinit/sulogin.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "sysvinit",
+    "opt_level": "O2-noinline",
+    "binary": "utmpdump",
+    "function": "dump",
+    "source_paths": [
+      "sources/sysvinit/utmpdump.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/sysvinit/utmpdump.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/sysvinit/utmpdump.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "sysvinit",
+    "opt_level": "O2-noinline",
+    "binary": "wall",
+    "function": "wall",
+    "source_paths": [
+      "sources/sysvinit/dowall.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/sysvinit/wall.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/sysvinit/wall.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "zlib",
+    "opt_level": "O2-noinline",
+    "binary": "libz.so.1.2",
+    "function": "deflate_slow",
+    "source_paths": [
+      "sources/zlib/deflate.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/zlib/libz.so.1.2.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/zlib/libz.so.1.2.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "zlib",
+    "opt_level": "O2-noinline",
+    "binary": "minigzip",
+    "function": "inflate_table",
+    "source_paths": [
+      "sources/zlib/inftrees.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/zlib/minigzip.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/zlib/minigzip.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "zlib",
+    "opt_level": "O2-noinline",
+    "binary": "minigzipsh",
+    "function": "main",
+    "source_paths": [
+      "sources/zlib/minigzip.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/zlib/minigzipsh.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/zlib/minigzipsh.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  },
+  {
+    "project": "zlib",
+    "opt_level": "O2-noinline",
+    "binary": "minigzip64",
+    "function": "inflate_fast",
+    "source_paths": [
+      "sources/zlib/inffast.c"
+    ],
+    "source_verified": true,
+    "codex_path": "results/codex/O2-noinline/zlib/minigzip64.c",
+    "codex_downloaded": true,
+    "codex_contains_function": true,
+    "claude-code_path": "results/claude-code/O2-noinline/zlib/minigzip64.c",
+    "claude-code_downloaded": true,
+    "claude-code_contains_function": true
+  }
+]

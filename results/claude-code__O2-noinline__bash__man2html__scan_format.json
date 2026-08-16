@@ -1,0 +1,110 @@
+[
+  {
+    "function": "scan_format",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "char *c",
+        "decompiled_type": "const char *p",
+        "match": "wrong",
+        "evidence_source_line": "1362: scan_format(char *c, TABLEROW ** result, int *maxcol)",
+        "evidence_decompiled_line": "33: scan_format(const char *p, struct tbl_row **rowp, int *ncols)",
+        "reasoning": "ABI位置均为第1个指针参数，但反编译结果增加了const限定；源码在函数内通过*c读取且递增c，虽然未写入指向字符，原型类型仍不完全匹配，属于FN-01层面的签名差异。"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "TABLEROW **result",
+        "decompiled_type": "struct tbl_row **rowp",
+        "match": "correct",
+        "evidence_source_line": "1362: scan_format(char *c, TABLEROW ** result, int *maxcol); 1516: *result = layout",
+        "evidence_decompiled_line": "33: scan_format(const char *p, struct tbl_row **rowp, int *ncols); 176: *rowp = head",
+        "reasoning": "第2个ABI参数都是二级行指针，并承担先读旧行列表再写回新头指针的同一数据流用途。"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "int *maxcol",
+        "decompiled_type": "int *ncols",
+        "match": "correct",
+        "evidence_source_line": "1362: ... int *maxcol; 1503-1513: *maxcol = 0; ...",
+        "evidence_decompiled_line": "33: ... int *ncols; 167-173: *ncols = 0; ...",
+        "reasoning": "第3个ABI参数均为int指针，用于输出布局中最大列数，宽度和符号一致。"
+      },
+      {
+        "source_role": "局部变量layout",
+        "source_type": "TABLEROW *",
+        "decompiled_type": "struct tbl_row *head",
+        "match": "correct",
+        "evidence_source_line": "1364: TABLEROW *layout, currow; 1371: layout = currow = (TABLEROW *) xmalloc(sizeof(TABLEROW));",
+        "evidence_decompiled_line": "35: struct tbl_row *head, *row, *nrow; 43: head = xmalloc(sizeof(*head));",
+        "reasoning": "该局部保存新建布局链表头，并最终写入第2参数；反编译head的指针层级和数据流一致。"
+      },
+      {
+        "source_role": "局部变量currow",
+        "source_type": "TABLEROW *",
+        "decompiled_type": "struct tbl_row *row",
+        "match": "correct",
+        "evidence_source_line": "1364: TABLEROW *layout, currow; 1486-1494: currow->next ... currow = currow->next ...",
+        "evidence_decompiled_line": "35: struct tbl_row *head, *row, *nrow; 59-67: row->next ... row = nrow ...",
+        "reasoning": "均表示当前行并沿next推进；指针层级和用途一致。"
+      },
+      {
+        "source_role": "局部变量curfield",
+        "source_type": "TABLEITEM *",
+        "decompiled_type": "struct tbl_cell *cell",
+        "match": "correct",
+        "evidence_source_line": "1365: TABLEITEM *curfield; 1375: currow->first = curfield = (TABLEITEM *) xmalloc(sizeof(TABLEITEM));",
+        "evidence_decompiled_line": "36: struct tbl_cell *cell, *ncell, *cp; 46-48: cell = xmalloc(sizeof(*cell)); head->first = cell;",
+        "reasoning": "均指向当前行首个/当前布局单元，并通过next分配新单元；结构体指针层级一致。"
+      },
+      {
+        "source_role": "局部变量i",
+        "source_type": "int",
+        "decompiled_type": "int n / int val",
+        "match": "correct",
+        "evidence_source_line": "1366: int i, j; 1428-1446: i用于p数值累加；1475-1482: i用于间距累加；1507-1513: i用于列数计数",
+        "evidence_decompiled_line": "38: int c, n; 98: int sign, val; 110-118: val用于p数值；133-140: n用于间距；169-173: n用于列数",
+        "reasoning": "源码i的三个int用途在反编译中拆分为val和n两个int临时变量；虽非一一同名，但宽度、符号和栈上标量角色均可对齐。"
+      },
+      {
+        "source_role": "局部变量j",
+        "source_type": "int",
+        "decompiled_type": "int sign",
+        "match": "correct",
+        "evidence_source_line": "1366: int i, j; 1428-1435: j记录p参数正负号",
+        "evidence_decompiled_line": "98: int sign, val; 100-108: sign取1、-1或0",
+        "reasoning": "同一p选项解析路径中，j与sign都保存三态符号整数，类型和数据流一致。"
+      },
+      {
+        "source_role": "结构体TABLEITEM",
+        "source_type": "char *contents; 10个int字段(size, align, valign, colspan, rowspan, font, vleft, vright, space, width); TABLEITEM *next",
+        "decompiled_type": "struct tbl_cell: char *str; 10个int字段(psz,pos,flags,f14,f18,font,vert_after,vert_before,spacing,mod); struct tbl_cell *next",
+        "match": "correct",
+        "evidence_source_line": "1307-1312: TABLEITEM字段序列及next",
+        "evidence_decompiled_line": "6-19: tbl_cell字段偏移0x00、0x08..0x2c及next偏移0x30",
+        "reasoning": "字段数量、类型序列和64位布局偏移完全一致：指针、10个4字节int、尾部指针，总大小0x38；仅名称改变，不构成ST/LAYOUT错误。"
+      },
+      {
+        "source_role": "结构体TABLEROW",
+        "source_type": "TABLEITEM *first; TABLEROW *prev, *next",
+        "decompiled_type": "struct tbl_row { struct tbl_cell *first; struct tbl_row *prev, *next; }",
+        "match": "correct",
+        "evidence_source_line": "1322-1325: TABLEROW字段序列",
+        "evidence_decompiled_line": "22-26: tbl_row字段first@0x00, prev@0x08, next@0x10",
+        "reasoning": "三个指针字段的数量、顺序和偏移一致，TABLEITEM/TBL_CELL及TABLEROW/TBL_ROW只是重命名。"
+      },
+      {
+        "source_role": "静态对象emptyfield",
+        "source_type": "static TABLEITEM，contents=NULL，colspan=1，rowspan=1，其余字段为0",
+        "decompiled_type": "无独立静态对象；在各处分配后使用复合字面量初始化.f14=1,.f18=1",
+        "match": "correct",
+        "evidence_source_line": "1314-1318: static TABLEITEM emptyfield = { NULL, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, NULL }",
+        "evidence_decompiled_line": "48: *cell = (struct tbl_cell){ .f14 = 1, .f18 = 1 }; 65-66, 78-79: 新单元同样初始化",
+        "reasoning": "源码是文件静态对象而非函数局部；反编译未将其错误提升为外部全局，而是将等价的零初始化加两字段置1内联到每次分配处，因此SC-01未被确认。"
+      }
+    ],
+    "reasoning": "按三个参数的ABI序号、局部标量/指针的数据流及两个结构体的字段偏移对齐。除第1参数const限定导致的原型差异外，指针层级、整数宽度和结构体布局均有直接证据支持；不存在静态对象被重构为外部全局的证据。"
+  }
+]

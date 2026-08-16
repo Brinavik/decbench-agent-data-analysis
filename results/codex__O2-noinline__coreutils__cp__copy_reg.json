@@ -1,0 +1,275 @@
+[
+  {
+    "function": "copy_reg",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "返回值",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "4933: return return_val;（return_val 在 4433-4435 行声明为 _Bool）",
+        "evidence_decompiled_line": "98: bool；398: return return_val;"
+      },
+      {
+        "source_role": "第1个参数",
+        "source_type": "char const *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "4413: copy_reg (char const *src_name, char const *dst_name,",
+        "evidence_decompiled_line": "99: copy_reg(const char *src_name, const char *dst_name,"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "char const *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "4413: copy_reg (char const *src_name, char const *dst_name,",
+        "evidence_decompiled_line": "99: copy_reg(const char *src_name, const char *dst_name,"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "4414: int dst_dirfd, char const *dst_relname,",
+        "evidence_decompiled_line": "100: int dst_dirfd, const char *dst_relname,"
+      },
+      {
+        "source_role": "第4个参数",
+        "source_type": "char const *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "4414: int dst_dirfd, char const *dst_relname,",
+        "evidence_decompiled_line": "100: int dst_dirfd, const char *dst_relname,"
+      },
+      {
+        "source_role": "第5个参数/结构体cp_options的只读指针",
+        "source_type": "const struct cp_options *",
+        "decompiled_type": "const struct cp_options *",
+        "match": "undeterminable",
+        "evidence_source_line": "4415: const struct cp_options *x,",
+        "evidence_decompiled_line": "101: const struct cp_options *x, mode_t dst_mode,"
+      },
+      {
+        "source_role": "第6个参数",
+        "source_type": "mode_t",
+        "decompiled_type": "mode_t",
+        "match": "correct",
+        "evidence_source_line": "4416: mode_t dst_mode, mode_t omitted_permissions,",
+        "evidence_decompiled_line": "101: const struct cp_options *x, mode_t dst_mode,"
+      },
+      {
+        "source_role": "第7个参数",
+        "source_type": "mode_t",
+        "decompiled_type": "mode_t",
+        "match": "correct",
+        "evidence_source_line": "4416: mode_t dst_mode, mode_t omitted_permissions,",
+        "evidence_decompiled_line": "102: mode_t omitted_permissions, bool *new_dst,"
+      },
+      {
+        "source_role": "第8个参数",
+        "source_type": "_Bool *",
+        "decompiled_type": "bool *",
+        "match": "correct",
+        "evidence_source_line": "4417-4418: _Bool *new_dst,",
+        "evidence_decompiled_line": "102: mode_t omitted_permissions, bool *new_dst,"
+      },
+      {
+        "source_role": "第9个参数/结构体stat的只读指针",
+        "source_type": "struct stat const *",
+        "decompiled_type": "const struct stat *",
+        "match": "correct",
+        "evidence_source_line": "4419: struct stat const *src_sb)",
+        "evidence_decompiled_line": "103: const struct stat *src_sb)"
+      },
+      {
+        "source_role": "局部变量：复制缓冲区指针（由复制例程通过二级指针写入，函数退出时释放）",
+        "source_type": "char *",
+        "decompiled_type": "void *",
+        "match": "wrong",
+        "evidence_source_line": "4421-4423: char *buf = ((void *)0);；4775: sparse_copy (..., &buf, ...);；4932: alignfree (buf);",
+        "evidence_decompiled_line": "108: void *copy_buffer = NULL;；306: copied = sub_6a40(..., &copy_buffer, ...);；397: free(copy_buffer);"
+      },
+      {
+        "source_role": "局部变量：源文件描述符",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "4426: int source_desc;；4444: source_desc = open_safer (...);",
+        "evidence_decompiled_line": "113: int src_fd;；117: src_fd = sub_e880(...);"
+      },
+      {
+        "source_role": "局部变量：目标文件描述符",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "4424: int dest_desc;；4499: dest_desc = openat_safer (...);",
+        "evidence_decompiled_line": "114: int dst_fd = -1;；143: dst_fd = sub_12710(...);"
+      },
+      {
+        "source_role": "局部变量：目标打开操作保存的errno",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "4425: int dest_errno;；4500-4502: dest_errno = (*__errno_location ());",
+        "evidence_decompiled_line": "115: int open_errno;；144: open_errno = errno;"
+      },
+      {
+        "source_role": "局部变量：源文件模式副本",
+        "source_type": "mode_t",
+        "decompiled_type": "没有可唯一对齐的独立局部变量；结果复用了第6个参数dst_mode",
+        "match": "undeterminable",
+        "evidence_source_line": "4427: mode_t src_mode = src_sb->st_mode;；4836: src_mode &= ~(04000 | 02000 | 01000);；4860: copy_acl(..., src_mode)",
+        "evidence_decompiled_line": "352: dst_mode &= ~07000;；360: sub_caa0(..., dst_mode)"
+      },
+      {
+        "source_role": "局部变量：临时附加权限位",
+        "source_type": "mode_t",
+        "decompiled_type": "mode_t",
+        "match": "correct",
+        "evidence_source_line": "4428: mode_t extra_permissions;；4584: extra_permissions = open_mode & ~dst_mode;",
+        "evidence_decompiled_line": "112: mode_t extra_permissions = 0;；221: extra_permissions = create_mode & ~dst_mode;"
+      },
+      {
+        "source_role": "局部变量/结构体stat：目标文件状态",
+        "source_type": "struct stat",
+        "decompiled_type": "struct stat",
+        "match": "correct",
+        "evidence_source_line": "4429: struct stat sb;；4674: fstat (dest_desc, &sb)",
+        "evidence_decompiled_line": "106: struct stat dst_sb;；245: fstat(dst_fd, &dst_sb)"
+      },
+      {
+        "source_role": "局部变量/结构体stat：打开后的源文件状态",
+        "source_type": "struct stat",
+        "decompiled_type": "struct stat",
+        "match": "correct",
+        "evidence_source_line": "4430: struct stat src_open_sb;；4463: fstat (source_desc, &src_open_sb)",
+        "evidence_decompiled_line": "105: struct stat src_open_sb;；125: fstat(src_fd, &src_open_sb)"
+      },
+      {
+        "source_role": "局部变量/联合体scan_inference：扫描推断状态",
+        "source_type": "union scan_inference",
+        "decompiled_type": "unsigned char[48]",
+        "match": "wrong",
+        "evidence_source_line": "4431: union scan_inference scan_inference;；4703-4704: infer_scantype (..., &scan_inference)",
+        "evidence_decompiled_line": "264: unsigned char scan_state[48];；271: scantype = sub_6780(src_fd, src_sb, scan_state);"
+      },
+      {
+        "source_role": "局部变量：函数成功状态",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "4433-4435: _Bool return_val = 1;",
+        "evidence_decompiled_line": "111: bool return_val = false;；325: return_val = true;"
+      },
+      {
+        "source_role": "局部变量：是否需要复制数据",
+        "source_type": "_Bool",
+        "decompiled_type": "没有独立局部变量，直接读取x字段",
+        "match": "undeterminable",
+        "evidence_source_line": "4438-4439: _Bool data_copy_required = x->data_copy_required;",
+        "evidence_decompiled_line": "225: if (!x->data_copy_required) {；257: if (x->data_copy_required) {"
+      },
+      {
+        "source_role": "局部变量：是否保留扩展属性",
+        "source_type": "_Bool",
+        "decompiled_type": "没有独立局部变量，直接读取x字段",
+        "match": "undeterminable",
+        "evidence_source_line": "4441-4442: _Bool preserve_xattr = 1 & x->preserve_xattr;",
+        "evidence_decompiled_line": "355-356: if (x->preserve_xattr && !sub_7040(...))"
+      },
+      {
+        "source_role": "块局部变量：打开已有目标文件的标志",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "4491: int open_flags =；4499: openat_safer (..., open_flags)",
+        "evidence_decompiled_line": "139: int flags = O_WRONLY;；143: sub_12710(..., flags)"
+      },
+      {
+        "source_role": "块局部变量：创建目标文件时的模式",
+        "source_type": "mode_t",
+        "decompiled_type": "mode_t",
+        "match": "correct",
+        "evidence_source_line": "4579: mode_t open_mode =；4596: open_mode);",
+        "evidence_decompiled_line": "180: mode_t create_mode = dst_mode & ~omitted_permissions;；186: O_WRONLY | O_CREAT | O_EXCL, create_mode);"
+      },
+      {
+        "source_role": "块局部变量：readlinkat的一字节缓冲区",
+        "source_type": "char[1]",
+        "decompiled_type": "char",
+        "match": "correct",
+        "evidence_source_line": "4604-4605: char dummy[1]; if (0 <= readlinkat (..., dummy, sizeof dummy))",
+        "evidence_decompiled_line": "190-191: char c; ssize_t n = readlinkat(..., &c, 1);"
+      },
+      {
+        "source_role": "块局部变量：复制缓冲区大小",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "4697: size_t buf_size = io_blksize (sb);；4775: sparse_copy (..., buf_size,",
+        "evidence_decompiled_line": "260: size_t buf_size;；306: sub_6a40(..., buf_size,"
+      },
+      {
+        "source_role": "块局部变量：空洞粒度",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "4698: size_t hole_size = ...;",
+        "evidence_decompiled_line": "259: size_t hole_size;；266: hole_size = ...;"
+      },
+      {
+        "source_role": "块局部变量：扫描类型",
+        "source_type": "enum scantype",
+        "decompiled_type": "int",
+        "match": "wrong",
+        "evidence_source_line": "4703: enum scantype scantype = infer_scantype (...);",
+        "evidence_decompiled_line": "262: int scantype;；271: scantype = sub_6780(...);"
+      },
+      {
+        "source_role": "块局部变量：是否生成空洞",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "4716-4718: _Bool make_holes = (...);",
+        "evidence_decompiled_line": "303: bool make_holes = x->sparse_mode == SPARSE_ALWAYS;"
+      },
+      {
+        "source_role": "块局部变量：复制例程累计读取字节数",
+        "source_type": "off_t",
+        "decompiled_type": "off_t",
+        "match": "correct",
+        "evidence_source_line": "4759: off_t n_read;；4781: &n_read；4789: ftruncate (dest_desc, n_read)",
+        "evidence_decompiled_line": "109: off_t total_n_read = 0;；310: &total_n_read；317: ftruncate(dst_fd, total_n_read)"
+      },
+      {
+        "source_role": "块局部变量：末次写入是否为空洞",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "4761-4763: _Bool wrote_hole_at_eof = 0;；4782: &wrote_hole_at_eof",
+        "evidence_decompiled_line": "110: bool last_write_made_hole = false;；310: &last_write_made_hole"
+      },
+      {
+        "source_role": "块局部变量/结构体数组：访问与修改时间",
+        "source_type": "struct timespec[2]",
+        "decompiled_type": "struct timespec[2]",
+        "match": "correct",
+        "evidence_source_line": "4803: struct timespec timespec[2];；4804-4805: timespec[0] = ...; timespec[1] = ...;",
+        "evidence_decompiled_line": "107: struct timespec times[2];；328-329: times[0] = ...; times[1] = ...;"
+      },
+      {
+        "source_role": "静态局部对象",
+        "source_type": "本函数范围内未声明静态局部对象",
+        "decompiled_type": "本函数范围内未重构出对应全局外部对象",
+        "match": "correct",
+        "evidence_source_line": "4421-4439: 函数起始局部声明均无static存储类；其余块局部声明见4491、4579、4604、4697、4703、4759、4803，亦均无static",
+        "evidence_decompiled_line": "105-115: 函数局部声明；139、180、190、208、258-264、303、343、370行的块局部声明均无extern或static"
+      }
+    ],
+    "reasoning": "九个参数严格按ABI位置对齐，指针层级均未坍塌；mode_t、off_t、size_t和bool/_Bool等可由函数声明及数据流直接核对。目标与源stat对象按fstat写入目标及后续字段读取的数据流对齐，而非按变量名对齐。scan_inference在源码是联合体，结果仅恢复为48字节数组，结构类型未恢复；enum scantype也退化为int。与free_discovery直接相关的缓冲区在两侧都由复制例程通过二级指针写入并在统一退出路径释放，但源码调用alignfree，结果调用free，且char *被恢复为void *。由于不允许读取本函数外的alignfree定义，无法证明alignfree与free在分配对齐及释放契约上等价或不等价，因此总体verdict必须为undeterminable。cp_options的完整源码布局也不在本函数内，不能仅凭字段名称或结果文件中的声明确认其布局。"
+  }
+]

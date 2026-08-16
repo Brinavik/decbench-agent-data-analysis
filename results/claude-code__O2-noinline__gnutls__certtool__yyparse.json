@@ -1,0 +1,110 @@
+[
+  {
+    "function": "yyparse",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "parser_control *",
+        "decompiled_type": "parser_control *",
+        "match": "correct",
+        "evidence_source_line": "1748-1749: int yyparse (parser_control *pc)",
+        "evidence_decompiled_line": "89: int yyparse(parser_control *pc)",
+        "reasoning": "唯一参数的ABI位置和指针层级一致。"
+      },
+      {
+        "source_role": "结构体 parser_control",
+        "source_type": "结构体，含 input、时间字段、relative_time rel、多个计数/布尔字段及 local_time_zone_table[3]",
+        "decompiled_type": "不透明的 typedef struct parser_control",
+        "match": "wrong",
+        "evidence_source_line": "925-1005: parser_control 的字段和顺序完整定义",
+        "evidence_decompiled_line": "51-52: typedef struct parser_control parser_control;",
+        "reasoning": "反编译结果没有恢复任何字段，不能满足显式布局；pc-> 字段数据流因此无法按布局验证。"
+      },
+      {
+        "source_role": "局部变量 yychar",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "1752-1753, 1803: int yychar; yychar = YYEMPTY",
+        "evidence_decompiled_line": "99, 114: int yychar = yyparse; if (yychar == yyparse)",
+        "reasoning": "均为lookahead整数，且初始化/比较用途一致。"
+      },
+      {
+        "source_role": "局部变量 yylval",
+        "source_type": "YYSTYPE union",
+        "decompiled_type": "YYSTYPE union",
+        "match": "correct",
+        "evidence_source_line": "1759: YYSTYPE yylval",
+        "evidence_decompiled_line": "93: YYSTYPE yylval",
+        "reasoning": "均作为 yylex 输出并复制到值栈；union 名称虽相同，内部布局另行核对。"
+      },
+      {
+        "source_role": "局部变量 yyssa/yyss/yyssp",
+        "source_type": "yy_state_t[20]、yy_state_t *、yy_state_t *（yy_state_t 为 signed char）",
+        "decompiled_type": "signed char[20]、signed char *、signed char *",
+        "match": "correct",
+        "evidence_source_line": "1775-1777, 1550: yy_state_t yyssa[20]; pointers; typedef yytype_int8 yy_state_t",
+        "evidence_decompiled_line": "91, 95: signed char yyss[YYMAXDEPTH]; signed char *yyssp",
+        "reasoning": "元素宽度、符号和20元素栈角色一致。"
+      },
+      {
+        "source_role": "局部变量 yyvsa/yyvs/yyvsp",
+        "source_type": "YYSTYPE[20]、YYSTYPE *、YYSTYPE *",
+        "decompiled_type": "YYSTYPE[20]、YYSTYPE *、YYSTYPE *",
+        "match": "correct",
+        "evidence_source_line": "1780-1782: YYSTYPE yyvsa[20]; yyvs/yyvsp pointers",
+        "evidence_decompiled_line": "92, 96: YYSTYPE yyvs[YYMAXDEPTH]; YYSTYPE *yyvsp",
+        "reasoning": "值栈数组、指针及槽位角色一致；槽内union字段布局见下项。"
+      },
+      {
+        "source_role": "结构体 relative_time",
+        "source_type": "6个 intmax_t 字段(year..seconds) + int ns，尾部对齐",
+        "decompiled_type": "7个 intmax_t 字段(year..ns)",
+        "match": "wrong",
+        "evidence_source_line": "914-924: ns declared int after six intmax_t fields",
+        "evidence_decompiled_line": "34-42: ns declared yy_intmax in a seven-intmax_t sequence",
+        "reasoning": "ns字段宽度和类型序列不同（源码为int，反编译为intmax_t），属于布局/整数宽度错误。"
+      },
+      {
+        "source_role": "结构体 textint",
+        "source_type": "bool negative; intmax_t value; idx_t digits",
+        "decompiled_type": "intmax_t value; bool negative; bool digits",
+        "match": "wrong",
+        "evidence_source_line": "888-895: 字段顺序为 negative, value, digits，digits 为 idx_t",
+        "evidence_decompiled_line": "28-32: 字段顺序为 value, negative, digits，digits 为 bool",
+        "reasoning": "字段顺序及digits宽度均不匹配，无法保持union成员的内存布局。"
+      },
+      {
+        "source_role": "结构体/union YYSTYPE",
+        "source_type": "union { intmax_t intval; textint textintval; timespec timespec; relative_time rel; }",
+        "decompiled_type": "union with yy_intmax, reconstructed textint/timespec/relative_time",
+        "match": "wrong",
+        "evidence_source_line": "1462-1471: YYSTYPE union members and source types",
+        "evidence_decompiled_line": "44-49: reconstructed YYSTYPE members",
+        "reasoning": "虽然成员名和最大尺寸表面相同，但textint与relative_time内部类型/顺序错误，union的成员布局恢复不正确。"
+      },
+      {
+        "source_role": "局部变量 yynerrs、yyerrstatus、yystacksize",
+        "source_type": "int、int、long int",
+        "decompiled_type": "未出现对应局部变量",
+        "match": "undeterminable",
+        "evidence_source_line": "1762-1773: 初始化 yynerrs、yyerrstatus 和 long int yystacksize",
+        "evidence_decompiled_line": "97-101: 仅声明 yystate、yyn、yychar、yylen、yyresult",
+        "reasoning": "反编译函数采用固定栈且省略这些变量；可能是未使用/优化或语义遗漏，仅凭当前代码不能区分。"
+      },
+      {
+        "source_role": "扩栈局部 yyss1、yyptr 及 free(yyss1)",
+        "source_type": "yy_state_t *、union yyalloc *；释放动态栈内存",
+        "decompiled_type": "无动态栈指针、无 free 路径",
+        "match": "wrong",
+        "evidence_source_line": "1841-1852: malloc 得到 yyptr，复制栈并在 yyss1 != yyssa 时 free(yyss1)",
+        "evidence_decompiled_line": "91-92, 248-253: 仅固定数组并以 YYMAXDEPTH 检查溢出；全文无 malloc/free",
+        "reasoning": "源码存在动态扩栈及条件释放，反编译结果完全没有对应释放发现，因此free_discovery假设被拒绝。"
+      }
+    ],
+    "reasoning": "参数和基本栈指针按ABI/数据流可对齐；但重建的结构体字段布局存在明确类型序列错误，且源码的动态栈malloc/free路径缺失。"
+  }
+]

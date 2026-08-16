@@ -1,0 +1,48 @@
+#define __HID_H 
+
+
+#define USB_CLASS_HID 3
+
+
+#define USB_HID_SUBCLASS_NO 0
+#define USB_HID_SUBCLASS_BOOT_INTERFACE 1
+
+
+#define USB_HID_INTERFACE_PROTOCOL_NONE 0
+#define USB_HID_INTERFACE_PROTOCOL_KEYBOARD 1
+#define USB_HID_INTERFACE_PROTOCOL_MOUSE 2
+
+
+#define USB_HID_DT_HID 0x21
+#define USB_HID_DT_REPORT 0x22
+#define USB_HID_DT_PHYSICAL 0x23
+
+#define USB_DT_HID USB_HID_DT_HID
+
+#define USB_DT_REPORT USB_HID_DT_REPORT
+
+
+#define USB_HID_REQ_TYPE_GET_REPORT 0x01
+#define USB_HID_REQ_TYPE_GET_IDLE 0x02
+#define USB_HID_REQ_TYPE_GET_PROTOCOL 0x03
+#define USB_HID_REQ_TYPE_SET_REPORT 0x09
+#define USB_HID_REQ_TYPE_SET_IDLE 0x0A
+#define USB_HID_REQ_TYPE_SET_PROTOCOL 0x0B
+
+
+#define USB_HID_REPORT_TYPE_INPUT 1
+#define USB_HID_REPORT_TYPE_OUTPUT 2
+#define USB_HID_REPORT_TYPE_FEATURE 3
+
+
+#define USB_HID_PROTOCOL_BOOT 0
+#define USB_HID_PROTOCOL_REPORT 1
+
+
+struct usb_hid_descriptor {
+ uint8_t bLength;
+ uint8_t bDescriptorType;
+ uint16_t bcdHID;
+ uint8_t bCountryCode;
+ uint8_t bNumDescriptors;
+} __attribute__((packed));

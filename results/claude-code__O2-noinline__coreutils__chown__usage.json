@@ -1,0 +1,27 @@
+[
+  {
+    "function": "usage",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "第1个参数（ABI 第1参数）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "2436: usage (int status); 2438-2440: if (status != 0); 2532: exit (status); 另见 1878: _Noreturn void usage (int status);",
+        "evidence_decompiled_line": "13: usage (int status); 15: if (status != EXIT_SUCCESS); 86: exit (status);"
+      },
+      {
+        "source_role": "函数返回及终止属性",
+        "source_type": "_Noreturn void",
+        "decompiled_type": "void（未恢复 _Noreturn）",
+        "match": "wrong",
+        "evidence_source_line": "1878: _Noreturn void usage (int status); 2435-2436: void / usage (int status); 2532: exit (status);",
+        "evidence_decompiled_line": "12-13: void / usage (int status); 86: exit (status); 87: }（签名未标注 _Noreturn）"
+      }
+    ],
+    "reasoning": "按 ABI 位置对齐唯一形参：两侧第1参数均为 int，且均用于非零判断并原样传给 exit，因此整数宽度、符号和参数原型恢复正确。源码 usage 函数体没有显式局部变量，也没有结构体对象或字段访问，故 SC-01、ST-01、PTR-01、LAYOUT-01 在本函数内没有可对齐实体，不能据名称或函数外内容推断。源码第1878行的函数声明明确规定 _Noreturn，且第2532行所有路径调用 exit；反编译第12-13行只给出普通 void 签名，虽第86行保留 exit 调用，却遗漏终止属性，构成 FN-01 函数签名恢复不完整，因此 free_discovery 得到 confirmed。"
+  }
+]

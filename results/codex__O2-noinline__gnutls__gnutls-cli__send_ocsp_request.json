@@ -1,0 +1,110 @@
+[
+  {
+    "function": "send_ocsp_request",
+    "decompiler": "codex O2-noinline",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数/server及发现URL局部变量url的所有权状态",
+        "source_type": "const char *参数；char *局部别名，可指向借用或malloc结果",
+        "decompiled_type": "const char *url、const char *original_url、char *allocated_url",
+        "match": "correct",
+        "evidence_source_line": "6905-6907: 参数server为const char *；6912: char *url=(void *)server；6960-6967分配并写入发现的URL；7050-7053仅当url!=server时free(url)",
+        "evidence_decompiled_line": "51-53: 第1个参数url为const char *；59-62保存original_url并单独声明char *allocated_url；95-102分配、复制并令url=allocated_url；163-164当url!=original_url时free(allocated_url)",
+        "reasoning": "按第1参数ABI位置对齐后，发现路径的借用/拥有两种状态均被保留；original_url与allocated_url的拆分等价于源码的url!=server清理条件，没有发现free_discovery语义错误。"
+      },
+      {
+        "source_role": "第2个参数/cert",
+        "source_type": "gnutls_x509_crt_t",
+        "decompiled_type": "gnutls_x509_crt_t",
+        "match": "correct",
+        "evidence_source_line": "6905-6907声明cert为gnutls_x509_crt_t；6932-6934将其作为证书句柄传入IA查询；6986传入_generate_request",
+        "evidence_decompiled_line": "51-52声明crt为gnutls_x509_crt_t；76-77传入IA查询；113传入sub_13c00",
+        "reasoning": "第2参数ABI位置及句柄数据流一致。"
+      },
+      {
+        "source_role": "第3个参数/issuer",
+        "source_type": "gnutls_x509_crt_t",
+        "decompiled_type": "gnutls_x509_crt_t",
+        "match": "correct",
+        "evidence_source_line": "6906-6907声明issuer为gnutls_x509_crt_t；6945-6947用于备用IA查询；6986传入_generate_request",
+        "evidence_decompiled_line": "52声明issuer为gnutls_x509_crt_t；83-84用于备用IA查询；113传入sub_13c00",
+        "reasoning": "第3参数ABI位置及备用证书查询/请求生成数据流一致。"
+      },
+      {
+        "source_role": "第4个参数/resp_data",
+        "source_type": "gnutls_datum_t *",
+        "decompiled_type": "gnutls_datum_t *response",
+        "match": "correct",
+        "evidence_source_line": "6907声明resp_data为gnutls_datum_t *；7036-7046写入size和data字段",
+        "evidence_decompiled_line": "52声明response为gnutls_datum_t *；150-159写入size和data字段",
+        "reasoning": "第4参数及两个字段的写入偏移/用途一致。"
+      },
+      {
+        "source_role": "第5个参数/nonce",
+        "source_type": "gnutls_datum_t *",
+        "decompiled_type": "const gnutls_datum_t *",
+        "match": "wrong",
+        "evidence_source_line": "6907: gnutls_datum_t *nonce；6986将nonce传给_generate_request",
+        "evidence_decompiled_line": "53: const gnutls_datum_t *nonce；40: sub_13c00原型也接收const gnutls_datum_t *",
+        "reasoning": "第5参数ABI指针层级相同，但源码签名允许被调用链修改所指对象，反编译结果增加const限定；属于函数原型/限定恢复不一致（FN-01），不是指针层级坍塌。"
+      },
+      {
+        "source_role": "局部变量ud（HTTP响应累积datum）",
+        "source_type": "gnutls_datum_t",
+        "decompiled_type": "gnutls_datum_t http_response={NULL,0}",
+        "match": "correct",
+        "evidence_source_line": "6909声明ud；6984清零；7013传给get_data；7036-7046读取data/size；7051释放data",
+        "evidence_decompiled_line": "57声明并初始化http_response；132传给sub_13b90；150-159读取data/size；162释放data",
+        "reasoning": "datum字段布局和累积/解析/释放数据流一致。"
+      },
+      {
+        "source_role": "局部变量headers_size",
+        "source_type": "unsigned int",
+        "decompiled_type": "size_t",
+        "match": "wrong",
+        "evidence_source_line": "6919: unsigned int headers_size；6990赋值strlen结果；7004传给socket_send",
+        "evidence_decompiled_line": "67: size_t header_size；122赋值strlen结果；126显式转换为unsigned int后发送",
+        "reasoning": "源码局部声明为32位unsigned int，反编译恢复为平台size_t（通常64位）；虽调用处显式窄化，声明宽度仍不一致（INT-01）。"
+      },
+      {
+        "source_role": "局部变量ret",
+        "source_type": "int",
+        "decompiled_type": "ssize_t",
+        "match": "wrong",
+        "evidence_source_line": "6910: int ret；7011将socket_recv结果写入ret并在7016判断",
+        "evidence_decompiled_line": "69: ssize_t ret；131将sub_10d90返回值写入ret；165转换为int返回",
+        "reasoning": "源码局部ret明确为int，而反编译为ssize_t，存在整数宽度恢复差异（INT-01）。"
+      },
+      {
+        "source_role": "文件静态对象buffer",
+        "source_type": "static char buffer[4097]",
+        "decompiled_type": "extern unsigned char sub_94700[]",
+        "match": "wrong",
+        "evidence_source_line": "6796: static char buffer[4*1024 + 1]；7011以buffer作为接收缓冲区",
+        "evidence_decompiled_line": "49: extern unsigned char sub_94700[]；131以sub_94700作为接收缓冲区",
+        "reasoning": "同一接收缓冲对象被声明为文件内static对象，反编译却以extern外部数组声明，符合SC-01静态局部/内部对象被重构为全局外部对象。"
+      },
+      {
+        "source_role": "局部结构体hd",
+        "source_type": "socket_st（字段布局见源码6720-6741）",
+        "decompiled_type": "socket_st opaque[0x108]",
+        "match": "undeterminable",
+        "evidence_source_line": "6920: socket_st hd；6992-7005及7010-7022仅按指针传递；6720-6741给出socket_st字段序列",
+        "evidence_decompiled_line": "16-18定义socket_st为opaque[0x108]；58声明socket；124-140按指针传递",
+        "reasoning": "目标函数没有访问hd字段，无法仅凭该函数证明opaque大小是否与源码字段布局完全一致；LAYOUT-01因此不可判定。"
+      },
+      {
+        "source_role": "结构体gnutls_datum_t",
+        "source_type": "struct { unsigned char *data; unsigned int size; }",
+        "decompiled_type": "struct { unsigned char *data; unsigned int size; }",
+        "match": "correct",
+        "evidence_source_line": "846-849定义data指针后接unsigned int size；6909/6911/6928使用该类型",
+        "evidence_decompiled_line": "11-14定义data指针后接unsigned int size；55-57声明uri/request/http_response",
+        "reasoning": "字段数量、顺序、偏移所需类型序列一致，未见LAYOUT-01。"
+      }
+    ],
+    "reasoning": "free_discovery关注发现OCSP URI后的所有权。源码在url由server借用或malloc后统一通过url!=server释放；反编译用original_url/allocated_url显式表达同一状态机，因此该假设被拒绝。独立的const限定、整数宽度及静态对象声明问题分别记录在对应实体中。"
+  }
+]

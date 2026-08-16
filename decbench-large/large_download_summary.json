@@ -1,0 +1,12 @@
+{
+  "large_functions": 52,
+  "unique_initial_files": 156,
+  "verified_source_functions": 52,
+  "codex_results_downloaded": 52,
+  "codex_results_containing_function": 52,
+  "claude_code_results_downloaded": 51,
+  "claude_code_results_containing_function": 51,
+  "download_failures": {},
+  "inventory_json": "decbench-large/large_download_inventory.json",
+  "inventory_csv": "decbench-large/large_download_inventory.csv"
+}

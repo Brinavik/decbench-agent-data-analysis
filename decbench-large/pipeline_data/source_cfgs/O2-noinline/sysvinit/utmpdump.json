@@ -1,0 +1,789 @@
+{
+  "opt": "O2-noinline",
+  "project": "sysvinit",
+  "binary": "utmpdump",
+  "generator": "pyjoern",
+  "functions": {
+    "usage": {
+      "nodes": [
+        0
+      ],
+      "edges": [],
+      "labels": {
+        "0": "273.0:\nFUNCTION_START\nprintf(&quot;Usage:utmpdump[-froh][filename]\\n&quot;)\nexit(result)\nFUNCTION_END\n"
+      },
+      "entry": [
+        0
+      ],
+      "exit": [
+        0
+      ],
+      "degenerate": false
+    },
+    "main": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "edges": [
+        [
+          0,
+          13
+        ],
+        [
+          0,
+          15
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          12
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          5,
+          11
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          8,
+          11
+        ],
+        [
+          9,
+          11
+        ],
+        [
+          10,
+          2
+        ],
+        [
+          11,
+          0
+        ],
+        [
+          11,
+          1
+        ],
+        [
+          13,
+          2
+        ],
+        [
+          14,
+          11
+        ],
+        [
+          15,
+          2
+        ],
+        [
+          15,
+          10
+        ]
+      ],
+      "labels": {
+        "0": "311.0:\noptind < argc\n",
+        "1": "289.0:\n<UnsupportedStmt: IDENTIFIER,c,switch(c)>\n",
+        "2": "331.0:\n<UnsupportedStmt: IDENTIFIER,reverse,if(reverse)>\n",
+        "3": "332.0:\nundump()\n",
+        "4": "334.0:\ndump()\n",
+        "5": "291.0:\nreverse = 1\n",
+        "6": "295.0:\nforever = 1\n",
+        "7": "299.0:\noldfmt = 1\n",
+        "8": "303.0:\nusage(0)\n",
+        "9": "307.0:\nusage(1)\n",
+        "10": "318.0:\nperror(&quot;Unabletoopenfile&quot;)\nexit(1)\n",
+        "11": "286.1:\ngetopt()\nc = getopt(argc,argv,&quot;froh&quot;)\n-1 - \n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "12": "336.0:\nfclose(fp)\nreturn 0;,return0;\nFUNCTION_END\n",
+        "13": "325.0:\nreverse ? r : e\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "14": "280.0:\nFUNCTION_START\nreverse = 0\nforever = 0\noldfmt = 0\n",
+        "15": "314.0:\nreverse ? r : e\n<UnsupportedStmt: ['indirectIndexAccess', 'argv[optind]']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['indirectIndexAccess', 'argv[optind]']>\nfopen()\nfp = fopen(argv[optind],&quot;r&quot;)\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n"
+      },
+      "entry": [
+        14
+      ],
+      "exit": [
+        12
+      ],
+      "degenerate": false
+    },
+    "oldtonew": {
+      "nodes": [
+        0
+      ],
+      "edges": [],
+      "labels": {
+        "0": "13.0:\nFUNCTION_START\n<UnsupportedStmt: ['addressOf', '&amp;dest']>\n<UnsupportedStmt: ['sizeOf', 'sizeofdest']>\nmemset()\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_type,ut_type>\n<UnsupportedStmt: ['fieldAccess', 'dest.ut_type']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_type,ut_type>\n<UnsupportedStmt: ['fieldAccess', 'src.ut_type']>\ndest.ut_type = src.ut_type\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_pid,ut_pid>\n<UnsupportedStmt: ['fieldAccess', 'dest.ut_pid']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_pid,ut_pid>\n<UnsupportedStmt: ['fieldAccess', 'src.ut_pid']>\ndest.ut_pid = src.ut_pid\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_tv,ut_tv>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: FIELD_IDENTIFIER,tv_sec,tv_sec>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_oldtime,ut_oldtime>\n<UnsupportedStmt: ['fieldAccess', 'src.ut_oldtime']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_addr_v6,ut_addr_v6>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_oldaddr,ut_oldaddr>\n<UnsupportedStmt: ['fieldAccess', 'src.ut_oldaddr']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_id,ut_id>\n<UnsupportedStmt: ['fieldAccess', 'dest.ut_id']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_id,ut_id>\n<UnsupportedStmt: ['fieldAccess', 'src.ut_id']>\nstrncpy()\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_line,ut_line>\n<UnsupportedStmt: ['fieldAccess', 'dest.ut_line']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_line,ut_line>\n<UnsupportedStmt: ['fieldAccess', 'src.ut_line']>\nstrncpy()\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_user,ut_user>\n<UnsupportedStmt: ['fieldAccess', 'dest.ut_user']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_user,ut_user>\n<UnsupportedStmt: ['fieldAccess', 'src.ut_user']>\nstrncpy()\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_host,ut_host>\n<UnsupportedStmt: ['fieldAccess', 'dest.ut_host']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_host,ut_host>\n<UnsupportedStmt: ['fieldAccess', 'src.ut_host']>\nstrncpy()\nreturn dest;,returndest;\nFUNCTION_END\n"
+      },
+      "entry": [
+        0
+      ],
+      "exit": [
+        0
+      ],
+      "degenerate": false
+    },
+    "newtoold": {
+      "nodes": [
+        0
+      ],
+      "edges": [],
+      "labels": {
+        "0": "35.0:\nFUNCTION_START\n<UnsupportedStmt: ['addressOf', '&amp;dest']>\n<UnsupportedStmt: ['sizeOf', 'sizeofdest']>\nmemset()\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_type,ut_type>\n<UnsupportedStmt: ['fieldAccess', 'dest.ut_type']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_type,ut_type>\n<UnsupportedStmt: ['fieldAccess', 'src.ut_type']>\ndest.ut_type = src.ut_type\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_pid,ut_pid>\n<UnsupportedStmt: ['fieldAccess', 'dest.ut_pid']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_pid,ut_pid>\n<UnsupportedStmt: ['fieldAccess', 'src.ut_pid']>\ndest.ut_pid = src.ut_pid\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_oldtime,ut_oldtime>\n<UnsupportedStmt: ['fieldAccess', 'dest.ut_oldtime']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_tv,ut_tv>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: FIELD_IDENTIFIER,tv_sec,tv_sec>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_oldaddr,ut_oldaddr>\n<UnsupportedStmt: ['fieldAccess', 'dest.ut_oldaddr']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_addr_v6,ut_addr_v6>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_id,ut_id>\n<UnsupportedStmt: ['fieldAccess', 'dest.ut_id']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_id,ut_id>\n<UnsupportedStmt: ['fieldAccess', 'src.ut_id']>\nstrncpy()\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_line,ut_line>\n<UnsupportedStmt: ['fieldAccess', 'dest.ut_line']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_line,ut_line>\n<UnsupportedStmt: ['fieldAccess', 'src.ut_line']>\nstrncpy()\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_user,ut_user>\n<UnsupportedStmt: ['fieldAccess', 'dest.ut_user']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_user,ut_user>\n<UnsupportedStmt: ['fieldAccess', 'src.ut_user']>\nstrncpy()\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_host,ut_host>\n<UnsupportedStmt: ['fieldAccess', 'dest.ut_host']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_host,ut_host>\n<UnsupportedStmt: ['fieldAccess', 'src.ut_host']>\nstrncpy()\nreturn dest;,returndest;\nFUNCTION_END\n"
+      },
+      "entry": [
+        0
+      ],
+      "exit": [
+        0
+      ],
+      "degenerate": false
+    },
+    "timetostr": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "edges": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "labels": {
+        "0": "67.0:\nreturn s;,returns;\nFUNCTION_END\n",
+        "1": "65.1:\n<UnsupportedStmt: ['indirectIndexAccess', 's[0]']>\ns[0] = '\\0'\n",
+        "2": "57.0:\nFUNCTION_START\n<UnsupportedStmt: ['alloc', 's[29]']>\ns[29] = \ntime != 0\n",
+        "3": "63.2:\n<UnsupportedStmt: ['addressOf', '&amp;time']>\nlocaltime(&amp;time)\nstrftime()\n"
+      },
+      "entry": [
+        2
+      ],
+      "exit": [
+        0
+      ],
+      "degenerate": false
+    },
+    "strtotime": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "edges": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          1
+        ]
+      ],
+      "labels": {
+        "0": "77.0:\ns_time[0]==''||s_time[0]=='\\0' || \n",
+        "1": "77.4:\n<UnsupportedStmt: ['indirectIndexAccess', 's_time[0]']>\ns_time[0] == '\\0'\n",
+        "2": "80.1:\n<UnsupportedStmt: ['addressOf', '&amp;tm']>\nstrptime()\n<UnsupportedStmt: ['indirectIndexAccess', 's_time[26]']>\ns_time[26] == 'D'\n",
+        "3": "78.2:\n<UnsupportedStmt: UNKNOWN,time_t,time_t>\n<UnsupportedStmt: ['cast', '(time_t)0']>\nreturn (time_t)0;,return(time_t)0;\n",
+        "4": "86.2:\n<UnsupportedStmt: ['addressOf', '&amp;tm']>\nmktime(&amp;tm)\nreturn mktime(&amp;tm);,returnmktime(&amp;tm);\n",
+        "5": "84.2:\n<UnsupportedStmt: FIELD_IDENTIFIER,tm_isdst,tm_isdst>\n<UnsupportedStmt: ['fieldAccess', 'tm.tm_isdst']>\ntm.tm_isdst = 1\n",
+        "6": "70.0:\nFUNCTION_START\n<UnsupportedStmt: ['addressOf', '&amp;tm']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(structtm)']>\nmemset()\n<UnsupportedStmt: ['indirectIndexAccess', 's_time[0]']>\ns_time[0] == ''\n"
+      },
+      "entry": [
+        6
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "xcleanse": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "edges": [
+        [
+          0,
+          10
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          9,
+          4
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          10,
+          9
+        ]
+      ],
+      "labels": {
+        "0": "93.0:\n*s&amp;&amp;len--&gt;0 && \n",
+        "1": "93.1:\n<UnsupportedStmt: ['postIncrement', 's++']>\n",
+        "2": "93.2:\n<UnsupportedStmt: ['indirection', '*s']>\n",
+        "3": "None.0:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "4": "None.1:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "5": "90.0:\nFUNCTION_START\n",
+        "6": "93.4:\n<UnsupportedStmt: ['postDecrement', 'len--']>\nlen-- > 0\n",
+        "7": "99.1:\n<UnsupportedStmt: ['indirection', '*s']>\n*s = '?'\n",
+        "8": "98.2:\n<UnsupportedStmt: ['indirection', '*s']>\n*s == ']'\n",
+        "9": "98.3:\n<UnsupportedStmt: ['indirection', '*s']>\n*s == '['\n",
+        "10": "95.1:\n__ctype_b_loc()\n<UnsupportedStmt: ['indirection', '*__ctype_b_loc()']>\n<UnsupportedStmt: UNKNOWN,int,int>\n<UnsupportedStmt: ['indirection', '*s']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: UNKNOWN,unsignedshortint,unsignedshortint>\n<UnsupportedStmt: ['cast', '(unsignedshortint)_ISprint']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n"
+      },
+      "entry": [
+        5
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "unspace": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          8,
+          4
+        ]
+      ],
+      "labels": {
+        "0": "105.0:\n*s&amp;&amp;*s!=''&amp;&amp;len-- && \n",
+        "1": "106.0:\n<UnsupportedStmt: ['preIncrement', '++s']>\n",
+        "2": "108.0:\nlen > 0\n",
+        "3": "105.3:\n<UnsupportedStmt: ['indirection', '*s']>\n",
+        "4": "105.1:\n*s&amp;&amp;*s!='' && \n",
+        "5": "105.2:\n<UnsupportedStmt: ['postDecrement', 'len--']>\n",
+        "6": "102.0:\nFUNCTION_START\n",
+        "7": "109.1:\n<UnsupportedStmt: ['indirection', '*s']>\n*s = '\\0'\n",
+        "8": "105.5:\n<UnsupportedStmt: ['indirection', '*s']>\n*s != ''\n"
+      },
+      "entry": [
+        6
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "print_utline": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "edges": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          8
+        ]
+      ],
+      "labels": {
+        "0": "127.0:\n!ut.ut_addr_v6[1]&amp;&amp;!ut.ut_addr_v6[2]&amp;&amp;!ut.u... && \n",
+        "1": "127.1:\n!ut.ut_addr_v6[1]&amp;&amp;!ut.ut_addr_v6[2] && \n",
+        "2": "138.2:\ninet_ntop()\naddr_string = inet_ntop(addr_family,in_addr,a...\n(addr_string=inet_ntop(addr_family,in_addr,... == \n",
+        "3": "127.11:\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_addr_v6,ut_addr_v6>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_addr_v6']>\n<UnsupportedStmt: ['indirectIndexAccess', 'ut.ut_addr_v6[3]']>\n<UnsupportedStmt: ['logicalNot', '!ut.ut_addr_v6[3]']>\n",
+        "4": "127.13:\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_addr_v6,ut_addr_v6>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_addr_v6']>\n<UnsupportedStmt: ['indirectIndexAccess', 'ut.ut_addr_v6[2]']>\n<UnsupportedStmt: ['logicalNot', '!ut.ut_addr_v6[2]']>\n",
+        "5": "112.0:\nFUNCTION_START\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_addr_v6,ut_addr_v6>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_addr_v6']>\n<UnsupportedStmt: ['addressOf', '&amp;ut.ut_addr_v6']>\n*in_addr = &amp;ut.ut_addr_v6\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_addr_v6,ut_addr_v6>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_addr_v6']>\n<UnsupportedStmt: ['indirectIndexAccess', 'ut.ut_addr_v6[1]']>\n<UnsupportedStmt: ['logicalNot', '!ut.ut_addr_v6[1]']>\n",
+        "6": "None.7:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_addr_v6,ut_addr_v6>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "7": "139.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'addr_buf[0]']>\naddr_buf[0] = '\\0'\n<UnsupportedStmt: ['indirectIndexAccess', 'addr_buf[0]']>\n<UnsupportedStmt: ['addressOf', '&amp;addr_buf[0]']>\naddr_string = &amp;addr_buf[0]\n",
+        "8": "142.1:\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_tv,ut_tv>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: FIELD_IDENTIFIER,tv_sec,tv_sec>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_id,ut_id>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_id']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_id,ut_id>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_id']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(ut.ut_id)']>\nxcleanse()\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_user,ut_user>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_user']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_user,ut_user>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_user']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(ut.ut_user)']>\nxcleanse()\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_line,ut_line>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_line']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_line,ut_line>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_line']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(ut.ut_line)']>\nxcleanse()\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_host,ut_host>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_host']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_host,ut_host>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_host']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(ut.ut_host)']>\nxcleanse()\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_type,ut_type>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_type']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_pid,ut_pid>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_pid']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_id,ut_id>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_id']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_user,ut_user>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_user']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_line,ut_line>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_line']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_host,ut_host>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_host']>\nprintf()\nFUNCTION_END\n"
+      },
+      "entry": [
+        5
+      ],
+      "exit": [
+        8
+      ],
+      "degenerate": false
+    },
+    "dump": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "edges": [
+        [
+          0,
+          11
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          7,
+          12
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          9,
+          11
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          1
+        ],
+        [
+          11,
+          3
+        ],
+        [
+          11,
+          9
+        ],
+        [
+          12,
+          3
+        ],
+        [
+          12,
+          7
+        ]
+      ],
+      "labels": {
+        "0": "175.0:\n<UnsupportedStmt: IDENTIFIER,oldfmt,if(oldfmt)>\n",
+        "1": "170.2:\n-10 - \n",
+        "2": "None.0:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: fread(&amp;uto,sizeof...>\n",
+        "3": "181.0:\n<UnsupportedStmt: IDENTIFIER,forever,if(forever)>\n",
+        "4": "181.1:\nsleep(1)\n",
+        "5": "170.4:\n<UnsupportedStmt: ['sizeOf', 'sizeofuto']>\n",
+        "6": "170.5:\n<UnsupportedStmt: ['sizeOf', 'sizeofut']>\n",
+        "7": "180.0:\nprint_utline(ut)\n",
+        "8": "170.3:\noldfmt ? o : l\n<UnsupportedStmt: ['multiplication', '-10*(oldfmt?sizeofuto:sizeofut)']>\nfseek()\n",
+        "9": "177.1:\noldtonew(uto)\nprint_utline(oldtonew(uto))\n",
+        "10": "163.0:\nFUNCTION_START\n<UnsupportedStmt: IDENTIFIER,forever,if(forever)>\n",
+        "11": "176.2:\n<UnsupportedStmt: ['addressOf', '&amp;uto']>\n<UnsupportedStmt: ['sizeOf', 'sizeofuto']>\nfread()\nfread(&amp;uto,sizeofuto,1,fp) == 1\n",
+        "12": "179.2:\n<UnsupportedStmt: ['addressOf', '&amp;ut']>\n<UnsupportedStmt: ['sizeOf', 'sizeofut']>\nfread()\nfread(&amp;ut,sizeofut,1,fp) == 1\n"
+      },
+      "entry": [
+        10
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "gettok": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "edges": [
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          7,
+          5
+        ]
+      ],
+      "labels": {
+        "0": "None.0:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nexit(1)\n",
+        "1": "None.1:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nexit(1)\n",
+        "2": "214.1:\nstrchr()\nt = strchr(line,'')\n",
+        "3": "215.1:\n<UnsupportedStmt: ['indirection', '*t']>\n*t = 0\n",
+        "4": "187.0:\nFUNCTION_START\nstrchr()\n<UnsupportedStmt: ['subtraction', 'strchr(line', \"'[')-line\"]>\nbpos = strchr(line,'[')-line\nbpos < 0\n",
+        "5": "217.0:\nstrncpy()\n<UnsupportedStmt: ['addition', 'eaten+1']>\nreturn eaten+1;,returneaten+1;\nFUNCTION_END\n",
+        "6": "200.1:\n<UnsupportedStmt: ['addition', '1+bpos']>\n<UnsupportedStmt: ['assignmentPlus', 'line+=1+bpos']>\nstrchr()\n<UnsupportedStmt: ['subtraction', 'strchr(line', \"']')-line\"]>\nepos = strchr(line,']')-line\nepos < 0\n",
+        "7": "209.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'line[epos]']>\nline[epos] = '\\0'\n<UnsupportedStmt: ['addition', 'bpos+epos']>\n<UnsupportedStmt: ['addition', 'bpos+epos+1']>\neaten = bpos+epos+1\n<UnsupportedStmt: IDENTIFIER,eatspace,if(eatspace)>\n"
+      },
+      "entry": [
+        4
+      ],
+      "exit": [
+        5
+      ],
+      "degenerate": false
+    },
+    "undump": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "labels": {
+        "0": "237.0:\nfgets()\n",
+        "1": "270.0:\nfree(linestart)\nFUNCTION_END\n",
+        "2": "264.0:\n<UnsupportedStmt: ['addressOf', '&amp;ut']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(ut)']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "3": "259.1:\nnewtoold(ut)\nuto = newtoold(ut)\n<UnsupportedStmt: ['addressOf', '&amp;uto']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(uto)']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "4": "222.0:\nFUNCTION_START\n<UnsupportedStmt: ['alloc', 's_addr[16]']>\ns_addr[16] = \n<UnsupportedStmt: ['alloc', 's_time[29]']>\ns_time[29] = \n<UnsupportedStmt: ['indirection', '*linestart']>\n<UnsupportedStmt: ['sizeOf', 'sizeof*linestart']>\n<UnsupportedStmt: ['multiplication', '1024*sizeof*linestart']>\nmalloc(1024*sizeof*linestart)\nlinestart = malloc(1024*sizeof*linestart)\n<UnsupportedStmt: ['indirectIndexAccess', 's_addr[15]']>\ns_addr[15] = 0\n<UnsupportedStmt: ['indirectIndexAccess', 's_time[28]']>\ns_time[28] = 0\n",
+        "5": "239.0:\n*line = linestart\n<UnsupportedStmt: ['addressOf', '&amp;ut']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(ut)']>\nmemset()\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_type,ut_type>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_type']>\n<UnsupportedStmt: ['addressOf', '&amp;ut.ut_type']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_pid,ut_pid>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_pid']>\n<UnsupportedStmt: ['addressOf', '&amp;ut.ut_pid']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_id,ut_id>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_id']>\nsscanf()\n<UnsupportedStmt: ['assignmentPlus', 'line+=19']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_user,ut_user>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_user']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_user,ut_user>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_user']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(ut.ut_user)']>\ngettok()\n<UnsupportedStmt: ['assignmentPlus', 'line+=gettok(line', 'ut.ut_user', 'sizeof(ut.ut_u...']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_line,ut_line>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_line']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_line,ut_line>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_line']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(ut.ut_line)']>\ngettok()\n<UnsupportedStmt: ['assignmentPlus', 'line+=gettok(line', 'ut.ut_line', 'sizeof(ut.ut_l...']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_host,ut_host>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_host']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_host,ut_host>\n<UnsupportedStmt: ['fieldAccess', 'ut.ut_host']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(ut.ut_host)']>\ngettok()\n<UnsupportedStmt: ['assignmentPlus', 'line+=gettok(line', 'ut.ut_host', 'sizeof(ut.ut_h...']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(s_addr)']>\n<UnsupportedStmt: ['subtraction', 'sizeof(s_addr)-1']>\ngettok()\n<UnsupportedStmt: ['assignmentPlus', 'line+=gettok(line', 's_addr', 'sizeof(s_addr)-1', '1)']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(s_time)']>\n<UnsupportedStmt: ['subtraction', 'sizeof(s_time)-1']>\ngettok()\n<UnsupportedStmt: ['assignmentPlus', 'line+=gettok(line', 's_time', 'sizeof(s_time)-1', '0)']>\n<UnsupportedStmt: UNKNOWN,void,void>\n<UnsupportedStmt: ['cast', '(void)line']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_addr_v6,ut_addr_v6>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\ninet_addr(s_addr)\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: FIELD_IDENTIFIER,ut_tv,ut_tv>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: FIELD_IDENTIFIER,tv_sec,tv_sec>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nstrtotime(s_time)\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: IDENTIFIER,oldfmt,if(oldfmt)>\n"
+      },
+      "entry": [
+        4
+      ],
+      "exit": [
+        1
+      ],
+      "degenerate": false
+    }
+  }
+}

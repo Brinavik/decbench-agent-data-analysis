@@ -1,0 +1,139 @@
+[
+  {
+    "function": "output_diff3_edscript",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "函数返回类型",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "源码 2304-2307: static _Bool output_diff3_edscript (FILE *outputfile, struct diff3_block *diff,",
+        "evidence_decompiled_line": "反编译 64-65: bool output_diff3_edscript (FILE *outputfile, struct diff3_block *diff,"
+      },
+      {
+        "source_role": "第1个参数",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "源码 2307: output_diff3_edscript (FILE *outputfile, struct diff3_block *diff,",
+        "evidence_decompiled_line": "反编译 65: output_diff3_edscript (FILE *outputfile, struct diff3_block *diff,"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "struct diff3_block *",
+        "decompiled_type": "struct diff3_block *",
+        "match": "correct",
+        "evidence_source_line": "源码 2307: output_diff3_edscript (FILE *outputfile, struct diff3_block *diff,",
+        "evidence_decompiled_line": "反编译 65: output_diff3_edscript (FILE *outputfile, struct diff3_block *diff,"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "int const mapping[3]（形参 ABI 类型为 const int *）",
+        "decompiled_type": "int const mapping[3]（形参 ABI 类型为 const int *）",
+        "match": "correct",
+        "evidence_source_line": "源码 2308: int const mapping[3], int const rev_mapping[3],",
+        "evidence_decompiled_line": "反编译 66: int const mapping[3], int const rev_mapping[3],"
+      },
+      {
+        "source_role": "第4个参数",
+        "source_type": "int const rev_mapping[3]（形参 ABI 类型为 const int *）",
+        "decompiled_type": "int const rev_mapping[3]（形参 ABI 类型为 const int *）",
+        "match": "correct",
+        "evidence_source_line": "源码 2308: int const mapping[3], int const rev_mapping[3],",
+        "evidence_decompiled_line": "反编译 66: int const mapping[3], int const rev_mapping[3],"
+      },
+      {
+        "source_role": "第5个参数",
+        "source_type": "char const *",
+        "decompiled_type": "char const *",
+        "match": "correct",
+        "evidence_source_line": "源码 2309: char const *file0, char const *file1, char const *file2)",
+        "evidence_decompiled_line": "反编译 67: char const *file0, char const *file1, char const *file2)"
+      },
+      {
+        "source_role": "第6个参数",
+        "source_type": "char const *",
+        "decompiled_type": "char const *",
+        "match": "correct",
+        "evidence_source_line": "源码 2309: char const *file0, char const *file1, char const *file2)",
+        "evidence_decompiled_line": "反编译 67: char const *file0, char const *file1, char const *file2)"
+      },
+      {
+        "source_role": "第7个参数",
+        "source_type": "char const *",
+        "decompiled_type": "char const *",
+        "match": "correct",
+        "evidence_source_line": "源码 2309: char const *file0, char const *file1, char const *file2)",
+        "evidence_decompiled_line": "反编译 67: char const *file0, char const *file1, char const *file2)"
+      },
+      {
+        "source_role": "局部变量 leading_dot",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "源码 2312-2313: _Bool leading_dot;",
+        "evidence_decompiled_line": "反编译 69: bool leading_dot;"
+      },
+      {
+        "source_role": "局部变量 conflicts_found",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "源码 2315-2318: _Bool conflicts_found = 0;",
+        "evidence_decompiled_line": "反编译 70: bool conflicts_found = false;"
+      },
+      {
+        "source_role": "局部变量 conflict",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "源码 2320-2321: _Bool conflict;",
+        "evidence_decompiled_line": "反编译 71: bool conflict;"
+      },
+      {
+        "source_role": "局部变量 b（链表遍历指针）",
+        "source_type": "struct diff3_block *",
+        "decompiled_type": "struct diff3_block *",
+        "match": "correct",
+        "evidence_source_line": "源码 2322-2324: struct diff3_block *b; for (b = reverse_diff3_blocklist (diff); b; b = b->next)",
+        "evidence_decompiled_line": "反编译 72-74: struct diff3_block *b; for (b = reverse_diff3_blocklist (diff); b; b = b->next)"
+      },
+      {
+        "source_role": "循环体局部变量 type",
+        "source_type": "enum diff_type",
+        "decompiled_type": "enum diff_type",
+        "match": "correct",
+        "evidence_source_line": "源码 2327-2330: enum diff_type type = (b->correspond == DIFF_ALL ? DIFF_ALL : DIFF_1ST + rev_mapping[b->correspond - DIFF_1ST]);",
+        "evidence_decompiled_line": "反编译 77-81: enum diff_type type = (b->correspond == DIFF_ALL ? DIFF_ALL : (enum diff_type) (DIFF_1ST + rev_mapping[b->correspond - DIFF_1ST]));"
+      },
+      {
+        "source_role": "循环体局部变量 low0",
+        "source_type": "printint（typedef long int）",
+        "decompiled_type": "lin（反编译文件中 typedef long int）",
+        "match": "wrong",
+        "evidence_source_line": "源码 542: typedef long int printint; 源码 2332: printint low0, high0; 源码 2347: low0 = ((b)->ranges[mapping[0]][0]);",
+        "evidence_decompiled_line": "反编译 6: typedef long int lin; 反编译 83: lin low0, high0; 反编译 107: low0 = D_LOWLINE (b, mapping[FILE0]);"
+      },
+      {
+        "source_role": "循环体局部变量 high0",
+        "source_type": "printint（typedef long int）",
+        "decompiled_type": "lin（反编译文件中 typedef long int）",
+        "match": "wrong",
+        "evidence_source_line": "源码 542: typedef long int printint; 源码 2332: printint low0, high0; 源码 2348: high0 = ((b)->ranges[mapping[0]][1]);",
+        "evidence_decompiled_line": "反编译 6: typedef long int lin; 反编译 83: lin low0, high0; 反编译 108: high0 = D_HIGHLINE (b, mapping[FILE0]);"
+      },
+      {
+        "source_role": "结构体 diff3_block",
+        "source_type": "字段序列：enum diff_type correspond; lin ranges[3][2]（源码 lin 为 ptrdiff_t）; char **lines[3]; size_t *lengths[3]; struct diff3_block *next",
+        "decompiled_type": "字段序列：enum diff_type correspond; lin ranges[3][2]（反编译 lin 为 long int）; char **lines[3]; size_t *lengths[3]; struct diff3_block *next",
+        "match": "correct",
+        "evidence_source_line": "源码 541: typedef ptrdiff_t lin; 源码 939-945: struct diff3_block { enum diff_type correspond; lin ranges[3][2]; char **lines[3]; size_t *lengths[3]; struct diff3_block *next; };",
+        "evidence_decompiled_line": "反编译 6: typedef long int lin; 反编译 26-33: struct diff3_block { enum diff_type correspond; lin ranges[3][2]; char **lines[3]; size_t *lengths[3]; struct diff3_block *next; };"
+      }
+    ],
+    "reasoning": "按 ABI 参数位置逐一对齐，第1至第7参数及返回类型均匹配；两个数组形参在 ABI 上都退化为 const int *，未发生指针层级坍塌。局部变量依据控制流和数据流对齐：三个布尔量分别承担点行标记、累计冲突标记和当前块冲突标记，b 为反转后链表遍历指针，type 来自 correspond 与 rev_mapping 的组合，均恢复正确。low0/high0 均从 ranges[mapping[0]] 的两个端点取值并以 %ld 输出，故可确定对应；源码显式声明为 printint，而反编译声明为 lin，虽然两者在本目标上底层均为有符号 long int、宽度和运行时表示一致，但 typedef 语义恢复错误，确认 INT-01。diff3_block 的字段数量、顺序、数组维度和指针层级完全一致；在该 LP64 目标上 correspond 后接对齐填充，随后依次为 48 字节 ranges、24 字节 lines、24 字节 lengths 和 8 字节 next，未发现 LAYOUT-01、PTR-01、ST-01、FN-01 或 SC-01。"
+  }
+]

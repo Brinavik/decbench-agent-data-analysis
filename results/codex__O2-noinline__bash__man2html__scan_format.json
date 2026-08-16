@@ -1,0 +1,107 @@
+[
+  {
+    "function": "scan_format",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "函数返回值",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1361-1362: static char * / scan_format(char *c, TABLEROW ** result, int *maxcol); 1517: return c;",
+        "evidence_decompiled_line": "33: char *scan_format(char *text, TblRow **rows, int *column_count); 230: return text;"
+      },
+      {
+        "source_role": "第1个参数",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1362: scan_format(char *c, TABLEROW ** result, int *maxcol); 1377: while (*c && *c != '.')",
+        "evidence_decompiled_line": "33: char *scan_format(char *text, TblRow **rows, int *column_count); 67: while (*text != '\\0' && *text != '.')"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "TABLEROW **",
+        "decompiled_type": "TblRow **",
+        "match": "correct",
+        "evidence_source_line": "1362: scan_format(char *c, TABLEROW ** result, int *maxcol); 1368-1369: if (*result) { clear_table(*result); }; 1516: *result = layout;",
+        "evidence_decompiled_line": "33: char *scan_format(char *text, TblRow **rows, int *column_count); 44-45: if (*rows != NULL) sub_3af0(*rows); 229: *rows = first_row;"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "int *",
+        "decompiled_type": "int *",
+        "match": "correct",
+        "evidence_source_line": "1362: scan_format(char *c, TABLEROW ** result, int *maxcol); 1503: *maxcol = 0; 1512-1513: if (i > *maxcol) *maxcol = i;",
+        "evidence_decompiled_line": "33: char *scan_format(char *text, TblRow **rows, int *column_count); 217: *column_count = 0; 224-225: if (value > *column_count) *column_count = value;"
+      },
+      {
+        "source_role": "局部变量layout（首行/最终输出行链表）",
+        "source_type": "TABLEROW *",
+        "decompiled_type": "TblRow *（first_row）",
+        "match": "correct",
+        "evidence_source_line": "1364: TABLEROW *layout, *currow; 1371: layout = currow = (TABLEROW *) xmalloc(sizeof(TABLEROW)); 1516: *result = layout;",
+        "evidence_decompiled_line": "35: TblRow *first_row; 47: first_row = xmalloc(sizeof(*first_row)); 229: *rows = first_row;"
+      },
+      {
+        "source_role": "局部变量currow（建表时尾行，计数时遍历行）",
+        "source_type": "TABLEROW *",
+        "decompiled_type": "TblRow *（last_row/row，按生命期拆分）",
+        "match": "correct",
+        "evidence_source_line": "1364: TABLEROW *layout, *currow; 1486-1488: currow->next = (TABLEROW *) xmalloc(sizeof(TABLEROW)); currow->next->prev = currow; currow = currow->next; 1504-1514: currow = layout; ... currow = currow->next;",
+        "evidence_decompiled_line": "36-37: TblRow *last_row; TblRow *row; 72-76: row = xmalloc(sizeof(*row)); last_row->next = row; row->previous = last_row; ... last_row = row; 218-226: row = first_row; ... row = row->next;"
+      },
+      {
+        "source_role": "局部变量curfield（当前单元及计数遍历指针）",
+        "source_type": "TABLEITEM *",
+        "decompiled_type": "TblCell *（cell/new_cell/first_cells，按数据流拆分）",
+        "match": "correct",
+        "evidence_source_line": "1365: TABLEITEM *curfield; 1394-1396: curfield->next = (TABLEITEM *) xmalloc(sizeof(TABLEITEM)); curfield = curfield->next; *curfield = emptyfield; 1506-1510: curfield = layout->first; ... curfield = curfield->next;",
+        "evidence_decompiled_line": "38-40: TblCell *first_cells; TblCell *cell; TblCell *new_cell; 109-111: new_cell = xmalloc(sizeof(*new_cell)); cell->next = new_cell; cell = new_cell; 219-223: first_cells = first_row->cells; ... for (cell = first_cells; cell != NULL; cell = cell->next)"
+      },
+      {
+        "source_role": "局部变量i（十进制累加值/列计数）",
+        "source_type": "int",
+        "decompiled_type": "int（value）",
+        "match": "correct",
+        "evidence_source_line": "1366: int i, j; 1475-1482: i = 0; ... i = i * 10 + (*c++) - '0'; curfield->space = i; 1507-1513: i = 0; ... i++; ... *maxcol = i;",
+        "evidence_decompiled_line": "41: int value; 139-144: value = 0; ... value = value * 10 + *text - '0'; cell->spacing = value; 221-225: value = 0; ... ++value; ... *column_count = value;"
+      },
+      {
+        "source_role": "局部变量j（字号正负号）",
+        "source_type": "int",
+        "decompiled_type": "int（sign）",
+        "match": "correct",
+        "evidence_source_line": "1366: int i, j; 1428-1446: i = j = 0; ... j = 1; ... j = -1; ... curfield->size = i * j; else curfield->size = j - 10;",
+        "evidence_decompiled_line": "42: int sign; 167-181: sign = 0; ... sign = 1; ... sign = -1; ... cell->point_size = sign != 0 ? sign * value : -10;"
+      },
+      {
+        "source_role": "结构体TABLEITEM",
+        "source_type": "struct TABLEITEM { char *; int x10; TABLEITEM *; }，LP64下字段偏移0,8,12,16,20,24,28,32,36,40,44,48，大小56字节",
+        "decompiled_type": "struct TblCell { char *; int x10; TblCell *; }，对应字段偏移0,8,12,16,20,24,28,32,36,40,44,48，大小56字节",
+        "match": "correct",
+        "evidence_source_line": "1307-1312: struct TABLEITEM { char *contents; int size, align, valign, colspan, rowspan, font, vleft, vright, space, width; TABLEITEM *next; }; 1375: xmalloc(sizeof(TABLEITEM));",
+        "evidence_decompiled_line": "8-21: struct TblCell { char *text; int point_size; int alignment; int vertical_alignment; int colspan; int rowspan; int font; int right_border; int left_border; int spacing; int width; TblCell *next; }; 52: cell = xmalloc(sizeof(*cell));"
+      },
+      {
+        "source_role": "结构体TABLEROW",
+        "source_type": "struct TABLEROW { TABLEITEM *; TABLEROW *; TABLEROW *; }，LP64下字段偏移0,8,16，大小24字节",
+        "decompiled_type": "struct TblRow { TblCell *; TblRow *; TblRow *; }，对应字段偏移0,8,16，大小24字节",
+        "match": "correct",
+        "evidence_source_line": "1322-1325: struct TABLEROW { TABLEITEM *first; TABLEROW *prev, *next; }; 1371: xmalloc(sizeof(TABLEROW));",
+        "evidence_decompiled_line": "23-27: struct TblRow { TblCell *cells; TblRow *previous; TblRow *next; }; 47: first_row = xmalloc(sizeof(*first_row));"
+      },
+      {
+        "source_role": "本函数引用的文件作用域静态对象emptyfield",
+        "source_type": "static TABLEITEM",
+        "decompiled_type": "无独立对象；被展开为TblCell各字段的等价常量初始化",
+        "match": "correct",
+        "evidence_source_line": "1314-1318: static TABLEITEM emptyfield = { NULL, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, NULL }; 1376: *curfield = emptyfield;",
+        "evidence_decompiled_line": "52-64: cell分配后依次初始化text=NULL、十个int字段为0/0/0/1/1/0/0/0/0/0、next=NULL；不存在extern TblCell对象声明"
+      }
+    ],
+    "reasoning": "按SysV AMD64参数位置对齐，第1至第3参数依次为字符指针、行结构体二级指针、int指针，返回值均为字符指针。layout/currow/curfield依据分配、链表写入和最终输出数据流对齐；反编译器将currow和curfield按生命期拆成多个同类型局部量，不构成类型错误。两个结构体均按字段类型序列而非名称对齐：TABLEITEM/TblCell为1个指针、10个连续int、1个自指针，TABLEROW/TblRow为3个指针，布局一致。字段名称vleft/vright与right_border/left_border的语义命名差异不影响偏移和类型恢复。未发现PTR-01、INT-01、FN-01、LAYOUT-01或ST-01；emptyfield是文件作用域static对象且被优化展开，没有被错误重构为extern全局对象，故SC-01也不成立。"
+  }
+]

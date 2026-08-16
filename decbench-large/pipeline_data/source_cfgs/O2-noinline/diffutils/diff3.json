@@ -1,0 +1,3656 @@
+{
+  "opt": "O2-noinline",
+  "project": "diffutils",
+  "binary": "diff3",
+  "generator": "pyjoern",
+  "functions": {
+    "fatal": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "edges": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          7,
+          9
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          9,
+          1
+        ],
+        [
+          9,
+          5
+        ]
+      ],
+      "labels": {
+        "0": "2660.1:\n__builtin_unreachable()\n",
+        "1": "2666.1:\n__builtin_unreachable()\n",
+        "2": "2654.0:\n(!!sizeof(struct{_Static_assert(2,&quot;verify_... ? ( : !\nFUNCTION_END\n",
+        "3": "2660.2:\n<UnsupportedStmt: UNKNOWN,void,void>\n<UnsupportedStmt: ['cast', '(void)0']>\n",
+        "4": "None.5:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: void)0:__builtin_unreachable()>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "5": "2666.2:\n<UnsupportedStmt: UNKNOWN,void,void>\n<UnsupportedStmt: ['cast', '(void)0']>\n",
+        "6": "None.7:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: void)0:__builtin_unreachable()>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "7": "2651.0:\nFUNCTION_START\n<UnsupportedStmt: ['sizeOf', 'sizeof(struct{_Static_assert(2', '&quot;verify_exp...']>\n<UnsupportedStmt: ['logicalNot', '!sizeof(struct{_Static_assert(2', '&quot;verify_ex...']>\n<UnsupportedStmt: ['logicalNot', '!!sizeof(struct{_Static_assert(2', '&quot;verify_e...']>\n",
+        "8": "2655.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "9": "2661.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n"
+      },
+      "entry": [
+        7
+      ],
+      "exit": [
+        2
+      ],
+      "degenerate": false
+    },
+    "try_help": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "edges": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          7,
+          9
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          8,
+          11
+        ],
+        [
+          9,
+          8
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          11,
+          1
+        ],
+        [
+          11,
+          5
+        ]
+      ],
+      "labels": {
+        "0": "1345.1:\n__builtin_unreachable()\n",
+        "1": "1351.1:\n__builtin_unreachable()\n",
+        "2": "1339.0:\n(!!sizeof(struct{_Static_assert(2,&quot;verify_... ? ( : !\nFUNCTION_END\n",
+        "3": "1345.2:\n<UnsupportedStmt: UNKNOWN,void,void>\n<UnsupportedStmt: ['cast', '(void)0']>\n",
+        "4": "None.7:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: void)0:__builtin_unreachable()>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "5": "1351.2:\n<UnsupportedStmt: UNKNOWN,void,void>\n<UnsupportedStmt: ['cast', '(void)0']>\n",
+        "6": "None.9:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: void)0:__builtin_unreachable()>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "7": "1330.0:\nFUNCTION_START\n<UnsupportedStmt: IDENTIFIER,reason_msgid,if(reason_msgid)>\n",
+        "8": "1339.3:\n<UnsupportedStmt: ['sizeOf', 'sizeof(struct{_Static_assert(2', '&quot;verify_exp...']>\n<UnsupportedStmt: ['logicalNot', '!sizeof(struct{_Static_assert(2', '&quot;verify_ex...']>\n<UnsupportedStmt: ['logicalNot', '!!sizeof(struct{_Static_assert(2', '&quot;verify_e...']>\n",
+        "9": "1335.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ((void...>\n",
+        "10": "1340.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "11": "1346.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n"
+      },
+      "entry": [
+        7
+      ],
+      "exit": [
+        2
+      ],
+      "degenerate": false
+    },
+    "check_stdout": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "edges": [
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "labels": {
+        "0": "1361.0:\nfatal(&quot;writefailed&quot;)\n",
+        "1": "None.2:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "2": "1355.0:\nFUNCTION_START\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "3": "1366.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n"
+      },
+      "entry": [
+        2
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "usage": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "edges": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          0
+        ]
+      ],
+      "labels": {
+        "0": "1424.0:\n<UnsupportedStmt: ['indirection', '*p']>\n",
+        "1": "1424.1:\n<UnsupportedStmt: ['postIncrement', 'p++']>\n",
+        "2": "1432.0:\nputchar_unlocked('\\n')\n",
+        "3": "1425.1:\n<UnsupportedStmt: ['indirection', '*p']>\n<UnsupportedStmt: ['indirection', '**p']>\n",
+        "4": "1427.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: ['indirection', '*p']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "5": "1398.0:\nFUNCTION_START\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\np = option_help_msgid\n",
+        "6": "1434.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nemit_bug_reporting_address()\nFUNCTION_END\n"
+      },
+      "entry": [
+        5
+      ],
+      "exit": [
+        6
+      ],
+      "degenerate": false
+    },
+    "main": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66
+      ],
+      "edges": [
+        [
+          0,
+          12
+        ],
+        [
+          0,
+          13
+        ],
+        [
+          0,
+          14
+        ],
+        [
+          0,
+          15
+        ],
+        [
+          0,
+          16
+        ],
+        [
+          0,
+          17
+        ],
+        [
+          0,
+          18
+        ],
+        [
+          0,
+          19
+        ],
+        [
+          0,
+          30
+        ],
+        [
+          0,
+          48
+        ],
+        [
+          0,
+          49
+        ],
+        [
+          0,
+          50
+        ],
+        [
+          0,
+          51
+        ],
+        [
+          0,
+          52
+        ],
+        [
+          0,
+          53
+        ],
+        [
+          0,
+          62
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          28
+        ],
+        [
+          2,
+          28
+        ],
+        [
+          3,
+          42
+        ],
+        [
+          3,
+          43
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          44
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          45
+        ],
+        [
+          6,
+          65
+        ],
+        [
+          7,
+          6
+        ],
+        [
+          8,
+          32
+        ],
+        [
+          8,
+          63
+        ],
+        [
+          9,
+          1
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          9,
+          11
+        ],
+        [
+          10,
+          1
+        ],
+        [
+          11,
+          10
+        ],
+        [
+          12,
+          39
+        ],
+        [
+          13,
+          39
+        ],
+        [
+          14,
+          39
+        ],
+        [
+          15,
+          39
+        ],
+        [
+          16,
+          39
+        ],
+        [
+          17,
+          39
+        ],
+        [
+          18,
+          39
+        ],
+        [
+          19,
+          23
+        ],
+        [
+          19,
+          58
+        ],
+        [
+          20,
+          9
+        ],
+        [
+          21,
+          22
+        ],
+        [
+          21,
+          60
+        ],
+        [
+          22,
+          60
+        ],
+        [
+          23,
+          18
+        ],
+        [
+          24,
+          40
+        ],
+        [
+          25,
+          7
+        ],
+        [
+          26,
+          36
+        ],
+        [
+          27,
+          38
+        ],
+        [
+          28,
+          29
+        ],
+        [
+          28,
+          41
+        ],
+        [
+          29,
+          54
+        ],
+        [
+          29,
+          55
+        ],
+        [
+          30,
+          39
+        ],
+        [
+          31,
+          7
+        ],
+        [
+          32,
+          40
+        ],
+        [
+          33,
+          26
+        ],
+        [
+          33,
+          35
+        ],
+        [
+          34,
+          27
+        ],
+        [
+          34,
+          37
+        ],
+        [
+          35,
+          36
+        ],
+        [
+          36,
+          25
+        ],
+        [
+          37,
+          38
+        ],
+        [
+          38,
+          25
+        ],
+        [
+          39,
+          0
+        ],
+        [
+          39,
+          64
+        ],
+        [
+          41,
+          3
+        ],
+        [
+          42,
+          3
+        ],
+        [
+          43,
+          60
+        ],
+        [
+          43,
+          61
+        ],
+        [
+          44,
+          4
+        ],
+        [
+          45,
+          7
+        ],
+        [
+          45,
+          47
+        ],
+        [
+          46,
+          40
+        ],
+        [
+          47,
+          31
+        ],
+        [
+          47,
+          57
+        ],
+        [
+          48,
+          39
+        ],
+        [
+          49,
+          39
+        ],
+        [
+          50,
+          39
+        ],
+        [
+          51,
+          39
+        ],
+        [
+          52,
+          39
+        ],
+        [
+          54,
+          41
+        ],
+        [
+          55,
+          41
+        ],
+        [
+          56,
+          21
+        ],
+        [
+          57,
+          7
+        ],
+        [
+          57,
+          59
+        ],
+        [
+          58,
+          39
+        ],
+        [
+          59,
+          33
+        ],
+        [
+          59,
+          34
+        ],
+        [
+          60,
+          4
+        ],
+        [
+          61,
+          21
+        ],
+        [
+          61,
+          56
+        ],
+        [
+          63,
+          24
+        ],
+        [
+          63,
+          40
+        ],
+        [
+          64,
+          9
+        ],
+        [
+          64,
+          20
+        ],
+        [
+          65,
+          8
+        ],
+        [
+          65,
+          46
+        ],
+        [
+          66,
+          39
+        ]
+      ],
+      "labels": {
+        "0": "1107.0:\n<UnsupportedStmt: IDENTIFIER,c,switch(c)>\n",
+        "1": "None.2:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "2": "1212.0:\ntry_help()\n",
+        "3": "1224.0:\ni < 3\n",
+        "4": "1242.0:\ni < 3\n",
+        "5": "1245.2:\ni = 0\n",
+        "6": "1245.0:\ni < 3\n",
+        "7": "1245.1:\n<UnsupportedStmt: ['postIncrement', 'i++']>\n",
+        "8": "1297.0:\n<UnsupportedStmt: IDENTIFIER,merge,if(merge)>\n",
+        "9": "None.3:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "10": "1211.0:\ntag_count&amp;&amp;!flagging && \n",
+        "11": "1211.1:\n<UnsupportedStmt: ['logicalNot', '!flagging']>\n",
+        "12": "None.6:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "13": "None.11:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "14": "None.12:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "15": "None.15:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "16": "None.16:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "17": "1182.0:\ndiff_program = optarg\n",
+        "18": "1199.0:\ntry_help()\n",
+        "19": "1192.0:\ntag_count < 3\n",
+        "20": "1210.0:\n<UnsupportedStmt: ['and', 'finalwrite&amp;merge']>\n",
+        "21": "1234.0:\n(strcmp(file[0],&quot;-&quot;)==0)||(strcmp(file[c... || \n",
+        "22": "1235.0:\nfatal()\n",
+        "23": "1197.0:\ntry_help()\n",
+        "24": "1312.0:\nfatal(&quot;readfailed&quot;)\n",
+        "25": "1255.0:\n(!!sizeof(struct{_Static_assert(2,&quot;verify_... ? ( : !\n",
+        "26": "1259.1:\n__builtin_unreachable()\n",
+        "27": "1263.1:\n__builtin_unreachable()\n",
+        "28": "1214.1:\n<UnsupportedStmt: ['subtraction', 'argc-optind']>\nargc-optind != 3\n",
+        "29": "1216.1:\n<UnsupportedStmt: ['subtraction', 'argc-optind']>\nargc-optind < 3\n",
+        "30": "1158.1:\n<UnsupportedStmt: ['shiftLeft', '1&lt;&lt;OPTION_e']>\n<UnsupportedStmt: &lt;operators&gt;.assignmentOr,incompat|=1&lt;&lt;OPTION_e>\n",
+        "31": "1249.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'file[i]']>\nperror_with_exit(file[i])\n",
+        "32": "None.25:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "33": "1257.0:\n<UnsupportedStmt: ['indirectIndexAccess', 'file[i]']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "34": "1261.0:\n<UnsupportedStmt: ['indirectIndexAccess', 'file[i]']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "35": "1259.2:\n<UnsupportedStmt: UNKNOWN,void,void>\n<UnsupportedStmt: ['cast', '(void)0']>\n",
+        "36": "None.34:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: void)0:__builtin_...>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "37": "1263.2:\n<UnsupportedStmt: UNKNOWN,void,void>\n<UnsupportedStmt: ['cast', '(void)0']>\n",
+        "38": "None.36:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: void)0:__builtin_...>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "39": "1105.3:\ngetopt_long()\nc = getopt_long(argc,argv,&quot;aeimvx3AEL:TX&quot;,l...\n-1 - \n(c=getopt_long(argc,argv,&quot;aeimvx3AEL:TX&quot;,... != \n",
+        "40": "1324.0:\nfree(b0)\nfree(b1)\ncheck_stdout()\nexit(conflicts_found)\n",
+        "41": "1222.2:\n<UnsupportedStmt: ['indirectIndexAccess', 'argv[optind]']>\n<UnsupportedStmt: ['addressOf', '&amp;argv[optind]']>\nfile = &amp;argv[optind]\ni = tag_count\n",
+        "42": "1225.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'tag_strings[i]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'file[i]']>\ntag_strings[i] = file[i]\n<UnsupportedStmt: ['postIncrement', 'i++']>\n",
+        "43": "1226.2:\n<UnsupportedStmt: ['or', 'edscript|merge']>\n<UnsupportedStmt: ['subtraction', '2-(edscript|merge)']>\ncommon = 2-(edscript|merge)\n<UnsupportedStmt: ['indirectIndexAccess', 'file[common]']>\nstrcmp()\nstrcmp(file[common],&quot;-&quot;) == 0\n",
+        "44": "1243.2:\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[i]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'rev_mapping[mapping[i]]']>\nrev_mapping[mapping[i]] = i\n<UnsupportedStmt: ['postIncrement', 'i++']>\n",
+        "45": "1246.3:\n<UnsupportedStmt: ['indirectIndexAccess', 'file[i]']>\nstrcmp()\nstrcmp(file[i],&quot;-&quot;) == 0\n<UnsupportedStmt: ['logicalNot', '!(strcmp(file[i]', '&quot;-&quot;)==0)']>\n",
+        "46": "1296.0:\n<UnsupportedStmt: ['indirectIndexAccess', 'tag_strings[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'tag_strings[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'tag_strings[2]']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ...>\n",
+        "47": "1248.2:\n<UnsupportedStmt: ['indirectIndexAccess', 'file[i]']>\n<UnsupportedStmt: ['addressOf', '&amp;statb']>\nstat()\nstat(file[i],&amp;statb) < 0\n",
+        "48": "None.7:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['shiftLeft', '1&lt;&lt;OPTION_A']>\n<UnsupportedStmt: &lt;operators&gt;.assignmentOr,incompat|=1&lt;&lt;OPTION_A>\n",
+        "49": "None.9:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['shiftLeft', '1&lt;&lt;OPTION_x']>\n<UnsupportedStmt: &lt;operators&gt;.assignmentOr,incompat|=1&lt;&lt;OPTION_x>\n",
+        "50": "None.10:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['shiftLeft', '1&lt;&lt;OPTION_3']>\n<UnsupportedStmt: &lt;operators&gt;.assignmentOr,incompat|=1&lt;&lt;OPTION_3>\n",
+        "51": "None.13:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['shiftLeft', '1&lt;&lt;OPTION_X']>\n<UnsupportedStmt: &lt;operators&gt;.assignmentOr,incompat|=1&lt;&lt;OPTION_X>\n",
+        "52": "None.14:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['shiftLeft', '1&lt;&lt;OPTION_E']>\n<UnsupportedStmt: &lt;operators&gt;.assignmentOr,incompat|=1&lt;&lt;OPTION_E>\n",
+        "53": "1185.0:\nusage()\ncheck_stdout()\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "54": "1217.2:\n<UnsupportedStmt: ['subtraction', 'argc-1']>\n<UnsupportedStmt: ['indirectIndexAccess', 'argv[argc-1]']>\ntry_help()\n",
+        "55": "1219.2:\n<UnsupportedStmt: ['addition', 'optind+3']>\n<UnsupportedStmt: ['indirectIndexAccess', 'argv[optind+3]']>\ntry_help()\n",
+        "56": "1234.6:\n<UnsupportedStmt: ['indirectIndexAccess', 'file[common]']>\nstrcmp()\nstrcmp(file[common],&quot;-&quot;) == 0\n",
+        "57": "1252.1:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_mode,st_mode>\n<UnsupportedStmt: ['fieldAccess', 'statb.st_mode']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "58": "1194.2:\n<UnsupportedStmt: ['postIncrement', 'tag_count++']>\n<UnsupportedStmt: ['indirectIndexAccess', 'tag_strings[tag_count++]']>\ntag_strings[tag_count++] = optarg\n",
+        "59": "1255.3:\n<UnsupportedStmt: ['sizeOf', 'sizeof(struct{_Static_assert(2', '&quot;verify_exp...']>\n<UnsupportedStmt: ['logicalNot', '!sizeof(struct{_Static_assert(2', '&quot;verify_ex...']>\n<UnsupportedStmt: ['logicalNot', '!!sizeof(struct{_Static_assert(2', '&quot;verify_e...']>\n",
+        "60": "1238.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[0]']>\nmapping[0] = 0\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[1]']>\n<UnsupportedStmt: ['subtraction', '3-common']>\nmapping[1] = 3-common\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[2]']>\nmapping[2] = common\ni = 0\n",
+        "61": "1233.1:\n<UnsupportedStmt: ['subtraction', '3-common']>\ncommon = 3-common\n<UnsupportedStmt: ['indirectIndexAccess', 'file[0]']>\nstrcmp()\nstrcmp(file[0],&quot;-&quot;) == 0\n",
+        "62": "1174.0:\nproper_name(&quot;RandySmith&quot;)\n<UnsupportedStmt: UNKNOWN,char*,char*>\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\ncheck_stdout()\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "63": "1299.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'rev_mapping[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'file[rev_mapping[0]]']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['indirectIndexAccess', 'tag_strings[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'tag_strings[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'tag_strings[2]']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "64": "1204.4:\n<UnsupportedStmt: ['logicalNot', '!incompat']>\n<UnsupportedStmt: ['logicalNot', '!!incompat']>\n<UnsupportedStmt: ['logicalNot', '!merge']>\n<UnsupportedStmt: ['and', '!!incompat&amp;!merge']>\nedscript = !!incompat&amp;!merge\n<UnsupportedStmt: ['logicalNot', '!incompat']>\n<UnsupportedStmt: ['and', '!incompat&amp;merge']>\n<UnsupportedStmt: &lt;operators&gt;.assignmentOr,show_2nd|=!incompat&amp;merge>\n<UnsupportedStmt: ['logicalNot', '!incompat']>\n<UnsupportedStmt: ['and', '!incompat&amp;merge']>\n<UnsupportedStmt: &lt;operators&gt;.assignmentOr,flagging|=!incompat&amp;merge>\n<UnsupportedStmt: ['subtraction', 'incompat-1']>\n<UnsupportedStmt: ['and', 'incompat&amp;(incompat-1)']>\n",
+        "65": "1271.1:\n<UnsupportedStmt: UNKNOWN,__sighandler_t,__sighandler_t>\n<UnsupportedStmt: ['cast', '(__sighandler_t)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['indirectIndexAccess', 'rev_mapping[2]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'file[rev_mapping[2]]']>\ncommonname = file[rev_mapping[2]]\n<UnsupportedStmt: ['indirectIndexAccess', 'rev_mapping[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'file[rev_mapping[1]]']>\n<UnsupportedStmt: ['addressOf', '&amp;last_block']>\n<UnsupportedStmt: ['addressOf', '&amp;b1']>\nprocess_diff()\nthread1 = process_diff(file[rev_mapping[1]],c...\n<UnsupportedStmt: ['indirectIndexAccess', 'rev_mapping[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'file[rev_mapping[0]]']>\n<UnsupportedStmt: ['addressOf', '&amp;last_block']>\n<UnsupportedStmt: ['addressOf', '&amp;b0']>\nprocess_diff()\nthread0 = process_diff(file[rev_mapping[0]],c...\nnext_to_n2(thread0)\nnext_to_n2(thread1)\nmake_3way_diff()\ndiff3 = make_3way_diff(thread0,thread1)\nfree_diff_block(thread0)\nfree_diff_block(thread1)\n<UnsupportedStmt: IDENTIFIER,edscript,if(edscript)>\n",
+        "66": "1074.0:\nFUNCTION_START\n<UnsupportedStmt: ['alloc', 'mapping[3]']>\nmapping[3] = \n<UnsupportedStmt: ['alloc', 'rev_mapping[3]']>\nrev_mapping[3] = \nincompat = 0\ntag_count = 0\n<UnsupportedStmt: ['alloc', '*tag_strings[3]']>\n*tag_strings[3] = \nexit_failure = 2\n<UnsupportedStmt: ['indirectIndexAccess', 'argv[0]']>\nset_program_name(argv[0])\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nbindtextdomain()\ntextdomain(&quot;diffutils&quot;)\nc_stack_action(0)\nxstdopen()\n"
+      },
+      "entry": [
+        66
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "make_3way_diff": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          16
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          10
+        ],
+        [
+          4,
+          20
+        ],
+        [
+          5,
+          11
+        ],
+        [
+          5,
+          13
+        ],
+        [
+          6,
+          12
+        ],
+        [
+          7,
+          20
+        ],
+        [
+          9,
+          7
+        ],
+        [
+          9,
+          18
+        ],
+        [
+          10,
+          6
+        ],
+        [
+          10,
+          12
+        ],
+        [
+          11,
+          21
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          13,
+          21
+        ],
+        [
+          14,
+          3
+        ],
+        [
+          14,
+          17
+        ],
+        [
+          15,
+          14
+        ],
+        [
+          16,
+          4
+        ],
+        [
+          16,
+          9
+        ],
+        [
+          17,
+          3
+        ],
+        [
+          18,
+          20
+        ],
+        [
+          19,
+          0
+        ],
+        [
+          20,
+          3
+        ],
+        [
+          20,
+          17
+        ],
+        [
+          21,
+          14
+        ],
+        [
+          21,
+          15
+        ]
+      ],
+      "labels": {
+        "0": "1486.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'current[0]']>\n",
+        "1": "1486.0:\ncurrent[0]||current[1] || \n",
+        "2": "1486.2:\n<UnsupportedStmt: ['indirectIndexAccess', 'current[1]']>\n",
+        "3": "None.2:\n<UnsupportedStmt: >\n<UnsupportedStmt: (other_diff)-&gt;range...>\n",
+        "4": "1492.0:\nbase_water_thread = 1\n",
+        "5": "1524.0:\n<UnsupportedStmt: ['indirectIndexAccess', 'using[other_thread]']>\n",
+        "6": "1561.0:\nfatal()\n",
+        "7": "1494.0:\nbase_water_thread = 0\n",
+        "8": "1570.0:\nreturn result;,returnresult;\nFUNCTION_END\n",
+        "9": "1493.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'current[1]']>\n<UnsupportedStmt: ['logicalNot', '!current[1]']>\n",
+        "10": "None.3:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\ntmpblock = using_to_diff3_block(using,last_us...\n<UnsupportedStmt: ['logicalNot', '!tmpblock']>\n",
+        "11": "1527.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'using[other_thread]']>\nusing[other_thread] = other_diff\n",
+        "12": "1564.1:\n<UnsupportedStmt: ['indirection', '*result_end']>\n*result_end = tmpblock\n<UnsupportedStmt: FIELD_IDENTIFIER,next,next>\n<UnsupportedStmt: ['indirectFieldAccess', 'tmpblock-&gt;next']>\n<UnsupportedStmt: ['addressOf', '&amp;tmpblock-&gt;next']>\nresult_end = &amp;tmpblock-&gt;next\nlast_diff3 = tmpblock\n",
+        "13": "1525.2:\n<UnsupportedStmt: ['indirectIndexAccess', 'last_using[other_thread]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,next,next>\n<UnsupportedStmt: ['indirectFieldAccess', 'last_using[other_thread]-&gt;next']>\nlast_using[other_thread]-&gt;next = other_diff\n",
+        "14": "1549.1:\n<UnsupportedStmt: ['xor', 'high_water_thread^0x1']>\nother_thread = high_water_thread^0x1\n<UnsupportedStmt: ['indirectIndexAccess', 'current[other_thread]']>\nother_diff = current[other_thread]\n",
+        "15": "1544.0:\n<UnsupportedStmt: &lt;operators&gt;.assignmentXor,high_water_thread^=1>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(other_diff)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(other_diff)-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(other_diff)-&gt;ranges[1][1]']>\nhigh_water_mark = ((other_diff)-&gt;ranges[1][1])\n",
+        "16": "1488.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'using[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'using[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'last_using[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'last_using[1]']>\nlast_using[1] = 0\nlast_using[0] = last_using[1]=0\nusing[1] = last_using[0]=last_using[1]=0\nusing[0] = using[1]=last_using[0]=last_usin...\n<UnsupportedStmt: ['indirectIndexAccess', 'current[0]']>\n<UnsupportedStmt: ['logicalNot', '!current[0]']>\n",
+        "17": "1519.5:\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(other_diff)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(other_diff)-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(other_diff)-&gt;ranges[1][0]']>\n<UnsupportedStmt: ['addition', 'high_water_mark+1']>\n((other_diff)-&gt;ranges[1][0]) <= high_water_mark...\n",
+        "18": "1497.7:\n<UnsupportedStmt: ['indirectIndexAccess', 'current[0]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(current[0])-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(current[0])-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(current[0])-&gt;ranges[1][0]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'current[1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(current[1])-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(current[1])-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(current[1])-&gt;ranges[1][0]']>\n((current[0])- > ranges[1][0])&gt;((current[1])-&gt;r...\n<UnsupportedStmt: >\n<UnsupportedStmt: ((current[0])-&gt;r...>\n",
+        "19": "1454.0:\nFUNCTION_START\n<UnsupportedStmt: ['alloc', '*using[2]']>\n*using[2] = \n<UnsupportedStmt: ['alloc', '*last_using[2]']>\n*last_using[2] = \n<UnsupportedStmt: ['alloc', '*current[2]']>\n*current[2] = \nresult = 0\n<UnsupportedStmt: ['addressOf', '&amp;result']>\nresult_end = &amp;result\n<UnsupportedStmt: ['indirectIndexAccess', 'current[0]']>\ncurrent[0] = thread0\n<UnsupportedStmt: ['indirectIndexAccess', 'current[1]']>\ncurrent[1] = thread1\n<UnsupportedStmt: ['addressOf', '&amp;zero_diff3']>\nlast_diff3 = &amp;zero_diff3\n",
+        "20": "1499.0:\nhigh_water_thread = base_water_thread\n<UnsupportedStmt: ['indirectIndexAccess', 'current[high_water_thread]']>\nhigh_water_diff = current[high_water_thread]\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(high_water_diff)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(high_water_diff)-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(high_water_diff)-&gt;ranges[1][1]']>\nhigh_water_mark = ((high_water_diff)-&gt;ranges[1]...\n<UnsupportedStmt: ['indirectIndexAccess', 'using[high_water_thread]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'last_using[high_water_thread]']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['indirectIndexAccess', 'current[high_water_thread]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,next,next>\n<UnsupportedStmt: ['indirectFieldAccess', 'high_water_diff-&gt;next']>\ncurrent[high_water_thread] = high_water_diff-&gt;next\n<UnsupportedStmt: ['indirectIndexAccess', 'last_using[high_water_thread]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,next,next>\n<UnsupportedStmt: ['indirectFieldAccess', 'last_using[high_water_thread]-&gt;next']>\nlast_using[high_water_thread]-&gt;next = 0\n<UnsupportedStmt: ['xor', 'high_water_thread^0x1']>\nother_thread = high_water_thread^0x1\n<UnsupportedStmt: ['indirectIndexAccess', 'current[other_thread]']>\nother_diff = current[other_thread]\n",
+        "21": "1528.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'last_using[other_thread]']>\nlast_using[other_thread] = other_diff\n<UnsupportedStmt: ['indirectIndexAccess', 'current[other_thread]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'current[other_thread]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,next,next>\n<UnsupportedStmt: ['indirectFieldAccess', 'current[other_thread]-&gt;next']>\ncurrent[other_thread] = current[other_thread]-&gt;...\n<UnsupportedStmt: FIELD_IDENTIFIER,next,next>\n<UnsupportedStmt: ['indirectFieldAccess', 'other_diff-&gt;next']>\nother_diff-&gt;next = 0\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(other_diff)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(other_diff)-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(other_diff)-&gt;ranges[1][1]']>\nhigh_water_mark < ((other_diff)-&gt;ranges[1][1])\n"
+      },
+      "entry": [
+        19
+      ],
+      "exit": [
+        8
+      ],
+      "degenerate": false
+    },
+    "using_to_diff3_block": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "edges": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          32
+        ],
+        [
+          2,
+          36
+        ],
+        [
+          2,
+          37
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          18
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          7,
+          19
+        ],
+        [
+          7,
+          33
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          9,
+          6
+        ],
+        [
+          9,
+          38
+        ],
+        [
+          10,
+          12
+        ],
+        [
+          11,
+          14
+        ],
+        [
+          11,
+          27
+        ],
+        [
+          12,
+          8
+        ],
+        [
+          12,
+          40
+        ],
+        [
+          14,
+          22
+        ],
+        [
+          16,
+          29
+        ],
+        [
+          16,
+          30
+        ],
+        [
+          17,
+          25
+        ],
+        [
+          18,
+          9
+        ],
+        [
+          19,
+          20
+        ],
+        [
+          19,
+          26
+        ],
+        [
+          20,
+          28
+        ],
+        [
+          20,
+          41
+        ],
+        [
+          21,
+          9
+        ],
+        [
+          22,
+          10
+        ],
+        [
+          22,
+          39
+        ],
+        [
+          23,
+          12
+        ],
+        [
+          24,
+          17
+        ],
+        [
+          24,
+          31
+        ],
+        [
+          25,
+          23
+        ],
+        [
+          25,
+          42
+        ],
+        [
+          26,
+          0
+        ],
+        [
+          27,
+          22
+        ],
+        [
+          28,
+          0
+        ],
+        [
+          29,
+          0
+        ],
+        [
+          30,
+          0
+        ],
+        [
+          31,
+          25
+        ],
+        [
+          32,
+          4
+        ],
+        [
+          33,
+          11
+        ],
+        [
+          34,
+          24
+        ],
+        [
+          35,
+          1
+        ],
+        [
+          36,
+          3
+        ],
+        [
+          37,
+          3
+        ],
+        [
+          38,
+          13
+        ],
+        [
+          38,
+          21
+        ],
+        [
+          39,
+          11
+        ],
+        [
+          40,
+          15
+        ],
+        [
+          40,
+          34
+        ],
+        [
+          41,
+          16
+        ],
+        [
+          41,
+          43
+        ],
+        [
+          42,
+          24
+        ],
+        [
+          43,
+          16
+        ]
+      ],
+      "labels": {
+        "0": "1685.0:\nreturn result;,returnresult;\n",
+        "1": "1592.0:\nd < 2\n",
+        "2": "1593.0:\n<UnsupportedStmt: ['indirectIndexAccess', 'using[d]']>\n",
+        "3": "1592.1:\n<UnsupportedStmt: ['postIncrement', 'd++']>\n",
+        "4": "1610.0:\nd < 2\n",
+        "5": "1626.2:\nd = 0\n",
+        "6": "1610.1:\n<UnsupportedStmt: ['postIncrement', 'd++']>\n",
+        "7": "1626.0:\nd < 2\n",
+        "8": "1626.1:\n<UnsupportedStmt: ['postIncrement', 'd++']>\n",
+        "9": "1611.0:\n<UnsupportedStmt: IDENTIFIER,ptr,for(ptr=using[d];ptr;ptr=((ptr)-&gt;next))>\n",
+        "10": "1639.2:\nptr = u\n",
+        "11": "1632.1:\n<UnsupportedStmt: ['addition', 'i+lo']>\n",
+        "12": "1639.0:\n<UnsupportedStmt: IDENTIFIER,ptr,for(ptr=u;ptr;ptr=((ptr)-&gt;next))>\n",
+        "13": "1620.0:\nreturn 0;,return0;\n",
+        "14": "1632.4:\n<UnsupportedStmt: ['addition', 'hi+1']>\n",
+        "15": "1649.0:\nreturn 0;,return0;\n",
+        "16": "None.4:\n<UnsupportedStmt: >\n<UnsupportedStmt: ((r...>\n",
+        "17": "1654.5:\n<UnsupportedStmt: ['addition', 'hi+1']>\n",
+        "18": "1611.4:\n<UnsupportedStmt: ['indirectIndexAccess', 'using[d]']>\nptr = using[d]\n",
+        "19": "1665.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'using[0]']>\n<UnsupportedStmt: ['logicalNot', '!using[0]']>\n",
+        "20": "1667.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'using[1]']>\n<UnsupportedStmt: ['logicalNot', '!using[1]']>\n",
+        "21": "1611.5:\n<UnsupportedStmt: FIELD_IDENTIFIER,next,next>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;next']>\nptr = ((ptr)-&gt;next)\n",
+        "22": "1632.2:\nu ? u : ?\ni+lo < (u?((u)-&gt;ranges[0][0]):hi+1)\n",
+        "23": "1639.4:\n<UnsupportedStmt: FIELD_IDENTIFIER,next,next>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;next']>\nptr = ((ptr)-&gt;next)\n",
+        "24": "1654.6:\n<UnsupportedStmt: FIELD_IDENTIFIER,next,next>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;next']>\n",
+        "25": "1654.2:\n((ptr)-&gt;next) ? ( : (\n<UnsupportedStmt: ['subtraction', '(((ptr)-&gt;next)?((((ptr)-&gt;next))-&gt;ranges[0][0]...']>\ni < (((ptr)-&gt;next)?((((ptr)-&gt;next))-&gt;ranges[0...\n",
+        "26": "1666.2:\n<UnsupportedStmt: FIELD_IDENTIFIER,correspond,correspond>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;correspond']>\n((result)-&gt;correspond) = DIFF_2ND\n",
+        "27": "1632.7:\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(u)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(u)-&gt;ranges[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(u)-&gt;ranges[0][0]']>\n",
+        "28": "1668.2:\n<UnsupportedStmt: FIELD_IDENTIFIER,correspond,correspond>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;correspond']>\n((result)-&gt;correspond) = DIFF_1ST\n",
+        "29": "1680.2:\n<UnsupportedStmt: FIELD_IDENTIFIER,correspond,correspond>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;correspond']>\n((result)-&gt;correspond) = DIFF_ALL\n",
+        "30": "1682.2:\n<UnsupportedStmt: FIELD_IDENTIFIER,correspond,correspond>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;correspond']>\n((result)-&gt;correspond) = DIFF_3RD\n",
+        "31": "1654.11:\n<UnsupportedStmt: FIELD_IDENTIFIER,next,next>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;next']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(((ptr)-&gt;next))-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(((ptr)-&gt;next))-&gt;ranges[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(((ptr)-&gt;next))-&gt;ranges[0][0]']>\n",
+        "32": "1605.2:\n<UnsupportedStmt: ['indirectIndexAccess', 'low[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'high[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'low[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'high[1]']>\ncreate_diff3_block()\nresult = create_diff3_block(low[0],high[0],l...\nd = 0\n",
+        "33": "1628.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'using[d]']>\n*u = using[d]\n<UnsupportedStmt: ['indirectIndexAccess', 'low[d]']>\nlo = low[d]\n<UnsupportedStmt: ['indirectIndexAccess', 'high[d]']>\nhi = high[d]\ni = 0\n",
+        "34": "1652.6:\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;ranges[1][1]']>\n<UnsupportedStmt: ['addition', '((ptr)-&gt;ranges[1][1])+1']>\n<UnsupportedStmt: ['subtraction', '((ptr)-&gt;ranges[1][1])+1-lowc']>\nlinec = ((ptr)-&gt;ranges[1][1])+1-lowc\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;ranges[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;ranges[0][1]']>\n<UnsupportedStmt: ['addition', '((ptr)-&gt;ranges[0][1])+1']>\n<UnsupportedStmt: ['subtraction', '((ptr)-&gt;ranges[0][1])+1-lo']>\ni = ((ptr)-&gt;ranges[0][1])+1-lo\n",
+        "35": "1572.0:\nFUNCTION_START\n<UnsupportedStmt: ['alloc', 'low[2]']>\nlow[2] = \n<UnsupportedStmt: ['alloc', 'high[2]']>\nhigh[2] = \n<UnsupportedStmt: ['indirectIndexAccess', 'using[low_thread]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(using[low_thread])-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(using[low_thread])-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(using[low_thread])-&gt;ranges[1][0]']>\nlowc = ((using[low_thread])-&gt;ranges[1][0])\n<UnsupportedStmt: ['indirectIndexAccess', 'last_using[high_thread]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(last_using[high_thread])-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(last_using[high_thread])-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(last_using[high_thread])-&gt;ranges[1][1]']>\nhighc = ((last_using[high_thread])-&gt;ranges[1][1])\nd = 0\n",
+        "36": "1595.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'low[d]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'using[d]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '((using[d]))-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '((using[d]))-&gt;ranges[(1)]']>\n<UnsupportedStmt: ['indirectIndexAccess', '((using[d]))-&gt;ranges[(1)][0]']>\n<UnsupportedStmt: ['subtraction', '(lowc)-(((using[d]))-&gt;ranges[(1)][0])']>\n<UnsupportedStmt: ['indirectIndexAccess', 'using[d]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '((using[d]))-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '((using[d]))-&gt;ranges[(0)]']>\n<UnsupportedStmt: ['indirectIndexAccess', '((using[d]))-&gt;ranges[(0)][0]']>\n<UnsupportedStmt: ['addition', '(lowc)-(((using[d]))-&gt;ranges[(1)][0])+(((us...']>\nlow[d] = ((lowc)-(((using[d]))-&gt;ranges[(1)][0...\n<UnsupportedStmt: ['indirectIndexAccess', 'high[d]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'last_using[d]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '((last_using[d]))-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '((last_using[d]))-&gt;ranges[(1)]']>\n<UnsupportedStmt: ['indirectIndexAccess', '((last_using[d]))-&gt;ranges[(1)][1]']>\n<UnsupportedStmt: ['subtraction', '(highc)-(((last_using[d]))-&gt;ranges[(1)][1])']>\n<UnsupportedStmt: ['indirectIndexAccess', 'last_using[d]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '((last_using[d]))-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '((last_using[d]))-&gt;ranges[(0)]']>\n<UnsupportedStmt: ['indirectIndexAccess', '((last_using[d]))-&gt;ranges[(0)][1]']>\n<UnsupportedStmt: ['addition', '(highc)-(((last_using[d]))-&gt;ranges[(1)][1])+...']>\nhigh[d] = ((highc)-(((last_using[d]))-&gt;ranges...\n",
+        "37": "1600.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'low[d]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '((last_diff3))-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '((last_diff3))-&gt;ranges[(2)]']>\n<UnsupportedStmt: ['indirectIndexAccess', '((last_diff3))-&gt;ranges[(2)][1]']>\n<UnsupportedStmt: ['subtraction', '(lowc)-(((last_diff3))-&gt;ranges[(2)][1])']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '((last_diff3))-&gt;ranges']>\n<UnsupportedStmt: ['addition', '0+d']>\n<UnsupportedStmt: ['indirectIndexAccess', '((last_diff3))-&gt;ranges[(0+d)]']>\n<UnsupportedStmt: ['indirectIndexAccess', '((last_diff3))-&gt;ranges[(0+d)][1]']>\n<UnsupportedStmt: ['addition', '(lowc)-(((last_diff3))-&gt;ranges[(2)][1])+(((...']>\nlow[d] = ((lowc)-(((last_diff3))-&gt;ranges[(2)]...\n<UnsupportedStmt: ['indirectIndexAccess', 'high[d]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '((last_diff3))-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '((last_diff3))-&gt;ranges[(2)]']>\n<UnsupportedStmt: ['indirectIndexAccess', '((last_diff3))-&gt;ranges[(2)][1]']>\n<UnsupportedStmt: ['subtraction', '(highc)-(((last_diff3))-&gt;ranges[(2)][1])']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '((last_diff3))-&gt;ranges']>\n<UnsupportedStmt: ['addition', '0+d']>\n<UnsupportedStmt: ['indirectIndexAccess', '((last_diff3))-&gt;ranges[(0+d)]']>\n<UnsupportedStmt: ['indirectIndexAccess', '((last_diff3))-&gt;ranges[(0+d)][1]']>\n<UnsupportedStmt: ['addition', '(highc)-(((last_diff3))-&gt;ranges[(2)][1])+((...']>\nhigh[d] = ((highc)-(((last_diff3))-&gt;ranges[(2...\n",
+        "38": "1613.5:\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;ranges[1][0]']>\n<UnsupportedStmt: ['subtraction', '((ptr)-&gt;ranges[1][0])-lowc']>\nresult_offset = ((ptr)-&gt;ranges[1][0])-lowc\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;lines[1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;lengths[1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lines[2]']>\n<UnsupportedStmt: ['addition', '((result)-&gt;lines[2])+result_offset']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lengths[2]']>\n<UnsupportedStmt: ['addition', '((result)-&gt;lengths[2])+result_offset']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;ranges[1][1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;ranges[1][0]']>\n<UnsupportedStmt: ['subtraction', '((ptr)-&gt;ranges[1][1])-((ptr)-&gt;ranges[1][0])']>\n<UnsupportedStmt: ['addition', '((ptr)-&gt;ranges[1][1])-((ptr)-&gt;ranges[1][0])+1']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "39": "1635.8:\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lines']>\n<UnsupportedStmt: ['addition', '0+d']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lines[0+d]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lines[0+d][i]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lines[2]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lines[2][i]']>\n((result)-&gt;lines[0+d][i]) = ((result)-&gt;lines[...\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lengths']>\n<UnsupportedStmt: ['addition', '0+d']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lengths[0+d]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lengths[0+d][i]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lengths[2]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lengths[2][i]']>\n((result)-&gt;lengths[0+d][i]) = ((result)-&gt;leng...\n<UnsupportedStmt: ['postIncrement', 'i++']>\n",
+        "40": "1641.5:\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;ranges[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;ranges[0][0]']>\n<UnsupportedStmt: ['subtraction', '((ptr)-&gt;ranges[0][0])-lo']>\nresult_offset = ((ptr)-&gt;ranges[0][0])-lo\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;lines[0]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;lengths[0]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lines']>\n<UnsupportedStmt: ['addition', '0+d']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lines[0+d]']>\n<UnsupportedStmt: ['addition', '((result)-&gt;lines[0+d])+result_offset']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lengths']>\n<UnsupportedStmt: ['addition', '0+d']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lengths[0+d]']>\n<UnsupportedStmt: ['addition', '((result)-&gt;lengths[0+d])+result_offset']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;ranges[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;ranges[0][1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;ranges[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;ranges[0][0]']>\n<UnsupportedStmt: ['subtraction', '((ptr)-&gt;ranges[0][1])-((ptr)-&gt;ranges[0][0])']>\n<UnsupportedStmt: ['addition', '((ptr)-&gt;ranges[0][1])-((ptr)-&gt;ranges[0][0])+1']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "41": "1671.9:\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[0][1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[0][0]']>\n<UnsupportedStmt: ['subtraction', '((result)-&gt;ranges[0][1])-((result)-&gt;ranges[0]...']>\n<UnsupportedStmt: ['addition', '((result)-&gt;ranges[0][1])-((result)-&gt;ranges[0]...']>\nnl0 = (((result)-&gt;ranges[0][1])-((result)-&gt;ra...\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[1][1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[1][0]']>\n<UnsupportedStmt: ['subtraction', '((result)-&gt;ranges[1][1])-((result)-&gt;ranges[1]...']>\n<UnsupportedStmt: ['addition', '((result)-&gt;ranges[1][1])-((result)-&gt;ranges[1]...']>\nnl1 = (((result)-&gt;ranges[1][1])-((result)-&gt;ra...\nnl0 != nl1\n",
+        "42": "1657.8:\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lines']>\n<UnsupportedStmt: ['addition', '0+d']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lines[0+d]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lines[0+d][i]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lines[2]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lines[2][linec]']>\n((result)-&gt;lines[0+d][i]) = ((result)-&gt;lines[...\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lengths']>\n<UnsupportedStmt: ['addition', '0+d']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lengths[0+d]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lengths[0+d][i]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lengths[2]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lengths[2][linec]']>\n((result)-&gt;lengths[0+d][i]) = ((result)-&gt;leng...\n<UnsupportedStmt: ['postIncrement', 'linec++']>\n<UnsupportedStmt: ['postIncrement', 'i++']>\n",
+        "43": "1675.2:\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lines[0]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lengths[0]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lines[1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lengths[1]']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n"
+      },
+      "entry": [
+        35
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "copy_stringlist": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          9,
+          5
+        ]
+      ],
+      "labels": {
+        "0": "1705.0:\n<UnsupportedStmt: ['postDecrement', 'copynum--']>\n",
+        "1": "None.0:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "2": "1707.0:\n<UnsupportedStmt: ['indirection', '*t']>\n",
+        "3": "1709.0:\n*fl!=*tl||memcmp(*f,*t,*fl)!=0 || \n",
+        "4": "None.1:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "5": "1720.0:\n<UnsupportedStmt: ['postIncrement', 't++']>\n<UnsupportedStmt: ['postIncrement', 'f++']>\n<UnsupportedStmt: ['postIncrement', 'tl++']>\n<UnsupportedStmt: ['postIncrement', 'fl++']>\n",
+        "6": "1709.3:\n<UnsupportedStmt: ['indirection', '*fl']>\n<UnsupportedStmt: ['indirection', '*tl']>\n*fl != *tl\n",
+        "7": "1709.6:\n<UnsupportedStmt: ['indirection', '*f']>\n<UnsupportedStmt: ['indirection', '*t']>\n<UnsupportedStmt: ['indirection', '*fl']>\nmemcmp()\nmemcmp(*f,*t,*fl) != 0\n",
+        "8": "1693.0:\nFUNCTION_START\n*const*f = fromptrs\n**t = toptrs\n*fl = fromlengths\n*tl = tolengths\n",
+        "9": "1716.1:\n<UnsupportedStmt: ['indirection', '*t']>\n<UnsupportedStmt: ['indirection', '*f']>\n*t = *f\n<UnsupportedStmt: ['indirection', '*tl']>\n<UnsupportedStmt: ['indirection', '*fl']>\n*tl = *fl\n"
+      },
+      "entry": [
+        8
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "create_diff3_block": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "edges": [
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          7,
+          5
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          9,
+          1
+        ],
+        [
+          9,
+          6
+        ]
+      ],
+      "labels": {
+        "0": "1789.0:\nreturn result;,returnresult;\nFUNCTION_END\n",
+        "1": "1760.3:\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lines[0]']>\n((result)-&gt;lines[0]) = 0\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lengths[0]']>\n((result)-&gt;lengths[0]) = 0\n",
+        "2": "1772.3:\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lines[1]']>\n((result)-&gt;lines[1]) = 0\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lengths[1]']>\n((result)-&gt;lengths[1]) = 0\n",
+        "3": "1784.3:\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lines[2]']>\n((result)-&gt;lines[2]) = 0\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lengths[2]']>\n((result)-&gt;lengths[2]) = 0\n",
+        "4": "1764.9:\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[1][1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[1][0]']>\n<UnsupportedStmt: ['subtraction', '((result)-&gt;ranges[1][1])-((result)-&gt;ranges[1]...']>\n<UnsupportedStmt: ['addition', '((result)-&gt;ranges[1][1])-((result)-&gt;ranges[1]...']>\nnumlines = (((result)-&gt;ranges[1][1])-((result...\n<UnsupportedStmt: IDENTIFIER,numlines,if(numlines)>\n",
+        "5": "1776.9:\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[2]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[2][1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[2]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[2][0]']>\n<UnsupportedStmt: ['subtraction', '((result)-&gt;ranges[2][1])-((result)-&gt;ranges[2]...']>\n<UnsupportedStmt: ['addition', '((result)-&gt;ranges[2][1])-((result)-&gt;ranges[2]...']>\nnumlines = (((result)-&gt;ranges[2][1])-((result...\n<UnsupportedStmt: IDENTIFIER,numlines,if(numlines)>\n",
+        "6": "1755.5:\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lines[0]']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(char*)']>\nxcalloc()\n((result)-&gt;lines[0]) = xcalloc(numlines,sizeo...\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lengths[0]']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(size_t)']>\nxcalloc()\n((result)-&gt;lengths[0]) = xcalloc(numlines,siz...\n",
+        "7": "1767.5:\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lines[1]']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(char*)']>\nxcalloc()\n((result)-&gt;lines[1]) = xcalloc(numlines,sizeo...\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lengths[1]']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(size_t)']>\nxcalloc()\n((result)-&gt;lengths[1]) = xcalloc(numlines,siz...\n",
+        "8": "1779.5:\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lines[2]']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(char*)']>\nxcalloc()\n((result)-&gt;lines[2]) = xcalloc(numlines,sizeo...\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;lengths[2]']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(size_t)']>\nxcalloc()\n((result)-&gt;lengths[2]) = xcalloc(numlines,siz...\n",
+        "9": "1732.0:\nFUNCTION_START\n<UnsupportedStmt: ['indirection', '*result']>\n<UnsupportedStmt: ['sizeOf', 'sizeof*result']>\nxmalloc(sizeof*result)\n*result = xmalloc(sizeof*result)\n<UnsupportedStmt: FIELD_IDENTIFIER,correspond,correspond>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;correspond']>\n((result)-&gt;correspond) = ERROR\n<UnsupportedStmt: FIELD_IDENTIFIER,next,next>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;next']>\n((result)-&gt;next) = 0\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[0][0]']>\n((result)-&gt;ranges[0][0]) = low0\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[0][1]']>\n((result)-&gt;ranges[0][1]) = high0\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[1][0]']>\n((result)-&gt;ranges[1][0]) = low1\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[1][1]']>\n((result)-&gt;ranges[1][1]) = high1\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[2]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[2][0]']>\n((result)-&gt;ranges[2][0]) = low2\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[2]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[2][1]']>\n((result)-&gt;ranges[2][1]) = high2\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[0][1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(result)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(result)-&gt;ranges[0][0]']>\n<UnsupportedStmt: ['subtraction', '((result)-&gt;ranges[0][1])-((result)-&gt;ranges[0]...']>\n<UnsupportedStmt: ['addition', '((result)-&gt;ranges[0][1])-((result)-&gt;ranges[0]...']>\nnumlines = (((result)-&gt;ranges[0][1])-((result...\n<UnsupportedStmt: IDENTIFIER,numlines,if(numlines)>\n"
+      },
+      "entry": [
+        9
+      ],
+      "exit": [
+        0
+      ],
+      "degenerate": false
+    },
+    "compare_line_list": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          5
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          9,
+          0
+        ],
+        [
+          10,
+          2
+        ]
+      ],
+      "labels": {
+        "0": "1807.0:\n<UnsupportedStmt: ['postDecrement', 'nl--']>\n",
+        "1": "None.0:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "2": "None.1:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "3": "None.2:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "4": "1808.0:\n!*l1||!*l2||*lgths1!=*lgths2++ || \n",
+        "5": "1808.1:\n!*l1||!*l2 || \n",
+        "6": "1808.7:\n<UnsupportedStmt: ['indirection', '*l1']>\n<UnsupportedStmt: ['logicalNot', '!*l1']>\n",
+        "7": "1808.8:\n<UnsupportedStmt: ['indirection', '*l2']>\n<UnsupportedStmt: ['logicalNot', '!*l2']>\n",
+        "8": "1808.5:\n<UnsupportedStmt: ['indirection', '*lgths1']>\n<UnsupportedStmt: ['postIncrement', 'lgths2++']>\n<UnsupportedStmt: ['indirection', '*lgths2++']>\n*lgths1 != *lgths2++\n",
+        "9": "1795.0:\nFUNCTION_START\n*const*l1 = list1\n*const*l2 = list2\n*lgths1 = lengths1\n*lgths2 = lengths2\n",
+        "10": "1809.5:\n<UnsupportedStmt: ['postIncrement', 'l1++']>\n<UnsupportedStmt: ['indirection', '*l1++']>\n<UnsupportedStmt: ['postIncrement', 'l2++']>\n<UnsupportedStmt: ['indirection', '*l2++']>\n<UnsupportedStmt: ['postIncrement', 'lgths1++']>\n<UnsupportedStmt: ['indirection', '*lgths1++']>\nmemcmp()\nmemcmp(*l1++,*l2++,*lgths1++) != 0\n"
+      },
+      "entry": [
+        9
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "process_diff": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "edges": [
+        [
+          0,
+          24
+        ],
+        [
+          0,
+          32
+        ],
+        [
+          1,
+          14
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          25
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          22
+        ],
+        [
+          5,
+          26
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          7,
+          14
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          9,
+          28
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          10,
+          29
+        ],
+        [
+          11,
+          8
+        ],
+        [
+          12,
+          30
+        ],
+        [
+          13,
+          22
+        ],
+        [
+          13,
+          31
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          14,
+          3
+        ],
+        [
+          14,
+          20
+        ],
+        [
+          14,
+          21
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          16,
+          0
+        ],
+        [
+          17,
+          16
+        ],
+        [
+          18,
+          16
+        ],
+        [
+          19,
+          27
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          21,
+          2
+        ],
+        [
+          22,
+          0
+        ],
+        [
+          23,
+          17
+        ],
+        [
+          23,
+          18
+        ],
+        [
+          25,
+          9
+        ],
+        [
+          25,
+          28
+        ],
+        [
+          26,
+          12
+        ],
+        [
+          26,
+          30
+        ],
+        [
+          27,
+          27
+        ],
+        [
+          27,
+          7
+        ],
+        [
+          28,
+          10
+        ],
+        [
+          29,
+          10
+        ],
+        [
+          30,
+          13
+        ],
+        [
+          31,
+          13
+        ],
+        [
+          32,
+          1
+        ],
+        [
+          32,
+          15
+        ]
+      ],
+      "labels": {
+        "0": "1844.0:\nscan_diff < diff_limit\n",
+        "1": "1851.0:\ndt==ERROR||*scan_diff!='\\n' || \n",
+        "2": "1889.0:\ndt != ADD\n",
+        "3": "1883.0:\nfatal()\n",
+        "4": "1905.0:\ndt == CHANGE\n",
+        "5": "1914.0:\ndt != DELETE\n",
+        "6": "1907.0:\nstrncmp()\n",
+        "7": "1867.0:\nexit(2)\n",
+        "8": "1909.0:\n<UnsupportedStmt: ['assignmentPlus', 'scan_diff+=4']>\n",
+        "9": "1893.0:\nxalloc_die()\n",
+        "10": "1896.0:\ni < numlines\n",
+        "11": "1908.0:\nfatal()\n",
+        "12": "1918.0:\nxalloc_die()\n",
+        "13": "1921.0:\ni < numlines\n",
+        "14": "1869.0:\n<UnsupportedStmt: ['postIncrement', 'scan_diff++']>\n<UnsupportedStmt: IDENTIFIER,dt,switch(dt)>\n",
+        "15": "1851.3:\n<UnsupportedStmt: ['indirection', '*scan_diff']>\n*scan_diff != '\\n'\n",
+        "16": "1837.0:\n(sizeof*bptr-&gt;lines[1])&lt;=(sizeof*bptr-&gt;leng... ? ( : s\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: 9...>\n<UnsupportedStmt: ['addressOf', '&amp;diff_contents']>\nread_diff()\ndiff_limit = read_diff(filea,fileb,&amp;diff_con...\n<UnsupportedStmt: ['indirection', '*buf_to_free']>\n*buf_to_free = diff_contents\nscan_diff = diff_contents\n",
+        "17": "1837.18:\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lines[1]']>\n<UnsupportedStmt: ['indirection', '*bptr-&gt;lines[1]']>\n<UnsupportedStmt: ['sizeOf', 'sizeof*bptr-&gt;lines[1]']>\n",
+        "18": "1837.19:\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lengths[1]']>\n<UnsupportedStmt: ['indirection', '*bptr-&gt;lengths[1]']>\n<UnsupportedStmt: ['sizeOf', 'sizeof*bptr-&gt;lengths[1]']>\n",
+        "19": "1856.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "20": "1875.4:\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;ranges[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;ranges[0][0]']>\n<UnsupportedStmt: ['postIncrement', 'bptr-&gt;ranges[0][0]++']>\n",
+        "21": "1878.4:\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;ranges[1][0]']>\n<UnsupportedStmt: ['postIncrement', 'bptr-&gt;ranges[1][0]++']>\n",
+        "22": "1930.1:\n<UnsupportedStmt: ['indirection', '*block_list_end']>\n*block_list_end = bptr\n<UnsupportedStmt: FIELD_IDENTIFIER,next,next>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;next']>\n<UnsupportedStmt: ['addressOf', '&amp;bptr-&gt;next']>\nblock_list_end = &amp;bptr-&gt;next\n",
+        "23": "1820.0:\nFUNCTION_START\n<UnsupportedStmt: ['addressOf', '&amp;block_list']>\n**block_list_end = &amp;block_list\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lines[1]']>\n<UnsupportedStmt: ['indirection', '*bptr-&gt;lines[1]']>\n<UnsupportedStmt: ['sizeOf', 'sizeof*bptr-&gt;lines[1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lengths[1]']>\n<UnsupportedStmt: ['indirection', '*bptr-&gt;lengths[1]']>\n<UnsupportedStmt: ['sizeOf', 'sizeof*bptr-&gt;lengths[1]']>\n(sizeof*bptr-&gt;lines[1]) <= (sizeof*bptr-&gt;leng...\n",
+        "24": "1934.0:\n<UnsupportedStmt: ['indirection', '*block_list_end']>\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: (void*)0)>\n<UnsupportedStmt: ['indirection', '*last_block']>\n*last_block = bptr\nreturn block_list;,returnblock_list;\nFUNCTION_END\n",
+        "25": "1891.9:\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(bptr)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(bptr)-&gt;ranges[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(bptr)-&gt;ranges[0][1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(bptr)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(bptr)-&gt;ranges[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(bptr)-&gt;ranges[0][0]']>\n<UnsupportedStmt: ['subtraction', '((bptr)-&gt;ranges[0][1])-((bptr)-&gt;ranges[0][0])']>\n<UnsupportedStmt: ['addition', '((bptr)-&gt;ranges[0][1])-((bptr)-&gt;ranges[0][0])...']>\nnumlines = (((bptr)-&gt;ranges[0][1])-((bptr)-&gt;r...\ntoo_many_lines <= numlines\n",
+        "26": "1916.9:\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(bptr)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(bptr)-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(bptr)-&gt;ranges[1][1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(bptr)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(bptr)-&gt;ranges[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(bptr)-&gt;ranges[1][0]']>\n<UnsupportedStmt: ['subtraction', '((bptr)-&gt;ranges[1][1])-((bptr)-&gt;ranges[1][0])']>\n<UnsupportedStmt: ['addition', '((bptr)-&gt;ranges[1][1])-((bptr)-&gt;ranges[1][0])...']>\nnumlines = (((bptr)-&gt;ranges[1][1])-((bptr)-&gt;r...\ntoo_many_lines <= numlines\n",
+        "27": "1862.0:\n<UnsupportedStmt: ['indirection', '*scan_diff']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['postIncrement', 'scan_diff++']>\n<UnsupportedStmt: ['indirection', '*scan_diff++']>\n*scan_diff++ != '\\n'\n",
+        "28": "1894.5:\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lines[0]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lines[0]']>\n<UnsupportedStmt: ['indirection', '*bptr-&gt;lines[0]']>\n<UnsupportedStmt: ['sizeOf', 'sizeof*bptr-&gt;lines[0]']>\n<UnsupportedStmt: ['multiplication', 'numlines*sizeof*bptr-&gt;lines[0]']>\nxmalloc(numlines*sizeof*bptr-&gt;lines[0])\nbptr-&gt;lines[0] = xmalloc(numlines*sizeof*bp...\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lengths[0]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lengths[0]']>\n<UnsupportedStmt: ['indirection', '*bptr-&gt;lengths[0]']>\n<UnsupportedStmt: ['sizeOf', 'sizeof*bptr-&gt;lengths[0]']>\n<UnsupportedStmt: ['multiplication', 'numlines*sizeof*bptr-&gt;lengths[0]']>\nxmalloc(numlines*sizeof*bptr-&gt;lengths[0])\nbptr-&gt;lengths[0] = xmalloc(numlines*sizeof*...\ni = 0\n",
+        "29": "1898.4:\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lines[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lines[0][i]']>\n<UnsupportedStmt: ['addressOf', '&amp;(bptr-&gt;lines[0][i])']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lengths[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lengths[0][i]']>\n<UnsupportedStmt: ['addressOf', '&amp;(bptr-&gt;lengths[0][i])']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['postIncrement', 'i++']>\n",
+        "30": "1919.5:\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lines[1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lines[1]']>\n<UnsupportedStmt: ['indirection', '*bptr-&gt;lines[1]']>\n<UnsupportedStmt: ['sizeOf', 'sizeof*bptr-&gt;lines[1]']>\n<UnsupportedStmt: ['multiplication', 'numlines*sizeof*bptr-&gt;lines[1]']>\nxmalloc(numlines*sizeof*bptr-&gt;lines[1])\nbptr-&gt;lines[1] = xmalloc(numlines*sizeof*bp...\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lengths[1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lengths[1]']>\n<UnsupportedStmt: ['indirection', '*bptr-&gt;lengths[1]']>\n<UnsupportedStmt: ['sizeOf', 'sizeof*bptr-&gt;lengths[1]']>\n<UnsupportedStmt: ['multiplication', 'numlines*sizeof*bptr-&gt;lengths[1]']>\nxmalloc(numlines*sizeof*bptr-&gt;lengths[1])\nbptr-&gt;lengths[1] = xmalloc(numlines*sizeof*...\ni = 0\n",
+        "31": "1923.4:\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lines[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lines[1][i]']>\n<UnsupportedStmt: ['addressOf', '&amp;(bptr-&gt;lines[1][i])']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lengths[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lengths[1][i]']>\n<UnsupportedStmt: ['addressOf', '&amp;(bptr-&gt;lengths[1][i])']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['postIncrement', 'i++']>\n",
+        "32": "1846.3:\n<UnsupportedStmt: ['indirection', '*bptr']>\n<UnsupportedStmt: ['sizeOf', 'sizeof*bptr']>\nxmalloc(sizeof*bptr)\nbptr = xmalloc(sizeof*bptr)\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lines[0]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lines[1]']>\nbptr-&gt;lines[1] = 0\nbptr-&gt;lines[0] = bptr-&gt;lines[1]=0\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lengths[0]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', 'bptr-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', 'bptr-&gt;lengths[1]']>\nbptr-&gt;lengths[1] = 0\nbptr-&gt;lengths[0] = bptr-&gt;lengths[1]=0\n<UnsupportedStmt: ['addressOf', '&amp;scan_diff']>\nprocess_diff_control()\ndt = process_diff_control(&amp;scan_diff,bptr)\ndt == ERROR\n"
+      },
+      "entry": [
+        23
+      ],
+      "exit": [
+        24
+      ],
+      "degenerate": false
+    },
+    "skipwhite": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          0
+        ]
+      ],
+      "labels": {
+        "0": "1946.0:\n*s==''||*s=='\\t' || \n",
+        "1": "1947.0:\n<UnsupportedStmt: ['postIncrement', 's++']>\n",
+        "2": "1943.0:\nFUNCTION_START\n",
+        "3": "1948.0:\nreturn s;,returns;\nFUNCTION_END\n",
+        "4": "1946.3:\n<UnsupportedStmt: ['indirection', '*s']>\n*s == ''\n",
+        "5": "1946.4:\n<UnsupportedStmt: ['indirection', '*s']>\n*s == '\\t'\n"
+      },
+      "entry": [
+        2
+      ],
+      "exit": [
+        3
+      ],
+      "degenerate": false
+    },
+    "readnum": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "edges": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          1
+        ]
+      ],
+      "labels": {
+        "0": "1962.0:\nreturn 0;,return0;\n",
+        "1": "1971.1:\n<UnsupportedStmt: ['indirection', '*pnum']>\n*pnum = num\nreturn s;,returns;\n",
+        "2": "1955.0:\nFUNCTION_START\n<UnsupportedStmt: ['indirection', '*s']>\nc = *s\nnum = 0\n<UnsupportedStmt: UNKNOWN,unsignedint,unsignedint>\n<UnsupportedStmt: ['cast', '(unsignedint)(c)']>\n<UnsupportedStmt: ['subtraction', \"(unsignedint)(c)-'0'\"]>\n(unsignedint)(c)-'0' <= 9\n<UnsupportedStmt: ['logicalNot', \"!((unsignedint)(c)-'0'&lt;=9)\"]>\n",
+        "3": "1966.2:\n<UnsupportedStmt: ['subtraction', \"c-'0'\"]>\n<UnsupportedStmt: ['multiplication', 'num*10']>\n<UnsupportedStmt: ['addition', \"c-'0'+num*10\"]>\nnum = c-'0'+num*10\n<UnsupportedStmt: ['preIncrement', '++s']>\n<UnsupportedStmt: ['indirection', '*++s']>\nc = *++s\n<UnsupportedStmt: UNKNOWN,unsignedint,unsignedint>\n<UnsupportedStmt: ['cast', '(unsignedint)(c)']>\n<UnsupportedStmt: ['subtraction', \"(unsignedint)(c)-'0'\"]>\n(unsignedint)(c)-'0' <= 9\n"
+      },
+      "entry": [
+        2
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "read_diff": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54
+      ],
+      "edges": [
+        [
+          0,
+          37
+        ],
+        [
+          0,
+          54
+        ],
+        [
+          1,
+          20
+        ],
+        [
+          2,
+          39
+        ],
+        [
+          3,
+          40
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          42
+        ],
+        [
+          5,
+          42
+        ],
+        [
+          6,
+          43
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          8,
+          27
+        ],
+        [
+          9,
+          4
+        ],
+        [
+          9,
+          46
+        ],
+        [
+          10,
+          22
+        ],
+        [
+          10,
+          25
+        ],
+        [
+          11,
+          23
+        ],
+        [
+          12,
+          9
+        ],
+        [
+          12,
+          51
+        ],
+        [
+          13,
+          45
+        ],
+        [
+          14,
+          29
+        ],
+        [
+          15,
+          31
+        ],
+        [
+          16,
+          17
+        ],
+        [
+          16,
+          34
+        ],
+        [
+          17,
+          32
+        ],
+        [
+          18,
+          19
+        ],
+        [
+          18,
+          35
+        ],
+        [
+          19,
+          33
+        ],
+        [
+          20,
+          21
+        ],
+        [
+          20,
+          38
+        ],
+        [
+          21,
+          2
+        ],
+        [
+          21,
+          39
+        ],
+        [
+          22,
+          23
+        ],
+        [
+          22,
+          44
+        ],
+        [
+          24,
+          41
+        ],
+        [
+          25,
+          22
+        ],
+        [
+          26,
+          13
+        ],
+        [
+          26,
+          45
+        ],
+        [
+          27,
+          10
+        ],
+        [
+          28,
+          29
+        ],
+        [
+          29,
+          11
+        ],
+        [
+          30,
+          31
+        ],
+        [
+          31,
+          11
+        ],
+        [
+          32,
+          14
+        ],
+        [
+          32,
+          28
+        ],
+        [
+          33,
+          15
+        ],
+        [
+          33,
+          30
+        ],
+        [
+          34,
+          17
+        ],
+        [
+          35,
+          19
+        ],
+        [
+          36,
+          0
+        ],
+        [
+          37,
+          54
+        ],
+        [
+          38,
+          47
+        ],
+        [
+          38,
+          48
+        ],
+        [
+          39,
+          3
+        ],
+        [
+          39,
+          40
+        ],
+        [
+          40,
+          24
+        ],
+        [
+          40,
+          41
+        ],
+        [
+          41,
+          52
+        ],
+        [
+          42,
+          6
+        ],
+        [
+          42,
+          43
+        ],
+        [
+          43,
+          7
+        ],
+        [
+          43,
+          8
+        ],
+        [
+          44,
+          49
+        ],
+        [
+          44,
+          50
+        ],
+        [
+          45,
+          52
+        ],
+        [
+          46,
+          4
+        ],
+        [
+          47,
+          21
+        ],
+        [
+          48,
+          47
+        ],
+        [
+          49,
+          16
+        ],
+        [
+          49,
+          32
+        ],
+        [
+          50,
+          18
+        ],
+        [
+          50,
+          33
+        ],
+        [
+          51,
+          9
+        ],
+        [
+          52,
+          12
+        ],
+        [
+          52,
+          26
+        ],
+        [
+          53,
+          0
+        ],
+        [
+          53,
+          36
+        ],
+        [
+          54,
+          1
+        ],
+        [
+          54,
+          20
+        ]
+      ],
+      "labels": {
+        "0": "2059.0:\n<UnsupportedStmt: IDENTIFIER,strip_trailing_cr,if(strip_trailing_cr)>\n",
+        "1": "2070.0:\nperror_with_exit(&quot;pipe&quot;)\n",
+        "2": "2099.0:\nperror_with_exit(&quot;fork&quot;)\n",
+        "3": "2104.0:\nperror_with_exit(&quot;fstat&quot;)\n",
+        "4": "2134.0:\ntotal!=0&amp;&amp;diff_result[total-1]!='\\n' && \n",
+        "5": "2135.0:\nfatal()\n",
+        "6": "2139.0:\nperror_with_exit(&quot;close&quot;)\n",
+        "7": "2141.0:\nperror_with_exit(&quot;waitpid&quot;)\n",
+        "8": "2145.0:\n<UnsupportedStmt: ['logicalNot', '!werrno']>\n",
+        "9": "2134.1:\ntotal != 0\n",
+        "10": "None.3:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "11": "2156.0:\n(!!sizeof(struct{_Static_assert(2,&quot;verify_... ? ( : !\n",
+        "12": "None.18:\n<UnsupportedStmt: >\n<UnsupportedStmt: 18446744073709...>\n",
+        "13": "2129.0:\nxalloc_die()\n",
+        "14": "2162.1:\n__builtin_unreachable()\n",
+        "15": "2168.1:\n__builtin_unreachable()\n",
+        "16": "2158.3:\nstatus == 127\n",
+        "17": "2158.2:\nstatus==127 ? s : t\n",
+        "18": "2164.3:\nstatus == 127\n",
+        "19": "2164.2:\nstatus==127 ? s : t\n",
+        "20": "2072.1:\nfork()\npid = fork()\npid == 0\n",
+        "21": "2098.1:\n-1 - \npid == -1\n",
+        "22": "None.1:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ((...>\n2 <= status\n",
+        "23": "2178.1:\n<UnsupportedStmt: ['addition', 'diff_result+total']>\nreturn diff_result+total;,returndiff_result+total;\nFUNCTION_END\n",
+        "24": "2105.5:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_blksize,st_blksize>\n<UnsupportedStmt: ['fieldAccess', '(pipestat).st_blksize']>\n",
+        "25": "None.9:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "26": "None.14:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "27": "None.15:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "28": "2162.2:\n<UnsupportedStmt: UNKNOWN,void,void>\n<UnsupportedStmt: ['cast', '(void)0']>\n",
+        "29": "None.20:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: void)0:__builtin_unreachable()>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ((void*)0),...>\n",
+        "30": "2168.2:\n<UnsupportedStmt: UNKNOWN,void,void>\n<UnsupportedStmt: ['cast', '(void)0']>\n",
+        "31": "None.22:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: void)0:__builtin_unreachable()>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ((void*)0),...>\n",
+        "32": "2158.0:\nstatus==126 ? s : t\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "33": "2164.0:\nstatus==126 ? s : t\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "34": "2158.5:\nstatus == 0x7fffffff\nstatus==0x7fffffff ? s : t\n",
+        "35": "2164.5:\nstatus == 0x7fffffff\nstatus==0x7fffffff ? s : t\n",
+        "36": "2058.2:\n<UnsupportedStmt: ['postIncrement', 'ap++']>\n<UnsupportedStmt: ['indirection', '*ap++']>\n*ap++ = &quot;-a&quot;\n",
+        "37": "2060.2:\n<UnsupportedStmt: ['postIncrement', 'ap++']>\n<UnsupportedStmt: ['indirection', '*ap++']>\n*ap++ = &quot;--strip-trailing-cr&quot;\n",
+        "38": "2076.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'fds[0]']>\nclose(fds[0])\n<UnsupportedStmt: ['indirectIndexAccess', 'fds[1]']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "39": "2101.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'fds[1]']>\nclose(fds[1])\n<UnsupportedStmt: ['indirectIndexAccess', 'fds[0]']>\nfd = fds[0]\n<UnsupportedStmt: ['addressOf', '&amp;pipestat']>\nfstat()\nfstat(fd,&amp;pipestat) != 0\n",
+        "40": "2105.6:\n<UnsupportedStmt: FIELD_IDENTIFIER,st_blksize,st_blksize>\n<UnsupportedStmt: ['fieldAccess', '(pipestat).st_blksize']>\n(1) >= (((pipestat).st_blksize))\n",
+        "41": "2105.1:\n(1)&gt;=(((pipestat).st_blksize)) ? ( : 1\ncurrent_chunk_size = ((1)&gt;=(((pipestat).st_bl...\nxmalloc(current_chunk_size)\ndiff_result = xmalloc(current_chunk_size)\ntotal = 0\n",
+        "42": "2137.1:\n<UnsupportedStmt: ['indirection', '*output_placement']>\n*output_placement = diff_result\nclose(fd)\nclose(fd) != 0\n",
+        "43": "2140.2:\n<UnsupportedStmt: ['addressOf', '&amp;wstatus']>\nwaitpid()\nwaitpid(pid,&amp;wstatus,0) < 0\n",
+        "44": "2156.3:\n<UnsupportedStmt: ['sizeOf', 'sizeof(struct{_Static_assert(2', '&quot;verify_exp...']>\n<UnsupportedStmt: ['logicalNot', '!sizeof(struct{_Static_assert(2', '&quot;verify_ex...']>\n<UnsupportedStmt: ['logicalNot', '!!sizeof(struct{_Static_assert(2', '&quot;verify_e...']>\n",
+        "45": "2130.0:\n<UnsupportedStmt: ['assignmentMultiplication', 'current_chunk_size*=2']>\nxrealloc()\ndiff_result = xrealloc(diff_result,current_ch...\n",
+        "46": "2134.4:\n<UnsupportedStmt: ['subtraction', 'total-1']>\n<UnsupportedStmt: ['indirectIndexAccess', 'diff_result[total-1]']>\ndiff_result[total-1] != '\\n'\n",
+        "47": "2089.2:\n<UnsupportedStmt: UNKNOWN,char**,char**>\n<UnsupportedStmt: ['cast', '(char**)argv']>\nexecvp()\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "48": "2081.0:\n<UnsupportedStmt: ['indirectIndexAccess', 'fds[1]']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: ['indirectIndexAccess', 'fds[1]']>\nclose(fds[1])\n",
+        "49": "2157.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\nstatus == 126\n",
+        "50": "2163.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\nstatus == 126\n",
+        "51": "2120.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "52": "2111.1:\n<UnsupportedStmt: ['subtraction', 'current_chunk_size-total']>\nbytes_to_read = current_chunk_size-total\n<UnsupportedStmt: ['addition', 'diff_result+total']>\nblock_read()\nbytes = block_read(fd,diff_result+total,by...\n<UnsupportedStmt: ['assignmentPlus', 'total+=bytes']>\nbytes != bytes_to_read\n",
+        "53": "2035.0:\nFUNCTION_START\nwerrno = 0\n<UnsupportedStmt: ['alloc', '*argv[9]']>\n*argv[9] = \n<UnsupportedStmt: ['alloc', 'fds[2]']>\nfds[2] = \nap = argv\n<UnsupportedStmt: ['postIncrement', 'ap++']>\n<UnsupportedStmt: ['indirection', '*ap++']>\n*ap++ = diff_program\n<UnsupportedStmt: IDENTIFIER,text,if(text)>\n",
+        "54": "2061.2:\n<UnsupportedStmt: ['postIncrement', 'ap++']>\n<UnsupportedStmt: ['indirection', '*ap++']>\n*ap++ = &quot;--horizon-lines=100&quot;\n<UnsupportedStmt: ['postIncrement', 'ap++']>\n<UnsupportedStmt: ['indirection', '*ap++']>\n*ap++ = &quot;--&quot;\n<UnsupportedStmt: ['postIncrement', 'ap++']>\n<UnsupportedStmt: ['indirection', '*ap++']>\n*ap++ = filea\n<UnsupportedStmt: ['postIncrement', 'ap++']>\n<UnsupportedStmt: ['indirection', '*ap++']>\n*ap++ = fileb\n<UnsupportedStmt: ['indirection', '*ap']>\n*ap = 0\npipe(fds)\npipe(fds) != 0\n"
+      },
+      "entry": [
+        53
+      ],
+      "exit": [
+        23
+      ],
+      "degenerate": false
+    },
+    "scan_diff_line": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "edges": [
+        [
+          0,
+          15
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          11
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          7,
+          15
+        ],
+        [
+          8,
+          1
+        ],
+        [
+          9,
+          7
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          11,
+          4
+        ],
+        [
+          11,
+          6
+        ],
+        [
+          12,
+          11
+        ],
+        [
+          13,
+          7
+        ],
+        [
+          13,
+          9
+        ],
+        [
+          14,
+          14
+        ],
+        [
+          14,
+          16
+        ],
+        [
+          15,
+          14
+        ],
+        [
+          16,
+          1
+        ],
+        [
+          16,
+          8
+        ]
+      ],
+      "labels": {
+        "0": "2195.0:\nfatal()\n",
+        "1": "2207.0:\nline_ptr&lt;limit&amp;&amp;*line_ptr=='\\\\' && \n",
+        "2": "2209.0:\n<UnsupportedStmt: IDENTIFIER,edscript,if(edscript)>\n",
+        "3": "2215.0:\n<UnsupportedStmt: ['postIncrement', 'line_ptr++']>\n",
+        "4": "2218.0:\n<UnsupportedStmt: IDENTIFIER,edscript,if(edscript)>\n",
+        "5": "None.2:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "6": "2226.0:\nreturn line_ptr;,returnline_ptr;\nFUNCTION_END\n",
+        "7": "None.1:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "8": "2207.3:\n<UnsupportedStmt: ['indirection', '*line_ptr']>\n*line_ptr == '\\\\'\n",
+        "9": "2194.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'scan_ptr[1]']>\nscan_ptr[1] == ''\n",
+        "10": "2214.1:\n<UnsupportedStmt: ['indirection', '*set_length']>\n<UnsupportedStmt: ['preDecrement', '--*set_length']>\n",
+        "11": "2223.2:\n<UnsupportedStmt: ['postIncrement', 'line_ptr++']>\n<UnsupportedStmt: ['indirection', '*line_ptr++']>\n*line_ptr++ != '\\n'\n",
+        "12": "2219.0:\n<UnsupportedStmt: ['indirection', '*line_ptr']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "13": "2187.0:\nFUNCTION_START\n<UnsupportedStmt: ['indirectIndexAccess', 'scan_ptr[0]']>\nscan_ptr[0] == leadingchar\n",
+        "14": "2198.2:\n<UnsupportedStmt: ['postIncrement', 'line_ptr++']>\n<UnsupportedStmt: ['indirection', '*line_ptr++']>\n*line_ptr++ != '\\n'\n",
+        "15": "2197.1:\n<UnsupportedStmt: ['indirection', '*set_start']>\n<UnsupportedStmt: ['addition', 'scan_ptr+2']>\nline_ptr = scan_ptr+2\n*set_start = line_ptr=scan_ptr+2\n",
+        "16": "2206.1:\n<UnsupportedStmt: ['indirection', '*set_length']>\n<UnsupportedStmt: ['indirection', '*set_start']>\n<UnsupportedStmt: ['subtraction', 'line_ptr-*set_start']>\n*set_length = line_ptr-*set_start\nline_ptr < limit\n"
+      },
+      "entry": [
+        13
+      ],
+      "exit": [
+        6
+      ],
+      "degenerate": false
+    },
+    "output_diff3": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "edges": [
+        [
+          0,
+          15
+        ],
+        [
+          1,
+          11
+        ],
+        [
+          2,
+          12
+        ],
+        [
+          2,
+          21
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          13
+        ],
+        [
+          5,
+          13
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          10,
+          22
+        ],
+        [
+          11,
+          2
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          13,
+          2
+        ],
+        [
+          14,
+          8
+        ],
+        [
+          15,
+          1
+        ],
+        [
+          15,
+          16
+        ],
+        [
+          15,
+          20
+        ],
+        [
+          16,
+          11
+        ],
+        [
+          17,
+          3
+        ],
+        [
+          17,
+          18
+        ],
+        [
+          18,
+          3
+        ],
+        [
+          19,
+          0
+        ],
+        [
+          20,
+          11
+        ],
+        [
+          21,
+          6
+        ],
+        [
+          21,
+          7
+        ],
+        [
+          21,
+          14
+        ],
+        [
+          22,
+          22
+        ],
+        [
+          22,
+          17
+        ]
+      ],
+      "labels": {
+        "0": "2242.0:\n<UnsupportedStmt: IDENTIFIER,ptr,for(ptr=diff;ptr;ptr=((ptr)-&gt;next))>\n",
+        "1": "2263.0:\nfatal()\n",
+        "2": "2268.0:\ni < 3\n",
+        "3": "2269.2:\noddoneout == 1\n",
+        "4": "2269.3:\n<UnsupportedStmt: ['indirectIndexAccess', 'skew_increment[i]']>\n",
+        "5": "2269.4:\n<UnsupportedStmt: ['addition', 'i+1']>\n",
+        "6": "2284.0:\nfprintf()\n",
+        "7": "2287.0:\nfprintf()\n",
+        "8": "2291.0:\ni == dontprint\n",
+        "9": "2293.0:\nlowt <= hight\n",
+        "10": "2295.0:\nline = 0\n",
+        "11": "2265.0:\nfprintf()\ni = 0\n",
+        "12": "2242.4:\n<UnsupportedStmt: FIELD_IDENTIFIER,next,next>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;next']>\nptr = ((ptr)-&gt;next)\n",
+        "13": "2269.1:\noddoneout==1 ? o : d\ni = (oddoneout==1?skew_increment[i]:i+1)\n",
+        "14": "2281.1:\n<UnsupportedStmt: ['subtraction', 'llowt-1']>\nfprintf()\n",
+        "15": "2244.1:\n<UnsupportedStmt: ['alloc', 'x[2]']>\nx[2] = \n<UnsupportedStmt: FIELD_IDENTIFIER,correspond,correspond>\n<UnsupportedStmt: ['indirectFieldAccess', 'ptr-&gt;correspond']>\n",
+        "16": "2249.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'x[0]']>\nx[0] = 0\ndontprint = 3\noddoneout = 3\n",
+        "17": "2304.2:\n<UnsupportedStmt: ['subtraction', 'length-1']>\n<UnsupportedStmt: ['indirectIndexAccess', 'cp[length-1]']>\ncp[length-1] != '\\n'\n",
+        "18": "2307.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "19": "2228.0:\nFUNCTION_START\n<UnsupportedStmt: ['alloc', 'skew_increment[3]={2', '3', '1}']>\nskew_increment[3] = {2,3,1}\n<UnsupportedStmt: ['arrayInitializer', '{2', '3', '1}']>\nskew_increment[3] = {2,3,1}\ninitial_tab ? i : n\n*line_prefix = initial_tab?&quot;\\t&quot;:&quot;&quot;\nptr = diff\n",
+        "20": "2256.4:\n<UnsupportedStmt: FIELD_IDENTIFIER,correspond,correspond>\n<UnsupportedStmt: ['indirectFieldAccess', 'ptr-&gt;correspond']>\n<UnsupportedStmt: ['subtraction', 'ptr-&gt;correspond-DIFF_1ST']>\n<UnsupportedStmt: ['indirectIndexAccess', 'rev_mapping[ptr-&gt;correspond-DIFF_1ST]']>\noddoneout = rev_mapping[ptr-&gt;correspond-DIFF_...\n<UnsupportedStmt: ['indirectIndexAccess', 'x[0]']>\n<UnsupportedStmt: ['addition', \"oddoneout+'1'\"]>\nx[0] = oddoneout+'1'\n<UnsupportedStmt: ['indirectIndexAccess', 'x[1]']>\nx[1] = 0\noddoneout == 0\ndontprint = oddoneout==0\n",
+        "21": "2271.1:\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[i]']>\nrealfile = mapping[i]\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;ranges[realfile]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;ranges[realfile][0]']>\nlowt = ((ptr)-&gt;ranges[realfile][0])\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;ranges[realfile]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;ranges[realfile][1]']>\nhight = ((ptr)-&gt;ranges[realfile][1])\nllowt = lowt\nlhight = hight\n<UnsupportedStmt: ['addition', 'i+1']>\nfprintf()\n<UnsupportedStmt: ['subtraction', 'lowt-hight']>\n",
+        "22": "2298.0:\nfputs_unlocked()\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;lines[realfile]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;lines[realfile][line]']>\ncp = ((ptr)-&gt;lines[realfile][line])\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(ptr)-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;lengths[realfile]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(ptr)-&gt;lengths[realfile][line]']>\nlength = ((ptr)-&gt;lengths[realfile][line])\n<UnsupportedStmt: ['sizeOf', 'sizeof(char)']>\nfwrite_unlocked()\n<UnsupportedStmt: ['preIncrement', '++line']>\n<UnsupportedStmt: ['subtraction', 'hight-lowt']>\n<UnsupportedStmt: ['addition', 'hight-lowt+1']>\n++line < hight-lowt+1\n"
+      },
+      "entry": [
+        19
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "dotlines": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "edges": [
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "labels": {
+        "0": "2348.0:\nreturn leading_dot;,returnleading_dot;\nFUNCTION_END\n",
+        "1": "None.1:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nfputc_unlocked()\n",
+        "2": "2320.0:\nFUNCTION_START\n<UnsupportedStmt: >\n<UnsupportedStmt: >\ni = 0\n",
+        "3": "2344.1:\n<UnsupportedStmt: ['sizeOf', 'sizeof(char)']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;lengths[filenum]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;lengths[filenum][i]']>\nfwrite_unlocked()\n<UnsupportedStmt: ['postIncrement', 'i++']>\n",
+        "4": "2336.4:\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;lines[filenum]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;lines[filenum][i]']>\n*line = ((b)-&gt;lines[filenum][i])\n<UnsupportedStmt: ['indirectIndexAccess', 'line[0]']>\nline[0] == '.'\n",
+        "5": "2333.9:\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[filenum]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[filenum][1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[filenum]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[filenum][0]']>\n<UnsupportedStmt: ['subtraction', '((b)-&gt;ranges[filenum][1])-((b)-&gt;ranges[filenu...']>\n<UnsupportedStmt: ['addition', '((b)-&gt;ranges[filenum][1])-((b)-&gt;ranges[filenu...']>\ni < (((b)-&gt;ranges[filenum][1])-((b)-&gt;ranges[f...\n"
+      },
+      "entry": [
+        2
+      ],
+      "exit": [
+        0
+      ],
+      "degenerate": false
+    },
+    "undotlines": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "labels": {
+        "0": "2363.0:\nnum == 1\n",
+        "1": "2364.0:\nfprintf()\n",
+        "2": "2355.0:\nFUNCTION_START\nfputs_unlocked()\n<UnsupportedStmt: IDENTIFIER,leading_dot,if(leading_dot)>\n",
+        "3": "2366.2:\n<UnsupportedStmt: ['addition', 'start+num']>\n<UnsupportedStmt: ['subtraction', 'start+num-1']>\nfprintf()\n"
+      },
+      "entry": [
+        2
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "output_diff3_edscript": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          20
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          16
+        ],
+        [
+          2,
+          16
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          3,
+          17
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          17
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          17
+        ],
+        [
+          6,
+          28
+        ],
+        [
+          7,
+          28
+        ],
+        [
+          8,
+          28
+        ],
+        [
+          9,
+          24
+        ],
+        [
+          9,
+          25
+        ],
+        [
+          10,
+          12
+        ],
+        [
+          10,
+          13
+        ],
+        [
+          11,
+          14
+        ],
+        [
+          11,
+          15
+        ],
+        [
+          11,
+          19
+        ],
+        [
+          12,
+          17
+        ],
+        [
+          13,
+          17
+        ],
+        [
+          14,
+          30
+        ],
+        [
+          15,
+          30
+        ],
+        [
+          17,
+          0
+        ],
+        [
+          18,
+          3
+        ],
+        [
+          18,
+          4
+        ],
+        [
+          18,
+          5
+        ],
+        [
+          18,
+          17
+        ],
+        [
+          19,
+          30
+        ],
+        [
+          20,
+          18
+        ],
+        [
+          20,
+          22
+        ],
+        [
+          21,
+          9
+        ],
+        [
+          21,
+          31
+        ],
+        [
+          22,
+          18
+        ],
+        [
+          23,
+          29
+        ],
+        [
+          24,
+          31
+        ],
+        [
+          25,
+          24
+        ],
+        [
+          26,
+          0
+        ],
+        [
+          27,
+          10
+        ],
+        [
+          27,
+          11
+        ],
+        [
+          28,
+          21
+        ],
+        [
+          28,
+          27
+        ],
+        [
+          29,
+          17
+        ],
+        [
+          30,
+          17
+        ],
+        [
+          31,
+          23
+        ],
+        [
+          31,
+          29
+        ]
+      ],
+      "labels": {
+        "0": "2389.0:\n<UnsupportedStmt: IDENTIFIER,b,for(b=reverse_diff3_blocklist(diff);b;b=b...>\n",
+        "1": "2490.0:\n<UnsupportedStmt: IDENTIFIER,finalwrite,if(finalwrite)>\n",
+        "2": "2491.0:\nfputs_unlocked()\n",
+        "3": "2403.0:\n<UnsupportedStmt: ['logicalNot', '!show_2nd']>\n",
+        "4": "2406.0:\n<UnsupportedStmt: IDENTIFIER,overlap_only,if(overlap_only)>\n",
+        "5": "2409.1:\n<UnsupportedStmt: IDENTIFIER,simple_only,if(simple_only)>\n",
+        "6": "None.3:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "7": "None.4:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "8": "2409.0:\nconflict = flagging\n",
+        "9": "2430.0:\n<UnsupportedStmt: IDENTIFIER,show_2nd,if(show_2nd)>\n",
+        "10": "2465.0:\nlow0 == high0\n",
+        "11": "2473.0:\n<UnsupportedStmt: ['subtraction', 'high0-low0']>\n",
+        "12": "2466.0:\nfprintf()\n",
+        "13": "2468.0:\nfprintf()\n",
+        "14": "2479.0:\nfprintf()\n",
+        "15": "2482.0:\nfprintf()\n",
+        "16": "2492.0:\nreturn conflicts_found;,returnconflicts_found;\nFUNCTION_END\n",
+        "17": "2389.5:\n<UnsupportedStmt: FIELD_IDENTIFIER,next,next>\n<UnsupportedStmt: ['indirectFieldAccess', 'b-&gt;next']>\nb = b-&gt;next\n",
+        "18": "None.2:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: IDENTIFIER,type,switch(type)>\n",
+        "19": "2475.0:\n-1 - \nfprintf()\n",
+        "20": "2393.2:\n<UnsupportedStmt: FIELD_IDENTIFIER,correspond,correspond>\n<UnsupportedStmt: ['indirectFieldAccess', 'b-&gt;correspond']>\nb-&gt;correspond == DIFF_ALL\n",
+        "21": "None.5:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nfprintf()\n<UnsupportedStmt: >\n<UnsupportedStmt: >\ntype == DIFF_ALL\n",
+        "22": "2395.4:\n<UnsupportedStmt: FIELD_IDENTIFIER,correspond,correspond>\n<UnsupportedStmt: ['indirectFieldAccess', 'b-&gt;correspond']>\n<UnsupportedStmt: ['subtraction', 'b-&gt;correspond-DIFF_1ST']>\n<UnsupportedStmt: ['indirectIndexAccess', 'rev_mapping[b-&gt;correspond-DIFF_1ST]']>\n<UnsupportedStmt: ['addition', 'DIFF_1ST+rev_mapping[b-&gt;correspond-DIFF_1ST]']>\n",
+        "23": "2456.2:\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[1]']>\ndotlines()\nleading_dot = dotlines(outputfile,b,mapping[1])\nfputs_unlocked()\n",
+        "24": "2437.0:\nfputs_unlocked()\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[2]']>\ndotlines()\n<UnsupportedStmt: &lt;operators&gt;.assignmentOr,leading_dot|=dotlines(outputfile,b,mapping...>\n",
+        "25": "2433.0:\nfprintf()\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[1]']>\ndotlines()\nleading_dot = dotlines(outputfile,b,mapping[1])\n",
+        "26": "2369.0:\nFUNCTION_START\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nreverse_diff3_blocklist(diff)\nb = reverse_diff3_blocklist(diff)\n",
+        "27": "2462.11:\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[2]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[2]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[2]][1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[2]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[2]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[2]][0]']>\n<UnsupportedStmt: ['subtraction', '((b)-&gt;ranges[mapping[2]][1])-((b)-&gt;ranges[map...']>\n<UnsupportedStmt: ['addition', '((b)-&gt;ranges[mapping[2]][1])-((b)-&gt;ranges[map...']>\n(((b)-&gt;ranges[mapping[2]][1])-((b)-&gt;ranges[ma... == \n",
+        "28": "2412.5:\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[0]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[0]][0]']>\nlow0 = ((b)-&gt;ranges[mapping[0]][0])\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[0]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[0]][1]']>\nhigh0 = ((b)-&gt;ranges[mapping[0]][1])\n<UnsupportedStmt: IDENTIFIER,conflict,if(conflict)>\n",
+        "29": "2459.0:\n<UnsupportedStmt: ['addition', 'low0+1']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[1]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[1]][1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[1]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[1]][0]']>\n<UnsupportedStmt: ['subtraction', '((b)-&gt;ranges[mapping[1]][1])-((b)-&gt;ranges[map...']>\n<UnsupportedStmt: ['addition', '((b)-&gt;ranges[mapping[1]][1])-((b)-&gt;ranges[map...']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "30": "2486.2:\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[2]']>\ndotlines()\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[2]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[2]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[2]][1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[2]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[2]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[2]][0]']>\n<UnsupportedStmt: ['subtraction', '((b)-&gt;ranges[mapping[2]][1])-((b)-&gt;ranges[map...']>\n<UnsupportedStmt: ['addition', '((b)-&gt;ranges[mapping[2]][1])-((b)-&gt;ranges[map...']>\nundotlines()\n",
+        "31": "2440.0:\nfprintf()\n<UnsupportedStmt: ['addition', 'high0+2']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[1]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[1]][1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[1]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[1]][0]']>\n<UnsupportedStmt: ['subtraction', '((b)-&gt;ranges[mapping[1]][1])-((b)-&gt;ranges[map...']>\n<UnsupportedStmt: ['addition', '((b)-&gt;ranges[mapping[1]][1])-((b)-&gt;ranges[map...']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[2]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[2]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[2]][1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[2]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[2]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[2]][0]']>\n<UnsupportedStmt: ['subtraction', '((b)-&gt;ranges[mapping[2]][1])-((b)-&gt;ranges[map...']>\n<UnsupportedStmt: ['addition', '((b)-&gt;ranges[mapping[2]][1])-((b)-&gt;ranges[map...']>\n<UnsupportedStmt: ['addition', '(((b)-&gt;ranges[mapping[1]][1])-((b)-&gt;ranges[ma...']>\n<UnsupportedStmt: ['addition', '(((b)-&gt;ranges[mapping[1]][1])-((b)-&gt;ranges[ma...']>\nundotlines()\n<UnsupportedStmt: ['subtraction', 'low0-1']>\ntype == DIFF_ALL\ntype==DIFF_ALL ? t : y\nfprintf()\n<UnsupportedStmt: >\n<UnsupportedStmt: >\ntype == DIFF_2ND\n"
+      },
+      "entry": [
+        26
+      ],
+      "exit": [
+        16
+      ],
+      "degenerate": false
+    },
+    "output_diff3_merge": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "edges": [
+        [
+          1,
+          33
+        ],
+        [
+          1,
+          34
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          33
+        ],
+        [
+          4,
+          11
+        ],
+        [
+          4,
+          25
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          5,
+          25
+        ],
+        [
+          6,
+          25
+        ],
+        [
+          6,
+          27
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          7,
+          26
+        ],
+        [
+          8,
+          45
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          9,
+          46
+        ],
+        [
+          10,
+          46
+        ],
+        [
+          11,
+          40
+        ],
+        [
+          12,
+          40
+        ],
+        [
+          13,
+          8
+        ],
+        [
+          14,
+          13
+        ],
+        [
+          14,
+          31
+        ],
+        [
+          15,
+          17
+        ],
+        [
+          15,
+          41
+        ],
+        [
+          16,
+          18
+        ],
+        [
+          16,
+          42
+        ],
+        [
+          17,
+          19
+        ],
+        [
+          17,
+          32
+        ],
+        [
+          17,
+          38
+        ],
+        [
+          18,
+          20
+        ],
+        [
+          18,
+          29
+        ],
+        [
+          19,
+          21
+        ],
+        [
+          19,
+          22
+        ],
+        [
+          20,
+          29
+        ],
+        [
+          22,
+          21
+        ],
+        [
+          23,
+          7
+        ],
+        [
+          23,
+          37
+        ],
+        [
+          24,
+          25
+        ],
+        [
+          24,
+          38
+        ],
+        [
+          25,
+          1
+        ],
+        [
+          26,
+          14
+        ],
+        [
+          26,
+          30
+        ],
+        [
+          27,
+          40
+        ],
+        [
+          28,
+          15
+        ],
+        [
+          28,
+          38
+        ],
+        [
+          29,
+          23
+        ],
+        [
+          29,
+          37
+        ],
+        [
+          30,
+          48
+        ],
+        [
+          31,
+          50
+        ],
+        [
+          32,
+          19
+        ],
+        [
+          33,
+          2
+        ],
+        [
+          33,
+          35
+        ],
+        [
+          34,
+          36
+        ],
+        [
+          34,
+          39
+        ],
+        [
+          35,
+          2
+        ],
+        [
+          36,
+          4
+        ],
+        [
+          36,
+          5
+        ],
+        [
+          36,
+          6
+        ],
+        [
+          36,
+          25
+        ],
+        [
+          37,
+          16
+        ],
+        [
+          37,
+          29
+        ],
+        [
+          38,
+          24
+        ],
+        [
+          38,
+          28
+        ],
+        [
+          39,
+          36
+        ],
+        [
+          40,
+          23
+        ],
+        [
+          41,
+          38
+        ],
+        [
+          42,
+          29
+        ],
+        [
+          43,
+          1
+        ],
+        [
+          44,
+          45
+        ],
+        [
+          45,
+          9
+        ],
+        [
+          45,
+          44
+        ],
+        [
+          46,
+          24
+        ],
+        [
+          47,
+          48
+        ],
+        [
+          48,
+          14
+        ],
+        [
+          48,
+          47
+        ],
+        [
+          49,
+          50
+        ],
+        [
+          50,
+          13
+        ],
+        [
+          50,
+          49
+        ]
+      ],
+      "labels": {
+        "0": "2631.0:\nreturn conflicts_found;,returnconflicts_found;\n",
+        "1": "2514.0:\n<UnsupportedStmt: IDENTIFIER,b,for(b=diff;b;b=b-&gt;next)>\n",
+        "2": "None.1:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "3": "2630.0:\nputc_unlocked()\n",
+        "4": "2527.0:\n<UnsupportedStmt: ['logicalNot', '!show_2nd']>\n",
+        "5": "2530.0:\n<UnsupportedStmt: IDENTIFIER,overlap_only,if(overlap_only)>\n",
+        "6": "2533.1:\n<UnsupportedStmt: IDENTIFIER,simple_only,if(simple_only)>\n",
+        "7": "2562.0:\n<UnsupportedStmt: IDENTIFIER,conflict,if(conflict)>\n",
+        "8": "2594.0:\ni = 0\n",
+        "9": "2600.0:\n<UnsupportedStmt: IDENTIFIER,conflict,if(conflict)>\n",
+        "10": "2601.0:\nfprintf()\n",
+        "11": "None.5:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "12": "None.6:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "13": "2590.0:\nfputs_unlocked()\n",
+        "14": "2579.0:\n<UnsupportedStmt: IDENTIFIER,show_2nd,if(show_2nd)>\n",
+        "15": "2612.0:\nferror_unlocked(infile)\n",
+        "16": "2549.0:\nferror_unlocked(infile)\n",
+        "17": "2618.0:\nfeof_unlocked(infile)\n",
+        "18": "2555.0:\nfeof_unlocked(infile)\n",
+        "19": "2620.0:\ni||b-&gt;next || \n",
+        "20": "2556.0:\nfatal(&quot;inputfileshrank&quot;)\n",
+        "21": "2622.0:\nreturn conflicts_found;,returnconflicts_found;\n",
+        "22": "2621.0:\nfatal(&quot;inputfileshrank&quot;)\n",
+        "23": "2541.1:\n<UnsupportedStmt: ['preDecrement', '--i']>\n0 <= --i\n",
+        "24": "2606.1:\n<UnsupportedStmt: ['preDecrement', '--i']>\n0 <= --i\n",
+        "25": "2514.4:\n<UnsupportedStmt: FIELD_IDENTIFIER,next,next>\n<UnsupportedStmt: ['indirectFieldAccess', 'b-&gt;next']>\nb = b-&gt;next\n",
+        "26": "None.7:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\ntype == DIFF_ALL\n",
+        "27": "2533.0:\nconflict = flagging\nformat_2nd = &quot;|||||||%s\\n&quot;\n",
+        "28": "2609.0:\n-1 - \n<UnsupportedStmt: >\n<UnsupportedStmt: -1)>\n",
+        "29": "2558.0:\nputc_unlocked()\nc != '\\n'\n",
+        "30": "2571.0:\nfprintf()\ni = 0\n",
+        "31": "2582.0:\nfprintf()\ni = 0\n",
+        "32": "2620.2:\n<UnsupportedStmt: FIELD_IDENTIFIER,next,next>\n<UnsupportedStmt: ['indirectFieldAccess', 'b-&gt;next']>\n",
+        "33": "2627.1:\ngetc_unlocked(infile)\nc = getc_unlocked(infile)\n-1 - \n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "34": "2518.2:\n<UnsupportedStmt: FIELD_IDENTIFIER,correspond,correspond>\n<UnsupportedStmt: ['indirectFieldAccess', 'b-&gt;correspond']>\nb-&gt;correspond == DIFF_ALL\n",
+        "35": "2629.2:\nferror_unlocked(infile)\nfeof_unlocked(infile)\n<UnsupportedStmt: ['or', 'ferror_unlocked(infile)|feof_unlocked(infile)']>\n<UnsupportedStmt: ['logicalNot', '!(ferror_unlocked(infile)|feof_unlocked(inf...']>\n",
+        "36": "None.4:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n*format_2nd = &quot;&lt;&lt;&lt;&lt;&lt;&lt;&lt;%s\\n&quot;\n<UnsupportedStmt: IDENTIFIER,type,switch(type)>\n",
+        "37": "2544.1:\ngetc_unlocked(infile)\nc = getc_unlocked(infile)\n-1 - \n<UnsupportedStmt: >\n<UnsupportedStmt: -1)>\n",
+        "38": "2607.2:\ngetc_unlocked(infile)\nc = getc_unlocked(infile)\n(c=getc_unlocked(infile)) != '\\n'\n",
+        "39": "2520.4:\n<UnsupportedStmt: FIELD_IDENTIFIER,correspond,correspond>\n<UnsupportedStmt: ['indirectFieldAccess', 'b-&gt;correspond']>\n<UnsupportedStmt: ['subtraction', 'b-&gt;correspond-DIFF_1ST']>\n<UnsupportedStmt: ['indirectIndexAccess', 'rev_mapping[b-&gt;correspond-DIFF_1ST]']>\n<UnsupportedStmt: ['addition', 'DIFF_1ST+rev_mapping[b-&gt;correspond-DIFF_1ST]']>\n",
+        "40": "2539.6:\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[0][0]']>\n<UnsupportedStmt: ['subtraction', '((b)-&gt;ranges[0][0])-linesread']>\n<UnsupportedStmt: ['subtraction', '((b)-&gt;ranges[0][0])-linesread-1']>\ni = ((b)-&gt;ranges[0][0])-linesread-1\n<UnsupportedStmt: ['assignmentPlus', 'linesread+=i']>\n",
+        "41": "2614.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "42": "2551.1:\n<UnsupportedStmt: UNKNOWN,void*,void*>\n<UnsupportedStmt: ['cast', '(void*)0']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "43": "2494.0:\nFUNCTION_START\n<UnsupportedStmt: >\n<UnsupportedStmt: >\nlinesread = 0\nb = diff\n",
+        "44": "2597.10:\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[2]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;lines[mapping[2]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;lines[mapping[2]][i]']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(char)']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[2]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;lengths[mapping[2]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;lengths[mapping[2]][i]']>\nfwrite_unlocked(((b)-&gt;lines[mapping[2]][i])\n<UnsupportedStmt: ['postIncrement', 'i++']>\n",
+        "45": "2595.11:\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[2]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[2]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[2]][1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[2]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[2]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[2]][0]']>\n<UnsupportedStmt: ['subtraction', '((b)-&gt;ranges[mapping[2]][1])-((b)-&gt;ranges[map...']>\n<UnsupportedStmt: ['addition', '((b)-&gt;ranges[mapping[2]][1])-((b)-&gt;ranges[map...']>\ni < (((b)-&gt;ranges[mapping[2]][1])-((b)-&gt;range...\n",
+        "46": "2604.9:\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[0][1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[0][0]']>\n<UnsupportedStmt: ['subtraction', '((b)-&gt;ranges[0][1])-((b)-&gt;ranges[0][0])']>\n<UnsupportedStmt: ['addition', '((b)-&gt;ranges[0][1])-((b)-&gt;ranges[0][0])+1']>\ni = (((b)-&gt;ranges[0][1])-((b)-&gt;ranges[0][0])...\n<UnsupportedStmt: ['assignmentPlus', 'linesread+=i']>\n",
+        "47": "2575.10:\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;lines[mapping[0]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;lines[mapping[0]][i]']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(char)']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;lengths[mapping[0]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;lengths[mapping[0]][i]']>\nfwrite_unlocked(((b)-&gt;lines[mapping[0]][i])\n<UnsupportedStmt: ['postIncrement', 'i++']>\n",
+        "48": "2573.11:\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[0]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[0]][1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[0]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[0]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[0]][0]']>\n<UnsupportedStmt: ['subtraction', '((b)-&gt;ranges[mapping[0]][1])-((b)-&gt;ranges[map...']>\n<UnsupportedStmt: ['addition', '((b)-&gt;ranges[mapping[0]][1])-((b)-&gt;ranges[map...']>\ni < (((b)-&gt;ranges[mapping[0]][1])-((b)-&gt;range...\n",
+        "49": "2586.10:\n<UnsupportedStmt: FIELD_IDENTIFIER,lines,lines>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;lines']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;lines[mapping[1]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;lines[mapping[1]][i]']>\n<UnsupportedStmt: ['sizeOf', 'sizeof(char)']>\n<UnsupportedStmt: FIELD_IDENTIFIER,lengths,lengths>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;lengths']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;lengths[mapping[1]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;lengths[mapping[1]][i]']>\nfwrite_unlocked(((b)-&gt;lines[mapping[1]][i])\n<UnsupportedStmt: ['postIncrement', 'i++']>\n",
+        "50": "2584.11:\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[1]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[1]][1]']>\n<UnsupportedStmt: FIELD_IDENTIFIER,ranges,ranges>\n<UnsupportedStmt: ['indirectFieldAccess', '(b)-&gt;ranges']>\n<UnsupportedStmt: ['indirectIndexAccess', 'mapping[1]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[1]]']>\n<UnsupportedStmt: ['indirectIndexAccess', '(b)-&gt;ranges[mapping[1]][0]']>\n<UnsupportedStmt: ['subtraction', '((b)-&gt;ranges[mapping[1]][1])-((b)-&gt;ranges[map...']>\n<UnsupportedStmt: ['addition', '((b)-&gt;ranges[mapping[1]][1])-((b)-&gt;ranges[map...']>\ni < (((b)-&gt;ranges[mapping[1]][1])-((b)-&gt;range...\n"
+      },
+      "entry": [
+        43
+      ],
+      "exit": [],
+      "degenerate": false
+    },
+    "reverse_diff3_blocklist": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "labels": {
+        "0": "2641.0:\n<UnsupportedStmt: IDENTIFIER,tmp,for(tmp=diff,prev=0;tmp;tmp=next)>\n",
+        "1": "2648.0:\nreturn prev;,returnprev;\nFUNCTION_END\n",
+        "2": "2636.0:\nFUNCTION_START\ntmp = diff\nprev = 0\n<UnsupportedStmt: ['expressionList', 'tmp=diff', 'prev=0']>\n",
+        "3": "2643.2:\n<UnsupportedStmt: FIELD_IDENTIFIER,next,next>\n<UnsupportedStmt: ['indirectFieldAccess', 'tmp-&gt;next']>\nnext = tmp-&gt;next\n<UnsupportedStmt: FIELD_IDENTIFIER,next,next>\n<UnsupportedStmt: ['indirectFieldAccess', 'tmp-&gt;next']>\ntmp-&gt;next = prev\nprev = tmp\ntmp = next\n"
+      },
+      "entry": [
+        2
+      ],
+      "exit": [
+        1
+      ],
+      "degenerate": false
+    },
+    "perror_with_exit": {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "edges": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          7,
+          9
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          9,
+          1
+        ],
+        [
+          9,
+          5
+        ]
+      ],
+      "labels": {
+        "0": "2676.1:\n__builtin_unreachable()\n",
+        "1": "2680.1:\n__builtin_unreachable()\n",
+        "2": "2672.0:\n(!!sizeof(struct{_Static_assert(2,&quot;verify_... ? ( : !\nFUNCTION_END\n",
+        "3": "2676.2:\n<UnsupportedStmt: UNKNOWN,void,void>\n<UnsupportedStmt: ['cast', '(void)0']>\n",
+        "4": "None.5:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: void)0:__builtin_unreachable()>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "5": "2680.2:\n<UnsupportedStmt: UNKNOWN,void,void>\n<UnsupportedStmt: ['cast', '(void)0']>\n",
+        "6": "None.7:\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: void)0:__builtin_unreachable()>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "7": "2669.0:\nFUNCTION_START\n<UnsupportedStmt: ['sizeOf', 'sizeof(struct{_Static_assert(2', '&quot;verify_exp...']>\n<UnsupportedStmt: ['logicalNot', '!sizeof(struct{_Static_assert(2', '&quot;verify_ex...']>\n<UnsupportedStmt: ['logicalNot', '!!sizeof(struct{_Static_assert(2', '&quot;verify_e...']>\n",
+        "8": "2673.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n",
+        "9": "2677.1:\n__errno_location()\n<UnsupportedStmt: ['indirection', '*__errno_location()']>\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n<UnsupportedStmt: >\n"
+      },
+      "entry": [
+        7
+      ],
+      "exit": [
+        2
+      ],
+      "degenerate": false
+    }
+  }
+}

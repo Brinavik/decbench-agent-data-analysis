@@ -1,0 +1,115 @@
+[
+  {
+    "function": "diversion_add",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "第1个参数 argv",
+        "source_type": "const char *const *",
+        "decompiled_type": "const char *const *",
+        "match": "correct",
+        "evidence_source_line": "源码 1803: diversion_add(const char *const *argv)",
+        "evidence_decompiled_line": "反编译 85: diversion_add(const char *const *argv)"
+      },
+      {
+        "source_role": "局部变量 filename",
+        "source_type": "const char *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "源码 1805: const char *filename = argv[0];",
+        "evidence_decompiled_line": "反编译 91: const char *filename = argv[0];"
+      },
+      {
+        "source_role": "局部变量 file_from",
+        "source_type": "struct file",
+        "decompiled_type": "struct file（name 字段被恢复为 const char *）",
+        "match": "wrong",
+        "evidence_source_line": "源码 1421: char *name;",
+        "evidence_decompiled_line": "反编译 40: const char *name;"
+      },
+      {
+        "source_role": "局部变量 file_to",
+        "source_type": "struct file",
+        "decompiled_type": "struct file（name 字段被恢复为 const char *）",
+        "match": "wrong",
+        "evidence_source_line": "源码 1806: struct file file_from, file_to;",
+        "evidence_decompiled_line": "反编译 87: struct file file_from, file_to;"
+      },
+      {
+        "source_role": "局部变量 contest",
+        "source_type": "struct fsys_diversion *",
+        "decompiled_type": "struct diversion *（0x18 字段被恢复为 bool）",
+        "match": "wrong",
+        "evidence_source_line": "源码 1807: struct fsys_diversion *contest, *altname;",
+        "evidence_decompiled_line": "反编译 90: struct diversion *contest, *altname;"
+      },
+      {
+        "source_role": "局部变量 altname",
+        "source_type": "struct fsys_diversion *",
+        "decompiled_type": "struct diversion *（0x18 字段被恢复为 bool）",
+        "match": "wrong",
+        "evidence_source_line": "源码 1884: altname = nfmalloc(sizeof(*altname));",
+        "evidence_decompiled_line": "反编译 152: altname = nfmalloc(sizeof(*altname));"
+      },
+      {
+        "source_role": "局部变量 fnn_from",
+        "source_type": "struct fsys_namenode *",
+        "decompiled_type": "struct fsys_namenode *（显式布局被截断）",
+        "match": "wrong",
+        "evidence_source_line": "源码 1808: struct fsys_namenode *fnn_from, *fnn_to;",
+        "evidence_decompiled_line": "反编译 88: struct fsys_namenode *namenode, *divertto_node;"
+      },
+      {
+        "source_role": "局部变量 fnn_to",
+        "source_type": "struct fsys_namenode *",
+        "decompiled_type": "struct fsys_namenode *（显式布局被截断）",
+        "match": "wrong",
+        "evidence_source_line": "源码 1846: fnn_to = fsys_hash_find_node(opt_divertto, 0);",
+        "evidence_decompiled_line": "反编译 120: divertto_node = fsys_hash_find_node(opt_divertto, 0);"
+      },
+      {
+        "source_role": "局部变量 pkgset",
+        "source_type": "struct pkgset *",
+        "decompiled_type": "struct pkgset *（显式布局被截断）",
+        "match": "wrong",
+        "evidence_source_line": "源码 1809: struct pkgset *pkgset;",
+        "evidence_decompiled_line": "反编译 89: struct pkgset *pkgset;"
+      },
+      {
+        "source_role": "结构体 fsys_diversion",
+        "source_type": "[0x00] struct fsys_namenode *useinstead; [0x08] struct fsys_namenode *camefrom; [0x10] struct pkgset *pkgset; [0x18] struct fsys_diversion *next",
+        "decompiled_type": "[0x00] struct fsys_namenode *useinstead; [0x08] struct fsys_namenode *camefrom; [0x10] struct pkgset *pkg; [0x18] bool camefrom_installed",
+        "match": "wrong",
+        "evidence_source_line": "源码 1264: struct fsys_diversion *next;",
+        "evidence_decompiled_line": "反编译 30: bool camefrom_installed;"
+      },
+      {
+        "source_role": "结构体 fsys_namenode",
+        "source_type": "9 个字段：前四个后仍有 statoverride、trig_interested、flags、oldhash、newhash、file_ondisk_id",
+        "decompiled_type": "4 个字段，最后字段为 [0x18] struct diversion *divert",
+        "match": "wrong",
+        "evidence_source_line": "源码 1226: struct file_stat *statoverride;（在源码 1216-1219 的前四字段之后）",
+        "evidence_decompiled_line": "反编译 24: };（在 20-23 的四字段后结束）"
+      },
+      {
+        "source_role": "结构体 pkgset",
+        "source_type": "[0x00] struct pkgset *next; [0x08] const char *name; 后续含 struct pkginfo pkg、depended、int installed_instances",
+        "decompiled_type": "仅 [0x00] struct pkgset *next 和 [0x08] const char *name",
+        "match": "wrong",
+        "evidence_source_line": "源码 678: struct pkginfo pkg;",
+        "evidence_decompiled_line": "反编译 15: };（在 13-14 的两个字段后结束）"
+      },
+      {
+        "source_role": "结构体 file",
+        "source_type": "[0x00] char *name; [0x08] 匿名 enum stat_state; [0x10] struct stat stat",
+        "decompiled_type": "[0x00] const char *name; [0x08] enum file_stat_state stat_state; [0x10] struct stat stat",
+        "match": "wrong",
+        "evidence_source_line": "源码 1421: char *name;",
+        "evidence_decompiled_line": "反编译 40: const char *name;"
+      }
+    ],
+    "reasoning": "第 1 个 ABI 参数及 filename 由 argv[0] 的同一数据流对齐，类型正确。file_from/file_to 由同一取地址传递至初始化、状态读取和清理调用对齐；其结构字段的顶层 const 不一致。contest/altname、fnn_from/fnn_to 和 pkgset 分别由来自/写入 namenode->divert、nfmalloc 与 pkg 查找的数据流对齐。结构名称未用作判断依据：fsys_diversion 在相同的前三个指针字段后，源码明确还有 self-pointer next，而反编译显式声明 bool，构成 PTR-01 与 LAYOUT-01；fsys_namenode 和 pkgset 的显式字段数也少于源码，构成 LAYOUT-01。函数中没有静态局部对象，故 SC-01 无可确认实体；未见同名冲突、整数宽度或 ABI 原型错误的证据。"
+  }
+]

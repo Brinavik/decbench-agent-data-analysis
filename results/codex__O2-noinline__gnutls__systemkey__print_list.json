@@ -1,0 +1,214 @@
+[
+  {
+    "function": "print_list",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "函数返回类型",
+        "source_type": "void",
+        "decompiled_type": "void",
+        "match": "correct",
+        "evidence_source_line": "7321: void print_list(const char *priorities, int verbose)",
+        "evidence_decompiled_line": "70: void print_list(const char *priorities, int verbose)"
+      },
+      {
+        "source_role": "第1个参数",
+        "source_type": "const char *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "7321: void print_list(const char *priorities, int verbose); 7336-7341: priorities is NULL-tested and passed to the %s argument",
+        "evidence_decompiled_line": "70: void print_list(const char *priorities, int verbose); 87-88: priorities is NULL-tested and passed to the %s argument"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "7321: void print_list(const char *priorities, int verbose); 7563-7570: verbose controls detailed cipher output",
+        "evidence_decompiled_line": "70: void print_list(const char *priorities, int verbose); 204-208: verbose controls the same detailed output"
+      },
+      {
+        "source_role": "局部变量i（所有循环的归纳变量）",
+        "source_type": "size_t",
+        "decompiled_type": "unsigned int",
+        "match": "wrong",
+        "evidence_source_line": "7323: size_t i; 7356-7360: i is passed as the cipher-suite index; 7555-7556: i is also passed to gnutls_cipher_suite_info",
+        "evidence_decompiled_line": "83: unsigned int i; 100-104: i is passed as the cipher-suite index; 192-198: i is passed to gnutls_cipher_suite_info",
+        "reasoning": "On the analyzed 64-bit binary, size_t is wider than unsigned int; this is an INT-01 width loss even though both are unsigned."
+      },
+      {
+        "source_role": "局部变量ret（状态码以及priority-list计数的复用槽）",
+        "source_type": "int",
+        "decompiled_type": "int ret / unsigned int count（按数据流拆分）",
+        "match": "wrong",
+        "evidence_source_line": "7324: int ret; 7343-7353: ret carries signed error codes; 7391 and 7400: the same ret receives a list count and is explicitly cast to unsigned for the loop bound",
+        "evidence_decompiled_line": "84-85: unsigned int count; int ret; 90-97: ret carries signed errors; 119-127: count receives the protocol-list result and is used as the loop bound",
+        "reasoning": "The signed status-code portion is recovered correctly, but the source entity is one int local. Splitting its list-count data flows into unsigned int count changes the declared signedness and loses the source reuse relationship, an INT-01 recovery mismatch."
+      },
+      {
+        "source_role": "局部变量idx（优先级缓存返回的套件索引）",
+        "source_type": "unsigned int",
+        "decompiled_type": "unsigned int",
+        "match": "correct",
+        "evidence_source_line": "7325: unsigned int idx; 7358-7367: &idx is the output and idx is then passed to gnutls_cipher_suite_info",
+        "evidence_decompiled_line": "82: unsigned int suite; 103-110: &suite is the output and suite is then passed to gnutls_cipher_suite_info"
+      },
+      {
+        "source_role": "局部变量name（套件名称返回指针）",
+        "source_type": "const char *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "7326: const char *name; 7366-7384: assigned from gnutls_cipher_suite_info, NULL-tested, and printed with %s",
+        "evidence_decompiled_line": "74: const char *name; 110-114: assigned from gnutls_cipher_suite_info, NULL-tested, and printed with %s"
+      },
+      {
+        "source_role": "局部变量err（优先级语法错误位置）",
+        "source_type": "const char *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "7327: const char *err; 7343-7348: &err is passed to initialization and err is printed with %s on syntax error",
+        "evidence_decompiled_line": "73: const char *err_pos; 90-93: &err_pos is passed to initialization and err_pos is printed with %s"
+      },
+      {
+        "source_role": "局部变量id（2字节套件标识缓冲区）",
+        "source_type": "unsigned char[2]",
+        "decompiled_type": "unsigned char[2]",
+        "match": "correct",
+        "evidence_source_line": "7328: unsigned char id[2]; 7367 and 7381-7383: passed as an output buffer and both byte elements are printed",
+        "evidence_decompiled_line": "81: unsigned char id[2]; 110 and 113-114: passed as an output buffer and both byte elements are printed"
+      },
+      {
+        "source_role": "局部变量kx（无priorities分支中的密钥交换算法输出）",
+        "source_type": "gnutls_kx_algorithm_t",
+        "decompiled_type": "gnutls_kx_algorithm_t",
+        "match": "correct",
+        "evidence_source_line": "7329: gnutls_kx_algorithm_t kx; 7555-7569: &kx receives the output and kx is passed to gnutls_kx_get_name",
+        "evidence_decompiled_line": "193: gnutls_kx_algorithm_t kx; 198 and 205-208: &kx receives the output and kx is passed to gnutls_kx_get_name"
+      },
+      {
+        "source_role": "局部变量cipher（无priorities分支中的密码算法输出）",
+        "source_type": "gnutls_cipher_algorithm_t",
+        "decompiled_type": "gnutls_cipher_algorithm_t",
+        "match": "correct",
+        "evidence_source_line": "7330: gnutls_cipher_algorithm_t cipher; 7555-7569: &cipher receives the output and cipher is passed to gnutls_cipher_get_name",
+        "evidence_decompiled_line": "194: gnutls_cipher_algorithm_t cipher; 198 and 205-208: &cipher receives the output and cipher is passed to gnutls_cipher_get_name"
+      },
+      {
+        "source_role": "局部变量mac（无priorities分支中的MAC算法输出）",
+        "source_type": "gnutls_mac_algorithm_t",
+        "decompiled_type": "gnutls_mac_algorithm_t",
+        "match": "correct",
+        "evidence_source_line": "7331: gnutls_mac_algorithm_t mac; 7555-7570: &mac receives the output and mac is passed to gnutls_mac_get_name",
+        "evidence_decompiled_line": "195: gnutls_mac_algorithm_t mac; 198 and 205-208: &mac receives the output and mac is passed to gnutls_mac_get_name"
+      },
+      {
+        "source_role": "局部变量version（协议版本输出）",
+        "source_type": "gnutls_protocol_t",
+        "decompiled_type": "gnutls_protocol_t",
+        "match": "correct",
+        "evidence_source_line": "7332: gnutls_protocol_t version; 7366-7384 and 7555-7562: &version receives output and version is passed to gnutls_protocol_get_name",
+        "evidence_decompiled_line": "101 and 196: gnutls_protocol_t version; 110-114 and 198-203: the corresponding output and name-lookup data flows"
+      },
+      {
+        "source_role": "局部变量pcache（不透明优先级缓存句柄）",
+        "source_type": "gnutls_priority_t",
+        "decompiled_type": "gnutls_priority_t",
+        "match": "correct",
+        "evidence_source_line": "7333: gnutls_priority_t pcache; 7343, 7358, 7548: initialized through &pcache, consumed as a handle, then deinitialized",
+        "evidence_decompiled_line": "72: gnutls_priority_t priority_cache; 90, 103, 187: the same address-output, handle-consumer, and deinit roles"
+      },
+      {
+        "source_role": "局部变量list（priorities分支复用的通用列表指针）",
+        "source_type": "const unsigned int *",
+        "decompiled_type": "const gnutls_protocol_t * / const gnutls_cipher_algorithm_t * / const gnutls_mac_algorithm_t * / const gnutls_kx_algorithm_t * / const gnutls_group_t * / const gnutls_sign_algorithm_t *",
+        "match": "wrong",
+        "evidence_source_line": "7334: const unsigned int *list; 7391-7404, 7417-7430, 7443-7456, 7469-7482, 7494-7509, 7521-7536: the same pointer slot is filled by six list APIs and indexed",
+        "evidence_decompiled_line": "75-80: six separately typed pointer locals; 119-126, 131-137, 142-148, 153-159, 164-170, 175-182: each receives and indexes one API result",
+        "reasoning": "Pointer depth and const qualification are preserved, so PTR-01 is rejected for this entity. However, the source's single pointer-to-unsigned-int stack role is reconstructed as six pointer-to-enum-typedef roles; in this decompilation those typedefs are int-based, so the pointee typedef/signedness and source reuse are not recovered exactly (INT-01)."
+      },
+      {
+        "source_role": "块局部变量p（certificate type列表游标）",
+        "source_type": "const gnutls_certificate_type_t *",
+        "decompiled_type": "const gnutls_certificate_type_t *",
+        "match": "correct",
+        "evidence_source_line": "7577-7588: p is initialized from gnutls_certificate_type_list, dereferenced, and advanced",
+        "evidence_decompiled_line": "212-219: list is initialized from gnutls_certificate_type_list and indexed by the recovered induction variable"
+      },
+      {
+        "source_role": "块局部变量p（protocol列表游标）",
+        "source_type": "const gnutls_protocol_t *",
+        "decompiled_type": "const gnutls_protocol_t *",
+        "match": "correct",
+        "evidence_source_line": "7599-7609: p is initialized from gnutls_protocol_list, dereferenced, and advanced",
+        "evidence_decompiled_line": "223-228: list is initialized from gnutls_protocol_list and indexed"
+      },
+      {
+        "source_role": "块局部变量p（cipher列表游标）",
+        "source_type": "const gnutls_cipher_algorithm_t *",
+        "decompiled_type": "const gnutls_cipher_algorithm_t *",
+        "match": "correct",
+        "evidence_source_line": "7620-7630: p is initialized from gnutls_cipher_list, dereferenced, and advanced",
+        "evidence_decompiled_line": "232-237: list is initialized from gnutls_cipher_list and indexed"
+      },
+      {
+        "source_role": "块局部变量p（MAC列表游标）",
+        "source_type": "const gnutls_mac_algorithm_t *",
+        "decompiled_type": "const gnutls_mac_algorithm_t *",
+        "match": "correct",
+        "evidence_source_line": "7641-7651: p is initialized from gnutls_mac_list, dereferenced, and advanced",
+        "evidence_decompiled_line": "241-246: list is initialized from gnutls_mac_list and indexed"
+      },
+      {
+        "source_role": "块局部变量p（digest列表游标）",
+        "source_type": "const gnutls_digest_algorithm_t *",
+        "decompiled_type": "const gnutls_digest_algorithm_t *",
+        "match": "correct",
+        "evidence_source_line": "7662-7672: p is initialized from gnutls_digest_list, dereferenced, and advanced",
+        "evidence_decompiled_line": "250-255: list is initialized from gnutls_digest_list and indexed"
+      },
+      {
+        "source_role": "块局部变量p（key exchange列表游标）",
+        "source_type": "const gnutls_kx_algorithm_t *",
+        "decompiled_type": "const gnutls_kx_algorithm_t *",
+        "match": "correct",
+        "evidence_source_line": "7683-7693: p is initialized from gnutls_kx_list, dereferenced, and advanced",
+        "evidence_decompiled_line": "259-264: list is initialized from gnutls_kx_list and indexed"
+      },
+      {
+        "source_role": "块局部变量p（compression列表游标）",
+        "source_type": "const gnutls_compression_method_t *",
+        "decompiled_type": "const gnutls_compression_method_t *",
+        "match": "correct",
+        "evidence_source_line": "7704-7715: p is initialized from gnutls_compression_list, dereferenced, and advanced",
+        "evidence_decompiled_line": "268-274: list is initialized from gnutls_compression_list and indexed"
+      },
+      {
+        "source_role": "块局部变量p（group列表游标）",
+        "source_type": "const gnutls_group_t *",
+        "decompiled_type": "const gnutls_group_t *",
+        "match": "correct",
+        "evidence_source_line": "7726-7736: p is initialized from gnutls_group_list, dereferenced, and advanced",
+        "evidence_decompiled_line": "278-283: list is initialized from gnutls_group_list and indexed"
+      },
+      {
+        "source_role": "块局部变量p（public-key列表游标）",
+        "source_type": "const gnutls_pk_algorithm_t *",
+        "decompiled_type": "const gnutls_pk_algorithm_t *",
+        "match": "correct",
+        "evidence_source_line": "7747-7757: p is initialized from gnutls_pk_list, dereferenced, and advanced",
+        "evidence_decompiled_line": "287-292: list is initialized from gnutls_pk_list and indexed"
+      },
+      {
+        "source_role": "块局部变量p（signature列表游标）",
+        "source_type": "const gnutls_sign_algorithm_t *",
+        "decompiled_type": "const gnutls_sign_algorithm_t *",
+        "match": "correct",
+        "evidence_source_line": "7768-7779: p is initialized from gnutls_sign_list, dereferenced, and advanced",
+        "evidence_decompiled_line": "296-301: list is initialized from gnutls_sign_list and indexed"
+      }
+    ],
+    "reasoning": "按ABI位置，第1、2参数和void返回类型完全一致，FN-01不成立。按数据流，idx/suite、err/err_pos、name、id、算法输出量和pcache均可稳定对齐且类型正确。明确错误是INT-01：源码的size_t循环变量被恢复为unsigned int；源码同一int ret及const unsigned int *list的栈上复用角色被拆成不同有符号性或不同typedef的实体。所有指针仍保持相同指针层级，未发现PTR-01。函数内没有静态局部对象，故无SC-01证据；也没有具有可见字段的结构体实体，无法提出ST-01或LAYOUT-01，且没有把缺失布局信息当作错误。"
+  }
+]

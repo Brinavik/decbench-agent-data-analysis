@@ -1,0 +1,648 @@
+[
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "函数签名（无参数）",
+        "source_type": "static int (void)",
+        "decompiled_type": "int (void)",
+        "match": "correct",
+        "evidence_source_line": "1378-1379: static int / cmp (void)",
+        "evidence_decompiled_line": "40-41: int / cmp(void)"
+      }
+    ],
+    "reasoning": "ABI 参数列表均为空且返回类型均为 int，FN-01 不成立；源码的 static 是链接属性，不改变本函数调用签名。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 at_line_start",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "1382-1385: _Bool at_line_start = 1;",
+        "evidence_decompiled_line": "48: bool ended_with_newline = true;"
+      }
+    ],
+    "reasoning": "按数据流对齐：两者均记录最近处理位置是否以换行结束，并在 EOF 行号计算中作为 0/1 修正量使用（源码 1638，反编译 259）。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 line_number",
+        "source_type": "off_t",
+        "decompiled_type": "off_t",
+        "match": "correct",
+        "evidence_source_line": "1386: off_t line_number = 1;",
+        "evidence_decompiled_line": "44: off_t line_number = 1;"
+      }
+    ],
+    "reasoning": "两者均由 count_newlines 的结果累加并传给 offtostr，宽度和 typedef 一致。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 byte_number",
+        "source_type": "off_t",
+        "decompiled_type": "off_t",
+        "match": "correct",
+        "evidence_source_line": "1387: off_t byte_number = 1;",
+        "evidence_decompiled_line": "43: off_t byte_number = 1;"
+      }
+    ],
+    "reasoning": "两者均累计 first_diff/common 并作为文件字节偏移传给 offtostr，类型恢复正确。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "局部变量 remaining",
+        "source_type": "intmax_t",
+        "decompiled_type": "off_t",
+        "match": "wrong",
+        "evidence_source_line": "1388: intmax_t remaining = bytes;",
+        "evidence_decompiled_line": "45: off_t remaining = bytes_to_compare;"
+      }
+    ],
+    "reasoning": "按初始化和随后限制每次读取长度的数据流可唯一对齐。即使当前 ABI 上二者可能同宽，源码明确使用 intmax_t，反编译恢复为 off_t，属于 INT-01 的 typedef 丢失。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 read0",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "1389: size_t read0, read1;",
+        "evidence_decompiled_line": "98: size_t read0;"
+      }
+    ],
+    "reasoning": "两者均保存第一个 block_read 的返回值并参与无符号 -1 检查和长度比较。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 read1",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "1389: size_t read0, read1;",
+        "evidence_decompiled_line": "99: size_t read1;"
+      }
+    ],
+    "reasoning": "两者均保存第二个 block_read 的返回值并参与无符号 -1 检查和长度比较。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 first_diff",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "1390: size_t first_diff;",
+        "evidence_decompiled_line": "135: size_t first_diff;"
+      }
+    ],
+    "reasoning": "两者均保存 block_compare 返回的首个差异偏移，并用于缓冲区索引和 byte_number 累加。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 smaller",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "1391: size_t smaller; 1491: smaller = ((read0) <= (read1) ? (read0) : (read1));",
+        "evidence_decompiled_line": "100: size_t common; 123: common = read0 < read1 ? read0 : read1;"
+      }
+    ],
+    "reasoning": "不依赖名称，按 min(read0, read1) 的赋值和 memcmp 长度用途对齐，类型一致。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "局部指针别名 buffer0",
+        "source_type": "size_t *",
+        "decompiled_type": "unsigned char *（局部别名被消除，直接使用 buffer[0]）",
+        "match": "wrong",
+        "evidence_source_line": "1392: size_t *buffer0 = buffer[0]; 1511: first_diff = block_compare (buffer0, buffer1);",
+        "evidence_decompiled_line": "109: read0 = block_read(file_desc[0], buffer[0], request); 145: first_diff = block_compare(buffer[0], buffer[1]);"
+      }
+    ],
+    "reasoning": "按第一个缓冲区及 block_compare 第一个实参的数据流对齐。指针层级仍为一级，但源码的 size_t 元素视图被恢复成 unsigned char 元素视图，指针目标类型错误；不是 PTR-01 的层级坍塌。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "局部指针别名 buffer1",
+        "source_type": "size_t *",
+        "decompiled_type": "unsigned char *（局部别名被消除，直接使用 buffer[1]）",
+        "match": "wrong",
+        "evidence_source_line": "1393: size_t *buffer1 = buffer[1]; 1511: first_diff = block_compare (buffer0, buffer1);",
+        "evidence_decompiled_line": "116: read1 = block_read(file_desc[1], buffer[1], request); 145: first_diff = block_compare(buffer[0], buffer[1]);"
+      }
+    ],
+    "reasoning": "按第二个缓冲区及 block_compare 第二个实参的数据流对齐。一级指针未坍塌，但 size_t 元素视图恢复错误。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "局部字节指针别名 buf0",
+        "source_type": "char *",
+        "decompiled_type": "unsigned char *（直接使用 buffer[0]）",
+        "match": "wrong",
+        "evidence_source_line": "1394: char *buf0 = (char *) buffer0; 1494: memcmp (buf0, buf1, smaller)",
+        "evidence_decompiled_line": "124: if (memcmp(buffer[0], buffer[1], common) == 0)"
+      }
+    ],
+    "reasoning": "按 memcmp 第一实参和后续逐字节索引的数据流对齐。指针层级正确，但 char 与 unsigned char 的元素符号类型不一致，属于 INT-01 的符号信息恢复错误。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "局部字节指针别名 buf1",
+        "source_type": "char *",
+        "decompiled_type": "unsigned char *（直接使用 buffer[1]）",
+        "match": "wrong",
+        "evidence_source_line": "1395: char *buf1 = (char *) buffer1; 1494: memcmp (buf0, buf1, smaller)",
+        "evidence_decompiled_line": "124: if (memcmp(buffer[0], buffer[1], common) == 0)"
+      }
+    ],
+    "reasoning": "按 memcmp 第二实参和后续逐字节索引的数据流对齐。指针层级正确，但元素符号类型不一致。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 differing",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "1396: int differing = 0;",
+        "evidence_decompiled_line": "46: int differing = 0;"
+      }
+    ],
+    "reasoning": "两者均记录是否发现差异并最终转换为 cmp 的 int 返回状态。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "局部循环变量 f",
+        "source_type": "int",
+        "decompiled_type": "size_t",
+        "match": "wrong",
+        "evidence_source_line": "1397: int f; 1421: for (f = 0; f < 2; f++)",
+        "evidence_decompiled_line": "49: size_t i; 73: for (i = 0; i < 2; ++i)"
+      }
+    ],
+    "reasoning": "按遍历两个文件槽位并索引 ignore_initial/file_desc/file 的数据流对齐。源码是有符号 int，反编译为无符号 size_t，属于 INT-01。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 offset_width",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "1398: int offset_width;",
+        "evidence_decompiled_line": "47: int byte_number_width = 0;"
+      }
+    ],
+    "reasoning": "按十进制位数循环及 printf 的 * 宽度实参对齐，类型一致。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "块内局部变量 byte_number_max",
+        "source_type": "off_t",
+        "decompiled_type": "off_t",
+        "match": "correct",
+        "evidence_source_line": "1402: off_t byte_number_max = ...",
+        "evidence_decompiled_line": "53: off_t byte_number_max = (remaining < 0 ? INT64_MAX : remaining);"
+      }
+    ],
+    "reasoning": "两者均保存可能比较到的最大字节位置并通过除以 10 计算输出宽度。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "块内局部变量 file_bytes",
+        "source_type": "off_t",
+        "decompiled_type": "off_t",
+        "match": "correct",
+        "evidence_source_line": "1412: off_t file_bytes = stat_buf[f].st_size - file_position (f);",
+        "evidence_decompiled_line": "57: off_t n = stat_buf[0].st_size - file_position(0); 63: off_t n = stat_buf[1].st_size - file_position(1);"
+      }
+    ],
+    "reasoning": "源码循环变量按两个槽位展开为两个同型块；均计算规则文件剩余字节数，类型一致。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "块内局部变量 ig",
+        "source_type": "off_t",
+        "decompiled_type": "off_t",
+        "match": "correct",
+        "evidence_source_line": "1423: off_t ig = ignore_initial[f];",
+        "evidence_decompiled_line": "75: off_t skip = ignore_initial[i];"
+      }
+    ],
+    "reasoning": "按 ignore_initial 槽位初始化并随读取量递减的数据流对齐，类型一致。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "跳过输入循环的 bytes_to_read",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "1429: size_t bytes_to_read = ((ig) <= (buf_size) ? (ig) : (buf_size));",
+        "evidence_decompiled_line": "80-81: size_t request = ((uintmax_t) skip < buffer_size ? (size_t) skip : buffer_size);"
+      }
+    ],
+    "reasoning": "两者均为 skip 与缓冲区大小的较小值，并作为 block_read 第三个实参。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "跳过输入循环的 r",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "1430: size_t r = block_read (file_desc[f], buf0, bytes_to_read);",
+        "evidence_decompiled_line": "82: size_t nread = block_read(file_desc[i], buffer[0], request);"
+      }
+    ],
+    "reasoning": "按 block_read 返回值、与请求长度比较及从跳过量中扣减的数据流对齐。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "主读取循环的 bytes_to_read",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "1455: size_t bytes_to_read = buf_size;",
+        "evidence_decompiled_line": "97: size_t request = buffer_size;"
+      }
+    ],
+    "reasoning": "两者均按 remaining 截断后作为两个 block_read 调用的请求长度。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "首次差异分支 byte_buf",
+        "source_type": "char[21]（本目标上宏表达式求值）",
+        "decompiled_type": "char[21]",
+        "match": "correct",
+        "evidence_source_line": "1527: char byte_buf[...sizeof (off_t)...];",
+        "evidence_decompiled_line": "159: char byte_buf[21];"
+      }
+    ],
+    "reasoning": "源码数组界限是有符号 64 位 off_t 的十进制字符串容量，在本目标上为 21；两者均作为 offtostr 的输出缓冲区。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "首次差异分支 line_buf",
+        "source_type": "char[21]（本目标上宏表达式求值）",
+        "decompiled_type": "char[21]",
+        "match": "correct",
+        "evidence_source_line": "1528: char line_buf[...sizeof (off_t)...];",
+        "evidence_decompiled_line": "160: char line_buf[21];"
+      }
+    ],
+    "reasoning": "数组容量及作为 line_number 的 offtostr 输出缓冲区的数据流一致。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "首次差异分支 byte_num",
+        "source_type": "char const *",
+        "decompiled_type": "char *",
+        "match": "wrong",
+        "evidence_source_line": "1529: char const *byte_num = offtostr (byte_number, byte_buf);",
+        "evidence_decompiled_line": "163: char *byte_string = offtostr(byte_number, byte_buf);"
+      }
+    ],
+    "reasoning": "按同一 offtostr 调用结果及 printf 字节号实参对齐；反编译丢失 const 限定。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "首次差异分支 line_num",
+        "source_type": "char const *",
+        "decompiled_type": "char *",
+        "match": "wrong",
+        "evidence_source_line": "1530: char const *line_num = offtostr (line_number, line_buf);",
+        "evidence_decompiled_line": "164: char *line_string = offtostr(line_number, line_buf);"
+      }
+    ],
+    "reasoning": "按同一 offtostr 调用结果及 printf 行号实参对齐；反编译丢失 const 限定。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "静态局部对象 char_message",
+        "source_type": "static char const[]",
+        "decompiled_type": "字符串字面量，经 char const *format 引用；未声明为 extern 对象",
+        "match": "correct",
+        "evidence_source_line": "1536-1537: static char const char_message[] = \"%s %s differ: char %s, line %s\\n\";",
+        "evidence_decompiled_line": "181-184: char const *format = dcgettext(NULL, msg, LC_MESSAGES); ... format = \"%s %s differ: char %s, line %s\\n\";"
+      }
+    ],
+    "reasoning": "按格式串内容及 hard_locale 回退路径对齐。反编译结果使用函数内字符串字面量，没有把该静态局部对象声明为全局 extern，因此 SC-01 被否定；存储对象被表达式化不构成所列错误。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "静态局部对象 byte_msgid",
+        "source_type": "static char const[]",
+        "decompiled_type": "字符串字面量，经 char const *msg 引用；未声明为 extern 对象",
+        "match": "correct",
+        "evidence_source_line": "1545-1546: static char const byte_msgid[] = \"%s %s differ: byte %s, line %s\\n\";",
+        "evidence_decompiled_line": "179-181: char const *msg = \"%s %s differ: byte %s, line %s\\n\"; char const *format = dcgettext(NULL, msg, LC_MESSAGES);"
+      }
+    ],
+    "reasoning": "按 gettext 输入格式串和后续指针同一性测试用途对齐。没有出现全局外部对象，SC-01 不成立。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "首次差异分支字节值 c0/c1",
+        "source_type": "unsigned char（两个变量）",
+        "decompiled_type": "unsigned char 表达式值",
+        "match": "correct",
+        "evidence_source_line": "1560-1561: unsigned char c0 = buf0[first_diff]; unsigned char c1 = buf1[first_diff];",
+        "evidence_decompiled_line": "168-175: sprint_char(..., buffer[0][first_diff]); ... (unsigned int) buffer[1][first_diff]"
+      }
+    ],
+    "reasoning": "反编译器消除了临时变量，但缓冲区元素类型为 unsigned char，并以无符号值传给字符格式化和八进制输出，类型语义保留。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "首次差异分支 s0/s1",
+        "source_type": "char[5]（两个数组）",
+        "decompiled_type": "char[5]（char0/char1）",
+        "match": "correct",
+        "evidence_source_line": "1562-1563: char s0[5]; char s1[5];",
+        "evidence_decompiled_line": "161-162: char char0[5]; char char1[5];"
+      }
+    ],
+    "reasoning": "按 sprint 字符转换输出缓冲区及 printf 字符串实参对齐，数组元素类型和长度一致。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "全部差异分支 c0/c1",
+        "source_type": "unsigned char（两个变量）",
+        "decompiled_type": "unsigned char 表达式值",
+        "match": "correct",
+        "evidence_source_line": "1580-1581: unsigned char c0 = buf0[first_diff]; unsigned char c1 = buf1[first_diff];",
+        "evidence_decompiled_line": "199-221: if (buffer[0][offset] != buffer[1][offset]) ... (unsigned int) buffer[0][offset] ..."
+      }
+    ],
+    "reasoning": "临时变量虽被消除，但逐字节比较和无符号八进制输出保留了 unsigned char 语义。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "全部差异分支 byte_buf",
+        "source_type": "char[21]（本目标上宏表达式求值）",
+        "decompiled_type": "char[21]",
+        "match": "correct",
+        "evidence_source_line": "1584: char byte_buf[...sizeof (off_t)...];",
+        "evidence_decompiled_line": "201: char number_buf[21];"
+      }
+    ],
+    "reasoning": "按循环内字节号的 offtostr 输出缓冲区对齐，容量一致。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "全部差异分支 byte_num",
+        "source_type": "char const *",
+        "decompiled_type": "char *",
+        "match": "wrong",
+        "evidence_source_line": "1585: char const *byte_num = offtostr (byte_number, byte_buf);",
+        "evidence_decompiled_line": "202-203: char *number_string = offtostr(byte_number, number_buf);"
+      }
+    ],
+    "reasoning": "按循环内同一 offtostr 结果及 printf 字节号实参对齐；const 限定丢失。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "全部差异分支 s0/s1",
+        "source_type": "char[5]（两个数组）",
+        "decompiled_type": "char[5]（char0/char1）",
+        "match": "correct",
+        "evidence_source_line": "1594-1595: char s0[5]; char s1[5];",
+        "evidence_decompiled_line": "207-208: char char0[5]; char char1[5];"
+      }
+    ],
+    "reasoning": "按每个差异字节的 sprint 转换缓冲区对齐，数组布局一致。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "EOF 分支 shorter_file",
+        "source_type": "char const *",
+        "decompiled_type": "char const *",
+        "match": "correct",
+        "evidence_source_line": "1619: char const *shorter_file = file[read1 < read0];",
+        "evidence_decompiled_line": "234: char const *short_file; 239: short_file = file[read0 > read1];"
+      }
+    ],
+    "reasoning": "两个布尔索引等价，均选择较短输入的文件名并传给 fprintf，指针层级和 const 一致。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "EOF 分支 byte_buf/line_buf",
+        "source_type": "char[21]（各自作用域内）",
+        "decompiled_type": "char[21]（各自作用域内）",
+        "match": "correct",
+        "evidence_source_line": "1631: char byte_buf[...]; 1636: char line_buf[...];",
+        "evidence_decompiled_line": "247: char byte_buf[21]; 257: char line_buf[21];"
+      }
+    ],
+    "reasoning": "均作为 EOF 报告中字节号和行号的 offtostr 输出缓冲区，本目标上的容量一致。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "EOF 分支 byte_num/line_num",
+        "source_type": "char const *（两个变量）",
+        "decompiled_type": "char *（byte_string/line_string）",
+        "match": "wrong",
+        "evidence_source_line": "1632: char const *byte_num = offtostr (...); 1637-1638: char const *line_num = offtostr (...);",
+        "evidence_decompiled_line": "248: char *byte_string = offtostr(...); 258-259: char *line_string = offtostr(...);"
+      }
+    ],
+    "reasoning": "按 EOF fprintf 的字节号和行号字符串实参对齐；两个返回指针的 const 限定均丢失。"
+  },
+  {
+    "function": "cmp",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "结构体 stat（通过 stat_buf[2] 使用）",
+        "source_type": "struct stat；本函数只访问 st_mode 和 st_size",
+        "decompiled_type": "struct stat；本函数只访问 st_mode 和 st_size",
+        "match": "undeterminable",
+        "evidence_source_line": "1408: stat_buf[f].st_mode; 1412: stat_buf[f].st_size",
+        "evidence_decompiled_line": "55: S_ISREG(stat_buf[0].st_mode); 57: stat_buf[0].st_size - file_position(0)"
+      }
+    ],
+    "reasoning": "字段用途可对齐为文件模式和文件大小，因此没有 ST-01 冲突迹象；但本函数没有给出 struct stat 的完整字段数量、偏移、大小和类型序列，无法严格验证 LAYOUT-01，必须标记 undeterminable。"
+  }
+]

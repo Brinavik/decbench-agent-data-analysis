@@ -1,0 +1,1929 @@
+#define LIBOPENCM3_ETHERNET_H 
+
+#define LIBOPENCM3_MEMORYMAP_COMMON_H 
+#define LIBOPENCM3_MEMORYMAP_H 
+
+#define LIBOPENCM3_CM3_MEMORYMAP_H 
+
+
+
+
+#define PPBI_BASE (0xE0000000U)
+
+
+
+
+#define ITM_BASE (PPBI_BASE + 0x0000)
+
+
+#define DWT_BASE (PPBI_BASE + 0x1000)
+
+
+#define FPB_BASE (PPBI_BASE + 0x2000)
+
+
+
+
+#define SCS_BASE (PPBI_BASE + 0xE000)
+
+
+
+
+
+#define TPIU_BASE (PPBI_BASE + 0x40000)
+
+
+
+
+
+
+
+#define ITR_BASE (SCS_BASE + 0x0000)
+
+
+
+#define SYS_TICK_BASE (SCS_BASE + 0x0010)
+
+
+#define NVIC_BASE (SCS_BASE + 0x0100)
+
+
+#define SCB_BASE (SCS_BASE + 0x0D00)
+
+
+#define MPU_BASE (SCS_BASE + 0x0D90)
+#define STIR_BASE (SCS_BASE + 0x0F00)
+
+#define ID_BASE (SCS_BASE + 0x0FD0)
+#define CORESIGHT_LSR_OFFSET 0xfb4
+#define CORESIGHT_LAR_OFFSET 0xfb0
+
+
+#define CORESIGHT_LSR_SLK (1<<1)
+
+#define CORESIGHT_LSR_SLI (1<<0)
+
+#define CORESIGHT_LAR_KEY 0xC5ACCE55
+
+
+
+
+#define FLASH_BASE (0x08000000U)
+#define PERIPH_BASE (0x40000000U)
+#define PERIPH_BASE_APB1 (PERIPH_BASE + 0x00000)
+#define PERIPH_BASE_APB2 (PERIPH_BASE + 0x10000)
+#define PERIPH_BASE_AHB1 (PERIPH_BASE + 0x20000)
+#define PERIPH_BASE_AHB2 0x50000000U
+#define PERIPH_BASE_AHB3 0x60000000U
+
+
+
+
+#define TIM2_BASE (PERIPH_BASE_APB1 + 0x0000)
+#define TIM3_BASE (PERIPH_BASE_APB1 + 0x0400)
+#define TIM4_BASE (PERIPH_BASE_APB1 + 0x0800)
+#define TIM5_BASE (PERIPH_BASE_APB1 + 0x0c00)
+#define TIM6_BASE (PERIPH_BASE_APB1 + 0x1000)
+#define TIM7_BASE (PERIPH_BASE_APB1 + 0x1400)
+#define TIM12_BASE (PERIPH_BASE_APB1 + 0x1800)
+#define TIM13_BASE (PERIPH_BASE_APB1 + 0x1c00)
+#define TIM14_BASE (PERIPH_BASE_APB1 + 0x2000)
+#define LPTIM1_BASE (PERIPH_BASE_APB1 + 0x2400)
+#define RTC_BASE (PERIPH_BASE_APB1 + 0x2800)
+#define WWDG_BASE (PERIPH_BASE_APB1 + 0x2c00)
+#define IWDG_BASE (PERIPH_BASE_APB1 + 0x3000)
+#define I2S2_EXT_BASE (PERIPH_BASE_APB1 + 0x3400)
+#define SPI2_BASE (PERIPH_BASE_APB1 + 0x3800)
+#define SPI3_BASE (PERIPH_BASE_APB1 + 0x3c00)
+#define I2S3_EXT_BASE (PERIPH_BASE_APB1 + 0x4000)
+#define USART2_BASE (PERIPH_BASE_APB1 + 0x4400)
+#define USART3_BASE (PERIPH_BASE_APB1 + 0x4800)
+#define UART4_BASE (PERIPH_BASE_APB1 + 0x4c00)
+#define UART5_BASE (PERIPH_BASE_APB1 + 0x5000)
+#define I2C1_BASE (PERIPH_BASE_APB1 + 0x5400)
+#define I2C2_BASE (PERIPH_BASE_APB1 + 0x5800)
+#define I2C3_BASE (PERIPH_BASE_APB1 + 0x5C00)
+#define FMPI2C1_BASE (PERIPH_BASE_APB1 + 0x6000)
+#define BX_CAN1_BASE (PERIPH_BASE_APB1 + 0x6400)
+#define BX_CAN2_BASE (PERIPH_BASE_APB1 + 0x6800)
+
+#define POWER_CONTROL_BASE (PERIPH_BASE_APB1 + 0x7000)
+#define DAC_BASE (PERIPH_BASE_APB1 + 0x7400)
+#define UART7_BASE (PERIPH_BASE_APB1 + 0x7800)
+#define UART8_BASE (PERIPH_BASE_APB1 + 0x7c00)
+
+
+
+#define TIM1_BASE (PERIPH_BASE_APB2 + 0x0000)
+#define TIM8_BASE (PERIPH_BASE_APB2 + 0x0400)
+
+#define USART1_BASE (PERIPH_BASE_APB2 + 0x1000)
+#define USART6_BASE (PERIPH_BASE_APB2 + 0x1400)
+
+#define ADC1_BASE (PERIPH_BASE_APB2 + 0x2000)
+#define ADC2_BASE (PERIPH_BASE_APB2 + 0x2100)
+#define ADC3_BASE (PERIPH_BASE_APB2 + 0x2200)
+#define ADC_COMMON_BASE (PERIPH_BASE_APB2 + 0x2300)
+
+#define SDIO_BASE (PERIPH_BASE_APB2 + 0x2C00)
+
+#define SPI1_BASE (PERIPH_BASE_APB2 + 0x3000)
+#define SPI4_BASE (PERIPH_BASE_APB2 + 0x3400)
+
+#define SYSCFG_BASE (PERIPH_BASE_APB2 + 0x3800)
+#define EXTI_BASE (PERIPH_BASE_APB2 + 0x3C00)
+#define TIM9_BASE (PERIPH_BASE_APB2 + 0x4000)
+#define TIM10_BASE (PERIPH_BASE_APB2 + 0x4400)
+#define TIM11_BASE (PERIPH_BASE_APB2 + 0x4800)
+
+#define SPI5_BASE (PERIPH_BASE_APB2 + 0x5000)
+#define SPI6_BASE (PERIPH_BASE_APB2 + 0x5400)
+#define SAI1_BASE (PERIPH_BASE_APB2 + 0x5800)
+#define LTDC_BASE (PERIPH_BASE_APB2 + 0x6800)
+#define DSI_BASE (PERIPH_BASE_APB2 + 0x6C00)
+
+
+
+#define GPIO_PORT_A_BASE (PERIPH_BASE_AHB1 + 0x0000)
+#define GPIO_PORT_B_BASE (PERIPH_BASE_AHB1 + 0x0400)
+#define GPIO_PORT_C_BASE (PERIPH_BASE_AHB1 + 0x0800)
+#define GPIO_PORT_D_BASE (PERIPH_BASE_AHB1 + 0x0C00)
+#define GPIO_PORT_E_BASE (PERIPH_BASE_AHB1 + 0x1000)
+#define GPIO_PORT_F_BASE (PERIPH_BASE_AHB1 + 0x1400)
+#define GPIO_PORT_G_BASE (PERIPH_BASE_AHB1 + 0x1800)
+#define GPIO_PORT_H_BASE (PERIPH_BASE_AHB1 + 0x1C00)
+#define GPIO_PORT_I_BASE (PERIPH_BASE_AHB1 + 0x2000)
+#define GPIO_PORT_J_BASE (PERIPH_BASE_AHB1 + 0x2400)
+#define GPIO_PORT_K_BASE (PERIPH_BASE_AHB1 + 0x2800)
+
+#define CRC_BASE (PERIPH_BASE_AHB1 + 0x3000)
+
+#define RCC_BASE (PERIPH_BASE_AHB1 + 0x3800)
+#define FLASH_MEM_INTERFACE_BASE (PERIPH_BASE_AHB1 + 0x3C00)
+#define BKPSRAM_BASE (PERIPH_BASE_AHB1 + 0x4000)
+
+#define DMA1_BASE (PERIPH_BASE_AHB1 + 0x6000)
+#define DMA2_BASE (PERIPH_BASE_AHB1 + 0x6400)
+
+#define ETHERNET_BASE (PERIPH_BASE_AHB1 + 0x8000)
+#define DMA2D_BASE (PERIPH_BASE_AHB1 + 0xB000U)
+
+#define USB_OTG_HS_BASE (PERIPH_BASE_AHB1 + 0x20000)
+
+
+
+#define USB_OTG_FS_BASE (PERIPH_BASE_AHB2 + 0x00000)
+
+#define DCMI_BASE (PERIPH_BASE_AHB2 + 0x50000)
+
+#define CRYP_BASE (PERIPH_BASE_AHB2 + 0x60000)
+#define HASH_BASE (PERIPH_BASE_AHB2 + 0x60400)
+
+#define RNG_BASE (PERIPH_BASE_AHB2 + 0x60800)
+
+
+
+
+#define FMC_BANK1 (PERIPH_BASE_AHB3)
+
+#define FMC_BANK2 (PERIPH_BASE_AHB3 + 0x10000000U)
+
+#define FMC_BANK3 (PERIPH_BASE_AHB3 + 0x20000000U)
+
+#define QUADSPI_BANK (PERIPH_BASE_AHB3 + 0x30000000U)
+#define FSMC_BASE (PERIPH_BASE_AHB3 + 0x40000000U)
+#define FMC_BASE (PERIPH_BASE_AHB3 + 0x40000000U)
+#define QUADSPI_BASE (PERIPH_BASE_AHB3 + 0x40001000U)
+
+#define FMC_BANK5 (PERIPH_BASE_AHB3 + 0x60000000U)
+
+#define FMC_BANK6 (PERIPH_BASE_AHB3 + 0x70000000U)
+
+
+#define DBGMCU_BASE (PPBI_BASE + 0x00042000)
+
+
+#define DESIG_FLASH_SIZE_BASE (0x1FFF7A22U)
+#define DESIG_UNIQUE_ID_BASE (0x1FFF7A10U)
+#define DESIG_UNIQUE_ID0 MMIO32(DESIG_UNIQUE_ID_BASE)
+#define DESIG_UNIQUE_ID1 MMIO32(DESIG_UNIQUE_ID_BASE + 4)
+#define DESIG_UNIQUE_ID2 MMIO32(DESIG_UNIQUE_ID_BASE + 8)
+
+
+#define ST_VREFINT_CAL MMIO16(0x1FFF7A2A)
+#define ST_TSENSE_CAL1_30C MMIO16(0x1FFF7A2C)
+#define ST_TSENSE_CAL2_110C MMIO16(0x1FFF7A2E)
+#define LIBOPENCM3_CM3_COMMON_H 
+#define BEGIN_DECLS 
+#define END_DECLS 
+
+
+
+
+
+
+#define LIBOPENCM3_DEPRECATED(x) __attribute__((deprecated(x)))
+
+
+#define MMIO8(addr) (*(volatile uint8_t *)(addr))
+#define MMIO16(addr) (*(volatile uint16_t *)(addr))
+#define MMIO32(addr) (*(volatile uint32_t *)(addr))
+#define MMIO64(addr) (*(volatile uint64_t *)(addr))
+
+
+#define BBIO_SRAM(addr,bit) MMIO32((((uint32_t)addr) & 0x0FFFFF) * 32 + 0x22000000 + (bit) * 4)
+
+
+#define BBIO_PERIPH(addr,bit) MMIO32((((uint32_t)addr) & 0x0FFFFF) * 32 + 0x42000000 + (bit) * 4)
+
+
+
+
+#define BIT0 (1<<0)
+#define BIT1 (1<<1)
+#define BIT2 (1<<2)
+#define BIT3 (1<<3)
+#define BIT4 (1<<4)
+#define BIT5 (1<<5)
+#define BIT6 (1<<6)
+#define BIT7 (1<<7)
+#define BIT8 (1<<8)
+#define BIT9 (1<<9)
+#define BIT10 (1<<10)
+#define BIT11 (1<<11)
+#define BIT12 (1<<12)
+#define BIT13 (1<<13)
+#define BIT14 (1<<14)
+#define BIT15 (1<<15)
+#define BIT16 (1<<16)
+#define BIT17 (1<<17)
+#define BIT18 (1<<18)
+#define BIT19 (1<<19)
+#define BIT20 (1<<20)
+#define BIT21 (1<<21)
+#define BIT22 (1<<22)
+#define BIT23 (1<<23)
+#define BIT24 (1<<24)
+#define BIT25 (1<<25)
+#define BIT26 (1<<26)
+#define BIT27 (1<<27)
+#define BIT28 (1<<28)
+#define BIT29 (1<<29)
+#define BIT30 (1<<30)
+#define BIT31 (1<<31)
+#define ETH_MACCR MMIO32(ETHERNET_BASE + 0x00)
+#define ETH_MACFFR MMIO32(ETHERNET_BASE + 0x04)
+#define ETH_MACHTHR MMIO32(ETHERNET_BASE + 0x08)
+#define ETH_MACHTLR MMIO32(ETHERNET_BASE + 0x0C)
+#define ETH_MACMIIAR MMIO32(ETHERNET_BASE + 0x10)
+#define ETH_MACMIIDR MMIO32(ETHERNET_BASE + 0x14)
+#define ETH_MACFCR MMIO32(ETHERNET_BASE + 0x18)
+#define ETH_MACVLANTR MMIO32(ETHERNET_BASE + 0x1C)
+#define ETH_MACRWUFFR MMIO32(ETHERNET_BASE + 0x28)
+#define ETH_MACPMTCSR MMIO32(ETHERNET_BASE + 0x2C)
+#define ETH_MACDBGR MMIO32(ETHERNET_BASE + 0x34)
+#define ETH_MACSR MMIO32(ETHERNET_BASE + 0x38)
+#define ETH_MACIMR MMIO32(ETHERNET_BASE + 0x3C)
+
+
+#define ETH_MACAHR(i) MMIO32(ETHERNET_BASE + 0x40+(i)*8)
+
+#define ETH_MACALR(i) MMIO32(ETHERNET_BASE + 0x44+(i)*8)
+
+
+#define ETH_MMCCR MMIO32(ETHERNET_BASE + 0x100)
+#define ETH_MMCRIR MMIO32(ETHERNET_BASE + 0x104)
+#define ETH_MMCTIR MMIO32(ETHERNET_BASE + 0x108)
+#define ETH_MMCRIMR MMIO32(ETHERNET_BASE + 0x10C)
+#define ETH_MMCTIMR MMIO32(ETHERNET_BASE + 0x110)
+#define ETH_MMCTGFSCCR MMIO32(ETHERNET_BASE + 0x14C)
+#define ETH_MMCTGFMSCCR MMIO32(ETHERNET_BASE + 0x150)
+#define ETH_MMCTGFCR MMIO32(ETHERNET_BASE + 0x168)
+#define ETH_MMCRFCECR MMIO32(ETHERNET_BASE + 0x194)
+#define ETH_MMCRFAECR MMIO32(ETHERNET_BASE + 0x198)
+#define ETH_MMCRGUFCR MMIO32(ETHERNET_BASE + 0x1C4)
+
+
+#define ETH_PTPTSCR MMIO32(ETHERNET_BASE + 0x700)
+#define ETH_PTPSSIR MMIO32(ETHERNET_BASE + 0x704)
+#define ETH_PTPTSHR MMIO32(ETHERNET_BASE + 0x708)
+#define ETH_PTPTSLR MMIO32(ETHERNET_BASE + 0x70C)
+#define ETH_PTPTSHUR MMIO32(ETHERNET_BASE + 0x710)
+#define ETH_PTPTSLUR MMIO32(ETHERNET_BASE + 0x714)
+#define ETH_PTPTSAR MMIO32(ETHERNET_BASE + 0x718)
+#define ETH_PTPTTHR MMIO32(ETHERNET_BASE + 0x71C)
+#define ETH_PTPTTLR MMIO32(ETHERNET_BASE + 0x720)
+#define ETH_PTPTSSR MMIO32(ETHERNET_BASE + 0x728)
+#define ETH_PTPPPSCR MMIO32(ETHERNET_BASE + 0x72C)
+
+
+#define ETH_DMABMR MMIO32(ETHERNET_BASE + 0x1000)
+#define ETH_DMATPDR MMIO32(ETHERNET_BASE + 0x1004)
+#define ETH_DMARPDR MMIO32(ETHERNET_BASE + 0x1008)
+#define ETH_DMARDLAR MMIO32(ETHERNET_BASE + 0x100C)
+#define ETH_DMATDLAR MMIO32(ETHERNET_BASE + 0x1010)
+#define ETH_DMASR MMIO32(ETHERNET_BASE + 0x1014)
+#define ETH_DMAOMR MMIO32(ETHERNET_BASE + 0x1018)
+#define ETH_DMAIER MMIO32(ETHERNET_BASE + 0x101C)
+#define ETH_DMAMFBOCR MMIO32(ETHERNET_BASE + 0x1020)
+#define ETH_DMARSWTR MMIO32(ETHERNET_BASE + 0x1024)
+#define ETH_DMACHTDR MMIO32(ETHERNET_BASE + 0x1048)
+#define ETH_DMACHRDR MMIO32(ETHERNET_BASE + 0x104C)
+#define ETH_DMACHTBAR MMIO32(ETHERNET_BASE + 0x1050)
+#define ETH_DMACHRBAR MMIO32(ETHERNET_BASE + 0x1054)
+
+
+#define ETH_DES(n,base) MMIO32((base) + (n)*4)
+#define ETH_DES0(base) ETH_DES(0, base)
+#define ETH_DES1(base) ETH_DES(1, base)
+#define ETH_DES2(base) ETH_DES(2, base)
+#define ETH_DES3(base) ETH_DES(3, base)
+
+
+#define ETH_DES4(base) ETH_DES(4, base)
+#define ETH_DES5(base) ETH_DES(5, base)
+#define ETH_DES6(base) ETH_DES(6, base)
+#define ETH_DES7(base) ETH_DES(7, base)
+#define ETH_MACCR_RE (1<<2)
+#define ETH_MACCR_TE (1<<3)
+#define ETH_MACCR_DC (1<<4)
+
+#define ETH_MACCR_BL_SHIFT 5
+#define ETH_MACCR_BL (3 << ETH_MACCR_BL_SHIFT)
+#define ETH_MACCR_BL_MIN10 (0 << ETH_MACCR_BL_SHIFT)
+#define ETH_MACCR_BL_MIN8 (1 << ETH_MACCR_BL_SHIFT)
+#define ETH_MACCR_BL_MIN4 (2 << ETH_MACCR_BL_SHIFT)
+#define ETH_MACCR_BL_MIN1 (3 << ETH_MACCR_BL_SHIFT)
+
+#define ETH_MACCR_APCS (1<<7)
+#define ETH_MACCR_RD (1<<9)
+#define ETH_MACCR_IPCO (1<<10)
+#define ETH_MACCR_DM (1<<11)
+#define ETH_MACCR_LM (1<<12)
+#define ETH_MACCR_ROD (1<<13)
+#define ETH_MACCR_FES (1<<14)
+#define ETH_MACCR_CSD (1<<16)
+
+#define ETH_MACCR_IFG_SHIFT 17
+#define ETH_MACCR_IFG (7<<ETH_MACCR_IFG_SHIFT)
+
+#define ETH_MACCR_JD (1<<22)
+#define ETH_MACCR_WD (1<<23)
+#define ETH_MACCR_CSTF (1<<25)
+
+
+
+#define ETH_MACFFR_PM (1<<0)
+#define ETH_MACFFR_HU (1<<1)
+#define ETH_MACFFR_HM (1<<2)
+#define ETH_MACFFR_DAIF (1<<3)
+#define ETH_MACFFR_PAM (1<<4)
+#define ETH_MACFFR_BFD (1<<5)
+
+#define ETH_MACFFR_PCF_SHIFT 6
+#define ETH_MACFFR_PCF (3<<ETH_MACFFR_PCF_SHIFT)
+#define ETH_MACFFR_PCF_DISABLE (0<<ETH_MACFFR_PCF_SHIFT)
+#define ETH_MACFFR_PCF_NOPAUSE (1<<ETH_MACFFR_PCF_SHIFT)
+#define ETH_MACFFR_PCF_ALL (2<<ETH_MACFFR_PCF_SHIFT)
+#define ETH_MACFFR_PCF_PASS (3<<ETH_MACFFR_PCF_SHIFT)
+
+#define ETH_MACFFR_SAIF (1<<8)
+#define ETH_MACFFR_SAF (1<<9)
+#define ETH_MACFFR_HPF (1<<10)
+#define ETH_MACFFR_RA (1<<31)
+
+
+
+
+#define ETH_MACMIIAR_MB (1<<0)
+#define ETH_MACMIIAR_MW (1<<1)
+
+#define ETH_MACMIIAR_CR_SHIFT 2
+#define ETH_MACMIIAR_CR (7<<ETH_MACMIIAR_CR_SHIFT)
+
+#define ETH_MACMIIAR_CR_HCLK_DIV_42 (0<<ETH_MACMIIAR_CR_SHIFT)
+
+#define ETH_MACMIIAR_CR_HCLK_DIV_62 (1<<ETH_MACMIIAR_CR_SHIFT)
+
+#define ETH_MACMIIAR_CR_HCLK_DIV_16 (2<<ETH_MACMIIAR_CR_SHIFT)
+
+#define ETH_MACMIIAR_CR_HCLK_DIV_26 (3<<ETH_MACMIIAR_CR_SHIFT)
+
+#define ETH_MACMIIAR_CR_HCLK_DIV_102 (4<<ETH_MACMIIAR_CR_SHIFT)
+
+#define ETH_MACMIIAR_MR_SHIFT 6
+#define ETH_MACMIIAR_MR (0x1F << ETH_MACMIIAR_MR_SHIFT)
+
+#define ETH_MACMIIAR_PA_SHIFT 11
+#define ETH_MACMIIAR_PA (0x1F << ETH_MACMIIAR_MR_SHIFT)
+
+
+
+
+#define ETH_MACMIIDR_MD 0xFFFF
+
+
+
+#define ETH_MACFCR_FCB (1<<0)
+#define ETH_MACFCR_BPA (1<<0)
+#define ETH_MACFCR_TFCE (1<<1)
+#define ETH_MACFCR_RFCE (1<<2)
+#define ETH_MACFCR_UPFD (1<<3)
+
+#define ETH_MACFCR_PLT_SHIFT 4
+#define ETH_MACFCR_PLT (0x03 << ETH_MACFCR_PLT_SHIFT)
+#define ETH_MACFCR_PLT_4 (0 << ETH_MACFCR_PLT_SHIFT)
+#define ETH_MACFCR_PLT_28 (1 << ETH_MACFCR_PLT_SHIFT)
+#define ETH_MACFCR_PLT_144 (2 << ETH_MACFCR_PLT_SHIFT)
+#define ETH_MACFCR_PLT_256 (3 << ETH_MACFCR_PLT_SHIFT)
+
+#define ETH_MACFCR_ZQPD (1<<7)
+
+#define ETH_MACFCR_PT_SHIFT 16
+#define ETH_MACFCR_PT (0xFFFF << ETH_MACFCR_PT)
+
+
+
+#define ETH_MACVLANTR_VLANTI_SHIFT 0
+#define ETH_MACVLANTR_VLANTI (0xFFFF << ETH_MACVLANTR_VLANTI_SHIFT)
+#define ETH_MACVLANTR_VLANTC (1<<16)
+
+
+
+
+#define ETH_MACPMTCSR_PD (1<<0)
+#define ETH_MACPMTCSR_MPE (1<<1)
+#define ETH_MACPMTCSR_WFE (1<<2)
+#define ETH_MACPMTCSR_MPR (1<<5)
+#define ETH_MACPMTCSR_WFR (1<<6)
+#define ETH_MACPMTCSR_GU (1<<9)
+#define ETH_MACPMTCSR_WFFRPR (1<<31)
+
+
+
+
+
+#define ETH_MACDBGR_MMRPEA (1<<0)
+#define ETH_MACDBGR_MSFRWCS (3<<1)
+#define ETH_MACDBGR_RFWRA (1<<4)
+
+#define ETH_MACDBGR_RFRCS_SHIFT 5
+#define ETH_MACDBGR_RFRCS (3<<ETH_MACDBGR_RFRCS_SHIFT)
+#define ETH_MACDBGR_RFRCS_IDLE (0<<ETH_MACDBGR_RFRCS_SHIFT)
+#define ETH_MACDBGR_RFRCS_RDATA (1<<ETH_MACDBGR_RFRCS_SHIFT)
+#define ETH_MACDBGR_RFRCS_RSTAT (2<<ETH_MACDBGR_RFRCS_SHIFT)
+#define ETH_MACDBGR_RFRCS_FLUSH (3<<ETH_MACDBGR_RFRCS_SHIFT)
+
+#define ETH_MACDBGR_RFFL_SHIFT 8
+#define ETH_MACDBGR_RFFL (3<<ETH_MACDBGR_RFFL_SHIFT)
+#define ETH_MACDBGR_RFFL_EMPTY (0<<ETH_MACDBGR_RFFL_SHIFT)
+#define ETH_MACDBGR_RFFL_BELOW (1<<ETH_MACDBGR_RFFL_SHIFT)
+#define ETH_MACDBGR_RFFL_ABOVE (2<<ETH_MACDBGR_RFFL_SHIFT)
+#define ETH_MACDBGR_RFFL_FULL (3<<ETH_MACDBGR_RFFL_SHIFT)
+
+#define ETH_MACDBGR_MMTEA (1<<16)
+
+#define ETH_MACDBGR_MTFCS_SHIFT 17
+#define ETH_MACDBGR_MTFCS (3 << ETH_MACDBGR_MTFCS_SHIFT)
+#define ETH_MACDBGR_MTFCS_IDLE (0 << ETH_MACDBGR_MTFCS_SHIFT)
+#define ETH_MACDBGR_MTFCS_WAIT (1 << ETH_MACDBGR_MTFCS_SHIFT)
+#define ETH_MACDBGR_MTFCS_PAUSE (2 << ETH_MACDBGR_MTFCS_SHIFT)
+#define ETH_MACDBGR_MTFCS_TRANSFER (3 << ETH_MACDBGR_MTFCS_SHIFT)
+
+#define ETH_MACDBGR_MTP (1<<19)
+
+#define ETH_MACDBGR_TFRS_SHIFT 20
+#define ETH_MACDBGR_TFRS (3<<ETH_MACDBGR_TFRS_SHIFT)
+#define ETH_MACDBGR_TFRS_IDLE (0<<ETH_MACDBGR_TFRS_SHIFT)
+#define ETH_MACDBGR_TFRS_READ (1<<ETH_MACDBGR_TFRS_SHIFT)
+#define ETH_MACDBGR_TFRS_WAIT (2<<ETH_MACDBGR_TFRS_SHIFT)
+#define ETH_MACDBGR_TFRS_FLUSH (3<<ETH_MACDBGR_TFRS_SHIFT)
+
+#define ETH_MACDBGR_TFWA (1<<22)
+#define ETH_MACDBGR_TFNE (1<<24)
+#define ETH_MACDBGR_TFF (1<<25)
+
+
+
+
+
+#define ETH_MACSR_PMTS (1<<3)
+#define ETH_MACSR_MMCS (1<<4)
+#define ETH_MACSR_MMCRS (1<<5)
+#define ETH_MACSR_MMCTS (1<<6)
+#define ETH_MACSR_TSTS (1<<9)
+
+
+
+
+
+#define ETH_MACIMR_PMTIM (1<<3)
+#define ETH_MACIMR_TSTIM (1<<9)
+
+
+
+
+#define ETH_MACA0HR_MACA0H (0xFFFF<<0)
+#define ETH_MACA0HR_MO (1<<31)
+
+
+
+
+#define ETH_MACAHR_MACAH (0xFFFF<<0)
+#define ETH_MACAHR_MBC_ALL (63<<24)
+#define ETH_MACAHR_MBC_0 (1<<24)
+#define ETH_MACAHR_MBC_1 (1<<25)
+#define ETH_MACAHR_MBC_2 (1<<26)
+#define ETH_MACAHR_MBC_3 (1<<27)
+#define ETH_MACAHR_MBC_4 (1<<28)
+#define ETH_MACAHR_MBC_5 (1<<29)
+#define ETH_MACAHR_SA (1<<30)
+#define ETH_MACAHR_AE (1<<31)
+
+
+
+
+#define ETH_MMCCR_CR (1<<0)
+#define ETH_MMCCR_CSR (1<<1)
+#define ETH_MMCCR_ROR (1<<2)
+#define ETH_MMCCR_MCF (1<<3)
+#define ETH_MMCCR_MCP (1<<4)
+#define ETH_MMCCR_MCFHP (1<<5)
+
+
+
+
+
+#define ETH_MMCRIR_RFCES (1<<5)
+#define ETH_MMCRIR_RFAES (1<<6)
+#define ETH_MMCRIR_RGUFS (1<<17)
+
+
+
+
+#define ETH_MMCTIR_TGFSCS (1<<14)
+#define ETH_MMCTIR_TGFMSCS (1<<15)
+#define ETH_MMCTIR_TGFS (1<<21)
+
+
+
+
+#define ETH_MMCRIMR_RFCEM (1<<5)
+#define ETH_MMCRIMR_RFAEM (1<<6)
+#define ETH_MMCRIMR_RGUFM (1<<17)
+
+
+
+
+#define ETH_MMCTIMR_TGFSCS (1<<14)
+#define ETH_MMCTIMR_TGFMSCS (1<<15)
+#define ETH_MMCTIMR_TGFS (1<<21)
+
+
+
+
+#define ETH_PTPTSCR_TSE (1<<0)
+#define ETH_PTPTSCR_TSFCU (1<<1)
+#define ETH_PTPTSCR_TSSTI (1<<2)
+#define ETH_PTPTSCR_TSSTU (1<<3)
+#define ETH_PTPTSCR_TSITE (1<<4)
+#define ETH_PTPTSCR_TTSARU (1<<5)
+
+
+#define ETH_PTPTSCR_TSSARFE (1<<8)
+#define ETH_PTPTSCR_TSSSR (1<<9)
+#define ETH_PTPTSCR_TSPTPPSV2E (1<<10)
+#define ETH_PTPTSCR_TSSPTPOEFE (1<<11)
+#define ETH_PTPTSCR_TSSIPV6FE (1<<12)
+#define ETH_PTPTSCR_TSSIPV4FE (1<<13)
+#define ETH_PTPTSCR_TSSEME (1<<14)
+#define ETH_PTPTSCR_TSSMRME (1<<15)
+
+#define ETH_PTPTSCR_TSCNT_SHIFT 16
+#define ETH_PTPTSCR_TSCNT (3 << ETH_PTPTSCR_TSCNT_SHIFT)
+#define ETH_PTPTSCR_TSCNT_ORD (0 << ETH_PTPTSCR_TSCNT_SHIFT)
+#define ETH_PTPTSCR_TSCNT_BOUND (1 << ETH_PTPTSCR_TSCNT_SHIFT)
+#define ETH_PTPTSCR_TSCNT_ETETC (2 << ETH_PTPTSCR_TSCNT_SHIFT)
+#define ETH_PTPTSCR_TSCNT_PTPTC (3 << ETH_PTPTSCR_TSCNT_SHIFT)
+
+#define ETH_PTPTSCR_TSPFFMAE (1<<18)
+
+
+
+
+
+#define ETH_PTPSSIR_STSSI 0xFF
+
+
+
+
+#define ETH_PTPTSLR_STSS 0x7FFFFFFF
+#define ETH_PTPTSLR_STPNS (1<<31)
+
+
+
+
+#define ETH_PTPTSLUR_TSUSS 0x7FFFFFFF
+#define ETH_PTPTSLUR_TSUPNS (1<<31)
+
+
+
+
+
+#define ETH_PTPTSSR_TSSO (1<<0)
+#define ETH_PTPTSSR_TSTTR (1<<1)
+
+
+
+
+
+
+#define ETH_PTPPPSCR_PPSFREQ_MASK (0x0F<<0)
+#define ETH_PTPPPSCR_PPSFREQ_1HZ (0x00<<0)
+#define ETH_PTPPPSCR_PPSFREQ_2HZ (0x01<<0)
+#define ETH_PTPPPSCR_PPSFREQ_4HZ (0x02<<0)
+#define ETH_PTPPPSCR_PPSFREQ_8HZ (0x03<<0)
+#define ETH_PTPPPSCR_PPSFREQ_16HZ (0x04<<0)
+#define ETH_PTPPPSCR_PPSFREQ_32HZ (0x05<<0)
+#define ETH_PTPPPSCR_PPSFREQ_64HZ (0x06<<0)
+#define ETH_PTPPPSCR_PPSFREQ_128HZ (0x07<<0)
+#define ETH_PTPPPSCR_PPSFREQ_256HZ (0x08<<0)
+#define ETH_PTPPPSCR_PPSFREQ_512HZ (0x09<<0)
+#define ETH_PTPPPSCR_PPSFREQ_1024HZ (0x0A<<0)
+#define ETH_PTPPPSCR_PPSFREQ_2048HZ (0x0B<<0)
+#define ETH_PTPPPSCR_PPSFREQ_4096HZ (0x0C<<0)
+#define ETH_PTPPPSCR_PPSFREQ_8192HZ (0x0D<<0)
+#define ETH_PTPPPSCR_PPSFREQ_16384HZ (0x0E<<0)
+#define ETH_PTPPPSCR_PPSFREQ_32768HZ (0x0F<<0)
+
+
+
+
+
+#define ETH_DMABMR_SR (1<<0)
+#define ETH_DMABMR_DA (1<<1)
+
+#define ETH_DMABMR_DSL_SHIFT 2
+#define ETH_DMABMR_DSL (0x1F << ETH_DMABR_DSL_SHIFT)
+
+#define ETH_DMABMR_EDFE (1<<7)
+
+#define ETH_DMABMR_PBL_SHIFT 8
+#define ETH_DMABMR_PBL (0x3F << ETH_DMABR_PBL_SHIFT)
+
+#define ETH_DMABMR_PM_SHIFT 14
+#define ETH_DMABMR_PM (0x03 << ETH_DMABMR_PM_SHIFT)
+#define ETH_DMABMR_PM_1_1 (0 << ETH_DMABMR_PM_SHIFT)
+#define ETH_DMABMR_PM_2_1 (1 << ETH_DMABMR_PM_SHIFT)
+#define ETH_DMABMR_PM_3_1 (2 << ETH_DMABMR_PM_SHIFT)
+#define ETH_DMABMR_PM_4_1 (3 << ETH_DMABMR_PM_SHIFT)
+
+#define ETH_DMABMR_FB (1<<16)
+
+#define ETH_DMABMR_RDP_SHIFT 17
+#define ETH_DMABMR_RDP (0x3F << ETH_DMABMR_RDP_SHIFT)
+
+#define ETH_DMABMR_USP (1<<23)
+#define ETH_DMABMR_FPM (1<<24)
+#define ETH_DMABMR_AAB (1<<25)
+#define ETH_DMABMR_MB (1<<26)
+
+
+
+
+#define ETH_DMASR_TS (1<<0)
+#define ETH_DMASR_TPSS (1<<1)
+#define ETH_DMASR_TBUS (1<<2)
+#define ETH_DMASR_TJTS (1<<3)
+#define ETH_DMASR_ROS (1<<4)
+#define ETH_DMASR_TUS (1<<5)
+#define ETH_DMASR_RS (1<<6)
+#define ETH_DMASR_RBUS (1<<7)
+#define ETH_DMASR_RPSS (1<<8)
+#define ETH_DMASR_RWTS (1<<9)
+#define ETH_DMASR_ETS (1<<10)
+#define ETH_DMASR_FBES (1<<13)
+#define ETH_DMASR_ERS (1<<14)
+#define ETH_DMASR_AIS (1<<15)
+#define ETH_DMASR_NIS (1<<16)
+
+#define ETH_DMASR_RPS_SHIFT 17
+#define ETH_DMASR_RPS (7<<ETH_DMASR_RPS_SHIFT)
+#define ETH_DMASR_RPS_STOP (0<<ETH_DMASR_RPS_SHIFT)
+#define ETH_DMASR_RPS_FETCH (1<<ETH_DMASR_RPS_SHIFT)
+#define ETH_DMASR_RPS_WAIT (3<<ETH_DMASR_RPS_SHIFT)
+#define ETH_DMASR_RPS_SUSPEND (4<<ETH_DMASR_RPS_SHIFT)
+#define ETH_DMASR_RPS_CLOSE (5<<ETH_DMASR_RPS_SHIFT)
+#define ETH_DMASR_RPS_TRANSFER (7<<ETH_DMASR_RPS_SHIFT)
+
+#define ETH_DMASR_TPS_SHIFT 20
+#define ETH_DMASR_TPS (7<<ETH_DMASR_TPS_SHIFT)
+#define ETH_DMASR_TPS_STOP (0<<ETH_DMASR_TPS_SHIFT)
+#define ETH_DMASR_TPS_FETCH (1<<ETH_DMASR_TPS_SHIFT)
+#define ETH_DMASR_TPS_WAIT (2<<ETH_DMASR_TPS_SHIFT)
+#define ETH_DMASR_TPS_TRANSFER (3<<ETH_DMASR_TPS_SHIFT)
+#define ETH_DMASR_TPS_SUSPEND (6<<ETH_DMASR_TPS_SHIFT)
+#define ETH_DMASR_TPS_CLOSE (7<<ETH_DMASR_TPS_SHIFT)
+
+#define ETH_DMASR_EBS_SHIFT 23
+#define ETH_DMASR_EBS (7<<ETH_DMASR_EBS_SHIFT)
+
+#define ETH_DMASR_MMCS (1<<27)
+#define ETH_DMASR_PMTS (1<<28)
+#define ETH_DMASR_TSTS (1<<29)
+
+
+
+
+#define ETH_DMAOMR_SR (1<<1)
+#define ETH_DMAOMR_OSF (1<<2)
+
+#define ETH_DMAOMR_RTC_SHIFT 3
+#define ETH_DMAOMR_RTC (3 << ETH_DMAOMR_RTC_SHIFT)
+#define ETH_DMAOMR_RTC_64 (0 << ETH_DMAOMR_RTC_SHIFT)
+#define ETH_DMAOMR_RTC_32 (1 << ETH_DMAOMR_RTC_SHIFT)
+#define ETH_DMAOMR_RTC_96 (2 << ETH_DMAOMR_RTC_SHIFT)
+#define ETH_DMAOMR_RTC_128 (3 << ETH_DMAOMR_RTC_SHIFT)
+
+#define ETH_DMAOMR_FUGF (1<<6)
+#define ETH_DMAOMR_FEF (1<<7)
+#define ETH_DMAOMR_ST (1<<13)
+
+#define ETH_DMAOMR_TTC_SHIFT 14
+#define ETH_DMAOMR_TTC (0x07 << ETH_DMAOMR_TTC_SHIFT)
+#define ETH_DMAOMR_TTC_64 (0 << ETH_DMAOMR_TTC_SHIFT)
+#define ETH_DMAOMR_TTC_128 (1 << ETH_DMAOMR_TTC_SHIFT)
+#define ETH_DMAOMR_TTC_192 (2 << ETH_DMAOMR_TTC_SHIFT)
+#define ETH_DMAOMR_TTC_256 (3 << ETH_DMAOMR_TTC_SHIFT)
+#define ETH_DMAOMR_TTC_40 (4 << ETH_DMAOMR_TTC_SHIFT)
+#define ETH_DMAOMR_TTC_32 (5 << ETH_DMAOMR_TTC_SHIFT)
+#define ETH_DMAOMR_TTC_24 (6 << ETH_DMAOMR_TTC_SHIFT)
+#define ETH_DMAOMR_TTC_16 (7 << ETH_DMAOMR_TTC_SHIFT)
+
+#define ETH_DMAOMR_FTF (1<<20)
+#define ETH_DMAOMR_TSF (1<<21)
+#define ETH_DMAOMR_DFRF (1<<24)
+#define ETH_DMAOMR_RSF (1<<25)
+#define ETH_DMAOMR_DTCEFD (1<<26)
+
+
+
+
+#define ETH_DMAIER_TIE (1<<0)
+#define ETH_DMAIER_TPSIE (1<<1)
+#define ETH_DMAIER_TBUIE (1<<2)
+#define ETH_DMAIER_TJTIE (1<<3)
+#define ETH_DMAIER_ROIE (1<<4)
+#define ETH_DMAIER_TUIE (1<<5)
+#define ETH_DMAIER_RIE (1<<6)
+#define ETH_DMAIER_RBUIE (1<<7)
+#define ETH_DMAIER_RPSIE (1<<8)
+#define ETH_DMAIER_RWTIE (1<<9)
+#define ETH_DMAIER_ETIE (1<<10)
+#define ETH_DMAIER_FBEIE (1<<13)
+#define ETH_DMAIER_ERIE (1<<14)
+#define ETH_DMAIER_AISE (1<<15)
+#define ETH_DMAIER_NISE (1<<16)
+
+
+
+
+#define ETH_DMAMFBOCR_MFC_SHIFT 0
+#define ETH_DMAMFBOCR_MFC (0xFFFF << ETH_DMAMFBOCR_MFC_SHIFT)
+#define ETH_DMAMFBOCR_OMFC (1<<16)
+#define ETH_DMAMFBOCR_MFA (0x7FF << ETH_DMAMFBOCR_MFA_SHIFT)
+#define ETH_DMAMFBOCR_OFOC (1<<28)
+
+
+
+
+
+#define ETH_DMARSWTR_RSWTC 0xFF
+
+
+
+
+
+
+#define ETH_DES_STD_SIZE 16
+#define ETH_DES_EXT_SIZE 32
+
+
+
+#define ETH_TDES0_DB (1<<0)
+#define ETH_TDES0_UF (1<<1)
+#define ETH_TDES0_ED (1<<2)
+
+#define ETH_TDES0_CC_SHIFT 3
+#define ETH_TDES0_CC (0x0F << ETH_TDES0_CC_SHIFT)
+
+#define ETH_TDES0_VF (1<<7)
+#define ETH_TDES0_EC (1<<8)
+#define ETH_TDES0_LCO (1<<9)
+#define ETH_TDES0_NC (1<<10)
+#define ETH_TDES0_LCA (1<<11)
+#define ETH_TDES0_IPE (1<<12)
+#define ETH_TDES0_FF (1<<13)
+#define ETH_TDES0_JT (1<<14)
+#define ETH_TDES0_ES (1<<15)
+#define ETH_TDES0_IHE (1<<16)
+#define ETH_TDES0_TTSS (1<<17)
+#define ETH_TDES0_TCH (1<<20)
+#define ETH_TDES0_TER (1<<21)
+
+#define ETH_TDES0_CIC_SHIFT 22
+#define ETH_TDES0_CIC (3<<ETH_TDES0_CIC_SHIFT)
+#define ETH_TDES0_CIC_DISABLED (0<<ETH_TDES0_CIC_SHIFT)
+#define ETH_TDES0_CIC_IP (1<<ETH_TDES0_CIC_SHIFT)
+#define ETH_TDES0_CIC_IPPL (2<<ETH_TDES0_CIC_SHIFT)
+#define ETH_TDES0_CIC_IPPLPH (3<<ETH_TDES0_CIC_SHIFT)
+
+#define ETH_TDES0_TTSE (1<<25)
+#define ETH_TDES0_DP (1<<26)
+#define ETH_TDES0_DC (1<<27)
+#define ETH_TDES0_FS (1<<28)
+#define ETH_TDES0_LS (1<<29)
+#define ETH_TDES0_IC (1<<30)
+#define ETH_TDES0_OWN (1<<31)
+
+
+
+
+#define ETH_TDES1_TBS1_SHIFT 0
+#define ETH_TDES1_TBS1 (0x1FFF<<ETH_TDES1_TBS1_SHIFT)
+
+#define ETH_TDES1_TBS2_SHIFT 16
+#define ETH_TDES1_TBS2 (0x1FFF<<ETH_TDES1_TBS1_SHIFT)
+#define ETH_RDES0_PCE (1<<0)
+#define ETH_RDES0_ESA (1<<0)
+#define ETH_RDES0_CE (1<<1)
+#define ETH_RDES0_DE (1<<2)
+#define ETH_RDES0_RE (1<<3)
+#define ETH_RDES0_RWT (1<<4)
+#define ETH_RDES0_FT (1<<5)
+#define ETH_RDES0_LCO (1<<6)
+#define ETH_RDES0_IPHCE (1<<7)
+#define ETH_RDES0_TSV (1<<7)
+#define ETH_RDES0_LS (1<<8)
+#define ETH_RDES0_FS (1<<9)
+#define ETH_RDES0_VLAN (1<<10)
+#define ETH_RDES0_OE (1<<11)
+#define ETH_RDES0_LE (1<<12)
+#define ETH_RDES0_SAF (1<<13)
+#define ETH_RDES0_DCE (1<<14)
+#define ETH_RDES0_ES (1<<15)
+
+#define ETH_RDES0_FL_SHIFT 16
+#define ETH_RDES0_FL (0x3FFF<<ETH_RDES0_FL_SHIFT)
+
+#define ETH_RDES0_AFM (1<<30)
+#define ETH_RDES0_OWN (1<<31)
+
+
+
+
+#define ETH_RDES1_RBS1_SHIFT 0
+#define ETH_RDES1_RBS1 (0x1FFF<<ETH_RDES1_RBS1_SHIFT)
+
+#define ETH_RDES1_RCH (1<<14)
+#define ETH_RDES1_RER (1<<15)
+
+#define ETH_RDES1_RBS2_SHIFT 16
+#define ETH_RDES1_RBS2 (0x1FFF<<ETH_RDES1_RBS2_SHIFT)
+
+#define ETH_RDES1_DIC (1<<31)
+
+
+
+
+#define ETH_RDES4_IPPT_SHIFT 0
+#define ETH_RDES4_IPPT (7<<ETH_RDES4_IPPT_SHIFT)
+#define ETH_RDES4_IPPT_UNKNOWN (0<<ETH_RDES4_IPPT_SHIFT)
+#define ETH_RDES4_IPPT_UDP (1<<ETH_RDES4_IPPT_SHIFT)
+#define ETH_RDES4_IPPT_TCP (2<<ETH_RDES4_IPPT_SHIFT)
+#define ETH_RDES4_IPPT_ICMP (3<<ETH_RDES4_IPPT_SHIFT)
+
+#define ETH_RDES4_IPHE (1<<3)
+#define ETH_RDES4_IPPE (1<<4)
+#define ETH_RDES4_IPCB (1<<5)
+#define ETH_RDES4_IPV4PR (1<<6)
+#define ETH_RDES4_IPV6PR (1<<7)
+
+#define ETH_RDES4_PMT_SHIFT 8
+#define ETH_RDES4_PMT (0x0F<<ETH_RDES4_PMT_SHIFT)
+#define ETH_RDES4_PMT_NO (0x00<<ETH_RDES4_PMT_SHIFT)
+#define ETH_RDES4_PMT_SYNC (0x01<<ETH_RDES4_PMT_SHIFT)
+#define ETH_RDES4_PMT_FOLLOW (0x02<<ETH_RDES4_PMT_SHIFT)
+#define ETH_RDES4_PMT_DLYRQ (0x03<<ETH_RDES4_PMT_SHIFT)
+#define ETH_RDES4_PMT_DLYRSP (0x04<<ETH_RDES4_PMT_SHIFT)
+#define ETH_RDES4_PMT_PDLYRQ (0x05<<ETH_RDES4_PMT_SHIFT)
+#define ETH_RDES4_PMT_PDLYRSP (0x06<<ETH_RDES4_PMT_SHIFT)
+#define ETH_RDES4_PMT_PDLYRSPFUP (0x07<<ETH_RDES4_PMT_SHIFT)
+
+#define ETH_RDES4_PFT (1<<12)
+#define ETH_RDES4_PV (1<<13)
+
+
+
+
+
+
+enum eth_clk {
+ ETH_CLK_025_035MHZ = (2<<2),
+ ETH_CLK_035_060MHZ = (3<<2),
+ ETH_CLK_060_100MHZ = (0<<2),
+ ETH_CLK_100_150MHZ = (1<<2),
+ ETH_CLK_150_168MHZ = (4<<2),
+};
+
+
+
+
+
+
+
+void eth_smi_write(uint8_t phy, uint8_t reg, uint16_t data);
+uint16_t eth_smi_read(uint8_t phy, uint8_t reg);
+void eth_smi_bit_op(uint8_t phy, uint8_t reg, uint16_t bits, uint16_t mask);
+void eth_smi_bit_clear(uint8_t phy, uint8_t reg, uint16_t clearbits);
+void eth_smi_bit_set(uint8_t phy, uint8_t reg, uint16_t setbits);
+
+void eth_set_mac(const uint8_t *mac);
+void eth_desc_init(uint8_t *buf, uint32_t nTx, uint32_t nRx, uint32_t cTx,
+      uint32_t cRx, 
+                   _Bool 
+                        isext);
+
+_Bool 
+    eth_tx(uint8_t *ppkt, uint32_t n);
+
+_Bool 
+    eth_rx(uint8_t *ppkt, uint32_t *len, uint32_t maxlen);
+
+void eth_init(uint8_t phy, enum eth_clk clock);
+void eth_start(void);
+
+void eth_enable_checksum_offload(void);
+
+void eth_irq_enable(uint32_t reason);
+void eth_irq_disable(uint32_t reason);
+
+_Bool 
+    eth_irq_is_pending(uint32_t reason);
+
+_Bool 
+    eth_irq_ack_pending(uint32_t reason);
+
+
+
+#define LIBOPENCM3_PHY_H 
+#define PHY_REG_BCR 0x00
+#define PHY_REG_BSR 0x01
+#define PHY_REG_ID1 0x02
+#define PHY_REG_ID2 0x03
+#define PHY_REG_ANTX 0x04
+#define PHY_REG_ANRX 0x05
+#define PHY_REG_ANEXP 0x06
+#define PHY_REG_ANNPTX 0x07
+#define PHY_REG_ANNPRX 0x08
+
+
+
+
+
+#define PHY_REG_BCR_COLTEST (1 << 7)
+#define PHY_REG_BCR_FD (1 << 8)
+#define PHY_REG_BCR_ANRST (1 << 9)
+#define PHY_REG_BCR_ISOLATE (1 << 10)
+#define PHY_REG_BCR_POWERDN (1 << 11)
+#define PHY_REG_BCR_AN (1 << 12)
+#define PHY_REG_BCR_100M (1 << 13)
+#define PHY_REG_BCR_LOOPBACK (1 << 14)
+#define PHY_REG_BCR_RESET (1 << 15)
+
+#define PHY_REG_BSR_JABBER (1 << 1)
+#define PHY_REG_BSR_UP (1 << 2)
+#define PHY_REG_BSR_FAULT (1 << 4)
+#define PHY_REG_BSR_ANDONE (1 << 5)
+
+
+
+
+
+
+
+#define PHY0 0
+#define PHY1 1
+
+enum phy_status {
+ LINK_DOWN,
+ LINK_HD_10M,
+ LINK_HD_100M,
+ LINK_HD_1000M,
+ LINK_HD_10000M,
+ LINK_FD_10M,
+ LINK_FD_100M,
+ LINK_FD_1000M,
+ LINK_FD_10000M,
+};
+
+
+
+
+
+
+
+void phy_reset(uint8_t phy);
+
+_Bool 
+    phy_link_isup(uint8_t phy);
+
+enum phy_status phy_link_status(uint8_t phy);
+
+void phy_autoneg_force(uint8_t phy, enum phy_status mode);
+void phy_autoneg_enable(uint8_t phy);
+
+
+#define LIBOPENCM3_GPIO_H 
+
+#define LIBOPENCM3_GPIO_COMMON_F24_H 
+
+
+
+#define LIBOPENCM3_GPIO_COMMON_F234_H 
+
+
+
+#define LIBOPENCM3_GPIO_COMMON_ALL_H 
+
+
+
+
+
+
+
+#define GPIO_LCKK (1 << 16)
+
+
+
+
+
+
+
+#define GPIO0 (1 << 0)
+#define GPIO1 (1 << 1)
+#define GPIO2 (1 << 2)
+#define GPIO3 (1 << 3)
+#define GPIO4 (1 << 4)
+#define GPIO5 (1 << 5)
+#define GPIO6 (1 << 6)
+#define GPIO7 (1 << 7)
+#define GPIO8 (1 << 8)
+#define GPIO9 (1 << 9)
+#define GPIO10 (1 << 10)
+#define GPIO11 (1 << 11)
+#define GPIO12 (1 << 12)
+#define GPIO13 (1 << 13)
+#define GPIO14 (1 << 14)
+#define GPIO15 (1 << 15)
+#define GPIO_ALL 0xffff
+
+
+
+
+void gpio_set(uint32_t gpioport, uint16_t gpios);
+void gpio_clear(uint32_t gpioport, uint16_t gpios);
+uint16_t gpio_get(uint32_t gpioport, uint16_t gpios);
+void gpio_toggle(uint32_t gpioport, uint16_t gpios);
+uint16_t gpio_port_read(uint32_t gpioport);
+void gpio_port_write(uint32_t gpioport, uint16_t data);
+void gpio_port_config_lock(uint32_t gpioport, uint16_t gpios);
+
+
+
+
+
+
+
+
+#define GPIOA GPIO_PORT_A_BASE
+#define GPIOB GPIO_PORT_B_BASE
+#define GPIOC GPIO_PORT_C_BASE
+#define GPIOD GPIO_PORT_D_BASE
+#define GPIOE GPIO_PORT_E_BASE
+#define GPIOF GPIO_PORT_F_BASE
+#define GPIOG GPIO_PORT_G_BASE
+#define GPIOH GPIO_PORT_H_BASE
+
+
+
+
+
+
+#define GPIO_MODER(port) MMIO32((port) + 0x00)
+#define GPIOA_MODER GPIO_MODER(GPIOA)
+#define GPIOB_MODER GPIO_MODER(GPIOB)
+#define GPIOC_MODER GPIO_MODER(GPIOC)
+#define GPIOD_MODER GPIO_MODER(GPIOD)
+#define GPIOE_MODER GPIO_MODER(GPIOE)
+#define GPIOF_MODER GPIO_MODER(GPIOF)
+#define GPIOG_MODER GPIO_MODER(GPIOG)
+#define GPIOH_MODER GPIO_MODER(GPIOH)
+
+
+#define GPIO_OTYPER(port) MMIO32((port) + 0x04)
+#define GPIOA_OTYPER GPIO_OTYPER(GPIOA)
+#define GPIOB_OTYPER GPIO_OTYPER(GPIOB)
+#define GPIOC_OTYPER GPIO_OTYPER(GPIOC)
+#define GPIOD_OTYPER GPIO_OTYPER(GPIOD)
+#define GPIOE_OTYPER GPIO_OTYPER(GPIOE)
+#define GPIOF_OTYPER GPIO_OTYPER(GPIOF)
+#define GPIOG_OTYPER GPIO_OTYPER(GPIOG)
+#define GPIOH_OTYPER GPIO_OTYPER(GPIOH)
+
+
+#define GPIO_OSPEEDR(port) MMIO32((port) + 0x08)
+#define GPIOA_OSPEEDR GPIO_OSPEEDR(GPIOA)
+#define GPIOB_OSPEEDR GPIO_OSPEEDR(GPIOB)
+#define GPIOC_OSPEEDR GPIO_OSPEEDR(GPIOC)
+#define GPIOD_OSPEEDR GPIO_OSPEEDR(GPIOD)
+#define GPIOE_OSPEEDR GPIO_OSPEEDR(GPIOE)
+#define GPIOF_OSPEEDR GPIO_OSPEEDR(GPIOF)
+#define GPIOG_OSPEEDR GPIO_OSPEEDR(GPIOG)
+#define GPIOH_OSPEEDR GPIO_OSPEEDR(GPIOH)
+
+
+#define GPIO_PUPDR(port) MMIO32((port) + 0x0c)
+#define GPIOA_PUPDR GPIO_PUPDR(GPIOA)
+#define GPIOB_PUPDR GPIO_PUPDR(GPIOB)
+#define GPIOC_PUPDR GPIO_PUPDR(GPIOC)
+#define GPIOD_PUPDR GPIO_PUPDR(GPIOD)
+#define GPIOE_PUPDR GPIO_PUPDR(GPIOE)
+#define GPIOF_PUPDR GPIO_PUPDR(GPIOF)
+#define GPIOG_PUPDR GPIO_PUPDR(GPIOG)
+#define GPIOH_PUPDR GPIO_PUPDR(GPIOH)
+
+
+#define GPIO_IDR(port) MMIO32((port) + 0x10)
+#define GPIOA_IDR GPIO_IDR(GPIOA)
+#define GPIOB_IDR GPIO_IDR(GPIOB)
+#define GPIOC_IDR GPIO_IDR(GPIOC)
+#define GPIOD_IDR GPIO_IDR(GPIOD)
+#define GPIOE_IDR GPIO_IDR(GPIOE)
+#define GPIOF_IDR GPIO_IDR(GPIOF)
+#define GPIOG_IDR GPIO_IDR(GPIOG)
+#define GPIOH_IDR GPIO_IDR(GPIOH)
+
+
+#define GPIO_ODR(port) MMIO32((port) + 0x14)
+#define GPIOA_ODR GPIO_ODR(GPIOA)
+#define GPIOB_ODR GPIO_ODR(GPIOB)
+#define GPIOC_ODR GPIO_ODR(GPIOC)
+#define GPIOD_ODR GPIO_ODR(GPIOD)
+#define GPIOE_ODR GPIO_ODR(GPIOE)
+#define GPIOF_ODR GPIO_ODR(GPIOF)
+#define GPIOG_ODR GPIO_ODR(GPIOG)
+#define GPIOH_ODR GPIO_ODR(GPIOH)
+
+
+#define GPIO_BSRR(port) MMIO32((port) + 0x18)
+#define GPIOA_BSRR GPIO_BSRR(GPIOA)
+#define GPIOB_BSRR GPIO_BSRR(GPIOB)
+#define GPIOC_BSRR GPIO_BSRR(GPIOC)
+#define GPIOD_BSRR GPIO_BSRR(GPIOD)
+#define GPIOE_BSRR GPIO_BSRR(GPIOE)
+#define GPIOF_BSRR GPIO_BSRR(GPIOF)
+#define GPIOG_BSRR GPIO_BSRR(GPIOG)
+#define GPIOH_BSRR GPIO_BSRR(GPIOH)
+
+
+#define GPIO_LCKR(port) MMIO32((port) + 0x1c)
+#define GPIOA_LCKR GPIO_LCKR(GPIOA)
+#define GPIOB_LCKR GPIO_LCKR(GPIOB)
+#define GPIOC_LCKR GPIO_LCKR(GPIOC)
+#define GPIOD_LCKR GPIO_LCKR(GPIOD)
+#define GPIOE_LCKR GPIO_LCKR(GPIOE)
+#define GPIOF_LCKR GPIO_LCKR(GPIOF)
+#define GPIOG_LCKR GPIO_LCKR(GPIOG)
+#define GPIOH_LCKR GPIO_LCKR(GPIOH)
+
+
+#define GPIO_AFRL(port) MMIO32((port) + 0x20)
+#define GPIOA_AFRL GPIO_AFRL(GPIOA)
+#define GPIOB_AFRL GPIO_AFRL(GPIOB)
+#define GPIOC_AFRL GPIO_AFRL(GPIOC)
+#define GPIOD_AFRL GPIO_AFRL(GPIOD)
+#define GPIOE_AFRL GPIO_AFRL(GPIOE)
+#define GPIOF_AFRL GPIO_AFRL(GPIOF)
+#define GPIOG_AFRL GPIO_AFRL(GPIOG)
+#define GPIOH_AFRL GPIO_AFRL(GPIOH)
+
+
+#define GPIO_AFRH(port) MMIO32((port) + 0x24)
+#define GPIOA_AFRH GPIO_AFRH(GPIOA)
+#define GPIOB_AFRH GPIO_AFRH(GPIOB)
+#define GPIOC_AFRH GPIO_AFRH(GPIOC)
+#define GPIOD_AFRH GPIO_AFRH(GPIOD)
+#define GPIOE_AFRH GPIO_AFRH(GPIOE)
+#define GPIOF_AFRH GPIO_AFRH(GPIOF)
+#define GPIOG_AFRH GPIO_AFRH(GPIOG)
+#define GPIOH_AFRH GPIO_AFRH(GPIOH)
+
+
+
+#define GPIO_MODE(n,mode) ((mode) << (2 * (n)))
+#define GPIO_MODE_MASK(n) (0x3 << (2 * (n)))
+
+
+
+#define GPIO_MODE_INPUT 0x0
+#define GPIO_MODE_OUTPUT 0x1
+#define GPIO_MODE_AF 0x2
+#define GPIO_MODE_ANALOG 0x3
+#define GPIO_OTYPE_PP 0x0
+
+#define GPIO_OTYPE_OD 0x1
+
+
+
+
+#define GPIO_OSPEED(n,speed) ((speed) << (2 * (n)))
+#define GPIO_OSPEED_MASK(n) (0x3 << (2 * (n)))
+
+
+
+#define GPIO_OSPEED_2MHZ 0x0
+#define GPIO_OSPEED_25MHZ 0x1
+#define GPIO_OSPEED_50MHZ 0x2
+#define GPIO_OSPEED_100MHZ 0x3
+
+
+
+
+#define GPIO_PUPD(n,pupd) ((pupd) << (2 * (n)))
+#define GPIO_PUPD_MASK(n) (0x3 << (2 * (n)))
+
+
+
+#define GPIO_PUPD_NONE 0x0
+#define GPIO_PUPD_PULLUP 0x1
+#define GPIO_PUPD_PULLDOWN 0x2
+#define GPIO_LCKK (1 << 16)
+
+
+
+
+
+
+
+#define GPIO_AFR(n,af) ((af) << ((n) * 4))
+#define GPIO_AFR_MASK(n) (0xf << ((n) * 4))
+
+
+
+#define GPIO_AF0 0x0
+#define GPIO_AF1 0x1
+#define GPIO_AF2 0x2
+#define GPIO_AF3 0x3
+#define GPIO_AF4 0x4
+#define GPIO_AF5 0x5
+#define GPIO_AF6 0x6
+#define GPIO_AF7 0x7
+#define GPIO_AF8 0x8
+#define GPIO_AF9 0x9
+#define GPIO_AF10 0xa
+#define GPIO_AF11 0xb
+#define GPIO_AF12 0xc
+#define GPIO_AF13 0xd
+#define GPIO_AF14 0xe
+#define GPIO_AF15 0xf
+
+
+
+
+
+
+
+void gpio_mode_setup(uint32_t gpioport, uint8_t mode, uint8_t pull_up_down,
+       uint16_t gpios);
+void gpio_set_output_options(uint32_t gpioport, uint8_t otype, uint8_t speed,
+        uint16_t gpios);
+void gpio_set_af(uint32_t gpioport, uint8_t alt_func_num, uint16_t gpios);
+
+
+
+
+
+
+
+
+#define GPIOI GPIO_PORT_I_BASE
+#define GPIOJ GPIO_PORT_J_BASE
+#define GPIOK GPIO_PORT_K_BASE
+
+
+
+
+
+#define GPIOI_MODER GPIO_MODER(GPIOI)
+#define GPIOJ_MODER GPIO_MODER(GPIOJ)
+#define GPIOK_MODER GPIO_MODER(GPIOK)
+
+
+#define GPIOI_OTYPER GPIO_OTYPER(GPIOI)
+#define GPIOJ_OTYPER GPIO_OTYPER(GPIOJ)
+#define GPIOK_OTYPER GPIO_OTYPER(GPIOK)
+
+
+#define GPIOI_OSPEEDR GPIO_OSPEEDR(GPIOI)
+#define GPIOJ_OSPEEDR GPIO_OSPEEDR(GPIOJ)
+#define GPIOK_OSPEEDR GPIO_OSPEEDR(GPIOK)
+
+
+#define GPIOI_PUPDR GPIO_PUPDR(GPIOI)
+#define GPIOJ_PUPDR GPIO_PUPDR(GPIOJ)
+#define GPIOK_PUPDR GPIO_PUPDR(GPIOK)
+
+
+#define GPIOI_IDR GPIO_IDR(GPIOI)
+#define GPIOJ_IDR GPIO_IDR(GPIOJ)
+#define GPIOK_IDR GPIO_IDR(GPIOK)
+
+
+#define GPIOI_ODR GPIO_ODR(GPIOI)
+#define GPIOJ_ODR GPIO_ODR(GPIOJ)
+#define GPIOK_ODR GPIO_ODR(GPIOK)
+
+
+#define GPIOI_BSRR GPIO_BSRR(GPIOI)
+#define GPIOJ_BSRR GPIO_BSRR(GPIOJ)
+#define GPIOK_BSRR GPIO_BSRR(GPIOK)
+
+
+#define GPIOI_LCKR GPIO_LCKR(GPIOI)
+#define GPIOJ_LCKR GPIO_LCKR(GPIOJ)
+#define GPIOK_LCKR GPIO_LCKR(GPIOK)
+
+
+#define GPIOI_AFRL GPIO_AFRL(GPIOI)
+#define GPIOJ_AFRL GPIO_AFRL(GPIOJ)
+#define GPIOK_AFRL GPIO_AFRL(GPIOK)
+
+
+#define GPIOI_AFRH GPIO_AFRH(GPIOI)
+#define GPIOJ_AFRH GPIO_AFRH(GPIOJ)
+#define GPIOK_AFRH GPIO_AFRH(GPIOK)
+#define LIBOPENCM3_NVIC_H 
+#define NVIC_ISER(iser_id) MMIO32(NVIC_BASE + 0x00 + ((iser_id) * 4))
+#define NVIC_ICER(icer_id) MMIO32(NVIC_BASE + 0x80 + ((icer_id) * 4))
+#define NVIC_ISPR(ispr_id) MMIO32(NVIC_BASE + 0x100 + ((ispr_id) * 4))
+#define NVIC_ICPR(icpr_id) MMIO32(NVIC_BASE + 0x180 + ((icpr_id) * 4))
+#define NVIC_IABR(iabr_id) MMIO32(NVIC_BASE + 0x200 + ((iabr_id) * 4))
+#define NVIC_IPR(ipr_id) MMIO8(NVIC_BASE + 0x300 + (ipr_id))
+
+
+
+
+
+#define NVIC_STIR MMIO32(STIR_BASE)
+#define NVIC_NMI_IRQ -14
+#define NVIC_HARD_FAULT_IRQ -13
+
+
+
+#define NVIC_MEM_MANAGE_IRQ -12
+#define NVIC_BUS_FAULT_IRQ -11
+#define NVIC_USAGE_FAULT_IRQ -10
+
+
+
+#define NVIC_SV_CALL_IRQ -5
+
+
+
+#define DEBUG_MONITOR_IRQ -4
+
+
+
+#define NVIC_PENDSV_IRQ -2
+#define NVIC_SYSTICK_IRQ -1
+
+
+
+
+
+
+
+
+
+
+
+
+#define LIBOPENCM3_STM32_F4_NVIC_H 
+
+
+
+
+
+
+
+#define NVIC_NVIC_WWDG_IRQ 0
+#define NVIC_PVD_IRQ 1
+#define NVIC_TAMP_STAMP_IRQ 2
+#define NVIC_RTC_WKUP_IRQ 3
+#define NVIC_FLASH_IRQ 4
+#define NVIC_RCC_IRQ 5
+#define NVIC_EXTI0_IRQ 6
+#define NVIC_EXTI1_IRQ 7
+#define NVIC_EXTI2_IRQ 8
+#define NVIC_EXTI3_IRQ 9
+#define NVIC_EXTI4_IRQ 10
+#define NVIC_DMA1_STREAM0_IRQ 11
+#define NVIC_DMA1_STREAM1_IRQ 12
+#define NVIC_DMA1_STREAM2_IRQ 13
+#define NVIC_DMA1_STREAM3_IRQ 14
+#define NVIC_DMA1_STREAM4_IRQ 15
+#define NVIC_DMA1_STREAM5_IRQ 16
+#define NVIC_DMA1_STREAM6_IRQ 17
+#define NVIC_ADC_IRQ 18
+#define NVIC_CAN1_TX_IRQ 19
+#define NVIC_CAN1_RX0_IRQ 20
+#define NVIC_CAN1_RX1_IRQ 21
+#define NVIC_CAN1_SCE_IRQ 22
+#define NVIC_EXTI9_5_IRQ 23
+#define NVIC_TIM1_BRK_TIM9_IRQ 24
+#define NVIC_TIM1_UP_TIM10_IRQ 25
+#define NVIC_TIM1_TRG_COM_TIM11_IRQ 26
+#define NVIC_TIM1_CC_IRQ 27
+#define NVIC_TIM2_IRQ 28
+#define NVIC_TIM3_IRQ 29
+#define NVIC_TIM4_IRQ 30
+#define NVIC_I2C1_EV_IRQ 31
+#define NVIC_I2C1_ER_IRQ 32
+#define NVIC_I2C2_EV_IRQ 33
+#define NVIC_I2C2_ER_IRQ 34
+#define NVIC_SPI1_IRQ 35
+#define NVIC_SPI2_IRQ 36
+#define NVIC_USART1_IRQ 37
+#define NVIC_USART2_IRQ 38
+#define NVIC_USART3_IRQ 39
+#define NVIC_EXTI15_10_IRQ 40
+#define NVIC_RTC_ALARM_IRQ 41
+#define NVIC_USB_FS_WKUP_IRQ 42
+#define NVIC_TIM8_BRK_TIM12_IRQ 43
+#define NVIC_TIM8_UP_TIM13_IRQ 44
+#define NVIC_TIM8_TRG_COM_TIM14_IRQ 45
+#define NVIC_TIM8_CC_IRQ 46
+#define NVIC_DMA1_STREAM7_IRQ 47
+#define NVIC_FSMC_IRQ 48
+#define NVIC_SDIO_IRQ 49
+#define NVIC_TIM5_IRQ 50
+#define NVIC_SPI3_IRQ 51
+#define NVIC_UART4_IRQ 52
+#define NVIC_UART5_IRQ 53
+#define NVIC_TIM6_DAC_IRQ 54
+#define NVIC_TIM7_IRQ 55
+#define NVIC_DMA2_STREAM0_IRQ 56
+#define NVIC_DMA2_STREAM1_IRQ 57
+#define NVIC_DMA2_STREAM2_IRQ 58
+#define NVIC_DMA2_STREAM3_IRQ 59
+#define NVIC_DMA2_STREAM4_IRQ 60
+#define NVIC_ETH_IRQ 61
+#define NVIC_ETH_WKUP_IRQ 62
+#define NVIC_CAN2_TX_IRQ 63
+#define NVIC_CAN2_RX0_IRQ 64
+#define NVIC_CAN2_RX1_IRQ 65
+#define NVIC_CAN2_SCE_IRQ 66
+#define NVIC_OTG_FS_IRQ 67
+#define NVIC_DMA2_STREAM5_IRQ 68
+#define NVIC_DMA2_STREAM6_IRQ 69
+#define NVIC_DMA2_STREAM7_IRQ 70
+#define NVIC_USART6_IRQ 71
+#define NVIC_I2C3_EV_IRQ 72
+#define NVIC_I2C3_ER_IRQ 73
+#define NVIC_OTG_HS_EP1_OUT_IRQ 74
+#define NVIC_OTG_HS_EP1_IN_IRQ 75
+#define NVIC_OTG_HS_WKUP_IRQ 76
+#define NVIC_OTG_HS_IRQ 77
+#define NVIC_DCMI_IRQ 78
+#define NVIC_CRYP_IRQ 79
+#define NVIC_HASH_RNG_IRQ 80
+#define NVIC_FPU_IRQ 81
+#define NVIC_UART7_IRQ 82
+#define NVIC_UART8_IRQ 83
+#define NVIC_SPI4_IRQ 84
+#define NVIC_SPI5_IRQ 85
+#define NVIC_SPI6_IRQ 86
+#define NVIC_SAI1_IRQ 87
+#define NVIC_LCD_TFT_IRQ 88
+#define NVIC_LCD_TFT_ERR_IRQ 89
+#define NVIC_DMA2D_IRQ 90
+
+#define NVIC_IRQ_COUNT 91
+
+
+void nvic_wwdg_isr(void);
+void pvd_isr(void);
+void tamp_stamp_isr(void);
+void rtc_wkup_isr(void);
+void flash_isr(void);
+void rcc_isr(void);
+void exti0_isr(void);
+void exti1_isr(void);
+void exti2_isr(void);
+void exti3_isr(void);
+void exti4_isr(void);
+void dma1_stream0_isr(void);
+void dma1_stream1_isr(void);
+void dma1_stream2_isr(void);
+void dma1_stream3_isr(void);
+void dma1_stream4_isr(void);
+void dma1_stream5_isr(void);
+void dma1_stream6_isr(void);
+void adc_isr(void);
+void can1_tx_isr(void);
+void can1_rx0_isr(void);
+void can1_rx1_isr(void);
+void can1_sce_isr(void);
+void exti9_5_isr(void);
+void tim1_brk_tim9_isr(void);
+void tim1_up_tim10_isr(void);
+void tim1_trg_com_tim11_isr(void);
+void tim1_cc_isr(void);
+void tim2_isr(void);
+void tim3_isr(void);
+void tim4_isr(void);
+void i2c1_ev_isr(void);
+void i2c1_er_isr(void);
+void i2c2_ev_isr(void);
+void i2c2_er_isr(void);
+void spi1_isr(void);
+void spi2_isr(void);
+void usart1_isr(void);
+void usart2_isr(void);
+void usart3_isr(void);
+void exti15_10_isr(void);
+void rtc_alarm_isr(void);
+void usb_fs_wkup_isr(void);
+void tim8_brk_tim12_isr(void);
+void tim8_up_tim13_isr(void);
+void tim8_trg_com_tim14_isr(void);
+void tim8_cc_isr(void);
+void dma1_stream7_isr(void);
+void fsmc_isr(void);
+void sdio_isr(void);
+void tim5_isr(void);
+void spi3_isr(void);
+void uart4_isr(void);
+void uart5_isr(void);
+void tim6_dac_isr(void);
+void tim7_isr(void);
+void dma2_stream0_isr(void);
+void dma2_stream1_isr(void);
+void dma2_stream2_isr(void);
+void dma2_stream3_isr(void);
+void dma2_stream4_isr(void);
+void eth_isr(void);
+void eth_wkup_isr(void);
+void can2_tx_isr(void);
+void can2_rx0_isr(void);
+void can2_rx1_isr(void);
+void can2_sce_isr(void);
+void otg_fs_isr(void);
+void dma2_stream5_isr(void);
+void dma2_stream6_isr(void);
+void dma2_stream7_isr(void);
+void usart6_isr(void);
+void i2c3_ev_isr(void);
+void i2c3_er_isr(void);
+void otg_hs_ep1_out_isr(void);
+void otg_hs_ep1_in_isr(void);
+void otg_hs_wkup_isr(void);
+void otg_hs_isr(void);
+void dcmi_isr(void);
+void cryp_isr(void);
+void hash_rng_isr(void);
+void fpu_isr(void);
+void uart7_isr(void);
+void uart8_isr(void);
+void spi4_isr(void);
+void spi5_isr(void);
+void spi6_isr(void);
+void sai1_isr(void);
+void lcd_tft_isr(void);
+void lcd_tft_err_isr(void);
+void dma2d_isr(void);
+
+
+
+
+
+
+
+void nvic_enable_irq(uint8_t irqn);
+void nvic_disable_irq(uint8_t irqn);
+uint8_t nvic_get_pending_irq(uint8_t irqn);
+void nvic_set_pending_irq(uint8_t irqn);
+void nvic_clear_pending_irq(uint8_t irqn);
+uint8_t nvic_get_irq_enabled(uint8_t irqn);
+void nvic_set_priority(uint8_t irqn, uint8_t priority);
+
+
+
+uint8_t nvic_get_active_irq(uint8_t irqn);
+void nvic_generate_software_interrupt(uint16_t irqn);
+
+
+void reset_handler(void);
+void nmi_handler(void);
+void hard_fault_handler(void);
+void sv_call_handler(void);
+void pend_sv_handler(void);
+void sys_tick_handler(void);
+
+
+
+void mem_manage_handler(void);
+void bus_fault_handler(void);
+void usage_fault_handler(void);
+void debug_monitor_handler(void);
+
+
+
+
+
+
+uint32_t TxBD;
+uint32_t RxBD;
+
+
+
+
+
+
+void eth_set_mac(const uint8_t *mac)
+{
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x40+(0)*8)) = ((uint32_t)mac[5] << 8) | (uint32_t)mac[4] |
+   (0xFFFF<<0);
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x44+(0)*8)) = ((uint32_t)mac[3] << 24) | ((uint32_t)mac[2] << 16) |
+   ((uint32_t)mac[1] << 8) | mac[0];
+}
+void eth_desc_init(uint8_t *buf, uint32_t nTx, uint32_t nRx, uint32_t cTx,
+      uint32_t cRx, 
+                   _Bool 
+                        isext)
+{
+ uint32_t bd = (uint32_t)buf;
+ uint32_t sz = isext ? 32 : 16;
+
+ memset(buf, 0, nTx * (cTx + sz) + nRx * (cRx + sz));
+
+
+ if (isext) {
+  (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x1000)) |= (1<<7);
+ } else {
+  (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x1000)) &= ~(1<<7);
+ }
+
+ TxBD = bd;
+ while (--nTx > 0) {
+  (*(volatile uint32_t *)((bd) + (0)*4)) = (1<<20);
+  (*(volatile uint32_t *)((bd) + (2)*4)) = bd + sz;
+  (*(volatile uint32_t *)((bd) + (3)*4)) = bd + sz + cTx;
+  bd = (*(volatile uint32_t *)((bd) + (3)*4));
+ }
+
+ (*(volatile uint32_t *)((bd) + (0)*4)) = (1<<20);
+ (*(volatile uint32_t *)((bd) + (2)*4)) = bd + sz;
+ (*(volatile uint32_t *)((bd) + (3)*4)) = TxBD;
+ bd += sz + cTx;
+
+ RxBD = bd;
+ while (--nRx > 0) {
+  (*(volatile uint32_t *)((bd) + (0)*4)) = (1<<31);
+  (*(volatile uint32_t *)((bd) + (1)*4)) = (1<<14) | cRx;
+  (*(volatile uint32_t *)((bd) + (2)*4)) = bd + sz;
+  (*(volatile uint32_t *)((bd) + (3)*4)) = bd + sz + cRx;
+  bd = (*(volatile uint32_t *)((bd) + (3)*4));
+ }
+
+ (*(volatile uint32_t *)((bd) + (0)*4)) = (1<<31);
+ (*(volatile uint32_t *)((bd) + (1)*4)) = (1<<14) | cRx;
+ (*(volatile uint32_t *)((bd) + (2)*4)) = bd + sz;
+ (*(volatile uint32_t *)((bd) + (3)*4)) = RxBD;
+
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x100C)) = (uint32_t) RxBD;
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x1010)) = (uint32_t) TxBD;
+}
+
+_Bool 
+    eth_tx(uint8_t *ppkt, uint32_t n)
+{
+ if ((*(volatile uint32_t *)((TxBD) + (0)*4)) & (1<<31)) {
+  return 
+        0
+             ;
+ }
+
+ memcpy((void *)(*(volatile uint32_t *)((TxBD) + (2)*4)), ppkt, n);
+
+ (*(volatile uint32_t *)((TxBD) + (1)*4)) = n & (0x1FFF<<0);
+ (*(volatile uint32_t *)((TxBD) + (0)*4)) |= (1<<29) | (1<<28) | (1<<31);
+ TxBD = (*(volatile uint32_t *)((TxBD) + (3)*4));
+
+ if ((*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x1014)) & (1<<2)) {
+  (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x1014)) = (1<<2);
+  (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x1004)) = 0;
+ }
+
+ return 
+       1
+           ;
+}
+
+_Bool 
+    eth_rx(uint8_t *ppkt, uint32_t *len, uint32_t maxlen)
+{
+ 
+_Bool 
+     fs = 
+          0
+               ;
+ 
+_Bool 
+     ls = 
+          0
+               ;
+ 
+_Bool 
+     overrun = 
+               0
+                    ;
+ uint32_t l = 0;
+
+ while (!((*(volatile uint32_t *)((RxBD) + (0)*4)) & (1<<31)) && !ls) {
+  l = ((*(volatile uint32_t *)((RxBD) + (0)*4)) & (0x3FFF<<16)) >> 16;
+
+  fs |= (*(volatile uint32_t *)((RxBD) + (0)*4)) & (1<<9);
+  ls |= (*(volatile uint32_t *)((RxBD) + (0)*4)) & (1<<8);
+
+  overrun |= fs && (maxlen < l);
+
+  if (fs && !overrun) {
+   memcpy(ppkt, (void *)(*(volatile uint32_t *)((RxBD) + (2)*4)), l);
+   ppkt += l;
+   *len += l;
+   maxlen -= l;
+  }
+
+  (*(volatile uint32_t *)((RxBD) + (0)*4)) = (1<<31);
+  RxBD = (*(volatile uint32_t *)((RxBD) + (3)*4));
+ }
+
+ if ((*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x1014)) & (1<<7)) {
+  (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x1014)) = (1<<7);
+  (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x1008)) = 0;
+ }
+
+ return fs && ls && !overrun;
+}
+
+
+
+
+void eth_start(void)
+{
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x00)) |= (1<<3);
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x1018)) |= (1<<20);
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x00)) |= (1<<2);
+
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x1018)) |= (1<<13);
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x1018)) |= (1<<1);
+}
+void eth_init(uint8_t phy, enum eth_clk clock)
+{
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x10)) = clock;
+ phy_reset(phy);
+
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x00)) = (1<<25) | (1<<14) | (1<<11) |
+  (1<<7) | (1<<9);
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x04)) = (1<<31) | (1<<0);
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x08)) = 0;
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x0C)) = 0;
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x18)) = (0x100 << 16);
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x1C)) = 0;
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x1018)) = (1<<26) | (1<<25) | (1<<24) |
+  (1<<21) | (1<<7) | (1<<2);
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x1000)) = (1<<25) | (1<<16) |
+  (32 << 17) | (32 << 8) |
+  (1 << 14) | (1<<23);
+}
+
+
+
+
+
+
+void eth_irq_enable(uint32_t reason)
+{
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x101C)) |= reason;
+}
+
+
+
+
+
+
+void eth_irq_disable(uint32_t reason)
+{
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x101C)) &= ~reason;
+}
+
+
+
+
+
+
+
+
+_Bool 
+    eth_irq_is_pending(uint32_t reason)
+{
+ return ((*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x1014)) & reason) != 0;
+}
+
+
+
+
+
+
+
+
+_Bool 
+    eth_irq_ack_pending(uint32_t reason)
+{
+ reason &= (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x1014));
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x1014)) = reason;
+ return reason != 0;
+}
+void eth_enable_checksum_offload(void)
+{
+ uint32_t tab = TxBD;
+ do {
+  (*(volatile uint32_t *)((tab) + (0)*4)) |= (3<<22);
+  tab = (*(volatile uint32_t *)((tab) + (3)*4));
+ }
+ while (tab != TxBD);
+
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x00)) |= (1<<10);
+}
+
+
+
+
+static void eth_smi_transact(void)
+{
+
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x10)) |= (1<<0);
+
+
+ while ((*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x10)) & (1<<0));
+}
+void eth_smi_write(uint8_t phy, uint8_t reg, uint16_t data)
+{
+
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x10)) = ((*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x10)) & (7<<2)) |
+   (phy << 11) |
+   (reg << 6) |
+   (1<<1);
+
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x14)) = data & 0xFFFF;
+
+ eth_smi_transact();
+}
+uint16_t eth_smi_read(uint8_t phy, uint8_t reg)
+{
+
+ (*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x10)) = ((*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x10)) & (7<<2)) |
+   (phy << 11) |
+   (reg << 6);
+
+ eth_smi_transact();
+
+ return (uint16_t)((*(volatile uint32_t *)((((0x40000000U) + 0x20000) + 0x8000) + 0x14)) & 0xFFFF);
+}
+void eth_smi_bit_op(uint8_t phy, uint8_t reg, uint16_t bits, uint16_t mask)
+{
+ uint16_t val = eth_smi_read(phy, reg);
+ eth_smi_write(phy, reg, (val & mask) | bits);
+}
+void eth_smi_bit_clear(uint8_t phy, uint8_t reg, uint16_t clearbits)
+{
+ uint16_t val = eth_smi_read(phy, reg);
+ eth_smi_write(phy, reg, val & (uint16_t)~(clearbits));
+}
+void eth_smi_bit_set(uint8_t phy, uint8_t reg, uint16_t setbits)
+{
+ uint16_t val = eth_smi_read(phy, reg);
+ eth_smi_write(phy, reg, val | setbits);
+}

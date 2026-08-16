@@ -1,0 +1,91 @@
+[
+  {
+    "function": "dwc_poll",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "usbd_device *",
+        "decompiled_type": "usbd_device *",
+        "match": "correct",
+        "evidence_source_line": "1268: void dwc_poll(usbd_device *usbd_dev)",
+        "evidence_decompiled_line": "61: void dwc_poll(usbd_device *usbd_dev)"
+      },
+      {
+        "source_role": "局部变量 intsts",
+        "source_type": "uint32_t",
+        "decompiled_type": "uint32_t (interrupt_status)",
+        "match": "correct",
+        "evidence_source_line": "1271: uint32_t intsts = (*(volatile uint32_t *)((0x014) + ((usbd_dev->driver->base_address))));",
+        "evidence_decompiled_line": "95: uint32_t interrupt_status = regs->interrupt_status;"
+      },
+      {
+        "source_role": "局部变量 rxstsp",
+        "source_type": "uint32_t",
+        "decompiled_type": "uint32_t (receive_status)",
+        "match": "correct",
+        "evidence_source_line": "1302: uint32_t rxstsp = (*(volatile uint32_t *)((0x020) + ((usbd_dev->driver->base_address))));",
+        "evidence_decompiled_line": "119: uint32_t receive_status = regs->receive_status_pop;"
+      },
+      {
+        "source_role": "局部变量 pktsts",
+        "source_type": "uint32_t",
+        "decompiled_type": "uint32_t (packet_status)",
+        "match": "correct",
+        "evidence_source_line": "1303: uint32_t pktsts = rxstsp & (0xf << 17);",
+        "evidence_decompiled_line": "120: uint32_t packet_status = receive_status & RX_STATUS_PACKET_MASK;"
+      },
+      {
+        "source_role": "局部变量 ep",
+        "source_type": "uint8_t",
+        "decompiled_type": "uint8_t",
+        "match": "correct",
+        "evidence_source_line": "1304: uint8_t ep = rxstsp & (0xf << 0);",
+        "evidence_decompiled_line": "96: uint8_t ep;；122: ep = receive_status & 0x0f;"
+      },
+      {
+        "source_role": "局部变量 i",
+        "source_type": "int",
+        "decompiled_type": "uint8_t (ep) / uint32_t (bytes_discarded)",
+        "match": "undeterminable",
+        "evidence_source_line": "1272: int i;；1286: for (i = 0; i < 4; i++)；1349: for (i = 0; i < usbd_dev->rxbcnt; i += 4)",
+        "evidence_decompiled_line": "105: for (ep = 0; ep < 4; ep++)；148: for (bytes_discarded = 0;；150: bytes_discarded += 4)"
+      },
+      {
+        "source_role": "局部变量 type",
+        "source_type": "uint8_t",
+        "decompiled_type": "无可唯一对应的局部变量",
+        "match": "undeterminable",
+        "evidence_source_line": "1324: uint8_t type;；1325-1329: type 由 pktsts 选择为 USB_TRANSACTION_SETUP 或 USB_TRANSACTION_OUT",
+        "evidence_decompiled_line": "124: switch (packet_status)；137: case RX_STATUS_OUT_DATA；157: case RX_STATUS_SETUP_DATA"
+      },
+      {
+        "source_role": "结构体 usbd_device",
+        "source_type": "本函数仅可见为不完整类型 usbd_device；字段布局未在函数体中定义",
+        "decompiled_type": "struct usbd_device（含显式保留区和字段偏移）",
+        "match": "undeterminable",
+        "evidence_source_line": "1268: void dwc_poll(usbd_device *usbd_dev)；1277: usbd_dev->fifo_mem_top = usbd_dev->driver->rx_fifo_size;",
+        "evidence_decompiled_line": "42: struct usbd_device {；52: usbd_driver *driver;；54: uint16_t fifo_mem_top;"
+      },
+      {
+        "source_role": "结构体 usbd_driver / DWC 寄存器映射",
+        "source_type": "本函数仅通过 usbd_dev->driver->base_address 的原始 volatile uint32_t 地址运算访问；未定义结构体布局",
+        "decompiled_type": "usbd_driver 和 dwc_registers（显式字段、数组及保留区布局）",
+        "match": "undeterminable",
+        "evidence_source_line": "1271: (*(volatile uint32_t *)((0x014) + ((usbd_dev->driver->base_address))))；1287: (*(volatile uint32_t *)(((0x908 + 0x20*(i))) + ((usbd_dev->driver->base_address))))",
+        "evidence_decompiled_line": "20: typedef struct { ... dwc_registers *registers; ... uint16_t rx_fifo_size; } usbd_driver;；24-33: dwc_registers 的显式布局"
+      },
+      {
+        "source_role": "静态局部对象",
+        "source_type": "本函数体中未声明静态局部对象",
+        "decompiled_type": "本函数体中未见可对齐的全局外部对象",
+        "match": "undeterminable",
+        "evidence_source_line": "1268-1383: dwc_poll 函数体中的声明仅包括 intsts、i、rxstsp、pktsts、ep、type",
+        "evidence_decompiled_line": "61-207: dwc_poll 函数体中的声明包括 extern 函数原型及自动局部变量，未见对象定义"
+      }
+    ],
+    "reasoning": "按第1个 ABI 参数位置，usbd_dev 的指针类型在两侧直接一致。intsts/rxstsp/pktsts/ep 由相同的寄存器读取、位掩码和后续端点索引数据流对齐，且标量类型一致。源码 i 在两个循环中复用，而反编译结果拆分为 ep 与 bytes_discarded，无法据此确定原始 int 类型是否被错误恢复；源码 type 被控制流规范化为 switch，同样无唯一局部对应。源码函数范围没有任何结构体定义或字段偏移，故不能验证 LAYOUT-01、ST-01 或由布局导致的 PTR-01；也没有静态局部对象，SC-01 不具备可检验实体。反编译中 extern 原型对应的源码声明不在允许函数范围内，FN-01 亦无充分证据。"
+  }
+]

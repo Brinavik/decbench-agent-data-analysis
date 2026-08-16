@@ -1,0 +1,155 @@
+[
+  {
+    "function": "socket_open2",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "socket_st *",
+        "decompiled_type": "socket_st *",
+        "match": "correct",
+        "evidence_source_line": "6862: socket_open2(socket_st * hd, const char *hostname, const char *service,",
+        "evidence_decompiled_line": "87: void socket_open2(socket_st *hd, const char *hostname, const char *service,"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "const char *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "6862: socket_open2(socket_st * hd, const char *hostname, const char *service,",
+        "evidence_decompiled_line": "87: void socket_open2(socket_st *hd, const char *hostname, const char *service,"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "const char *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "6862: socket_open2(socket_st * hd, const char *hostname, const char *service,",
+        "evidence_decompiled_line": "87: void socket_open2(socket_st *hd, const char *hostname, const char *service,"
+      },
+      {
+        "source_role": "第4个参数",
+        "source_type": "const char *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "6863: const char *app_proto, int flags, const char *msg,",
+        "evidence_decompiled_line": "88: const char *app_proto, int flags, const char *msg,"
+      },
+      {
+        "source_role": "第5个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "6863: const char *app_proto, int flags, const char *msg,",
+        "evidence_decompiled_line": "88: const char *app_proto, int flags, const char *msg,"
+      },
+      {
+        "source_role": "第6个参数",
+        "source_type": "const char *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "6863: const char *app_proto, int flags, const char *msg,",
+        "evidence_decompiled_line": "88: int flags, const char *msg,"
+      },
+      {
+        "source_role": "第7个参数",
+        "source_type": "gnutls_datum_t *",
+        "decompiled_type": "gnutls_datum_t *",
+        "match": "correct",
+        "evidence_source_line": "6863: const char *app_proto, int flags, const char *msg, gnutls_datum_t *rdata,",
+        "evidence_decompiled_line": "89: gnutls_datum_t *rdata, gnutls_datum_t *edata,"
+      },
+      {
+        "source_role": "第8个参数",
+        "source_type": "gnutls_datum_t *",
+        "decompiled_type": "gnutls_datum_t *",
+        "match": "correct",
+        "evidence_source_line": "6863: gnutls_datum_t *rdata, gnutls_datum_t *edata,",
+        "evidence_decompiled_line": "89: gnutls_datum_t *rdata, gnutls_datum_t *edata,"
+      },
+      {
+        "source_role": "第9个参数",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "6864: FILE *server_trace, FILE *client_trace)",
+        "evidence_decompiled_line": "90: FILE *server_trace, FILE *client_trace)"
+      },
+      {
+        "source_role": "第10个参数",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "6864: FILE *server_trace, FILE *client_trace)",
+        "evidence_decompiled_line": "90: FILE *server_trace, FILE *client_trace)"
+      },
+      {
+        "source_role": "局部变量 hints/res/ptr",
+        "source_type": "struct addrinfo hints; struct addrinfo *res, *ptr",
+        "decompiled_type": "struct addrinfo hints, *res, *ptr",
+        "match": "correct",
+        "evidence_source_line": "6866: struct addrinfo hints, *res, *ptr;",
+        "evidence_decompiled_line": "92: struct addrinfo hints, *res, *ptr;"
+      },
+      {
+        "source_role": "局部变量 sd/err/udp/ret/fastopen",
+        "source_type": "int sd, err=0, udp, ret, fastopen",
+        "decompiled_type": "int sd=-1, err, udp, ret",
+        "match": "undeterminable",
+        "evidence_source_line": "6867-6870: int sd, err = 0; int udp = flags & 1; int ret; int fastopen = flags & (1<<1);",
+        "evidence_decompiled_line": "96-99: int udp = flags & SOCKET_FLAG_UDP; int sd = -1; int err; int ret;"
+      },
+      {
+        "source_role": "局部数组 buffer",
+        "source_type": "char[4097]",
+        "decompiled_type": "char[4096]",
+        "match": "wrong",
+        "evidence_source_line": "6871: char buffer[4096 + 1];",
+        "evidence_decompiled_line": "94: char buffer[4096];"
+      },
+      {
+        "source_role": "局部数组 portname",
+        "source_type": "char[16]",
+        "decompiled_type": "char[16]",
+        "match": "correct",
+        "evidence_source_line": "6872: char portname[16] = { 0 };",
+        "evidence_decompiled_line": "95: char portname[16] = { 0 };"
+      },
+      {
+        "source_role": "局部变量 idna",
+        "source_type": "gnutls_datum_t",
+        "decompiled_type": "gnutls_datum_t",
+        "match": "correct",
+        "evidence_source_line": "6873: gnutls_datum_t idna;",
+        "evidence_decompiled_line": "93: gnutls_datum_t idn = { NULL, 0 };"
+      },
+      {
+        "source_role": "局部变量 a_hostname",
+        "source_type": "char *",
+        "decompiled_type": "无独立变量（直接使用 idn.data）",
+        "match": "undeterminable",
+        "evidence_source_line": "6874: char *a_hostname; 6900: a_hostname = (char*)idna.data;",
+        "evidence_decompiled_line": "123-126: if (msg) log_msg(stdout, \"Resolving '%s:%s'...\", (char *)idn.data, service);"
+      },
+      {
+        "source_role": "结构体 socket_st",
+        "source_type": "字段序列含 int fd, gnutls_session_t session, int secure, char *hostname, const char *app_proto, char *ip, char *service, 两个 addrinfo 指针, int verbose, sockaddr_storage, socklen_t, 两个 FILE*, 两个 gnutls_datum_t",
+        "decompiled_type": "相同字段顺序；app_proto 为 char *，两个 datum 字段改名为 session_data/early_data",
+        "match": "correct",
+        "evidence_source_line": "2997-3019: typedef struct { int fd; gnutls_session_t session; int secure; char *hostname; const char *app_proto; char *ip; char *service; struct addrinfo *ptr; struct addrinfo *addr_info; int verbose; struct sockaddr_storage connect_addr; socklen_t connect_addrlen; FILE *server_trace; FILE *client_trace; gnutls_datum_t rdata; gnutls_datum_t edata; } socket_st;",
+        "evidence_decompiled_line": "51-68: socket_st fields fd, session, secure, hostname, app_proto, ip, service, ptr, addr_info, verbose, connect_addr, connect_addrlen, server_trace, client_trace, session_data, early_data"
+      },
+      {
+        "source_role": "地址发现结果 res 的所有权/释放",
+        "source_type": "res 保存于 hd->addr_info，函数末尾不 freeaddrinfo",
+        "decompiled_type": "res 保存于 hd->addr_info，函数末尾仅释放 idn.data",
+        "match": "correct",
+        "evidence_source_line": "7099-7100: hd->ptr = ptr; hd->addr_info = res;",
+        "evidence_decompiled_line": "257-264: hd->ptr = ptr; hd->addr_info = res; ... gnutls_free(idn.data);"
+      }
+    ],
+    "reasoning": "按十个 ABI 参数位置逐项对应，参数类型和指针层级一致。局部变量中 buffer 的数组边界明确从 4097 变为 4096；其余整数声明差异不足以从该函数数据流确定宽度/初始化语义。socket_st 字段顺序、指针层级和 datum 成员布局一致，app_proto 仅丢失 const 限定不改变布局。地址发现结果 res 在源码和反编译结果中都写入 hd->addr_info 而未释放，因此 free_discovery 假设被拒绝。"
+  }
+]

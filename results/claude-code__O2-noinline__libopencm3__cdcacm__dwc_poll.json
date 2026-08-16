@@ -1,0 +1,99 @@
+[
+  {
+    "function": "dwc_poll",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "函数原型及第1个参数",
+        "source_type": "void dwc_poll(usbd_device *usbd_dev)",
+        "decompiled_type": "void dwc_poll(void *arg)",
+        "match": "wrong",
+        "evidence_source_line": "源码1268: void dwc_poll(usbd_device *usbd_dev)",
+        "evidence_decompiled_line": "反编译11: void dwc_poll(void *arg)"
+      },
+      {
+        "source_role": "局部变量 intsts（中断状态寄存器值）",
+        "source_type": "uint32_t",
+        "decompiled_type": "uint32_t flags",
+        "match": "correct",
+        "evidence_source_line": "源码1271: uint32_t intsts = (*(volatile uint32_t *)((0x014) + ((usbd_dev->driver->base_address))));",
+        "evidence_decompiled_line": "反编译16: uint32_t flags = *(uint32_t *)(b + 0x14);"
+      },
+      {
+        "source_role": "局部变量 i（端点完成扫描与FIFO丢弃循环的索引）",
+        "source_type": "int",
+        "decompiled_type": "int i；int j",
+        "match": "correct",
+        "evidence_source_line": "源码1272: int i;；源码1286: for (i = 0; i < 4; i++)；源码1349: for (i = 0; i < usbd_dev->rxbcnt; i += 4)",
+        "evidence_decompiled_line": "反编译17: int i;；反编译27: for (i = 0; i < 4; i++)；反编译87: int j = 0;"
+      },
+      {
+        "source_role": "局部变量 rxstsp（接收状态弹出值）",
+        "source_type": "uint32_t",
+        "decompiled_type": "uint32_t spec",
+        "match": "correct",
+        "evidence_source_line": "源码1302: uint32_t rxstsp = (*(volatile uint32_t *)((0x020) + ((usbd_dev->driver->base_address))));",
+        "evidence_decompiled_line": "反编译41-44: uint32_t spec; ... spec = *(uint32_t *)(b + 0x20);"
+      },
+      {
+        "source_role": "局部变量 pktsts（rxstsp的位17-20）",
+        "source_type": "uint32_t",
+        "decompiled_type": "无独立局部变量；内联为 spec & 0x1e0000",
+        "match": "undeterminable",
+        "evidence_source_line": "源码1303: uint32_t pktsts = rxstsp & (0xf << 17);",
+        "evidence_decompiled_line": "反编译47: switch (spec & 0x1e0000) {"
+      },
+      {
+        "source_role": "局部变量 ep（端点号）",
+        "source_type": "uint8_t",
+        "decompiled_type": "int idx",
+        "match": "wrong",
+        "evidence_source_line": "源码1304: uint8_t ep = rxstsp & (0xf << 0);",
+        "evidence_decompiled_line": "反编译45: int idx = spec & 0xf;"
+      },
+      {
+        "source_role": "局部变量 type（USB事务枚举值）",
+        "source_type": "uint8_t",
+        "decompiled_type": "无独立局部变量；由 switch 分支编码",
+        "match": "undeterminable",
+        "evidence_source_line": "源码1324-1329: uint8_t type; ... type = USB_TRANSACTION_SETUP; ... type = USB_TRANSACTION_OUT;",
+        "evidence_decompiled_line": "反编译47-80: switch (spec & 0x1e0000) { ... }"
+      },
+      {
+        "source_role": "结构体 usbd_device（第1参数所指对象）",
+        "source_type": "struct _usbd_device，含 driver、user_callback_ctr、force_nak、doeptsiz、rxbcnt 等字段",
+        "decompiled_type": "unsigned char *s，通过裸偏移访问",
+        "match": "wrong",
+        "evidence_source_line": "源码866: struct _usbd_device {；源码907: usbd_endpoint_callback user_callback_ctr[8][3];；源码914: const struct _usbd_driver *driver;；源码924-935: force_nak、doeptsiz、rxbcnt字段",
+        "evidence_decompiled_line": "反编译13-16: unsigned char *s ... *(unsigned char **)(s + 0xdc)；反编译30: *(idx_fn_t *)(s + 0x68 + i * 12)；反编译57、60、65: s + 0xf0、s + 0xec、s + 0x100"
+      },
+      {
+        "source_role": "结构体 _usbd_driver（usbd_device.driver所指对象）",
+        "source_type": "struct _usbd_driver，base_address为uint32_t，rx_fifo_size为uint16_t",
+        "decompiled_type": "unsigned char *ctx，通过裸偏移访问",
+        "match": "wrong",
+        "evidence_source_line": "源码966: struct _usbd_driver {；源码984: uint32_t base_address;；源码988: uint16_t rx_fifo_size;",
+        "evidence_decompiled_line": "反编译14-16: unsigned char *ctx = *(unsigned char **)(s + 0xdc); unsigned char *b = *(unsigned char **)(ctx + 0x2c);；反编译20: uint16_t w = *(uint16_t *)(ctx + 0x32);"
+      },
+      {
+        "source_role": "结构体 usb_control_state.req（8字节SETUP包字段）",
+        "source_type": "struct usb_setup_data req，packed 8字节并在control_state内4字节对齐",
+        "decompiled_type": "未恢复为结构体；仅传递 s + 0x30 作为 void *",
+        "match": "wrong",
+        "evidence_source_line": "源码63-69: struct usb_setup_data含2个uint8_t和3个uint16_t并标记packed；源码892: struct usb_setup_data req __attribute__((aligned(4)));；源码1343: &usbd_dev->control_state.req",
+        "evidence_decompiled_line": "反编译75: sub_8001694(s, idx, s + 0x30, 8);"
+      },
+      {
+        "source_role": "静态局部对象",
+        "source_type": "本函数无static局部对象",
+        "decompiled_type": "本函数中无对应全局外部对象声明或访问",
+        "match": "correct",
+        "evidence_source_line": "源码1268-1383: dwc_poll的局部声明仅为intsts、i、rxstsp、pktsts、ep、type，未出现static",
+        "evidence_decompiled_line": "反编译11-128: 函数内仅有形参与局部声明；文件级仅有extern函数声明(反编译7-9)"
+      }
+    ],
+    "reasoning": "按第1个ABI参数对齐，反编译arg经s使用并在回调中传递，故对应usbd_dev；其目标结构被坍塌为void*再转unsigned char*，构成PTR-01和FN-01恢复错误。intsts/rxstsp及两个索引的数据流和位宽可对齐；ep的低4位数据流可对齐但uint8_t被恢复成int，构成INT-01。反编译的裸偏移与源码若干已使用字段相容，但没有恢复任何显式结构体定义，故这些结构体实体的类型恢复错误；仅凭本函数的访问集合不能断言完整字段序列的布局冲突。函数不存在static局部对象，因而SC-01不成立；也没有同名结构体或头文件冲突的证据。"
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "function": "argv_split",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "const char *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "3392: argv_split(const char *s, int *argcp, char ***argvp, int terminate_on_comment)",
+        "evidence_decompiled_line": "20: int argv_split(const char *str, int *argcp, char ***argvp, int flags)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "int *",
+        "decompiled_type": "int *",
+        "match": "correct",
+        "evidence_source_line": "3392: argv_split(const char *s, int *argcp, char ***argvp, int terminate_on_comment)",
+        "evidence_decompiled_line": "20: int argv_split(const char *str, int *argcp, char ***argvp, int flags); 28: *argcp = 0; 103: *argcp = argc;"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "char ***",
+        "decompiled_type": "char ***",
+        "match": "correct",
+        "evidence_source_line": "3392: argv_split(const char *s, int *argcp, char ***argvp, int terminate_on_comment); 3451: *argvp = argv;",
+        "evidence_decompiled_line": "20: int argv_split(const char *str, int *argcp, char ***argvp, int flags); 104: *argvp = argv;"
+      },
+      {
+        "source_role": "第4个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "3392: argv_split(const char *s, int *argcp, char ***argvp, int terminate_on_comment); 3407: if (terminate_on_comment && s[i] == '#')",
+        "evidence_decompiled_line": "20: int argv_split(const char *str, int *argcp, char ***argvp, int flags); 40: if (flags != 0 && c == '#')"
+      },
+      {
+        "source_role": "局部变量 argv",
+        "source_type": "char **",
+        "decompiled_type": "char **",
+        "match": "correct",
+        "evidence_source_line": "3396: char *arg, **argv = xcalloc(1, sizeof(*argv));",
+        "evidence_decompiled_line": "22: char **argv = xcalloc(1, sizeof *argv);"
+      },
+      {
+        "source_role": "局部变量 argc",
+        "source_type": "int",
+        "decompiled_type": "int (argc)",
+        "match": "correct",
+        "evidence_source_line": "3395: int argc = 0, quote, i, j; 3450: *argcp = argc;",
+        "evidence_decompiled_line": "24: int argc = 0; 50: argc = nargs + 1; 100: argc = nargs; 103: *argcp = argc;"
+      },
+      {
+        "source_role": "局部变量 quote",
+        "source_type": "int",
+        "decompiled_type": "char",
+        "match": "wrong",
+        "evidence_source_line": "3395: int argc = 0, quote, i, j; 3410: quote = 0; 3434: quote = s[i];",
+        "evidence_decompiled_line": "34: char quote; 53: quote = 0; 75: quote = c;"
+      },
+      {
+        "source_role": "局部变量 i",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "3395: int argc = 0, quote, i, j; 3403: for (i = 0; s[i] != '\\0'; i++)",
+        "evidence_decompiled_line": "25: int i; 30: for (i = 0; str[i] != '\\0'; )"
+      },
+      {
+        "source_role": "局部变量 j",
+        "source_type": "int",
+        "decompiled_type": "int (pos)",
+        "match": "correct",
+        "evidence_source_line": "3395: int argc = 0, quote, i, j; 3419: for (j = 0; s[i] != '\\0'; i++); 3438: arg[j++] = s[i];",
+        "evidence_decompiled_line": "33: int pos; 52: pos = 0; 70: word[pos++] = c;"
+      },
+      {
+        "source_role": "局部变量 arg",
+        "source_type": "char *",
+        "decompiled_type": "char * (word)",
+        "match": "correct",
+        "evidence_source_line": "3396: char *arg, **argv = xcalloc(1, sizeof(*argv)); 3413: arg = argv[argc++] = xcalloc(1, strlen(s + i) + 1);",
+        "evidence_decompiled_line": "32: char *word; 47: word = xcalloc(1, strlen(&str[i]) + 1); 48: argv[nargs] = word;"
+      },
+      {
+        "source_role": "局部变量 r",
+        "source_type": "int",
+        "decompiled_type": "无独立局部变量（直接return -4/0）",
+        "match": "undeterminable",
+        "evidence_source_line": "3394: int r = -1; 3443: r = -4; 3456: r = 0; 3465: return r;",
+        "evidence_decompiled_line": "93: return -4; 105: return 0;"
+      },
+      {
+        "source_role": "错误清理路径中的argv元素与外层数组",
+        "source_type": "char *元素和char **数组，分别传给free(void *)",
+        "decompiled_type": "argv[k]和argv，分别传给free(void *)",
+        "match": "correct",
+        "evidence_source_line": "3458-3463: if (argc != 0 && argv != NULL) { for (i = 0; i < argc; i++) free(argv[i]); free(argv); }",
+        "evidence_decompiled_line": "88-92: if (argv != NULL) { for (k = 0; k < argc; k++) free(argv[k]); free(argv); }"
+      }
+    ],
+    "reasoning": "四个参数按ABI位置和指针层级对齐；局部变量按字符串索引、输出位置、引号状态、参数计数和分配缓冲区的数据流对齐。反编译在未终止引号路径中恢复了逐元素free和外层argv的free，故free_discovery为confirmed。quote虽与同一状态数据流对齐，但源码为int、反编译为char，属于INT-01；r被直接返回常量替代，无法判断独立局部实体类型。函数内没有显式结构体实体，因此SC-01、ST-01和LAYOUT-01无可比对象；参数签名与指针层级未显示FN-01或PTR-01。"
+  }
+]

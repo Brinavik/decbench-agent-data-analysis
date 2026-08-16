@@ -1,0 +1,75 @@
+[
+  {
+    "function": "revoked_serial_tree_RB_REMOVE_COLOR",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "struct revoked_serial_tree *",
+        "decompiled_type": "struct rb_node **",
+        "match": "wrong",
+        "evidence_source_line": "源码第1175行：static void revoked_serial_tree_RB_REMOVE_COLOR(struct revoked_serial_tree *head, struct revoked_serial *parent, struct revoked_serial *elm)",
+        "evidence_decompiled_line": "反编译第17行：void revoked_serial_tree_RB_REMOVE_COLOR(struct rb_node **root, struct rb_node *parent, struct rb_node *x)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "struct revoked_serial *",
+        "decompiled_type": "struct rb_node *",
+        "match": "undeterminable",
+        "evidence_source_line": "源码第1175行：第二参数为 struct revoked_serial *parent；第1177行通过 parent->tree_entry.rbe_left/right/parent/color 使用",
+        "evidence_decompiled_line": "反编译第17行：第二参数为 struct rb_node *parent；第22-24、28、31-42行通过 parent->left/right/parent/color 使用"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "struct revoked_serial *",
+        "decompiled_type": "struct rb_node *",
+        "match": "undeterminable",
+        "evidence_source_line": "源码第1175-1177行：第三参数 struct revoked_serial *elm，参与 elm==NULL、elm->tree_entry.rbe_color 及与 head->rbh_root 比较",
+        "evidence_decompiled_line": "反编译第17-19行：第三参数 struct rb_node *x，参与 x==*root、x==0、x->color"
+      },
+      {
+        "source_role": "局部变量tmp",
+        "source_type": "struct revoked_serial *",
+        "decompiled_type": "struct rb_node *w",
+        "match": "undeterminable",
+        "evidence_source_line": "源码第1175行声明 struct revoked_serial *tmp；第1177-1189行作为兄弟节点并访问 tree_entry 链接和颜色",
+        "evidence_decompiled_line": "反编译第20行声明 struct rb_node *w,*y；第23-164行 w 承担兄弟节点数据流角色"
+      },
+      {
+        "source_role": "局部变量oleft",
+        "source_type": "struct revoked_serial *",
+        "decompiled_type": "struct rb_node *y（复用）",
+        "match": "undeterminable",
+        "evidence_source_line": "源码第1183行：块内声明 struct revoked_serial *oleft 并用于右旋中的子节点",
+        "evidence_decompiled_line": "反编译第58-70行：使用 struct rb_node *y 复用旋转临时节点，无独立 oleft 声明"
+      },
+      {
+        "source_role": "局部变量oright",
+        "source_type": "struct revoked_serial *",
+        "decompiled_type": "struct rb_node *y（复用）",
+        "match": "undeterminable",
+        "evidence_source_line": "源码第1189行：块内声明 struct revoked_serial *oright 并用于左旋中的子节点",
+        "evidence_decompiled_line": "反编译第130-142行：使用 struct rb_node *y 复用旋转临时节点，无独立 oright 声明"
+      },
+      {
+        "source_role": "结构体revoked_serial",
+        "source_type": "u_int64_t lo; u_int64_t hi; nested tree_entry{revoked_serial *left,*right,*parent; int color}",
+        "decompiled_type": "struct rb_node{void *key; void *value; rb_node *left,*right,*parent; int color}",
+        "match": "wrong",
+        "evidence_source_line": "源码第1169-1172行：revoked_serial 先有两个 u_int64_t 字段，随后 tree_entry 三指针加 int",
+        "evidence_decompiled_line": "反编译第8-15行：rb_node 含 key/value 两个 void* 后才是 left/right/parent/color，字段序列和偏移不同"
+      },
+      {
+        "source_role": "结构体revoked_serial_tree",
+        "source_type": "struct { struct revoked_serial *rbh_root; }",
+        "decompiled_type": "struct rb_node **root（无对应tree结构体）",
+        "match": "wrong",
+        "evidence_source_line": "源码第1174行：revoked_serial_tree 是含单个 revoked_serial *rbh_root 的结构体；第1177行以 head->rbh_root 访问",
+        "evidence_decompiled_line": "反编译第17、19、36、64、85行：以 rb_node **root 直接解引用并写入 *root"
+      }
+    ],
+    "reasoning": "按ABI位置，三个参数的序号可对应，但第1参数由指向包含root字段的结构体指针变为根节点二级指针，构成指针层级/签名及结构体恢复错误。parent、elm及临时节点在数据流上都是红黑树节点指针，但源码节点布局含lo/hi及嵌套tree_entry，反编译rb_node含key/value并将链接字段前移；仅凭本函数无法证明这些指针所指对象类型等价，因此标记undeterminable。函数内没有静态局部对象被外部化，SC-01不成立；free_discovery假设整体被拒绝。"
+  }
+]

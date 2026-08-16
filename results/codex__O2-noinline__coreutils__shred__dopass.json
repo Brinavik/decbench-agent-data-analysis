@@ -1,0 +1,665 @@
+[
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "函数返回值",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "2756: static int",
+        "evidence_decompiled_line": "19: int"
+      }
+    ],
+    "reasoning": "函数定义返回类型一致，且反编译结果在第73、140、180、243、253、257行返回整数状态值；FN-01 对该实体不成立。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "2757: dopass (int fd, struct stat const *st, char const *qname, off_t *sizep,",
+        "evidence_decompiled_line": "20: dopass (int fd, struct stat const *st, char const *qname, off_t *sizep,"
+      }
+    ],
+    "reasoning": "按 ABI 第1参数对齐；两侧均以该值作为 write/lseek/dosync 的文件描述符，整数类型一致。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第2个参数",
+        "source_type": "struct stat const *",
+        "decompiled_type": "struct stat const *",
+        "match": "correct",
+        "evidence_source_line": "2757: dopass (int fd, struct stat const *st, char const *qname, off_t *sizep,",
+        "evidence_decompiled_line": "20: dopass (int fd, struct stat const *st, char const *qname, off_t *sizep,"
+      }
+    ],
+    "reasoning": "按 ABI 第2参数对齐，指针层级和 const 限定一致；此处只判参数类型，不据同名推断结构体布局。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第3个参数",
+        "source_type": "char const *",
+        "decompiled_type": "char const *",
+        "match": "correct",
+        "evidence_source_line": "2757: dopass (int fd, struct stat const *st, char const *qname, off_t *sizep,",
+        "evidence_decompiled_line": "20: dopass (int fd, struct stat const *st, char const *qname, off_t *sizep,"
+      }
+    ],
+    "reasoning": "按 ABI 第3参数及错误消息中的字符串实参用途对齐，指针层级和限定均一致。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第4个参数",
+        "source_type": "off_t *",
+        "decompiled_type": "off_t *",
+        "match": "correct",
+        "evidence_source_line": "2757: dopass (int fd, struct stat const *st, char const *qname, off_t *sizep,",
+        "evidence_decompiled_line": "20: dopass (int fd, struct stat const *st, char const *qname, off_t *sizep,"
+      }
+    ],
+    "reasoning": "按 ABI 第4参数对齐；源码第2761行解引用读取并在第2876行写回，反编译第45、144行具有相同 off_t 指针数据流。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第5个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "2758: int type, struct randread_source *s,",
+        "evidence_decompiled_line": "21: int type, struct randread_source *rand_source,"
+      }
+    ],
+    "reasoning": "按 ABI 第5参数对齐；两侧均用于正负判断并作为 fillpattern 的第1参数，整数类型一致。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第6个参数",
+        "source_type": "struct randread_source *",
+        "decompiled_type": "struct randread_source *",
+        "match": "correct",
+        "evidence_source_line": "2758: int type, struct randread_source *s,",
+        "evidence_decompiled_line": "21: int type, struct randread_source *rand_source,"
+      }
+    ],
+    "reasoning": "按 ABI 第6参数对齐；源码第2859行和反编译第120行均把它作为 randread 的第1参数，指针层级一致。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第7个参数",
+        "source_type": "unsigned long int",
+        "decompiled_type": "unsigned long int",
+        "match": "correct",
+        "evidence_source_line": "2759: unsigned long int k, unsigned long int n)",
+        "evidence_decompiled_line": "22: unsigned long int pass, unsigned long int passes)"
+      }
+    ],
+    "reasoning": "按 ABI 第7参数及 %lu 输出位置对齐，宽度与符号均一致，INT-01 不成立。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第8个参数",
+        "source_type": "unsigned long int",
+        "decompiled_type": "unsigned long int",
+        "match": "correct",
+        "evidence_source_line": "2759: unsigned long int k, unsigned long int n)",
+        "evidence_decompiled_line": "22: unsigned long int pass, unsigned long int passes)"
+      }
+    ],
+    "reasoning": "按 ABI 第8参数、非零条件和 %lu 输出位置对齐，宽度与符号均一致。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 size",
+        "source_type": "off_t",
+        "decompiled_type": "off_t (target_size)",
+        "match": "correct",
+        "evidence_source_line": "2761: off_t size = *sizep;",
+        "evidence_decompiled_line": "45: off_t target_size = *sizep;"
+      }
+    ],
+    "reasoning": "由第4参数解引用初始化，并参与文件偏移边界与写回，数据流完全对齐，typedef 被保留。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 offset",
+        "source_type": "off_t",
+        "decompiled_type": "off_t (offset)",
+        "match": "correct",
+        "evidence_source_line": "2762: off_t offset;",
+        "evidence_decompiled_line": "94: off_t offset = 0;"
+      }
+    ],
+    "reasoning": "两侧均从0开始累计每块写入量并用于 lseek 偏移，栈/数据流角色一致。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 thresh",
+        "source_type": "time_t",
+        "decompiled_type": "time_t (next_update)",
+        "match": "correct",
+        "evidence_source_line": "2763: time_t thresh ;",
+        "evidence_decompiled_line": "96: time_t next_update = 0;"
+      }
+    ],
+    "reasoning": "两者均保存 time(NULL) 加更新间隔的下次进度输出阈值，typedef 一致。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 now",
+        "source_type": "time_t",
+        "decompiled_type": "time_t (now)",
+        "match": "correct",
+        "evidence_source_line": "2764: time_t now = 0;",
+        "evidence_decompiled_line": "95: time_t now = 0;"
+      }
+    ],
+    "reasoning": "声明和 time(NULL) 比较/更新时间阈值的数据流一致。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 lim",
+        "source_type": "size_t",
+        "decompiled_type": "size_t (fill_size/block_size，SSA 拆分)",
+        "match": "correct",
+        "evidence_source_line": "2765: size_t lim;",
+        "evidence_decompiled_line": "79: size_t fill_size = allocation_size; / 107: size_t block_size = write_size;"
+      }
+    ],
+    "reasoning": "源码复用 lim 承担填充长度和每块写入长度；反编译按不相交数据流拆成两个 size_t，类型均正确。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 soff",
+        "source_type": "size_t",
+        "decompiled_type": "size_t (written)",
+        "match": "correct",
+        "evidence_source_line": "2766: size_t soff;",
+        "evidence_decompiled_line": "122: size_t written = 0;"
+      }
+    ],
+    "reasoning": "均为块内已写字节计数，并参与 buffer 指针偏移和剩余长度计算，类型一致。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 ssize",
+        "source_type": "ssize_t",
+        "decompiled_type": "ssize_t (n)",
+        "match": "correct",
+        "evidence_source_line": "2767: ssize_t ssize;",
+        "evidence_decompiled_line": "125: ssize_t n = write (fd, buffer + written, block_size - written);"
+      }
+    ],
+    "reasoning": "均承接 write 返回值并接受正值、0和错误路径判断，带符号宽度 typedef 一致。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "局部变量 page_size",
+        "source_type": "size_t",
+        "decompiled_type": "无独立局部变量；(size_t) getpagesize() 表达式",
+        "match": "undeterminable",
+        "evidence_source_line": "2770: size_t page_size = getpagesize ();",
+        "evidence_decompiled_line": "61: unsigned char *buffer = xalignalloc ((size_t) getpagesize (),"
+      }
+    ],
+    "reasoning": "值的 size_t 转换被保留，但局部对象被优化消除，无法判定其独立变量类型恢复。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 output_size",
+        "source_type": "size_t",
+        "decompiled_type": "size_t (write_size)",
+        "match": "correct",
+        "evidence_source_line": "2774: size_t output_size = periodic_pattern (type)",
+        "evidence_decompiled_line": "58: size_t write_size = (three_byte_pattern"
+      }
+    ],
+    "reasoning": "均在周期模式下取60 KiB、否则取64 KiB，并作为块写入长度，数据流和类型一致。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 pbuf",
+        "source_type": "unsigned char *",
+        "decompiled_type": "unsigned char * (buffer)",
+        "match": "correct",
+        "evidence_source_line": "2777: unsigned char *pbuf = xalignalloc (page_size, (((output_size + 2) / 3) * 3));",
+        "evidence_decompiled_line": "61: unsigned char *buffer = xalignalloc ((size_t) getpagesize (),"
+      }
+    ],
+    "reasoning": "均接收对齐分配结果并作为字节缓冲区传给 fillpattern、randread 和 write，指针层级正确。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 pass_string",
+        "source_type": "char[7]",
+        "decompiled_type": "char[7]",
+        "match": "correct",
+        "evidence_source_line": "2779: char pass_string[7];",
+        "evidence_decompiled_line": "85: char pass_string[7];"
+      }
+    ],
+    "reasoning": "数组元素类型和固定边界完全一致，且均作为 passname 输出缓冲区。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 write_error",
+        "source_type": "_Bool",
+        "decompiled_type": "bool (had_error)",
+        "match": "correct",
+        "evidence_source_line": "2781-2783: _Bool write_error = 0",
+        "evidence_decompiled_line": "93: bool had_error = false;"
+      }
+    ],
+    "reasoning": "两者均在可继续的 EIO 写入/同步错误后置真，并作为最终非负错误状态返回；bool 与 _Bool 等价。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "局部变量 other_error",
+        "source_type": "_Bool",
+        "decompiled_type": "无独立实体；错误分支直接 return -1",
+        "match": "undeterminable",
+        "evidence_source_line": "2786-2789: _Bool other_error = 0",
+        "evidence_decompiled_line": "179-180: free (buffer); return -1;"
+      }
+    ],
+    "reasoning": "控制流语义可对应，但该布尔对象被消除，不能从直接返回推断其恢复类型。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 previous_offset_buf",
+        "source_type": "char[652]（本平台上源码常量表达式求值）",
+        "decompiled_type": "char[652] (previous)",
+        "match": "correct",
+        "evidence_source_line": "2792-2796: char previous_offset_buf[((2 * sizeof (uintmax_t) * 8 * 146 / 485 + 1) * (16 + 1) - 16 + 1 + 3) + 1];",
+        "evidence_decompiled_line": "88: char previous[HUMAN_BUFSIZE];（第39行 HUMAN_BUFSIZE = 652）"
+      }
+    ],
+    "reasoning": "均为保存上一次人类可读偏移字符串的持久栈缓冲区；元素类型、容量和后续 strcmp/strcpy 角色一致。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "局部变量 previous_human_offset",
+        "source_type": "char const *",
+        "decompiled_type": "无独立指针实体",
+        "match": "undeterminable",
+        "evidence_source_line": "2797: char const *previous_human_offset;",
+        "evidence_decompiled_line": "88-91: char previous[HUMAN_BUFSIZE]; ... previous[0] = '\\0';"
+      }
+    ],
+    "reasoning": "反编译把空串/缓冲区指针状态折叠进 previous 数组内容；该数组按数据流属于源码 backing buffer，不能据此声称源指针发生 PTR-01。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 try_without_directio",
+        "source_type": "_Bool",
+        "decompiled_type": "bool (direct_done)",
+        "match": "correct",
+        "evidence_source_line": "2803-2804: _Bool try_without_directio = 0 < size && size < output_size;",
+        "evidence_decompiled_line": "63: bool direct_done = 0 < target_size && (uintmax_t) target_size < write_size;"
+      }
+    ],
+    "reasoning": "初始化条件、EINVAL 后置真及控制 direct_mode 降级的数据流一致；bool 与 _Bool 等价。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "块内局部变量 errnum",
+        "source_type": "int",
+        "decompiled_type": "int (write_errno)",
+        "match": "correct",
+        "evidence_source_line": "2881-2883: int errnum = (*__errno_location ());",
+        "evidence_decompiled_line": "132: int write_errno = errno;"
+      }
+    ],
+    "reasoning": "均在 write 失败后快照 errno，并用于 ENOSPC/EINVAL/EIO 判断和 error 参数，类型一致。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "块内局部变量 buf",
+        "source_type": "char[21]（64位 uintmax_t 下源码常量表达式求值）",
+        "decompiled_type": "char[652] (size_buf，被合并复用)",
+        "match": "wrong",
+        "evidence_source_line": "2884: char buf[((((((sizeof (uintmax_t) * 8) - ... ) * 146 + 484) / 485) + ... ) + 1)];",
+        "evidence_decompiled_line": "90: char size_buf[HUMAN_BUFSIZE];（第39行 HUMAN_BUFSIZE = 652）；157-159: umaxtostr (..., size_buf)"
+      }
+    ],
+    "reasoning": "按 umaxtostr 输出缓冲区的数据流可明确对齐；反编译把该短生命周期 char[21] 与后续 char[652] 栈槽合并，未恢复原数组边界。此为局部数组类型错误，不是 LAYOUT-01 结构体布局错误。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "块内局部变量 soff1",
+        "source_type": "size_t",
+        "decompiled_type": "size_t (next_sector)",
+        "match": "correct",
+        "evidence_source_line": "2920: size_t soff1 = (soff | SECTOR_MASK) + 1;",
+        "evidence_decompiled_line": "164: size_t next_sector = (written | (SECTOR_SIZE - 1)) + 1;"
+      }
+    ],
+    "reasoning": "均将块内偏移向上取整到下一扇区，并用于边界、lseek 和计数更新，类型一致。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "块内局部变量 done",
+        "source_type": "_Bool",
+        "decompiled_type": "无独立实体；条件 target_size == offset",
+        "match": "undeterminable",
+        "evidence_source_line": "2958-2959: _Bool done = offset == size;",
+        "evidence_decompiled_line": "195: if (offset != target_size) / 225: target_size == offset ? total : progress"
+      }
+    ],
+    "reasoning": "布尔表达式语义保留但对象被消除，无法判定独立局部类型恢复。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "块内局部变量 offset_buf",
+        "source_type": "char[652]（本平台上源码常量表达式求值）",
+        "decompiled_type": "char[652] (progress_buf)",
+        "match": "correct",
+        "evidence_source_line": "2967-2971: char offset_buf[((2 * sizeof (uintmax_t) * 8 * 146 / 485 + 1) * (16 + 1) - 16 + 1 + 3) + 1];",
+        "evidence_decompiled_line": "89: char progress_buf[HUMAN_BUFSIZE];（第39行 HUMAN_BUFSIZE = 652）"
+      }
+    ],
+    "reasoning": "均作为 human_readable 的当前偏移输出缓冲区，元素类型和容量一致。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "块内局部变量 size_buf",
+        "source_type": "char[652]（本平台上源码常量表达式求值）",
+        "decompiled_type": "char[652] (size_buf)",
+        "match": "correct",
+        "evidence_source_line": "2972-2976: char size_buf[((2 * sizeof (uintmax_t) * 8 * 146 / 485 + 1) * (16 + 1) - 16 + 1 + 3) + 1];",
+        "evidence_decompiled_line": "90: char size_buf[HUMAN_BUFSIZE];（第39行 HUMAN_BUFSIZE = 652）"
+      }
+    ],
+    "reasoning": "均作为 human_readable 的总大小输出缓冲区；反编译还复用它承载早期 umaxtostr，但该源实体自身的数组类型正确。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "块内局部变量 human_progress_opts",
+        "source_type": "int",
+        "decompiled_type": "无独立实体；常量 HUMAN_PROGRESS/HUMAN_SIZE",
+        "match": "undeterminable",
+        "evidence_source_line": "2977-2978: int human_progress_opts = (human_autoscale | human_SI | human_base_1024 | human_B);",
+        "evidence_decompiled_line": "40-41: HUMAN_PROGRESS = 0x1b2, HUMAN_SIZE = 0x1b0"
+      }
+    ],
+    "reasoning": "常量折叠后的选项值存在，但原 int 局部对象不存在，不能判断其独立类型恢复。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "块内局部变量 human_offset",
+        "source_type": "char const *",
+        "decompiled_type": "char * (progress)",
+        "match": "wrong",
+        "evidence_source_line": "2979-2981: char const *human_offset = human_readable (offset, offset_buf, ...);",
+        "evidence_decompiled_line": "208-209: char *progress = human_readable ((uintmax_t) offset, progress_buf, ...);"
+      }
+    ],
+    "reasoning": "按 human_readable 返回值、strcmp 及进度输出位置对齐；指针层级未坍塌，但反编译局部类型丢失了指向字符的 const 限定。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "块内局部变量 off",
+        "source_type": "uintmax_t",
+        "decompiled_type": "无独立实体；(uintmax_t) offset 表达式",
+        "match": "undeterminable",
+        "evidence_source_line": "2990: uintmax_t off = offset;",
+        "evidence_decompiled_line": "218-221: (uintmax_t) offset ... percent = (uintmax_t) offset / ..."
+      }
+    ],
+    "reasoning": "uintmax_t 转换语义保留，但局部对象被表达式替代；不据此判定独立 typedef 恢复。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "块内局部变量 percent",
+        "source_type": "int",
+        "decompiled_type": "int (percent)",
+        "match": "correct",
+        "evidence_source_line": "2991: int percent = (size == 0",
+        "evidence_decompiled_line": "215: int percent;"
+      }
+    ],
+    "reasoning": "均保存0至100的进度百分比并以 %d 输出，整数类型一致。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "块内局部变量 human_size",
+        "source_type": "char const *",
+        "decompiled_type": "char * (total)",
+        "match": "wrong",
+        "evidence_source_line": "2996-2999: char const *human_size = human_readable (size, size_buf, ...);",
+        "evidence_decompiled_line": "223-224: char *total = human_readable ((uintmax_t) target_size, size_buf, ...);"
+      }
+    ],
+    "reasoning": "按 human_readable 返回值和总大小输出位置对齐；指针层级一致，但反编译局部类型丢失了 const 限定。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "结构体 stat",
+        "source_type": "struct stat（第2参数指向的 const 对象）",
+        "decompiled_type": "struct stat（通过 <sys/stat.h>）",
+        "match": "undeterminable",
+        "evidence_source_line": "2757: struct stat const *st",
+        "evidence_decompiled_line": "10: #include <sys/stat.h>；68: bool rewound = rewind_fd (fd, st->st_mode);"
+      }
+    ],
+    "reasoning": "源码 dopass 函数体只把 st 整体传递给 dorewind（第2810行），未暴露任何字段偏移、字段数或大小；禁止读取其他函数后，无法用布局证据验证反编译的 st_mode 访问，故 ST-01/LAYOUT-01 均不可确定。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "结构体 randread_source",
+        "source_type": "struct randread_source（第6参数指向的对象）",
+        "decompiled_type": "不透明 struct randread_source",
+        "match": "undeterminable",
+        "evidence_source_line": "2758: struct randread_source *s",
+        "evidence_decompiled_line": "17: struct randread_source; / 29: extern void randread (struct randread_source *, void *, size_t);"
+      }
+    ],
+    "reasoning": "两侧本函数范围内都没有字段访问或定义，无法比较字段数量、偏移、大小和类型序列；只能确认第6参数的指针类型，不能确认结构体布局。"
+  },
+  {
+    "function": "dopass",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "静态局部对象清单",
+        "source_type": "不存在",
+        "decompiled_type": "不存在",
+        "match": "correct",
+        "evidence_source_line": "2760-3054: dopass 函数体内所有声明均无 static 存储类说明符",
+        "evidence_decompiled_line": "23-258: dopass 函数体内所有局部声明均无 static 存储类说明符"
+      }
+    ],
+    "reasoning": "指定函数内不存在可被重构为外部全局对象的静态局部对象，SC-01 被排除。"
+  }
+]

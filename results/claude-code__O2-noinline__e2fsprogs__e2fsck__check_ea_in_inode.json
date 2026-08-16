@@ -1,0 +1,163 @@
+[
+  {
+    "function": "check_ea_in_inode",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "函数返回类型",
+        "source_type": "void",
+        "decompiled_type": "int",
+        "match": "wrong",
+        "evidence_source_line": "4252: static void check_ea_in_inode(e2fsck_t ctx, struct problem_context *pctx,",
+        "evidence_decompiled_line": "115: static int check_ea_in_inode(e2fsck_t ctx, struct problem_context *pctx,"
+      },
+      {
+        "source_role": "第1个参数",
+        "source_type": "e2fsck_t",
+        "decompiled_type": "e2fsck_t",
+        "match": "correct",
+        "evidence_source_line": "4252: static void check_ea_in_inode(e2fsck_t ctx, struct problem_context *pctx,",
+        "evidence_decompiled_line": "115: static int check_ea_in_inode(e2fsck_t ctx, struct problem_context *pctx,"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "struct problem_context *",
+        "decompiled_type": "struct problem_context *",
+        "match": "correct",
+        "evidence_source_line": "4252-4253: static void check_ea_in_inode(e2fsck_t ctx, struct problem_context *pctx, struct ea_quota *ea_ibody_quota)",
+        "evidence_decompiled_line": "115-116: static int check_ea_in_inode(e2fsck_t ctx, struct problem_context *pctx, struct ea_quota *ea_ibody_quota)"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "struct ea_quota *",
+        "decompiled_type": "struct ea_quota *",
+        "match": "correct",
+        "evidence_source_line": "4253: struct ea_quota *ea_ibody_quota",
+        "evidence_decompiled_line": "116: struct ea_quota *ea_ibody_quota"
+      },
+      {
+        "source_role": "局部变量 sb",
+        "source_type": "struct ext2_super_block *",
+        "decompiled_type": "struct ext2_super_block *",
+        "match": "correct",
+        "evidence_source_line": "4255: struct ext2_super_block *sb = ctx->fs->super;",
+        "evidence_decompiled_line": "118: struct ext2_super_block *sb = ctx->fs->super;"
+      },
+      {
+        "source_role": "局部变量 inode",
+        "source_type": "struct ext2_inode_large *",
+        "decompiled_type": "struct ext2_inode_large *",
+        "match": "correct",
+        "evidence_source_line": "4256,4266: struct ext2_inode_large *inode; ... inode = (struct ext2_inode_large *) pctx->inode;",
+        "evidence_decompiled_line": "119,129: struct ext2_inode_large *inode; ... inode = (struct ext2_inode_large *) pctx->inode;"
+      },
+      {
+        "source_role": "局部变量 entry",
+        "source_type": "struct ext2_ext_attr_entry *",
+        "decompiled_type": "struct ext2_ext_attr_entry *",
+        "match": "correct",
+        "evidence_source_line": "4257,4273: struct ext2_ext_attr_entry *entry; ... entry = (struct ext2_ext_attr_entry *) start;",
+        "evidence_decompiled_line": "120,136: struct ext2_ext_attr_entry *entry; ... entry = (struct ext2_ext_attr_entry *) start;"
+      },
+      {
+        "source_role": "局部变量 start/header/end",
+        "source_type": "char * (三个指针)",
+        "decompiled_type": "char * (三个指针)",
+        "match": "correct",
+        "evidence_source_line": "4258,4269-4273: char *start, *header, *end; ... header/start/end 按字节指针计算",
+        "evidence_decompiled_line": "121,132-136: char *start, *header, *end; ... header/start/end 按字节指针计算"
+      },
+      {
+        "source_role": "局部变量 storage_size/remain",
+        "source_type": "unsigned int",
+        "decompiled_type": "unsigned int",
+        "match": "correct",
+        "evidence_source_line": "4259,4267-4268,4278: unsigned int storage_size, remain;",
+        "evidence_decompiled_line": "122,130-131,152: unsigned int storage_size, remain;"
+      },
+      {
+        "source_role": "局部变量 problem",
+        "source_type": "problem_t",
+        "decompiled_type": "problem_t",
+        "match": "correct",
+        "evidence_source_line": "4260,4283,4298,4346: problem_t problem = 0; 并承载错误码控制流",
+        "evidence_decompiled_line": "123,148,160,184: problem_t problem = 0; 并承载错误码控制流"
+      },
+      {
+        "source_role": "局部变量 region",
+        "source_type": "region_t，初始化为 0",
+        "decompiled_type": "region_t，未显式初始化",
+        "match": "undeterminable",
+        "evidence_source_line": "4261,4280: region_t region = 0; ... region = region_create(0, storage_size);",
+        "evidence_decompiled_line": "124,139: region_t region; ... region = region_create(0, storage_size);"
+      },
+      {
+        "source_role": "循环内局部变量 hash",
+        "source_type": "__u32",
+        "decompiled_type": "__u32",
+        "match": "correct",
+        "evidence_source_line": "4294,4332: __u32 hash; ... hash = ext2fs_ext_attr_hash_entry(...)",
+        "evidence_decompiled_line": "190,207: __u32 hash; ... hash = ext2fs_ext_attr_hash_entry(...)"
+      },
+      {
+        "source_role": "分支内局部变量 quota_blocks",
+        "source_type": "blk64_t（作为 check_large_ea_inode 的输出指针）",
+        "decompiled_type": "struct ea_quota（作为 check_ea_inode 的输出结构体指针）",
+        "match": "wrong",
+        "evidence_source_line": "4342-4345: blk64_t quota_blocks; problem = check_large_ea_inode(ctx, entry, pctx, &quota_blocks);",
+        "evidence_decompiled_line": "178-182: struct ea_quota ea_ibody_val_quota; ... ret = check_ea_inode(ctx, entry, pctx, &ea_ibody_val_quota);"
+      },
+      {
+        "source_role": "分支内临时返回值（无独立源码局部实体）",
+        "source_type": "源码直接将 helper 返回值写入 problem_t",
+        "decompiled_type": "int ret",
+        "match": "wrong",
+        "evidence_source_line": "4344-4347: problem = check_large_ea_inode(...); if (problem != 0)",
+        "evidence_decompiled_line": "179-185: int ret; ret = check_ea_inode(...); if (ret) { problem = ret; ... }"
+      },
+      {
+        "source_role": "结构体 ext2_super_block",
+        "source_type": "struct ext2_super_block（访问 s_rev_level、s_inode_size）",
+        "decompiled_type": "struct ext2_super_block（s_rev_level@0x4c、s_inode_size@0x58）",
+        "match": "undeterminable",
+        "evidence_source_line": "4255,4267-4268: sb = ctx->fs->super；读取 sb->s_rev_level 和 sb->s_inode_size",
+        "evidence_decompiled_line": "19-24,118,130-131: 显式声明字段偏移并读取同名字段"
+      },
+      {
+        "source_role": "结构体 ext2_inode_large",
+        "source_type": "struct ext2_inode_large（访问 i_extra_isize）",
+        "decompiled_type": "struct ext2_inode_large（i_extra_isize@0x80）",
+        "match": "undeterminable",
+        "evidence_source_line": "4256,4266-4270: inode 指向 pctx->inode；读取 inode->i_extra_isize",
+        "evidence_decompiled_line": "40-43,119,129-133: 显式声明 i_extra_isize@0x80 并读取"
+      },
+      {
+        "source_role": "结构体 ext2_ext_attr_entry",
+        "source_type": "struct ext2_ext_attr_entry（访问 e_name_len/e_value_* /e_hash）",
+        "decompiled_type": "struct ext2_ext_attr_entry（0x10 字节头及同字段序列）",
+        "match": "undeterminable",
+        "evidence_source_line": "4292-4358: 以 sizeof 和 e_name_len、e_value_inum、e_value_size、e_value_offs、e_hash 驱动扫描",
+        "evidence_decompiled_line": "53-61,154-221: 声明 0x10 字节字段序列并执行对应扫描"
+      },
+      {
+        "source_role": "结构体 ea_quota",
+        "source_type": "struct ea_quota *（字段 blocks/inodes 被更新）",
+        "decompiled_type": "struct ea_quota *（blocks@0x00、inodes@0x08）",
+        "match": "undeterminable",
+        "evidence_source_line": "4253,4263-4264,4349-4350,4383-4384: 通过指针更新 blocks 和 inodes",
+        "evidence_decompiled_line": "63-66,116,126-127,187-188,240-241: 显式声明并更新同字段"
+      },
+      {
+        "source_role": "结构体 problem_context",
+        "source_type": "struct problem_context *（访问 inode/num/ino）",
+        "decompiled_type": "struct problem_context *（inode@0x18、num@0x50、ino@0x08）",
+        "match": "undeterminable",
+        "evidence_source_line": "4252-4253,4266,4307,4318,4337,4381: 通过 pctx 访问 inode、num、ino",
+        "evidence_decompiled_line": "45-51,115-116,129,169,194,212,238: 声明并访问对应字段"
+      }
+    ],
+    "reasoning": "第1至第3参数按 ABI 位置及指针数据流逐一一致。源码函数返回 void，而反编译签名为 int，构成 FN-01。源码分支内 helper 是 check_large_ea_inode(ctx, entry, pctx, blk64_t*)，反编译改成 check_ea_inode(..., struct ea_quota*) 并新增 int ret；该输出对象和临时返回值均与源码实体不一致，构成类型/原型恢复错误。其余标为 correct 的标量和指针在初始化、算术及字段访问数据流上对齐。源码函数体没有给出所涉及结构体的完整定义或偏移，故不能仅凭本函数证明布局；这些结构体实体标为 undeterminable。未发现静态局部对象被提升为全局对象的证据，SC-01 不成立；同名结构体冲突也无本函数内证据，ST-01 undeterminable。"
+  }
+]

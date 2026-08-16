@@ -1,0 +1,160 @@
+[
+  {
+    "function": "yyparse",
+    "decompiler": "codex O2-noinline",
+    "hypothesis": "FN-01",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "parser_control *",
+        "decompiled_type": "void *（再转为 unsigned char *）",
+        "match": "wrong",
+        "evidence_source_line": "1749: yyparse (parser_control *pc)",
+        "evidence_decompiled_line": "3: yyparse(void *arg); 106: unsigned char *pc = (unsigned char *) arg;"
+      }
+    ],
+    "reasoning": "ABI 位置一致，但源码函数签名明确要求 parser_control *；反编译签名仅保留 void *，并以裸字节指针偏移访问，未恢复函数原型。"
+  },
+  {
+    "function": "yyparse",
+    "decompiler": "codex O2-noinline",
+    "hypothesis": "PTR-01",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数/pc",
+        "source_type": "parser_control *（一级指针）",
+        "decompiled_type": "void * arg -> unsigned char * pc（一级指针）",
+        "match": "correct",
+        "evidence_source_line": "1749: yyparse (parser_control *pc)",
+        "evidence_decompiled_line": "3: yyparse(void *arg); 106: unsigned char *pc = (unsigned char *) arg;"
+      },
+      {
+        "source_role": "局部 yyss/yyssp",
+        "source_type": "yy_state_t *",
+        "decompiled_type": "signed char *",
+        "match": "undeterminable",
+        "evidence_source_line": "1776-1777: yy_state_t *yyss = yyssa; yy_state_t *yyssp = yyss;",
+        "evidence_decompiled_line": "107,109: signed char state_stack[20]; signed char *yyssp = state_stack;"
+      }
+    ],
+    "reasoning": "参数和栈指针都保持一级指针形态，没有证据表明发生指针层级坍塌；yy_state_t 的底层宽度未在函数内定义，不能仅凭 signed char 判定。"
+  },
+  {
+    "function": "yyparse",
+    "decompiler": "codex O2-noinline",
+    "hypothesis": "INT-01",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "局部 yychar/yyerrstatus/yyn/yylen",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "1752: int yychar; 1766: int yyerrstatus = 0; 1784: int yyn; 1799: int yylen = 0;",
+        "evidence_decompiled_line": "113,116-118: int yychar = -2; int yyerrstatus = 0; int yyn; int yylen;"
+      },
+      {
+        "source_role": "局部 yystate",
+        "source_type": "yy_state_fast_t",
+        "decompiled_type": "int",
+        "match": "undeterminable",
+        "evidence_source_line": "1764: yy_state_fast_t yystate = 0;",
+        "evidence_decompiled_line": "115: int yystate = 0;"
+      },
+      {
+        "source_role": "局部 yystacksize",
+        "source_type": "long int",
+        "decompiled_type": "未保留（固定 20 元素栈）",
+        "match": "undeterminable",
+        "evidence_source_line": "1772: long int yystacksize = 20;",
+        "evidence_decompiled_line": "107-110: signed char state_stack[20]; YYSTYPE value_stack[20];"
+      },
+      {
+        "source_role": "局部 yytoken",
+        "source_type": "yysymbol_kind_t",
+        "decompiled_type": "int",
+        "match": "wrong",
+        "evidence_source_line": "1788: yysymbol_kind_t yytoken = YYSYMBOL_YYEMPTY;",
+        "evidence_decompiled_line": "114: int yytoken = 0;"
+      },
+      {
+        "source_role": "局部 yynerrs/yyresult",
+        "source_type": "int",
+        "decompiled_type": "未保留为局部变量",
+        "match": "undeterminable",
+        "evidence_source_line": "1762: int yynerrs = 0; 1786: int yyresult;",
+        "evidence_decompiled_line": "138-139,256,268: 结果被直接 return；局部声明 106-118 中无对应实体"
+      }
+    ],
+    "reasoning": "普通 int 局部变量恢复正确；但源码明确以 yysymbol_kind_t 声明 yytoken，反编译为裸 int，满足 typedef 信息丢失。yystate 的底层宽度和被优化掉的局部变量仍不可判定。"
+  },
+  {
+    "function": "yyparse",
+    "decompiler": "codex O2-noinline",
+    "hypothesis": "LAYOUT-01",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "局部 YYSTYPE yylval/yyval 及 yyvsa",
+        "source_type": "YYSTYPE（外部 typedef，函数内仅使用 timespec/textintval/rel/intval 成员）",
+        "decompiled_type": "union YYSTYPE { intmax_t word[7]; unsigned char bytes[56]; }",
+        "match": "undeterminable",
+        "evidence_source_line": "1759: YYSTYPE yylval; 1780-1782: YYSTYPE yyvsa[20]; YYSTYPE *yyvs = yyvsa; YYSTYPE *yyvsp = yyvs;",
+        "evidence_decompiled_line": "6-10: union YYSTYPE ... word[7]; ... bytes[56]; 108-112: YYSTYPE value_stack[20]; ..."
+      },
+      {
+        "source_role": "局部 yyssa",
+        "source_type": "yy_state_t[20]",
+        "decompiled_type": "signed char[20]",
+        "match": "undeterminable",
+        "evidence_source_line": "1775: yy_state_t yyssa[20];",
+        "evidence_decompiled_line": "107: signed char state_stack[20];"
+      }
+    ],
+    "reasoning": "源码中的 YYSTYPE 与 yy_state_t 定义不在 yyparse 函数体内；不能从成员访问反推出完整字段序列、偏移和大小，因此不对显式布局作猜测。"
+  },
+  {
+    "function": "yyparse",
+    "decompiler": "codex O2-noinline",
+    "hypothesis": "ST-01",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "结构/联合体 YYSTYPE",
+        "source_type": "YYSTYPE（定义不在函数体内）",
+        "decompiled_type": "函数内新建的匿名 union typedef YYSTYPE，56 字节",
+        "match": "undeterminable",
+        "evidence_source_line": "1759: YYSTYPE yylval; 1791: YYSTYPE yyval;",
+        "evidence_decompiled_line": "6-10: typedef union { intmax_t word[7]; unsigned char bytes[56]; } YYSTYPE;"
+      },
+      {
+        "source_role": "结构 three_word_value 对应源码 textintval 值",
+        "source_type": "源码以 YYSTYPE.textintval 传给 digits_to_date_time",
+        "decompiled_type": "three_word_value { intmax_t word[3]; }",
+        "match": "undeterminable",
+        "evidence_source_line": "2418: digits_to_date_time (pc, (yyvsp[0].textintval));",
+        "evidence_decompiled_line": "11-14: typedef struct { intmax_t word[3]; } three_word_value; 493-495: 构造 v 后传参"
+      }
+    ],
+    "reasoning": "反编译器创建了函数内替代类型，但源码原始类型定义不在允许读取的函数范围内，无法判断是否存在同名结构体或头文件冲突。"
+  },
+  {
+    "function": "yyparse",
+    "decompiler": "codex O2-noinline",
+    "hypothesis": "SC-01",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "解析表 yyr2/yyr1/yypact 等（函数内引用）",
+        "source_type": "未在函数体声明的表对象",
+        "decompiled_type": "static const 数组（函数内声明）",
+        "match": "undeterminable",
+        "evidence_source_line": "1971: yylen = yyr2[yyn]; 2451-2455: 使用 yyr1/yypgoto/yycheck/yytable/yydefgoto",
+        "evidence_decompiled_line": "16-97: static const unsigned char/signed char ... yyr2, yyr1, yypact, ..."
+      }
+    ],
+    "reasoning": "源码函数体只显示对解析表的引用，未给出其存储持续期；反编译结果把表写成函数内 static const。仅凭这两个函数体无法确认其是否被错误地从静态局部重构为全局外部对象。"
+  }
+]

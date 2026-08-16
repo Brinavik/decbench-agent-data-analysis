@@ -1,0 +1,203 @@
+[
+  {
+    "function": "print_list",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "const char *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "源码7321: void print_list(const char *priorities, int verbose)",
+        "evidence_decompiled_line": "反编译74: void print_list(const char *priorities, int verbose)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码7321: void print_list(const char *priorities, int verbose)",
+        "evidence_decompiled_line": "反编译74: void print_list(const char *priorities, int verbose)"
+      },
+      {
+        "source_role": "局部变量 i",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "源码7323: size_t i;；源码7356: for (i = 0;; i++)",
+        "evidence_decompiled_line": "反编译86: size_t i;；反编译102: for (i = 0;; i++)"
+      },
+      {
+        "source_role": "局部变量 ret",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码7324: int ret;；源码7343: ret = gnutls_priority_init(&pcache, priorities, &err);",
+        "evidence_decompiled_line": "反编译87: int ret;；反编译92: ret = gnutls_priority_init(&pcache, priorities, &err);"
+      },
+      {
+        "source_role": "局部变量 idx",
+        "source_type": "unsigned int",
+        "decompiled_type": "unsigned int",
+        "match": "correct",
+        "evidence_source_line": "源码7325: unsigned int idx;；源码7357-7360: gnutls_priority_get_cipher_suite_index(pcache, i, &idx);",
+        "evidence_decompiled_line": "反编译79: unsigned int idx;；反编译103-104: gnutls_priority_get_cipher_suite_index(pcache, i, &idx);"
+      },
+      {
+        "source_role": "局部变量 name",
+        "source_type": "const char *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "源码7326: const char *name;；源码7366-7374: name = gnutls_cipher_suite_info(..., &version);",
+        "evidence_decompiled_line": "反编译78: const char *name;；反编译110-111: name = gnutls_cipher_suite_info(..., &version);"
+      },
+      {
+        "source_role": "局部变量 err",
+        "source_type": "const char *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "源码7327: const char *err;；源码7343: gnutls_priority_init(&pcache, priorities, &err);",
+        "evidence_decompiled_line": "反编译77: const char *err;；反编译92: gnutls_priority_init(&pcache, priorities, &err);"
+      },
+      {
+        "source_role": "局部变量 id",
+        "source_type": "unsigned char[2]",
+        "decompiled_type": "unsigned char[2]",
+        "match": "correct",
+        "evidence_source_line": "源码7328: unsigned char id[2];；源码7382-7383: (unsigned char) id[0], (unsigned char) id[1]",
+        "evidence_decompiled_line": "反编译84: unsigned char id[2];；反编译115-116: (unsigned char) id[0], (unsigned char) id[1]"
+      },
+      {
+        "source_role": "局部变量 kx",
+        "source_type": "gnutls_kx_algorithm_t",
+        "decompiled_type": "gnutls_kx_algorithm_t",
+        "match": "correct",
+        "evidence_source_line": "源码7329: gnutls_kx_algorithm_t kx;；源码7555-7556: gnutls_cipher_suite_info(i, id, &kx, &cipher, &mac, &version)",
+        "evidence_decompiled_line": "反编译81: gnutls_kx_algorithm_t kx;；反编译212-213: gnutls_cipher_suite_info(i, id, &kx, &cipher, &mac, &version)"
+      },
+      {
+        "source_role": "局部变量 cipher",
+        "source_type": "gnutls_cipher_algorithm_t",
+        "decompiled_type": "gnutls_cipher_algorithm_t",
+        "match": "correct",
+        "evidence_source_line": "源码7330: gnutls_cipher_algorithm_t cipher;；源码7555-7556: gnutls_cipher_suite_info(i, id, &kx, &cipher, &mac, &version)",
+        "evidence_decompiled_line": "反编译82: gnutls_cipher_algorithm_t cipher;；反编译212-213: gnutls_cipher_suite_info(i, id, &kx, &cipher, &mac, &version)"
+      },
+      {
+        "source_role": "局部变量 mac",
+        "source_type": "gnutls_mac_algorithm_t",
+        "decompiled_type": "gnutls_mac_algorithm_t",
+        "match": "correct",
+        "evidence_source_line": "源码7331: gnutls_mac_algorithm_t mac;；源码7555-7556: gnutls_cipher_suite_info(i, id, &kx, &cipher, &mac, &version)",
+        "evidence_decompiled_line": "反编译83: gnutls_mac_algorithm_t mac;；反编译212-213: gnutls_cipher_suite_info(i, id, &kx, &cipher, &mac, &version)"
+      },
+      {
+        "source_role": "局部变量 version",
+        "source_type": "gnutls_protocol_t",
+        "decompiled_type": "gnutls_protocol_t",
+        "match": "correct",
+        "evidence_source_line": "源码7332: gnutls_protocol_t version;；源码7366-7374: gnutls_cipher_suite_info(idx, id, NULL, NULL, NULL, &version)",
+        "evidence_decompiled_line": "反编译80: gnutls_protocol_t version;；反编译110-111: gnutls_cipher_suite_info(idx, id, NULL, NULL, NULL, &version)"
+      },
+      {
+        "source_role": "局部变量 pcache",
+        "source_type": "gnutls_priority_t（不透明句柄）",
+        "decompiled_type": "gnutls_priority_t（反编译7定义为 void *）",
+        "match": "correct",
+        "evidence_source_line": "源码7333: gnutls_priority_t pcache;；源码7343: gnutls_priority_init(&pcache, priorities, &err);",
+        "evidence_decompiled_line": "反编译7: typedef void *gnutls_priority_t;；反编译76和92: gnutls_priority_t pcache; / gnutls_priority_init(&pcache, priorities, &err);"
+      },
+      {
+        "source_role": "局部变量 list",
+        "source_type": "const unsigned int *",
+        "decompiled_type": "const unsigned int *",
+        "match": "correct",
+        "evidence_source_line": "源码7334: const unsigned int *list;；源码7391: gnutls_priority_protocol_list(pcache, &list);",
+        "evidence_decompiled_line": "反编译85: const unsigned int *list;；反编译123: gnutls_priority_protocol_list(pcache, &list);"
+      },
+      {
+        "source_role": "块局部变量 p（证书类型列表）",
+        "source_type": "const gnutls_certificate_type_t *",
+        "decompiled_type": "const gnutls_certificate_type_t *",
+        "match": "correct",
+        "evidence_source_line": "源码7577-7578: const gnutls_certificate_type_t *p = gnutls_certificate_type_list();",
+        "evidence_decompiled_line": "反编译232-233: const gnutls_certificate_type_t *p = gnutls_certificate_type_list();"
+      },
+      {
+        "source_role": "块局部变量 p（协议列表）",
+        "source_type": "const gnutls_protocol_t *",
+        "decompiled_type": "const gnutls_protocol_t *",
+        "match": "correct",
+        "evidence_source_line": "源码7600: const gnutls_protocol_t *p = gnutls_protocol_list();",
+        "evidence_decompiled_line": "反编译246: const gnutls_protocol_t *p = gnutls_protocol_list();"
+      },
+      {
+        "source_role": "块局部变量 p（密码算法列表）",
+        "source_type": "const gnutls_cipher_algorithm_t *",
+        "decompiled_type": "const gnutls_cipher_algorithm_t *",
+        "match": "correct",
+        "evidence_source_line": "源码7621: const gnutls_cipher_algorithm_t *p = gnutls_cipher_list();",
+        "evidence_decompiled_line": "反编译259: const gnutls_cipher_algorithm_t *p = gnutls_cipher_list();"
+      },
+      {
+        "source_role": "块局部变量 p（MAC 列表）",
+        "source_type": "const gnutls_mac_algorithm_t *",
+        "decompiled_type": "const gnutls_mac_algorithm_t *",
+        "match": "correct",
+        "evidence_source_line": "源码7642: const gnutls_mac_algorithm_t *p = gnutls_mac_list();",
+        "evidence_decompiled_line": "反编译271: const gnutls_mac_algorithm_t *p = gnutls_mac_list();"
+      },
+      {
+        "source_role": "块局部变量 p（摘要算法列表）",
+        "source_type": "const gnutls_digest_algorithm_t *",
+        "decompiled_type": "const gnutls_digest_algorithm_t *",
+        "match": "correct",
+        "evidence_source_line": "源码7663: const gnutls_digest_algorithm_t *p = gnutls_digest_list();",
+        "evidence_decompiled_line": "反编译283: const gnutls_digest_algorithm_t *p = gnutls_digest_list();"
+      },
+      {
+        "source_role": "块局部变量 p（密钥交换列表）",
+        "source_type": "const gnutls_kx_algorithm_t *",
+        "decompiled_type": "const gnutls_kx_algorithm_t *",
+        "match": "correct",
+        "evidence_source_line": "源码7684: const gnutls_kx_algorithm_t *p = gnutls_kx_list();",
+        "evidence_decompiled_line": "反编译295: const gnutls_kx_algorithm_t *p = gnutls_kx_list();"
+      },
+      {
+        "source_role": "块局部变量 p（压缩方法列表）",
+        "source_type": "const gnutls_compression_method_t *",
+        "decompiled_type": "const gnutls_compression_method_t *",
+        "match": "correct",
+        "evidence_source_line": "源码7705-7706: const gnutls_compression_method_t *p = gnutls_compression_list();",
+        "evidence_decompiled_line": "反编译307-308: const gnutls_compression_method_t *p = gnutls_compression_list();"
+      },
+      {
+        "source_role": "块局部变量 p（组列表）",
+        "source_type": "const gnutls_group_t *",
+        "decompiled_type": "const gnutls_group_t *",
+        "match": "correct",
+        "evidence_source_line": "源码7727: const gnutls_group_t *p = gnutls_group_list();",
+        "evidence_decompiled_line": "反编译321: const gnutls_group_t *p = gnutls_group_list();"
+      },
+      {
+        "source_role": "块局部变量 p（公钥算法列表）",
+        "source_type": "const gnutls_pk_algorithm_t *",
+        "decompiled_type": "const gnutls_pk_algorithm_t *",
+        "match": "correct",
+        "evidence_source_line": "源码7748: const gnutls_pk_algorithm_t *p = gnutls_pk_list();",
+        "evidence_decompiled_line": "反编译334: const gnutls_pk_algorithm_t *p = gnutls_pk_list();"
+      },
+      {
+        "source_role": "块局部变量 p（签名算法列表）",
+        "source_type": "const gnutls_sign_algorithm_t *",
+        "decompiled_type": "const gnutls_sign_algorithm_t *",
+        "match": "correct",
+        "evidence_source_line": "源码7769: const gnutls_sign_algorithm_t *p = gnutls_sign_list();",
+        "evidence_decompiled_line": "反编译347: const gnutls_sign_algorithm_t *p = gnutls_sign_list();"
+      }
+    ],
+    "reasoning": "按 ABI 序号，两个形参的类型与位置一致。按数据流，所有函数级局部变量均由相同的取址输出、数组下标或 API 入参/返回值用途唯一对齐；十个块局部 p 均由对应列表 API 返回并以相同元素类型索引。源码函数内不存在 static 局部对象或显式结构体布局，故没有 SC-01、ST-01 或 LAYOUT-01 的可证实实例；pcache 的不透明底层定义未在函数范围展开，但其一层句柄指针用法与反编译的 void * 保持一致。"
+  }
+]

@@ -1,0 +1,51 @@
+[
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "函数返回类型",
+        "source_type": "int",
+        "decompiled_type": "void",
+        "match": "wrong",
+        "evidence_source_line": "2573-2574: int / main(void)",
+        "evidence_decompiled_line": "22: void main(void)"
+      },
+      {
+        "source_role": "函数参数列表",
+        "source_type": "void（无参数）",
+        "decompiled_type": "void（无参数）",
+        "match": "correct",
+        "evidence_source_line": "2574: main(void)",
+        "evidence_decompiled_line": "22: void main(void)"
+      },
+      {
+        "source_role": "局部变量i（循环计数与字节填充值）",
+        "source_type": "int",
+        "decompiled_type": "unsigned int",
+        "match": "wrong",
+        "evidence_source_line": "2576: int i; 2589-2590: for (i = 0; i < 256; i++) { *(addr + i) = i; } 2605-2606: for (i = 0; i < 256; i++) { *(addr+i) = i; }",
+        "evidence_decompiled_line": "27: unsigned int i; 67-68: for (i = 0; i < PAGE_SIZE; i++) page[i] = (unsigned char)i;"
+      },
+      {
+        "source_role": "局部变量addr（当前SDRAM页/行地址）",
+        "source_type": "uint8_t *",
+        "decompiled_type": "unsigned char *（page）",
+        "match": "correct",
+        "evidence_source_line": "2577: uint8_t *addr; 2594: addr = dump_page(addr, (void *)(0)); 2636-2643: addr += 256/16并传给dump_page/dump_line",
+        "evidence_decompiled_line": "24: unsigned char *page; 44: page = dump_page(main, 0); 92-99: page += PAGE_SIZE/16并传给dump_page/dump_line"
+      },
+      {
+        "source_role": "局部变量c（控制台命令字符）",
+        "source_type": "char",
+        "decompiled_type": "int",
+        "match": "wrong",
+        "evidence_source_line": "2578: char c; 2597: switch (c = console_getc(1)); 2601: switch (c = console_getc(1))",
+        "evidence_decompiled_line": "28: int c; 48-50: c = uart_getc(1); switch (c); 54-55: c = uart_getc(1); switch (c)"
+      }
+    ],
+    "reasoning": "main按源码与反编译声明均无参数，参数ABI位置不存在偏差。addr与page不是按名称对齐，而是依据dump_page返回值承接、作为dump_page/dump_line首参数以及按256/16字节步进的数据流对齐；uint8_t *与unsigned char *在该代码的stdint类型语境下等价，PTR-01未发现。源码i与反编译i通过0到255的循环界限、页索引和写入低8位值对齐，但int被恢复为unsigned int，属于INT-01；首轮循环中的p以及清零/填充0xff时的w是优化后指针归纳变量/宽存储临时量，没有可独立对应的源码局部实体，不能仅按名字强行对齐。源码c与反编译c通过console_getc/uart_getc返回值进入同一组字符switch分支的数据流对齐，char被恢复为int，属于INT-01。源码返回类型int被恢复为void，属于FN-01。源码main内没有静态局部对象或结构体实体，因此没有证据确认SC-01、ST-01或LAYOUT-01；反编译第19行的main宏是地址常量宏而非全局外部对象，不能据此确认SC-01。综合存在可直接证实的FN-01与INT-01，free_discovery判定为confirmed。"
+  }
+]

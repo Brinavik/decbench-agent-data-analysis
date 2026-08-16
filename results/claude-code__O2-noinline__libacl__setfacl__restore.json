@@ -1,0 +1,155 @@
+[
+  {
+    "function": "restore",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "256-258: restore( FILE *file, const char *filename)",
+        "evidence_decompiled_line": "45: restore(FILE *file, const char *filename)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "const char *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "256-258: restore( FILE *file, const char *filename)",
+        "evidence_decompiled_line": "45: restore(FILE *file, const char *filename)"
+      },
+      {
+        "source_role": "局部变量path_p（read_acl_comments第3个实参的输出路径，随后传给stat/do_set/chown/chmod/free）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "260: char *path_p; 274-275: read_acl_comments(file, &lineno, &path_p, &uid, &gid, &flags); 410-414: free(path_p); path_p = NULL;",
+        "evidence_decompiled_line": "47: char *path_p; 61-62: read_acl_comments(file, &line, &path_p, &uid, &gid, &mode); 152-153: free(path_p); path_p = NULL;"
+      },
+      {
+        "source_role": "局部变量st",
+        "source_type": "struct stat",
+        "decompiled_type": "struct stat",
+        "match": "correct",
+        "evidence_source_line": "261: struct stat st; 330: error = stat(path_p, &st); 348-355: 访问st.st_uid/st.st_gid; 372: 访问st.st_mode",
+        "evidence_decompiled_line": "51: struct stat st; 105: error = stat(path_p, &st); 115-118: 访问st.st_uid/st.st_gid; 130: 访问st.st_mode"
+      },
+      {
+        "source_role": "局部变量uid（read_acl_comments第4个实参的输出值）",
+        "source_type": "uid_t",
+        "decompiled_type": "uid_t",
+        "match": "correct",
+        "evidence_source_line": "262: uid_t uid; 274-275: ... &uid ...; 348-351: 与(id_t)-1和st.st_uid比较后写回st.st_uid",
+        "evidence_decompiled_line": "48: uid_t uid; 61-62: ... &uid ...; 115-116: 与(uid_t)-1和st.st_uid比较后更新uid"
+      },
+      {
+        "source_role": "局部变量gid（read_acl_comments第5个实参的输出值）",
+        "source_type": "gid_t",
+        "decompiled_type": "gid_t",
+        "match": "correct",
+        "evidence_source_line": "263: gid_t gid; 274-275: ... &gid ...; 352-355: 与(id_t)-1和st.st_gid比较后写回st.st_gid",
+        "evidence_decompiled_line": "49: gid_t gid; 61-62: ... &gid ...; 117-118: 与(gid_t)-1和st.st_gid比较后更新gid"
+      },
+      {
+        "source_role": "局部变量flags（read_acl_comments第6个实参的mode_t输出值）",
+        "source_type": "mode_t",
+        "decompiled_type": "mode_t（命名为mode）",
+        "match": "correct",
+        "evidence_source_line": "264: mode_t mask, flags; 274-275: ... &flags; 372: st.st_mode & flags; 397: chmod(path_p, flags | args.mode)",
+        "evidence_decompiled_line": "50: mode_t mode, mask; 61-62: ... &mode; 130: st.st_mode & mode; 141: chmod(path_p, mode | mask)"
+      },
+      {
+        "source_role": "局部变量mask（特殊权限位掩码）",
+        "source_type": "mode_t",
+        "decompiled_type": "无可独立对齐的局部变量；表达式直接使用S_ISUID/S_ISGID/S_ISVTX常量",
+        "match": "undeterminable",
+        "evidence_source_line": "264: mode_t mask, flags; 380-387: mask = 04000 | 02000 | 01000; 并用于比较st.st_mode与flags",
+        "evidence_decompiled_line": "135-137: ((st.st_mode ^ mode) & (S_ISUID | S_ISGID | S_ISVTX))；源码mask对应值已被常量折叠；50行同名mask按数据流对应args.mode而非此变量"
+      },
+      {
+        "source_role": "局部结构体变量args",
+        "source_type": "struct do_set_args",
+        "decompiled_type": "未恢复为结构体；拆成seq_t seq和mode_t mask",
+        "match": "wrong",
+        "evidence_source_line": "265: struct do_set_args args = { }; 341-342: args.mode = 0; do_set(path_p, &st, 0, &args); 388-397: 读取并更新args.mode",
+        "evidence_decompiled_line": "50-52: mode_t mode, mask; struct stat st; seq_t seq = NULL; 112-113: mask = 0; do_set(path_p, &st, 0, &seq); 138-141: 更新mask并传给chmod"
+      },
+      {
+        "source_role": "struct do_set_args.seq字段（第1字段，结构体起始偏移0）",
+        "source_type": "seq_t（struct seq_obj *）",
+        "decompiled_type": "seq_t独立局部变量（typedef struct seq_entry *seq_t）",
+        "match": "wrong",
+        "evidence_source_line": "167-170: struct do_set_args { seq_t seq; mode_t mode; }; 305-317: args.seq由seq_init赋值并传给seq_append_cmd/read_acl_seq",
+        "evidence_decompiled_line": "26: typedef struct seq_entry *seq_t; 52: seq_t seq = NULL; 86-97: seq由seq_init赋值并传给seq_append_cmd/read_acl_seq；113: 向do_set传递&seq而非结构体地址"
+      },
+      {
+        "source_role": "struct do_set_args.mode字段（第2字段，位于seq指针之后）",
+        "source_type": "mode_t",
+        "decompiled_type": "mode_t独立局部变量（命名为mask）",
+        "match": "wrong",
+        "evidence_source_line": "167-170: struct do_set_args { seq_t seq; mode_t mode; }; 341-342: args.mode = 0后将&args传给do_set; 388-397: 使用do_set可能更新的args.mode",
+        "evidence_decompiled_line": "50: mode_t mode, mask; 112-113: mask = 0后仅将&seq传给do_set; 138-141: mask作为独立变量使用"
+      },
+      {
+        "source_role": "结构体do_set_args布局",
+        "source_type": "两个字段，类型序列为[seq_t指针, mode_t]；在目标64位ABI上字段偏移为0和8",
+        "decompiled_type": "没有显式结构体布局；仅声明独立的seq_t seq与mode_t mask",
+        "match": "wrong",
+        "evidence_source_line": "167-170: struct do_set_args { seq_t seq; mode_t mode; }; 265: struct do_set_args args = { };",
+        "evidence_decompiled_line": "50-52: mode_t mode, mask; struct stat st; seq_t seq = NULL; 113: do_set(path_p, &st, 0, &seq)"
+      },
+      {
+        "source_role": "结构体seq_obj（由seq_t指向）",
+        "source_type": "struct seq_obj { cmd_t s_first; cmd_t s_last; }，两个指针字段",
+        "decompiled_type": "不完整类型struct seq_entry，仅可知seq_t是单层指针",
+        "match": "undeterminable",
+        "evidence_source_line": "99-104: struct seq_obj { cmd_t s_first; cmd_t s_last; }; typedef struct seq_obj *seq_t;",
+        "evidence_decompiled_line": "26: typedef struct seq_entry *seq_t; 本函数内没有对其字段的直接访问"
+      },
+      {
+        "source_role": "局部变量lineno（行号计数器）",
+        "source_type": "int",
+        "decompiled_type": "int（命名为line）",
+        "match": "correct",
+        "evidence_source_line": "266: int lineno = 0, backup_line; 274-275: 以&lineno传给read_acl_comments; 315: 以&lineno传给read_acl_seq",
+        "evidence_decompiled_line": "53: int line = 0, backup_line = 0; 61-62: 以&line传给read_acl_comments; 96-97: 以&line传给read_acl_seq"
+      },
+      {
+        "source_role": "局部变量backup_line",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "266: int lineno = 0, backup_line; 273: backup_line = lineno; 292/299: 作为%d实参",
+        "evidence_decompiled_line": "53: int line = 0, backup_line = 0; 76/81: 作为%d实参; 158: backup_line = line"
+      },
+      {
+        "source_role": "局部变量error",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "267: int error, status = 0; 274: error = read_acl_comments(...); 330: error = stat(...); 342: error = do_set(...) ",
+        "evidence_decompiled_line": "56: int error; 61: error = read_acl_comments(...); 105: error = stat(...)"
+      },
+      {
+        "source_role": "局部变量status（函数返回状态）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "267: int error, status = 0; 280-281: error == 0时return status; 437: return status",
+        "evidence_decompiled_line": "55: int status = 0; 69-70: error == 0时return status; 166: return status"
+      },
+      {
+        "source_role": "局部变量chmod_required（chown后是否需恢复特殊权限位的布尔状态）",
+        "source_type": "int",
+        "decompiled_type": "int（命名为mode_changed）",
+        "match": "correct",
+        "evidence_source_line": "268: int chmod_required = 0; 372-377: 条件满足时置1; 387: 作为条件使用",
+        "evidence_decompiled_line": "54: int mode_changed = 0; 130-131: 条件满足时置1; 135: 作为条件使用"
+      }
+    ],
+    "reasoning": "按ABI位置，第1、2参数的指针层级和限定符均一致；其余标量依据read_acl_comments的输出参数位置、stat/chown/chmod的数据流以及状态控制用途对齐，未发现SC-01、ST-01、PTR-01、INT-01或restore自身的FN-01证据。明确的LAYOUT-01是源码的struct do_set_args（字段序列seq_t、mode_t）在反编译结果中被拆成独立的seq与mask，且do_set收到&seq而不是具备该显式类型的&args；虽然两个标量字段的底层类型分别可辨认，但结构体边界、字段归属和布局没有恢复。因此free_discovery判定为confirmed。源码局部mask被常量折叠、seq_obj在本函数内无字段访问，二者证据不足，分别标记undeterminable。"
+  }
+]

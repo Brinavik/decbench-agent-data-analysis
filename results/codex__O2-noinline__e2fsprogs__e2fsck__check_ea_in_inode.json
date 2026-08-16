@@ -1,0 +1,123 @@
+[
+  {
+    "function": "check_ea_in_inode",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "e2fsck_t",
+        "decompiled_type": "e2fsck_t (struct e2fsck_struct_view *)",
+        "match": "correct",
+        "evidence_source_line": "4252: static void check_ea_in_inode(e2fsck_t ctx, struct problem_context *pctx,",
+        "evidence_decompiled_line": "68: void check_ea_in_inode(e2fsck_t ctx, struct problem_context *pctx,"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "struct problem_context *",
+        "decompiled_type": "struct problem_context *",
+        "match": "correct",
+        "evidence_source_line": "4252-4253: static void check_ea_in_inode(e2fsck_t ctx, struct problem_context *pctx, struct ea_quota *ea_ibody_quota)",
+        "evidence_decompiled_line": "68-69: void check_ea_in_inode(e2fsck_t ctx, struct problem_context *pctx, struct ea_quota *quota)"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "struct ea_quota *",
+        "decompiled_type": "struct ea_quota *",
+        "match": "correct",
+        "evidence_source_line": "4253: struct ea_quota *ea_ibody_quota",
+        "evidence_decompiled_line": "69: struct ea_quota *quota"
+      },
+      {
+        "source_role": "局部变量 sb",
+        "source_type": "struct ext2_super_block *",
+        "decompiled_type": "struct ext2_super_block_view *",
+        "match": "correct",
+        "evidence_source_line": "4255: struct ext2_super_block *sb = ctx->fs->super;",
+        "evidence_decompiled_line": "86: struct ext2_super_block_view *super = ctx->fs->super;"
+      },
+      {
+        "source_role": "局部变量 inode",
+        "source_type": "struct ext2_inode_large *",
+        "decompiled_type": "struct ext2_inode_large_view *",
+        "match": "correct",
+        "evidence_source_line": "4256,4266: struct ext2_inode_large *inode; ... inode = (struct ext2_inode_large *) pctx->inode;",
+        "evidence_decompiled_line": "24-26,87: struct ext2_inode_large_view has i_extra_isize at 0x80; struct ... *inode = pctx->inode;"
+      },
+      {
+        "source_role": "局部变量 entry",
+        "source_type": "struct ext2_ext_attr_entry *",
+        "decompiled_type": "struct ext2_ext_attr_entry *",
+        "match": "correct",
+        "evidence_source_line": "4257,4273: struct ext2_ext_attr_entry *entry; ... entry = (struct ext2_ext_attr_entry *) start;",
+        "evidence_decompiled_line": "58-66,90,109: ext2_ext_attr_entry fields ...; entry = first_entry;"
+      },
+      {
+        "source_role": "局部变量 start/header/end",
+        "source_type": "char * (three byte-address cursors)",
+        "decompiled_type": "typed header pointer plus first_entry pointer; end expressed as void/uint8_t *",
+        "match": "correct",
+        "evidence_source_line": "4258,4269-4273: char *start, *header, *end; header = (char *)inode + 128 + ...; start = header + sizeof(__u32);",
+        "evidence_decompiled_line": "88-89,106-109,198: typed header, first_entry = header + 1, and (uint8_t *)header + storage_size"
+      },
+      {
+        "source_role": "局部变量 storage_size/remain",
+        "source_type": "unsigned int",
+        "decompiled_type": "uint32_t storage_size/free_space",
+        "match": "correct",
+        "evidence_source_line": "4259,4267-4268,4278: unsigned int storage_size, remain; ... remain = storage_size - sizeof(__u32);",
+        "evidence_decompiled_line": "91-93,104-105,121: uint32_t inode_space/storage_size/free_space with equivalent arithmetic"
+      },
+      {
+        "source_role": "局部变量 problem",
+        "source_type": "problem_t",
+        "decompiled_type": "uint32_t",
+        "match": "undeterminable",
+        "evidence_source_line": "4260: problem_t problem = 0; (该限定函数内未展开 problem_t typedef)",
+        "evidence_decompiled_line": "94: uint32_t problem = 0;"
+      },
+      {
+        "source_role": "局部变量 region",
+        "source_type": "region_t",
+        "decompiled_type": "void *",
+        "match": "undeterminable",
+        "evidence_source_line": "4261,4280,4287: region_t region = 0; region = region_create(...); (该限定函数内未展开 region_t typedef)",
+        "evidence_decompiled_line": "71-73,99,111,184: region APIs use void * and local region is void *"
+      },
+      {
+        "source_role": "循环局部 hash",
+        "source_type": "__u32",
+        "decompiled_type": "uint32_t",
+        "match": "correct",
+        "evidence_source_line": "4294,4332: __u32 hash; hash = ext2fs_ext_attr_hash_entry(...);",
+        "evidence_decompiled_line": "74-75,97,163: hash function returns uint32_t and local hash is uint32_t"
+      },
+      {
+        "source_role": "分支局部 quota_blocks",
+        "source_type": "blk64_t",
+        "decompiled_type": "uint64_t",
+        "match": "correct",
+        "evidence_source_line": "4342-4345: blk64_t quota_blocks; ... &quota_blocks",
+        "evidence_decompiled_line": "76-78,98,142-143: check_large_ea_inode takes uint64_t * and local is uint64_t"
+      },
+      {
+        "source_role": "结构体 ext2_ext_attr_entry",
+        "source_type": "e_name_len u8, e_name_index u8, e_value_offs u16, e_value_inum/e_value_size/e_hash __u32; flexible name",
+        "decompiled_type": "same field sequence and widths in struct ext2_ext_attr_entry",
+        "match": "correct",
+        "evidence_source_line": "4297,4306,4317,4325,4336: accesses e_name_len/e_value_offs/e_value_inum/e_value_size/e_hash with sizeof(struct ...) alignment",
+        "evidence_decompiled_line": "58-66,124-127,133,149,156,165: identical field sequence and aligned-size use"
+      },
+      {
+        "source_role": "结构体 ea_quota",
+        "source_type": "fields blocks and inodes used as counters",
+        "decompiled_type": "uint64_t blocks; uint64_t inodes",
+        "match": "correct",
+        "evidence_source_line": "4263-4264,4349-4350: zero/increment blocks and inodes",
+        "evidence_decompiled_line": "49-51,101-102,146-147,192-193: both fields are uint64_t and used identically"
+      }
+    ],
+    "reasoning": "三个参数按 ABI 顺序和指针层级一致；ext2 属性条目字段布局及访问偏移一致，unsigned/64 位计数器也一致。反编译器将字符游标拆成带布局的 header/entry 指针属于等价表示。problem_t 与 region_t 的 typedef 定义未在限定材料中展开，因此无法确认 uint32_t/void* 是否完全恢复；未发现可据此确认的 SC-01、ST-01、PTR-01、INT-01、FN-01 或 LAYOUT-01 错误。"
+  }
+]

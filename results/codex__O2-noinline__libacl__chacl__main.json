@@ -1,0 +1,131 @@
+[
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "137: main(int argc, char *argv[])",
+        "evidence_decompiled_line": "27: int main(int argc, char **argv)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "char **",
+        "decompiled_type": "char **",
+        "match": "correct",
+        "evidence_source_line": "137: main(int argc, char *argv[])",
+        "evidence_decompiled_line": "27: int main(int argc, char **argv)"
+      },
+      {
+        "source_role": "局部变量file",
+        "source_type": "char *",
+        "decompiled_type": "const char *",
+        "match": "wrong",
+        "evidence_source_line": "139: char *file; 218: file = argv[optind];",
+        "evidence_decompiled_line": "108: const char *path = argv[optind];"
+      },
+      {
+        "source_role": "局部变量switch_flag",
+        "source_type": "int",
+        "decompiled_type": "无独立对应变量（被action状态合并）",
+        "match": "undeterminable",
+        "evidence_source_line": "140: int switch_flag = 0; 171-174: while ((c = getopt(...)) ...){ if (switch_flag) usage(); }",
+        "evidence_decompiled_line": "29-37: enum action {...} action = SET_ACCESS; 56-90: while ((option = getopt(...)) ...){ switch (option) ... }"
+      },
+      {
+        "source_role": "局部变量args_required",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "141: int args_required = 2; 212: if ((argc - optind) < args_required)",
+        "evidence_decompiled_line": "44: int required_args = 2; 92: if (argc - optind < required_args)"
+      },
+      {
+        "source_role": "局部变量failed",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "142: int failed = 0; 305-313: failed += set_acl(...); return(failed);",
+        "evidence_decompiled_line": "45: int errors = 0; 173-183: errors += set_acl(...); return errors;"
+      },
+      {
+        "source_role": "局部变量c",
+        "source_type": "int",
+        "decompiled_type": "int (option/check/last split temporaries)",
+        "match": "correct",
+        "evidence_source_line": "143: int c; 171: c = getopt(...); 258: failed = acl_check(acl, &c);",
+        "evidence_decompiled_line": "47-48: int last; int check; 56: option = getopt(...); 137: check = acl_check(access_acl, &last);"
+      },
+      {
+        "source_role": "局部变量dflag",
+        "source_type": "int",
+        "decompiled_type": "enum action value SET_DEFAULT",
+        "match": "undeterminable",
+        "evidence_source_line": "144: int dflag = 0; 256: if (! dflag) 281: if (bflag || dflag)",
+        "evidence_decompiled_line": "29-37: enum action {... SET_DEFAULT ...}; 135: if (action != SET_DEFAULT) 154: if (action == SET_BOTH || action == SET_DEFAULT)"
+      },
+      {
+        "source_role": "局部变量bflag",
+        "source_type": "int",
+        "decompiled_type": "enum action value SET_BOTH",
+        "match": "undeterminable",
+        "evidence_source_line": "145: int bflag = 0; 281: if (bflag || dflag)",
+        "evidence_decompiled_line": "31: SET_BOTH; 154: if (action == SET_BOTH || action == SET_DEFAULT)"
+      },
+      {
+        "source_role": "局部变量Rflag",
+        "source_type": "int",
+        "decompiled_type": "enum action value REMOVE_ACCESS",
+        "match": "undeterminable",
+        "evidence_source_line": "146: int Rflag = 0; 226: if (Rflag || Dflag || Bflag) 240: if (!Rflag ...)",
+        "evidence_decompiled_line": "33: REMOVE_ACCESS; 104-111: if (action == REMOVE_ACCESS ...); 110: if (action != REMOVE_DEFAULT ... ACCESS)"
+      },
+      {
+        "source_role": "局部变量Dflag",
+        "source_type": "int",
+        "decompiled_type": "enum action value REMOVE_DEFAULT",
+        "match": "undeterminable",
+        "evidence_source_line": "147: int Dflag = 0; 226: if (Rflag || Dflag || Bflag) 229: if (!Dflag ...)",
+        "evidence_decompiled_line": "34: REMOVE_DEFAULT; 104-106: if (action == REMOVE_ACCESS || action == REMOVE_DEFAULT || action == REMOVE_BOTH)"
+      },
+      {
+        "source_role": "局部变量Bflag",
+        "source_type": "int",
+        "decompiled_type": "enum action value REMOVE_BOTH",
+        "match": "undeterminable",
+        "evidence_source_line": "148: int Bflag = 0; 226: if (Rflag || Dflag || Bflag)",
+        "evidence_decompiled_line": "36: REMOVE_BOTH; 104-106: removal action dispatch"
+      },
+      {
+        "source_role": "局部变量lflag",
+        "source_type": "int",
+        "decompiled_type": "enum action value LIST",
+        "match": "undeterminable",
+        "evidence_source_line": "149: int lflag = 0; 216: if (lflag)",
+        "evidence_decompiled_line": "33: LIST; 95: if (action == LIST)"
+      },
+      {
+        "source_role": "局部变量acl",
+        "source_type": "acl_t",
+        "decompiled_type": "acl_t",
+        "match": "correct",
+        "evidence_source_line": "150-152: acl_t acl = ((void *)0); 257: acl = acl_from_text(...)",
+        "evidence_decompiled_line": "42: acl_t access_acl = NULL; 136: access_acl = acl_from_text(...)"
+      },
+      {
+        "source_role": "局部变量dacl",
+        "source_type": "acl_t",
+        "decompiled_type": "acl_t",
+        "match": "correct",
+        "evidence_source_line": "153-155: acl_t dacl = ((void *)0); 282: dacl = acl_from_text(...)",
+        "evidence_decompiled_line": "43: acl_t default_acl = NULL; 155: default_acl = acl_from_text(...)"
+      }
+    ],
+    "reasoning": "参数按ABI位置完全一致，argv数组参数等价于char**。acl_t变量在解析、传递给acl_check/set_acl及acl_free的用途和类型一致。源码的多个int标志位在反编译结果中被合并为单一enum action状态，虽可由分支语义对应枚举值，但不存在一对一局部实体，因此类型恢复对各原标志位只能判定为undeterminable。源码c被优化拆成多个int临时量，整数类型保持一致。源码file为char*，反编译局部path带const限定，类型并非完全相同。函数中没有显式结构体实体可进行布局核验；free_discovery假设本身无法仅凭这些局部类型证据确认。"
+  }
+]

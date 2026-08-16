@@ -1,0 +1,67 @@
+[
+  {
+    "function": "_usbd_standard_request_device",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "usbd_device * (typedef struct _usbd_device *)",
+        "decompiled_type": "void *",
+        "match": "wrong",
+        "evidence_source_line": "usb_standard.c:971: _usbd_standard_request_device(usbd_device *usbd_dev,",
+        "evidence_decompiled_line": "msc.c:14: int _usbd_standard_request_device(void *ctx, const unsigned char *op)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "struct usb_setup_data *",
+        "decompiled_type": "const unsigned char *",
+        "match": "wrong",
+        "evidence_source_line": "usb_standard.c:972: struct usb_setup_data *req, uint8_t **buf,; usb_standard.c:981: switch (req->bRequest)",
+        "evidence_decompiled_line": "msc.c:14: const unsigned char *op; msc.c:16: switch (op[1])"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "uint8_t **",
+        "decompiled_type": "未声明（参数被省略）",
+        "match": "wrong",
+        "evidence_source_line": "usb_standard.c:972: struct usb_setup_data *req, uint8_t **buf,",
+        "evidence_decompiled_line": "msc.c:14: 函数签名仅含 ctx 和 op 两个参数"
+      },
+      {
+        "source_role": "第4个参数",
+        "source_type": "uint16_t *",
+        "decompiled_type": "未声明（参数被省略）",
+        "match": "wrong",
+        "evidence_source_line": "usb_standard.c:973: uint16_t *len)",
+        "evidence_decompiled_line": "msc.c:14: 函数签名仅含 ctx 和 op 两个参数"
+      },
+      {
+        "source_role": "局部变量 command",
+        "source_type": "enum usbd_request_return_codes (*)(usbd_device *, struct usb_setup_data *, uint8_t **, uint16_t *)",
+        "decompiled_type": "无对应局部变量；直接调用 2 参数 extern int 子函数",
+        "match": "wrong",
+        "evidence_source_line": "usb_standard.c:975-979: 局部 command 函数指针声明并初始化为 NULL; usb_standard.c:1021-1025: 判空后以 4 个参数调用",
+        "evidence_decompiled_line": "msc.c:8-12: extern int 子函数均声明为 (void *, const unsigned char *); msc.c:18-26: 直接以 2 个参数调用"
+      },
+      {
+        "source_role": "结构体 usb_setup_data",
+        "source_type": "packed struct { uint8_t bmRequestType; uint8_t bRequest; uint16_t wValue; uint16_t wIndex; uint16_t wLength; }",
+        "decompiled_type": "未恢复为结构体，仅按 const unsigned char * 的偏移访问",
+        "match": "undeterminable",
+        "evidence_source_line": "usb_standard.c:64-70: usb_setup_data 的 5 字段 packed 布局; usb_standard.c:981: 读取 req->bRequest",
+        "evidence_decompiled_line": "msc.c:16: 仅读取 op[1]，未给出结构体字段或完整布局"
+      },
+      {
+        "source_role": "静态局部对象（SC-01 检查）",
+        "source_type": "无；command 是自动存储期局部变量",
+        "decompiled_type": "无静态对象；仅有 extern 函数声明",
+        "match": "correct",
+        "evidence_source_line": "usb_standard.c:974-979: command 在函数体内声明，未使用 static",
+        "evidence_decompiled_line": "msc.c:8-12: 仅声明 extern 子函数，无重构出的全局对象"
+      }
+    ],
+    "reasoning": "按 ABI 位置，源码函数接收 4 个参数，而反编译签名只有 2 个；第2参数虽以偏移 1 读取对应 bRequest，但其结构体指针被降为字节指针，且第3/4参数完全丢失。源码 command 是自动局部的 4 参数函数指针，反编译改为 2 参数 extern 直接调用。源码没有静态局部对象，因此 SC-01 被否定；usb_setup_data 的完整布局无法仅凭 op[1] 访问在反编译结果中确认，故布局实体标为 undeterminable。"
+  }
+]

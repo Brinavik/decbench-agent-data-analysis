@@ -1,0 +1,19 @@
+[
+  {
+    "function": "usage",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "2436: usage (int status)",
+        "evidence_decompiled_line": "13: usage(int status)"
+      }
+    ],
+    "reasoning": "按ABI位置，第1个参数在源码和反编译结果中均为int，并且都被用于状态比较、条件分支及传给exit（源码2438-2444、2532；反编译15、72）。该函数无局部变量声明，也无结构体实体可供对齐；因此没有证据支持free_discovery导致的类型或布局恢复错误。"
+  }
+]

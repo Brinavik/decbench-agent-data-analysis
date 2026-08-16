@@ -1,0 +1,107 @@
+[
+  {
+    "function": "get_range",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "函数返回值",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码第726-727行: static int / get_range(bitstr_t * bits, int low, int high, const char *names[],",
+        "evidence_decompiled_line": "反编译第30行: int get_range(bitstr_t *bits, int low, int high, const char *names[], FILE *file)"
+      },
+      {
+        "source_role": "第1个参数",
+        "source_type": "bitstr_t *",
+        "decompiled_type": "bitstr_t *",
+        "match": "correct",
+        "evidence_source_line": "源码第727行: get_range(bitstr_t * bits, int low, int high, const char *names[],",
+        "evidence_decompiled_line": "反编译第30行: int get_range(bitstr_t *bits, int low, int high, const char *names[], FILE *file)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码第727行: get_range(bitstr_t * bits, int low, int high, const char *names[],",
+        "evidence_decompiled_line": "反编译第30行: int get_range(bitstr_t *bits, int low, int high, const char *names[], FILE *file)"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码第727行: get_range(bitstr_t * bits, int low, int high, const char *names[],",
+        "evidence_decompiled_line": "反编译第30行: int get_range(bitstr_t *bits, int low, int high, const char *names[], FILE *file)"
+      },
+      {
+        "source_role": "第4个参数",
+        "source_type": "const char *[]（参数 ABI 等价于 const char **）",
+        "decompiled_type": "const char *[]（参数 ABI 等价于 const char **）",
+        "match": "correct",
+        "evidence_source_line": "源码第727行: get_range(bitstr_t * bits, int low, int high, const char *names[],",
+        "evidence_decompiled_line": "反编译第30行: int get_range(bitstr_t *bits, int low, int high, const char *names[], FILE *file)"
+      },
+      {
+        "source_role": "第5个参数",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "源码第728行: FILE * file) {",
+        "evidence_decompiled_line": "反编译第30行: int get_range(bitstr_t *bits, int low, int high, const char *names[], FILE *file)"
+      },
+      {
+        "source_role": "局部变量ch（字符/EOF 状态值）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码第733行: int ch, i, num1, num2, num3; 第740-742行: ((ch = get_char(file)) != (-1))",
+        "evidence_decompiled_line": "反编译第34行: int ch; 第38-40行: ch = get_char(file); if (ch == EOF) return EOF;"
+      },
+      {
+        "source_role": "局部变量i（位集合填充循环的当前整数）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码第733行: int ch, i, num1, num2, num3; 第892-895行: for (i = num1; i <= num2; i += num3) ... set_element(bits, low, high, i)",
+        "evidence_decompiled_line": "反编译第33行: int i; 第152-157行: set_element(bits, low, high, i) ... i += num3; if (i > num2)"
+      },
+      {
+        "source_role": "局部变量num1（范围下界）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码第733行: int ch, i, num1, num2, num3; 第746行: num1 = low; 第757行: get_number(&num1, low, names, file)",
+        "evidence_decompiled_line": "反编译第32行: int num1, num2, num3; 第43行: num1 = low; 第63行: get_number(&num1, low, names, file)"
+      },
+      {
+        "source_role": "局部变量num2（范围上界）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码第733行: int ch, i, num1, num2, num3; 第747行: num2 = high; 第824行: get_number(&num2, low, names, file)",
+        "evidence_decompiled_line": "反编译第32行: int num1, num2, num3; 第44行: num2 = high; 第76行: get_number(&num2, low, names, file)"
+      },
+      {
+        "source_role": "局部变量num3（步长）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码第733行: int ch, i, num1, num2, num3; 第737行: num3 = 1; 第782-787行: get_number(&num3, 0, NULL, file) ... && num3 != 0",
+        "evidence_decompiled_line": "反编译第32行: int num1, num2, num3; 第36行: num3 = 1; 第109-112行: get_number(&num3, 0, NULL, file) ... if (num3 == 0)"
+      },
+      {
+        "source_role": "局部变量state（解析状态）",
+        "source_type": "range_state_t",
+        "decompiled_type": "无对应局部变量；状态机被重构为分支和goto",
+        "match": "undeterminable",
+        "evidence_source_line": "源码第738行: range_state_t state = R_START; 第740行: while (state != R_FINISH ...)",
+        "evidence_decompiled_line": "反编译第32-38行仅声明 num1、num2、num3、i、ch，随后第42-59行直接以条件分支表达起始状态，未保留可核对类型的状态局部变量"
+      }
+    ],
+    "reasoning": "按 ABI 位置，返回类型和五个参数逐项一致；第4参数的数组形参在 ABI 上调整为二级指针，双方层级与 const 限定一致。五个 int 局部变量不依赖名称，而是分别依据 get_char/EOF 数据流、set_element 循环索引、范围上下界取地址传入 get_number、以及步长初始化和累加用途对齐，均未发现 PTR-01、INT-01 或 FN-01 证据。函数仅传递不透明的 FILE *，没有字段访问或显式结构体实体，因而没有可进行 LAYOUT-01、ST-01 或 SC-01 判断的结构体/静态局部对象。源码的 range_state_t 状态局部变量在反编译中被控制流重构消除，没有对应类型实体可复核；因此该实体及 free_discovery 总体结论必须为 undeterminable，而不能据缺失变量猜测类型恢复正确或错误。"
+  }
+]

@@ -1,0 +1,91 @@
+[
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "8935: int main(int argc, char **argv)",
+        "evidence_decompiled_line": "8: int main(int argc, char **argv)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "char **",
+        "decompiled_type": "char **",
+        "match": "correct",
+        "evidence_source_line": "8935: int main(int argc, char **argv)",
+        "evidence_decompiled_line": "8: int main(int argc, char **argv)"
+      },
+      {
+        "source_role": "局部变量 ret",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "8937: int ret, mtu, port;",
+        "evidence_decompiled_line": "128: int ret;"
+      },
+      {
+        "source_role": "局部变量 mtu",
+        "source_type": "int",
+        "decompiled_type": "局部变量已消除；由 option_mtu 表达式直接传参",
+        "match": "undeterminable",
+        "evidence_source_line": "8937: int ret, mtu, port;  9253-9256: mtu = ...;",
+        "evidence_decompiled_line": "124-125: extern int option_mtu; ... 336-338: udp_server(..., mtu_option ? option_mtu : 1300);"
+      },
+      {
+        "source_role": "局部变量 port",
+        "source_type": "int",
+        "decompiled_type": "局部变量已消除；由 option_port 表达式直接传参",
+        "match": "undeterminable",
+        "evidence_source_line": "8937: int ret, mtu, port;  9258-9261: port = ...;",
+        "evidence_decompiled_line": "124-125: extern int option_port; ... 336-340: tcp/udp_server(... option_port ...);"
+      },
+      {
+        "source_role": "局部变量 name",
+        "source_type": "char[256]",
+        "decompiled_type": "char[256]",
+        "match": "correct",
+        "evidence_source_line": "8938: char name[256];  8981-8990: strcpy/strcat(name, ...);",
+        "evidence_decompiled_line": "127: char server_name[256]; 143-146: strcpy/strcat(server_name, ...);"
+      },
+      {
+        "source_role": "局部变量 cert_set",
+        "source_type": "int",
+        "decompiled_type": "int have_key_pair",
+        "match": "correct",
+        "evidence_source_line": "8939: int cert_set = 0; 9053-9070, 9073-9097, 9099-9104: 设置并测试 cert_set",
+        "evidence_decompiled_line": "196-197: { int have_key_pair = 0; } 199-233: 设置并测试 have_key_pair"
+      },
+      {
+        "source_role": "局部变量 use_static_dh_params",
+        "source_type": "unsigned int",
+        "decompiled_type": "int use_known_dh_params",
+        "match": "wrong",
+        "evidence_source_line": "8940: unsigned use_static_dh_params = 0; 9002-9008: 赋值0/1并在 9123 使用",
+        "evidence_decompiled_line": "129: int use_known_dh_params; 158-165: 赋值0/1; 249: if (use_known_dh_params)"
+      },
+      {
+        "source_role": "局部变量 i",
+        "source_type": "unsigned int",
+        "decompiled_type": "unsigned int",
+        "match": "correct",
+        "evidence_source_line": "8941: unsigned i; 9054, 9074, 9108: 作为循环索引",
+        "evidence_decompiled_line": "130: unsigned int i; 200, 216, 239: 作为循环索引"
+      },
+      {
+        "source_role": "结构体 gnutls_serv_options（成员 present/value/arg）",
+        "source_type": "函数内仅可见成员访问，完整结构体声明和布局不可见",
+        "decompiled_type": "多个独立 extern 标量（udp_option、mtu_option、port_option 等）",
+        "match": "undeterminable",
+        "evidence_source_line": "8981-8984, 9053-9056, 9190-9193, 9253-9264: 通过 gnutls_serv_options.present/value/arg 访问",
+        "evidence_decompiled_line": "119-125, 144-146, 235-237, 282-289, 336-340: 使用独立 extern 标量"
+      }
+    ],
+    "reasoning": "按 ABI 位置两个参数完全一致；name、ret、cert_set 和 i 依据栈上角色及数据流可对齐。源码的 use_static_dh_params 明确为 unsigned，而反编译局部量为 int，构成整数符号/typedef 恢复错误（INT-01），因此 free_discovery 确认。mtu/port 已被优化为直接表达式，无法判断其局部实体是否被正确恢复。gnutls_serv_options 的完整声明不在 main 内，不能从成员访问推断字段数量、偏移或大小，故结构布局结论为 undeterminable。"
+  }
+]

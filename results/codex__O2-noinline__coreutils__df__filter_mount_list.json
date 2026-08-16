@@ -1,0 +1,182 @@
+[
+  {
+    "function": "filter_mount_list",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数 devices_only",
+        "source_type": "_Bool",
+        "decompiled_type": "bool retain_all",
+        "match": "correct",
+        "evidence_source_line": "源码 3831-3833: static void filter_mount_list (_Bool devices_only)",
+        "evidence_decompiled_line": "反编译 54-55: void filter_mount_list(bool retain_all)",
+        "reasoning": "第1个参数 ABI 位置一致；bool 与 _Bool 在此 ABI 上同为布尔标量。源码在 !devices_only 时释放，反编译在 !retain_all 时释放，参数改名但极性一致。"
+      }
+    ],
+    "reasoning": "该参数未造成释放语义变化，因此 free_discovery 假设不成立。"
+  },
+  {
+    "function": "filter_mount_list",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 me",
+        "source_type": "struct mount_entry *",
+        "decompiled_type": "struct mount_entry *",
+        "match": "correct",
+        "evidence_source_line": "源码 3835, 3843, 3858: struct mount_entry *me; 并遍历 mount_list",
+        "evidence_decompiled_line": "反编译 59, 61, 69: struct mount_entry *me; 并以 me->me_next 遍历",
+        "reasoning": "同一循环游标按 ABI/数据流均为 mount_entry 指针，访问字段与推进方式一致。"
+      }
+    ],
+    "reasoning": "游标类型和链表数据流未导致释放对象层级变化。"
+  },
+  {
+    "function": "filter_mount_list",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 device_list",
+        "source_type": "struct devlist *",
+        "decompiled_type": "struct devlist * devlist",
+        "match": "correct",
+        "evidence_source_line": "源码 3838-3841: struct devlist *device_list = ((void *)0);",
+        "evidence_decompiled_line": "反编译 57-58: struct devlist *devlist = NULL;",
+        "reasoning": "两者都是保存新建 devlist 链表头的单级指针；源码 3948-3949 与反编译 143-144 均头插入。"
+      }
+    ],
+    "reasoning": "链表头指针的层级和用途一致。"
+  },
+  {
+    "function": "filter_mount_list",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 mount_list_size",
+        "source_type": "int",
+        "decompiled_type": "int mount_count",
+        "match": "correct",
+        "evidence_source_line": "源码 3841-3844: int mount_list_size = 0; 遍历计数",
+        "evidence_decompiled_line": "反编译 57, 61-62: int mount_count = 0; 遍历计数",
+        "reasoning": "均为挂载项数量计数器，传入 hash_initialize 的值相同；整数宽度和符号一致。"
+      }
+    ],
+    "reasoning": "计数器恢复正确，不影响释放发现逻辑。"
+  },
+  {
+    "function": "filter_mount_list",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 buf",
+        "source_type": "struct stat",
+        "decompiled_type": "struct stat buf",
+        "match": "correct",
+        "evidence_source_line": "源码 3860-3877: struct stat buf; stat 失败时使用 me->me_dev",
+        "evidence_decompiled_line": "反编译 79-88: struct stat buf; stat 成功时取 buf.st_dev，否则保留 me->me_dev",
+        "reasoning": "结构体类型和 st_dev 数据流一致；反编译将源码对 buf.st_dev 的回填等价化为独立 dev 变量初始化。"
+      }
+    ],
+    "reasoning": "stat 失败分支仍使用原设备号，未改变后续释放对象选择。"
+  },
+  {
+    "function": "filter_mount_list",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 discard_me",
+        "source_type": "struct mount_entry *",
+        "decompiled_type": "struct mount_entry * discarded",
+        "match": "correct",
+        "evidence_source_line": "源码 3861-3863, 3924-3931: discard_me 保存旧项或当前项",
+        "evidence_decompiled_line": "反编译 117, 119-127: discarded 保存 old_me 或 me",
+        "reasoning": "两者均为待丢弃挂载项的单级指针；源码 3936-3941 与反编译 129-131 都仅在参数为假时调用 free_mount_entry。"
+      }
+    ],
+    "reasoning": "释放目标及条件完全对齐，free_discovery 被排除。"
+  },
+  {
+    "function": "filter_mount_list",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 seen_dev",
+        "source_type": "struct devlist *",
+        "decompiled_type": "struct devlist * devlist_entry",
+        "match": "correct",
+        "evidence_source_line": "源码 3881-3883: struct devlist *seen_dev = devlist_for_dev (buf.st_dev);",
+        "evidence_decompiled_line": "反编译 89-91: devlist_entry = devlist_for_dev(dev);",
+        "reasoning": "均接收 devlist_for_dev 返回的单级 devlist 指针，并通过 ->me 取得已见挂载项。"
+      }
+    ],
+    "reasoning": "重复设备发现实体的指针层级恢复正确。"
+  },
+  {
+    "function": "filter_mount_list",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "结构体 mount_entry",
+        "source_type": "字段序列 char *, char *, char *, char *, dev_t, 3 个 1-bit unsigned int 位域, struct mount_entry *",
+        "decompiled_type": "字段序列 char *, char *, char *, char *, dev_t, 3 个 1-bit unsigned int 位域, struct mount_entry *",
+        "match": "correct",
+        "evidence_source_line": "源码 2705-2716: mount_entry 字段及顺序",
+        "evidence_decompiled_line": "反编译 9-20: mount_entry 字段及顺序",
+        "reasoning": "字段数量、顺序、指针层级、dev_t 以及三个位域均一致；me_next 偏移因此一致。"
+      }
+    ],
+    "reasoning": "mount_entry 布局没有导致错误释放或悬空指针。"
+  },
+  {
+    "function": "filter_mount_list",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "结构体 devlist",
+        "source_type": "字段序列 dev_t, struct mount_entry *, struct devlist *, struct devlist *",
+        "decompiled_type": "字段序列 dev_t, struct mount_entry *, struct devlist *, struct devlist *",
+        "match": "correct",
+        "evidence_source_line": "源码 2900-2905: dev_num, me, next, seen_last",
+        "evidence_decompiled_line": "反编译 22-28: dev_num, me, next, seen_last",
+        "reasoning": "四字段数量、顺序和指针层级一致；源码 3945-3957 与反编译 138-147 对同一字段赋值并更新 seen_last。"
+      }
+    ],
+    "reasoning": "devlist 布局恢复正确，释放链表节点时取 next 的行为一致。"
+  },
+  {
+    "function": "filter_mount_list",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "释放与重建路径中的 devlist 节点",
+        "source_type": "struct devlist *，按 next 遍历后 free",
+        "decompiled_type": "struct devlist *，按 next 遍历后 free",
+        "match": "correct",
+        "evidence_source_line": "源码 3964-3982: !devices_only 时重建 mount_list，逐节点 free(device_list)，随后 hash_free",
+        "evidence_decompiled_line": "反编译 152-168: !retain_all 时重建 mount_list，逐节点 free(devlist)，随后 hash_free",
+        "reasoning": "释放条件、next 保存、mount_list 重建和 hash_free 顺序均一致；retain_all 只是 devices_only 的参数重命名。"
+      }
+    ],
+    "reasoning": "free_discovery 假设没有得到行为证据支持，结论为 rejected。"
+  }
+]
