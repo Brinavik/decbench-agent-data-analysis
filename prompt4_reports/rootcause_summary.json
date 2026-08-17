@@ -1,0 +1,281 @@
+{
+  "schema_version": 1,
+  "title": "大型函数类型恢复根因汇总",
+  "scope_and_method": {
+    "breadth_scan": {
+      "large_functions": 52,
+      "valid_agent_function_tasks": 103,
+      "missing_task": "claude-code / shadow / login / main",
+      "entities": {
+        "total": 1565,
+        "correct": 1180,
+        "wrong": 199,
+        "undeterminable": 186
+      },
+      "tasks_with_any_wrong_entity": 66,
+      "functions_with_any_wrong_entity": 46,
+      "rate_definitions": {
+        "task_hit_rate": "命中该模式的 agent-function 任务数 / 103",
+        "function_hit_rate": "至少一个 agent 命中该模式的函数数 / 52",
+        "wrong_entity_share": "该模式 wrong entity 数 / 199"
+      }
+    },
+    "deep_trace_sample": {
+      "functions": 7,
+      "projects": 7,
+      "confirmed_errors": 23,
+      "errors_by_agent": {
+        "codex": 12,
+        "claude-code": 11
+      },
+      "root_cause_counts": {
+        "a_llm_reasoning_defect": 11,
+        "b_info_missing": 8,
+        "c_large_function_complexity": 4
+      },
+      "attribution_counts": {
+        "function_inherent_difficulty": 16,
+        "llm_common_difficulty": 4,
+        "claude_code_specific": 2,
+        "codex_specific": 1
+      },
+      "sampling_warning": "7 个 case 为覆盖模式和分数区间的目的性抽样，不是随机样本；上述 23 条频数只描述深度样本，不可外推为总体发生率。"
+    },
+    "interpretation_rule": "root_cause 解释错误为何产生；attribution 比较同一错误是否也出现在另一 LLM 或传统反编译器。二者是正交维度，不得混用。"
+  },
+  "pattern_rules": [
+    {
+      "pattern": "LAYOUT-01",
+      "rule": "大型函数常只暴露复杂结构体的局部字段，模型据此生成最小视图、padding 或 opaque 区域，行为可用但字段数量、顺序和类型序列不等于源码。",
+      "breadth": {"wrong_entities": 57, "wrong_entity_share": 0.286, "task_hits": 22, "task_hit_rate": 0.214, "function_hits": 19, "function_hit_rate": 0.365},
+      "root_cause_classification": ["b_info_missing", "c_large_function_complexity"],
+      "evidence_cases": [
+        "openssh-portable/ssh-sk-helper/cert_parse: Codex 与 Claude-code 都把 22 字段 sshkey 缩成仅覆盖 type/cert 的最小视图",
+        "zlib/minigzip64/inflate_fast: Claude-code 省略 inflate_state 大量字段且没有用 padding 保持偏移",
+        "广度扫描代表: dpkg/dpkg-divert/diversion_add、gnutls/psktool/process_options、sysvinit/sulogin/getpasswd"
+      ],
+      "counterexamples": [
+        "inflate_fast 中 Codex 完整恢复 inflate_state 关键布局",
+        "cert_parse 中两模型均正确恢复 12 字段 sshkey_cert",
+        "shadow/vipw/main 未出现确认布局错误"
+      ],
+      "confidence": "high",
+      "confidence_basis": "总体任务命中率最高且覆盖 19/52 个函数；两个深度 case 直接复现局部可观察字段导致的最小视图。"
+    },
+    {
+      "pattern": "INT-01",
+      "rule": "整数宽度、符号和 typedef 容易被用途先验覆盖；模型会把协议/项目包装函数的 int 推成 size_t、ssize_t，或丢失源码 typedef。",
+      "breadth": {"wrong_entities": 39, "wrong_entity_share": 0.196, "task_hits": 20, "task_hit_rate": 0.194, "function_hits": 17, "function_hit_rate": 0.327},
+      "root_cause_classification": ["a_llm_reasoning_defect", "b_info_missing"],
+      "evidence_cases": [
+        "gnutls/gnutls-cli/send_ocsp_request: Codex 将 unsigned int headers_size 改成 size_t，将 int ret 改成 ssize_t",
+        "广度扫描代表: diffutils/cmp/cmp、sysvinit/sulogin/getpasswd、libopencm3/sdram/main"
+      ],
+      "counterexamples": [
+        "send_ocsp_request 中 Claude-code、Ghidra、IDA 均保留 int ret",
+        "cronie/crontab/get_range 两模型均正确恢复多个 int 局部",
+        "e2fsprogs/e2fsck/check_ea_in_inode 中 Codex 正确恢复 uint64_t quota_blocks"
+      ],
+      "confidence": "medium_high",
+      "confidence_basis": "广度频率高，但深度证据集中在一个 Codex case；总体规律充分，模型间差异仍需扩样。"
+    },
+    {
+      "pattern": "FN-01",
+      "rule": "函数返回类型和参数原型会因调用点信息不足或最终代码合成无依据改写而失真。",
+      "breadth": {"wrong_entities": 25, "wrong_entity_share": 0.126, "task_hits": 19, "task_hit_rate": 0.184, "function_hits": 17, "function_hit_rate": 0.327},
+      "root_cause_classification": ["a_llm_reasoning_defect", "b_info_missing"],
+      "evidence_cases": [
+        "e2fsprogs/e2fsck/check_ea_in_inode: Claude-code 将 void 返回类型改成 int，所有其他工具均为 void",
+        "广度扫描代表: coreutils/chown/usage、libopencm3/msc/_usbd_standard_request_device、sysvinit/shutdown/wall"
+      ],
+      "counterexamples": [
+        "inflate_fast 两模型完整恢复 void(z_streamp,unsigned)",
+        "shadow/vipw/main 与 cronie/crontab/get_range 两模型均恢复完整 ABI 可见签名"
+      ],
+      "confidence": "medium_high",
+      "confidence_basis": "广度覆盖 17 个函数，但深度样本仅确认 1 条 FN-01，尚不足以估计各根因占比。"
+    },
+    {
+      "pattern": "SC-01",
+      "rule": "static、extern 和局部/全局归属常不由 stripped binary 的函数机器码编码，模型容易改变链接属性或把文件静态对象写成 extern。",
+      "breadth": {"wrong_entities": 19, "wrong_entity_share": 0.095, "task_hits": 12, "task_hit_rate": 0.117, "function_hits": 11, "function_hit_rate": 0.212},
+      "root_cause_classification": ["b_info_missing"],
+      "evidence_cases": [
+        "openssh-portable/ssh-sk-helper/cert_parse: Codex 丢失函数 static",
+        "gnutls/gnutls-cli/send_ocsp_request: Codex 将文件静态定长 buffer 改成无界 extern",
+        "广度扫描代表: shadow/newusers/close_files、shadow/grpunconv/main"
+      ],
+      "counterexamples": [
+        "cert_parse 中 Claude-code 保留 static",
+        "shadow/vipw/main 两模型均恢复 static long_options",
+        "cronie/crontab/get_range 的 static 不可由 stripped binary 确证，深度阶段未强行计错"
+      ],
+      "confidence": "high_for_information_loss_medium_for_llm_comparison",
+      "confidence_basis": "信息缺失机制明确且两条深度证据一致；但正确反例表明上下文或先验可偶尔补回，不能归为某一模型稳定缺陷。"
+    },
+    {
+      "pattern": "QUAL-01",
+      "rule": "const 不进入 ABI；模型既可能因看不到源码限定而丢失 const，也可能把只读用法或现代 API 先验过度提升为源码 const。",
+      "breadth": {"wrong_entities": 31, "wrong_entity_share": 0.156, "task_hits": 11, "task_hit_rate": 0.107, "function_hits": 10, "function_hit_rate": 0.192},
+      "root_cause_classification": ["b_info_missing", "a_llm_reasoning_defect"],
+      "evidence_cases": [
+        "sysvinit/shutdown/wall: 两模型均丢失 text 的 const，传统反编译器也未恢复",
+        "zlib/minigzip64/inflate_fast: 两模型在明确识别源码函数后仍给 in/last 增加 const",
+        "openssh-portable/ssh-sk-helper/cert_parse: Claude trace 给出正确非 const 签名，最终输出却加入 const"
+      ],
+      "counterexamples": [
+        "cronie/crontab/get_range 两模型均恢复 names 的 const char *[]",
+        "inflate_fast 中 Claude-code 正确保留 z_stream 输入字段的非 const 声明"
+      ],
+      "confidence": "high",
+      "confidence_basis": "广度覆盖 10 个函数，深度样本同时观察到信息缺失和推理缺陷两条相反路径，并有跨模型共同错误。"
+    },
+    {
+      "pattern": "ST-01",
+      "rule": "模型可能引用同名但版本或定义不同的结构体/头文件，使字段定义与目标源码冲突。",
+      "breadth": {"wrong_entities": 16, "wrong_entity_share": 0.080, "task_hits": 10, "task_hit_rate": 0.097, "function_hits": 8, "function_hit_rate": 0.154},
+      "root_cause_classification": ["a_llm_reasoning_defect", "b_info_missing"],
+      "evidence_cases": [
+        "广度扫描代表: dpkg/dpkg-divert/diversion_add、gnutls/psktool/process_options、openssh-portable/ssh-add/revoked_certs_generate"
+      ],
+      "counterexamples": [
+        "cert_parse 深挖后确认 sshkey 问题更准确地属于 LAYOUT-01，而不是错误头文件定义",
+        "sysvinit/shutdown/wall 两模型使用系统 struct sigaction/utmp，未自造冲突布局"
+      ],
+      "confidence": "preliminary",
+      "confidence_basis": "广度信号存在，但 7 个深度 case 中没有确认的 ST-01；错误版本先验与不可见定义的相对贡献尚未分离。"
+    },
+    {
+      "pattern": "ARRAY-01",
+      "rule": "模型可能把栈对齐后的分配空间当作源码数组逻辑长度，或误判固定数组/VLA 的边界表达。",
+      "breadth": {"wrong_entities": 6, "wrong_entity_share": 0.030, "task_hits": 6, "task_hit_rate": 0.058, "function_hits": 4, "function_hit_rate": 0.077},
+      "root_cause_classification": ["a_llm_reasoning_defect", "c_large_function_complexity"],
+      "evidence_cases": [
+        "sysvinit/shutdown/wall: Claude-code 将 38 字节 VLA 的 16 字节对齐分配误写为 53 字节逻辑长度",
+        "广度扫描代表: coreutils/comm/compare_files、gnutls/ocsptool/socket_open2"
+      ],
+      "counterexamples": [
+        "同一 wall case 中 Codex 正确恢复等价数组长度，并正确恢复另外两个固定缓冲区"
+      ],
+      "confidence": "medium",
+      "confidence_basis": "机制有直接 trace 证据，但总体仅命中 4/52 个函数，深度证据只有一条。"
+    },
+    {
+      "pattern": "PTR-01",
+      "rule": "大型循环和查表重写中，模型可能把源码指针实体按值化，或在数组/指针表示间转换；行为保持不代表实体类型匹配。",
+      "breadth": {"wrong_entities": 4, "wrong_entity_share": 0.020, "task_hits": 4, "task_hit_rate": 0.039, "function_hits": 3, "function_hit_rate": 0.058},
+      "root_cause_classification": ["c_large_function_complexity"],
+      "evidence_cases": [
+        "zlib/minigzip64/inflate_fast: 两模型都把 code const *here 重写成按值 code here",
+        "广度扫描另见 coreutils/cp/copy_reg、gnutls/certtool/yyparse"
+      ],
+      "counterexamples": [
+        "inflate_fast 中两模型均正确恢复 lcode/dcode 或 from 等其他一级指针",
+        "cronie/crontab/get_range 两模型均恢复 names 的双重间接层级"
+      ],
+      "confidence": "medium",
+      "confidence_basis": "频率低，但同一复杂热循环上跨模型复现，支持其为共同的大型函数实体重写风险。"
+    },
+    {
+      "pattern": "OTHER",
+      "rule": "实体语义映射可在长分支重构中发生跨类别替换或临时变量拆分，现有语法型模式无法覆盖。",
+      "breadth": {"wrong_entities": 2, "wrong_entity_share": 0.010, "task_hits": 1, "task_hit_rate": 0.010, "function_hits": 1, "function_hit_rate": 0.019},
+      "root_cause_classification": ["a_llm_reasoning_defect", "c_large_function_complexity"],
+      "evidence_cases": [
+        "e2fsprogs/e2fsck/check_ea_in_inode: Claude-code 将 blk64_t 输出标量替换为 ea_quota 结构体",
+        "同一 case: Claude-code 把 problem 直接赋值拆为额外 int ret 实体"
+      ],
+      "counterexamples": [
+        "同一 case 中 Codex 正确恢复标量输出且无确认声明错误"
+      ],
+      "confidence": "preliminary",
+      "confidence_basis": "仅一个函数、两条实体；可证明分类边界存在，不能证明其普遍性。"
+    }
+  ],
+  "cross_cutting_conclusions": [
+    {
+      "id": "C1",
+      "scope": "function_inherent_difficulty",
+      "conclusion": "源码级 static、const、未访问结构体字段和优化前临时实体常不在 stripped binary 中唯一可辨识；这是类型恢复的可识别性上限。",
+      "evidence": "深度样本 23 条错误中 16 条按严格对照规则归为 function_inherent_difficulty；SC-01、QUAL-01、LAYOUT-01 均有直接 case。",
+      "counterexample": "vipw/main 的 static long_options、get_range 的 const names 说明跨引用、库知识或稳定模式有时能补回信息，但并不消除不可识别性。",
+      "confidence": "high"
+    },
+    {
+      "id": "C2",
+      "scope": "llm_common",
+      "conclusion": "两种 LLM 都会把语义等价的重构当作源码类型恢复：例如只读语义 const 化、指针表项按值化。",
+      "evidence": "inflate_fast 中 in/last const 化构成 4 条 llm_common_difficulty，here 按值化在两模型中同时出现；该 case GED=0 而 type_match 均为 0.0909。",
+      "counterexample": "两模型在 vipw/main、get_range 上均无确认错误，且 inflate_fast 的许多指针和整数类型恢复正确。",
+      "confidence": "medium_high"
+    },
+    {
+      "id": "C3",
+      "scope": "codex_specific",
+      "conclusion": "Codex 存在用 POSIX/API 语义先验覆盖项目真实原型的风险。",
+      "evidence": "send_ocsp_request 中 Codex 将项目包装函数的 int ret 推成 ssize_t；Claude-code、Ghidra、IDA 均为 int。",
+      "counterexample": "check_ea_in_inode 中 Codex 正确恢复 Claude-code 失败的 void 返回和 blk64_t 输出。",
+      "confidence": "preliminary",
+      "warning": "仅 1 条 codex_specific 深度错误，不能推广为 Codex 总体特性。"
+    },
+    {
+      "id": "C4",
+      "scope": "claude_code_specific",
+      "conclusion": "Claude-code 存在最终签名无证据改写和领域类比过度扩张的风险。",
+      "evidence": "check_ea_in_inode 中把 void 改 int，并把 helper 的单一 blk64_t 输出联想为 ea_quota；Codex、Ghidra、IDA或汇编数据流提供反证。",
+      "counterexample": "wall 中 Claude-code 正确恢复函数 void 返回；cert_parse 中保留了 Codex 丢失的 static。",
+      "confidence": "preliminary",
+      "warning": "2 条错误来自同一函数，不足以推广为 Claude-code 总体特性。"
+    },
+    {
+      "id": "C5",
+      "scope": "large_function_specific",
+      "conclusion": "大型函数放大跨基本块实体追踪、复杂布局稀疏观测、栈对齐解释和临时变量合并/拆分问题，但目前不能证明所有高频类型错误由函数规模独立造成。",
+      "evidence": "深度样本有 4 条直接归为 c_large_function_complexity，覆盖 here 按值化、inflate_state 最小布局和 ret 临时拆分；LAYOUT-01 在广度扫描覆盖 36.5% 函数。",
+      "counterexample": "两个 137 行函数 vipw/main 与 get_range 无确认错误；大量错误属于二进制普遍的信息缺失，不是 large-function 独有。",
+      "confidence": "medium",
+      "warning": "缺少同项目、同优化级别的小函数对照组，无法估计函数规模的独立因果效应。"
+    },
+    {
+      "id": "C6",
+      "scope": "metric_interpretation",
+      "conclusion": "type_match、GED 与 byte_match 衡量不同对象，不应互相代替；非满 type_match 也不必然对应人工可确认错误。",
+      "evidence": "inflate_fast GED=0 但 type_match=0.0909；get_range GED=50/43 但类型恢复较好；vipw/main type_match=0.4/0.5 却无确认错误。",
+      "counterexample": "这些是指标解耦的存在性证据，尚未计算全体相关系数。",
+      "confidence": "high_for_existential_claim_preliminary_for_population_strength"
+    }
+  ],
+  "priority_recommendations": [
+    {
+      "priority": 1,
+      "target": "复杂结构体布局与类型定义检索",
+      "why": "LAYOUT-01 的任务命中率 21.4%、函数命中率 36.5% 均为最高，且单次错误可影响大量字段实体。",
+      "actions": ["跨函数聚合字段偏移和访问宽度", "检索精确项目版本的头文件/调试类型", "区分可编译最小视图与声称完整源码布局", "对未知区间显式输出置信度而非臆造字段"]
+    },
+    {
+      "priority": 2,
+      "target": "原型与整数宽度的证据约束",
+      "why": "INT-01 与 FN-01 分别命中 32.7% 的函数，且错误会沿调用链传播。",
+      "actions": ["联合所有调用点和被调函数返回值做约束求解", "优先服从寄存器位宽、扩展指令和比较语义", "禁止仅凭 POSIX/API 名称把 int 改成 size_t/ssize_t", "最终代码生成前做 trace-to-declaration 一致性校验"]
+    },
+    {
+      "priority": 3,
+      "target": "不可恢复信息的校准表达",
+      "why": "深度样本 16/23 条错误涉及函数本身困难；强行猜 static、const 或完整布局会制造看似合理但不可证的类型。",
+      "actions": ["将 ABI 可见类型与源码级限定/链接属性分层输出", "为 static、const、typedef、未访问字段提供 unknown/候选集", "评测中区分二进制不可辨识项与可由证据纠正的推理错误"]
+    },
+    {
+      "priority": 4,
+      "target": "大型函数中的实体身份保持",
+      "why": "PTR-01、ARRAY-01、OTHER 频率较低，但揭示了行为等价重写破坏类型实体映射的问题。",
+      "actions": ["维护 SSA/栈槽到源码实体的全程 provenance", "区分栈分配对齐量与数组逻辑容量", "检测指针按值化和临时变量拆分并保留两种表示", "将控制流重构与类型声明生成解耦"]
+    },
+    {
+      "priority": 5,
+      "target": "扩充因果与模型差异实验",
+      "why": "Codex 特性、Claude-code 特性和 large-function 独有效应目前样本不足。",
+      "actions": ["对每个候选特性至少增加多个项目的深度 case", "建立同项目同优化级别的小函数匹配对照", "按 agent 分层报告模式率并给置信区间", "复核 ST-01 与 OTHER 的分类边界"]
+    }
+  ],
+  "bottom_line": "优先解决 LAYOUT-01，其次是 INT-01/FN-01；同时不要把不可辨识的源码级信息包装成确定答案。现有证据足以支持错误模式的总体排序、信息缺失上限和指标解耦，但不足以把单个 Codex/Claude-code case 上升为稳定模型特性，也不足以证明错误由函数规模独立导致。"
+}

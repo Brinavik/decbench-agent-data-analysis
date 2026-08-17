@@ -31,12 +31,12 @@ type_match 与 byte_match/GED 不一致现象的分析空间。
 
 文件均位于 `/home/user/decbench-dataset/decbench_agent_data/`：
 
-- `case_list_for_tracing.json`：7 个 case 的坐标、size、两种 LLM 的
+- `large-analysis-report-prompt2/case_list_for_tracing.json`：7 个 case 的坐标、size、两种 LLM 的
   type_match/byte_match/GED、分 agent 与 union 模式、入选理由。
 - `download_cases_for_tracing.py`：下载脚本；提供
   `download_case_trace(project, opt, binary, function, agent, local_dir)`，也可按
   case list 批量下载两种 agent 的 trace 及 IDA/Ghidra 源码。
-- `handoff_prompt2.md`：本交接文件。
+- `large-analysis-report-prompt2/handoff_prompt2.md`：本交接文件。
 
 ## 下一阶段约定与注意事项
 
