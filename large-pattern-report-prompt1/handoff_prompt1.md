@@ -1,49 +1,47 @@
 # Prompt1 阶段交接
 
-## 本阶段完成内容
+## 本阶段工作与核心结论
 
-- 从 `function_results.json` 提取全部 52 个 datasets 含 `large` 的函数，并关联 codex、claude-code 的 type_match、byte_match、ged、源码和反编译代码。
-- 对每个函数的两个 agent 输出运行 7 类错误模式检测，生成函数 × agent × 模式明细。
-- 严格区分 `yes`、`no`、`candidate`、`unevaluable`；只有 `yes` 计入 hit_count。
-- 使用固定分母 52 计算命中率；可判定覆盖率至少达到 75% 才进行普遍性分类。
-- zlib 函数提取器支持 K&R 参数声明、`local`、`ZEXTERN`、`ZEXPORT` 和 `OF((...))` 双层括号，并通过真实语料回归测试。
+本阶段基于上一轮已生成的 `needs_review.json`、`pattern_summary.md` 和 `per_function_detail.csv` 做轻量重聚合，没有重新读取 103 个原始裁决 JSON。将已复核的 OTHER 拆分为 QUAL-01、ARRAY-01，并保留无法归入现有模式的残余 OTHER。
 
-## 结论
+目前的错误模式包含：
+  SC-01     存储类别错误：static/局部 被重构为 extern/全局，或链接属性不一致。
+  ST-01     结构体/头文件冲突：引用了与源码同名但定义不同的结构体/头文件，字段对不上。
+  PTR-01    指针层级/数组：指针层级不同（T* vs T vs T**），或数组与指针互换。
+  INT-01    整数/typedef：整数宽度/符号不同（int vs long、signed vs unsigned），或 typedef 丢失。
+  FN-01     函数签名：参数个数/类型或返回类型不匹配。
+  LAYOUT-01 结构体布局：字段数量/顺序/偏移/类型序列不一致。
+  QUAL-01   const 限定差异
+  ARRAY-01  数组长度/维度错误
+  OTHER     无法归入以上任何一种。
+归类优先级：先判 SC-01 / FN-01（最明确）；再判 ST-01 vs LAYOUT-01
+（"引用了错误的结构体定义"→ST-01，"结构体字段本身排布不对"→LAYOUT-01）；
+再判 PTR-01 / INT-01。
 
-达到“普遍”或“值得关注”的模式：
+最终 wrong-entity 命中率排序（任务命中率 / 103）：LAYOUT-01 21.4%、INT-01 19.4%、FN-01 18.4%、SC-01 11.7%、QUAL-01 10.7%、ST-01 9.7%、ARRAY-01 5.8%、PTR-01 3.9%、OTHER 1.0%。按函数命中率（分母 52），LAYOUT-01 36.5%、INT-01 32.7%、FN-01 32.7% 达到“普遍”（≥30%）；SC-01、QUAL-01、ST-01 属于值得关注，ARRAY-01/PTR-01/OTHER 为低频但应保留代表案例。
 
-- claude-code / FN-01: 6/52 (11.54%), 命中样本平均 type_match=0.108500，分类=值得关注
+QUAL-01 共 31 个 wrong entity（15.6% of all 199），ARRAY-01 共 6 个（3.0%），残余 OTHER 2 个（1.0%）。模式计数守恒：199。
 
-以下条目因可判定覆盖率未达到 75%，不得仅凭原始命中率作普遍性结论：
-
-- codex / PTR-01: 12/52 可判定（23.08%），确认命中率=0.00%
-- codex / INT-01: 10/52 可判定（19.23%），确认命中率=3.85%
-- codex / LAYOUT-01: 12/52 可判定（23.08%），确认命中率=15.38%
-- claude-code / PTR-01: 15/52 可判定（28.85%），确认命中率=0.00%
-- claude-code / INT-01: 11/52 可判定（21.15%），确认命中率=3.85%
-- claude-code / LAYOUT-01: 15/52 可判定（28.85%），确认命中率=19.23%
-
-全量预期 agent 输出为 104 份，实际源码与反编译代码同时可用 103 份。唯一已知缺失为 `shadow/O2-noinline/login/main/claude-code`。
+残余 OTHER：`check_ea_in_inode` / `claude-code` 的 `blk64_t` 输出标量被恢复为 `struct ea_quota`，以及源码 helper 返回值被拆成独立 `int ret`；二者属于实体语义映射/临时变量拆分，无法合理归入现有模式。
 
 ## 产出文件
 
-- 阶段结果：`prompt1_results.json`
-- 完整函数导出：`large_functions.jsonl`、`large_functions.csv`
-- 逐函数明细：`function_pattern_detail.json`、`function_pattern_detail.csv`、`function_pattern_detail.md`
-- 模式汇总：`pattern_summary.json`、`pattern_summary.csv`、`pattern_summary.md`
-- 人工复核候选：`manual_candidates.json`、`manual_candidates.csv`、`manual_candidates.md`
-- 无法自动判定：`unevaluable.json`、`unevaluable.csv`、`unevaluable.md`
-- 覆盖率：`coverage.json`、`coverage.csv`、`coverage.md`
-- 扫描脚本：`../decbench_agent_data/analyze_large_error_patterns.py`
-- 解析回归测试：`../decbench_agent_data/test_download_large_scan_inputs.py`
+以下文件均位于 `/home/user/decbench-dataset/decbench_agent_data/large-pattern-report-prompt1/`：
 
-以上报表均位于 `/home/user/decbench-dataset/large-pattern-report-prompt1`。
+- `pattern_summary.md`
+- `per_function_detail.csv`
+- `quality_monitor.md`
+- `needs_review.json`
+- `handoff_prompt1.md`
 
-## 下一阶段关键约定与注意事项
+同时保留辅助机器可读质量数据 `quality_monitor.json`。
 
-- `candidate_count` 是疑似证据数量，不是确认命中数；candidate 不进入 hit_rate，也不进入命中样本平均 type_match。
-- `evaluable_count` 表示检测器获得了足够输入并产出 yes/no/candidate；`decisive_count` 仅统计 yes/no。
-- 普遍性分类先检查可判定覆盖率：低于 75% 一律标记数据不足，再高的原始 hit_rate 也不升级为“值得关注/普遍”。
-- 命中率分母固定为 52，不会因 claude-code 缺失一份输出改成 51；覆盖率阈值允许这种少量缺失。
-- 下一阶段人工深剖应优先检查 `noteworthy_patterns`，同时参考 candidate 较多的 SC-01、ARR-01；不要把 candidate 当作已证实缺陷。
-- PTR-01、INT-01、LAYOUT-01 的自动对齐覆盖率偏低，相关结论必须结合 `manual_candidates` 与 `unevaluable` 清单。
+## Prompt2 约定与注意事项
+
+- 最终模式清单：SC-01、ST-01、PTR-01、INT-01、FN-01、LAYOUT-01、QUAL-01、ARRAY-01、OTHER。
+- schema 异常：93 个文件的 entity 缺少 `reasoning` 字段，属于良性格式问题，不影响 match/verdict/类型统计；若后续需要使用 reasoning，必须先补齐。
+- 缺失任务：`claude-code / shadow / login / main`；有效样本为 103 个任务。
+- 任务级 wrong 命中率：codex 69.2%，claude-code 58.8%。
+- Prompt2 分层抽样应优先覆盖 LAYOUT-01、INT-01、FN-01 的高命中代表案例；同时各抽取 SC-01、QUAL-01、ST-01 的典型案例，检查存储类别、限定符和结构体定义冲突。ARRAY-01、PTR-01 和残余 OTHER 建议各保留少量边界案例，避免遗漏数组维度/指针表示及实体拆分问题。
+- 任务命中率分母固定为 103，函数命中率分母固定为 52；缺失的 claude-code 任务不应改变函数分母。
+- `needs_review.json` 中 39 条记录均已完成语义复核并带有 `assigned_pattern`；其中 QUAL-01 31 条、ARRAY-01 6 条、OTHER 2 条。

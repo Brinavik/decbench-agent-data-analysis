@@ -1,0 +1,75 @@
+[
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "函数返回值",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码第824行：int main (int argc, char **argv)",
+        "evidence_decompiled_line": "反编译第64-65行：int / main (int argc, char **argv)"
+      },
+      {
+        "source_role": "第1个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码第824行：int main (int argc, char **argv)",
+        "evidence_decompiled_line": "反编译第65行：main (int argc, char **argv)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "char **",
+        "decompiled_type": "char **",
+        "match": "correct",
+        "evidence_source_line": "源码第824行：int main (int argc, char **argv)；第830行：Prog = Basename (argv[0]);",
+        "evidence_decompiled_line": "反编译第65行：main (int argc, char **argv)；第74行：Prog = Basename (argv[0]);"
+      },
+      {
+        "source_role": "局部变量（由 gr_next 返回、遍历组记录的只读指针）",
+        "source_type": "const struct group *",
+        "decompiled_type": "const struct group *",
+        "match": "correct",
+        "evidence_source_line": "源码第826行：const struct group *gr;；第904-907行：while ((gr = gr_next ()) != ... ) { sg = sgr_locate (gr->gr_name);",
+        "evidence_decompiled_line": "反编译第67行：const struct group *gr;；第124-125行：while ((gr = gr_next ()) != NULL) { sg = sgr_locate (gr->gr_name);"
+      },
+      {
+        "source_role": "局部变量（组记录的栈上可修改副本）",
+        "source_type": "struct group",
+        "decompiled_type": "struct group",
+        "match": "correct",
+        "evidence_source_line": "源码第827行：struct group grent;；第913-915行：grent = *gr; grent.gr_passwd = sg->sg_passwd; if (gr_update (&grent) == 0)",
+        "evidence_decompiled_line": "反编译第68行：struct group grent;；第129-131行：grent = *gr; grent.gr_passwd = sg->sg_passwd; if (gr_update (&grent) == 0)"
+      },
+      {
+        "source_role": "局部变量（由 sgr_locate 返回、读取影子组口令的只读指针）",
+        "source_type": "const struct sgrp *",
+        "decompiled_type": "const struct sgrp *",
+        "match": "correct",
+        "evidence_source_line": "源码第828行：const struct sgrp *sg;；第907-914行：sg = sgr_locate (gr->gr_name); ... grent.gr_passwd = sg->sg_passwd;",
+        "evidence_decompiled_line": "反编译第69行：const struct sgrp *sg;；第125-130行：sg = sgr_locate (gr->gr_name); ... grent.gr_passwd = sg->sg_passwd;"
+      },
+      {
+        "source_role": "结构体 group（局部对象 grent 及指针 gr 的目标类型）",
+        "source_type": "struct group；在指定源码文件内未给出完整定义，仅能观察到 gr_name、gr_passwd 字段及整结构复制",
+        "decompiled_type": "struct group；反编译文件仅包含 <grp.h>，未显式展开字段数量、偏移、大小和完整类型序列",
+        "match": "undeterminable",
+        "evidence_source_line": "源码第826-827行：const struct group *gr; struct group grent;；第907-915行使用 gr_name、gr_passwd 并执行 grent = *gr",
+        "evidence_decompiled_line": "反编译第11行：#include <grp.h>；第67-68行声明对应指针和对象；第124-131行使用 gr_name、gr_passwd 并执行 grent = *gr"
+      },
+      {
+        "source_role": "结构体 sgrp（局部指针 sg 的目标类型）",
+        "source_type": "struct sgrp { char *sg_name; char *sg_passwd; char **sg_adm; char **sg_mem; }",
+        "decompiled_type": "struct sgrp（来自 <gshadow.h>，指定反编译文件中无显式布局）",
+        "match": "undeterminable",
+        "evidence_source_line": "源码第35-40行：struct sgrp 的四字段定义依次为 char *、char *、char **、char **；第914行读取 sg->sg_passwd",
+        "evidence_decompiled_line": "反编译第12行：#include <gshadow.h>；第69行：const struct sgrp *sg;；第130行：grent.gr_passwd = sg->sg_passwd;"
+      }
+    ],
+    "reasoning": "按 ABI 位置，第1、2参数与返回类型逐项一致；按数据流，由 gr_next 返回并只读解引用的指针、其栈上整结构副本、以及由 sgr_locate 返回并读取口令字段的指针也逐项一致，未见 PTR-01、INT-01 或 main 的 FN-01 证据。main 内没有静态局部对象，故无可支持 SC-01 的实体。两侧可见的数据流支持局部变量类型恢复正确，但不得凭结构体名称相同判定布局：struct group 在两个指定文件中均未展开，struct sgrp 仅源码侧展开，反编译侧只有头文件引用，无法在不读取其他文件的前提下核验字段总数、偏移、大小和完整类型序列，因而 LAYOUT-01/ST-01 既不能确认也不能排除；free_discovery 总体只能判为 undeterminable。"
+  }
+]

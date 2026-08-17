@@ -1,0 +1,139 @@
+[
+  {
+    "function": "pkcs11_fetch_rsa_pubkey",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "函数返回值",
+        "source_type": "struct sshkey *",
+        "decompiled_type": "struct sshkey *",
+        "match": "correct",
+        "evidence_source_line": "2444: pkcs11_fetch_rsa_pubkey(struct pkcs11_provider *p, CK_ULONG slotidx, ...); 2571: return (key);（key 在 2457 行声明为 struct sshkey *）",
+        "evidence_decompiled_line": "69: pkcs11_fetch_rsa_pubkey(struct pkcs11_provider *p, CK_ULONG slotidx, CK_OBJECT_HANDLE *obj); 145: return (key);（key 在 77 行声明为 struct sshkey *）"
+      },
+      {
+        "source_role": "第1个参数",
+        "source_type": "struct pkcs11_provider *",
+        "decompiled_type": "struct pkcs11_provider *",
+        "match": "correct",
+        "evidence_source_line": "2444: pkcs11_fetch_rsa_pubkey(struct pkcs11_provider *p, CK_ULONG slotidx,; 2467: session = p->slotinfo[slotidx].session; 2468: f = p->function_list;",
+        "evidence_decompiled_line": "69: pkcs11_fetch_rsa_pubkey(struct pkcs11_provider *p, CK_ULONG slotidx, CK_OBJECT_HANDLE *obj); 85: f = p->function_list; 86: session = p->slotinfo[slotidx].session;"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "CK_ULONG",
+        "decompiled_type": "CK_ULONG",
+        "match": "correct",
+        "evidence_source_line": "2444: pkcs11_fetch_rsa_pubkey(struct pkcs11_provider *p, CK_ULONG slotidx,; 2467: session = p->slotinfo[slotidx].session; 2546: if (pkcs11_rsa_wrap(p, slotidx, &key_attr[0], rsa))",
+        "evidence_decompiled_line": "69: pkcs11_fetch_rsa_pubkey(struct pkcs11_provider *p, CK_ULONG slotidx, CK_OBJECT_HANDLE *obj); 86: session = p->slotinfo[slotidx].session; 128: if (pkcs11_rsa_wrap(p, slotidx, &key_attr[0], rsa))"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "CK_OBJECT_HANDLE *",
+        "decompiled_type": "CK_OBJECT_HANDLE *",
+        "match": "correct",
+        "evidence_source_line": "2445: CK_OBJECT_HANDLE *obj); 2471: rv = f->C_GetAttributeValue(session, *obj, key_attr, 3);",
+        "evidence_decompiled_line": "69: pkcs11_fetch_rsa_pubkey(struct pkcs11_provider *p, CK_ULONG slotidx, CK_OBJECT_HANDLE *obj); 89: rv = f->C_GetAttributeValue(session, *obj, key_attr, 3);"
+      },
+      {
+        "source_role": "局部变量 key_attr",
+        "source_type": "CK_ATTRIBUTE[3]",
+        "decompiled_type": "CK_ATTRIBUTE[3]",
+        "match": "correct",
+        "evidence_source_line": "2447: CK_ATTRIBUTE key_attr[3]; 2462: memset(&key_attr, 0, sizeof(key_attr)); 2497-2499: for (i = 0; i < 3; i++) ... key_attr[i].pValue = xcalloc(1, key_attr[i].ulValueLen);",
+        "evidence_decompiled_line": "71: CK_ATTRIBUTE key_attr[3]; 80: memset(key_attr, 0, sizeof(key_attr)); 102-104: for (i = 0; i < 3; i++) ... key_attr[i].pValue = xcalloc(1, key_attr[i].ulValueLen);"
+      },
+      {
+        "source_role": "局部变量 session",
+        "source_type": "CK_SESSION_HANDLE",
+        "decompiled_type": "CK_SESSION_HANDLE",
+        "match": "correct",
+        "evidence_source_line": "2448: CK_SESSION_HANDLE session; 2467: session = p->slotinfo[slotidx].session; 2471: rv = f->C_GetAttributeValue(session, *obj, key_attr, 3);",
+        "evidence_decompiled_line": "72: CK_SESSION_HANDLE session; 86: session = p->slotinfo[slotidx].session; 89: rv = f->C_GetAttributeValue(session, *obj, key_attr, 3);"
+      },
+      {
+        "source_role": "局部变量 f",
+        "source_type": "CK_FUNCTION_LIST *",
+        "decompiled_type": "CK_FUNCTION_LIST *",
+        "match": "correct",
+        "evidence_source_line": "2449-2451: CK_FUNCTION_LIST *f = ((void *)0); 2468: f = p->function_list; 2471: rv = f->C_GetAttributeValue(...);",
+        "evidence_decompiled_line": "73: CK_FUNCTION_LIST *f; 85: f = p->function_list; 89: rv = f->C_GetAttributeValue(...);"
+      },
+      {
+        "source_role": "局部变量 rv",
+        "source_type": "CK_RV",
+        "decompiled_type": "CK_RV",
+        "match": "correct",
+        "evidence_source_line": "2452: CK_RV rv; 2471: rv = f->C_GetAttributeValue(...); 2472: if (rv != (0))",
+        "evidence_decompiled_line": "74: CK_RV rv; 89: rv = f->C_GetAttributeValue(...); 90: if (rv != CKR_OK)"
+      },
+      {
+        "source_role": "局部变量 rsa",
+        "source_type": "RSA *",
+        "decompiled_type": "RSA *",
+        "match": "correct",
+        "evidence_source_line": "2453-2455: RSA *rsa = ((void *)0); 2510: rsa = RSA_new(); 2536: if (!RSA_set0_key(rsa, rsa_n, rsa_e, ...)); 2569: RSA_free(rsa);",
+        "evidence_decompiled_line": "75: RSA *rsa = NULL; 114: if ((rsa = RSA_new()) == NULL); 125: if (!RSA_set0_key(rsa, rsa_n, rsa_e, NULL)); 143: RSA_free(rsa);"
+      },
+      {
+        "source_role": "局部变量 rsa_n",
+        "source_type": "BIGNUM *",
+        "decompiled_type": "BIGNUM *",
+        "match": "correct",
+        "evidence_source_line": "2456: BIGNUM *rsa_n, *rsa_e; 2520-2522: rsa_n = BN_bin2bn(key_attr[1].pValue, key_attr[1].ulValueLen, ((void *)0));",
+        "evidence_decompiled_line": "76: BIGNUM *rsa_n, *rsa_e; 119: rsa_n = BN_bin2bn(key_attr[1].pValue, key_attr[1].ulValueLen, NULL);"
+      },
+      {
+        "source_role": "局部变量 rsa_e",
+        "source_type": "BIGNUM *",
+        "decompiled_type": "BIGNUM *",
+        "match": "correct",
+        "evidence_source_line": "2456: BIGNUM *rsa_n, *rsa_e; 2523-2525: rsa_e = BN_bin2bn(key_attr[2].pValue, key_attr[2].ulValueLen, ((void *)0));",
+        "evidence_decompiled_line": "76: BIGNUM *rsa_n, *rsa_e; 120: rsa_e = BN_bin2bn(key_attr[2].pValue, key_attr[2].ulValueLen, NULL);"
+      },
+      {
+        "source_role": "局部变量 key",
+        "source_type": "struct sshkey *",
+        "decompiled_type": "struct sshkey *",
+        "match": "correct",
+        "evidence_source_line": "2457-2459: struct sshkey *key = ((void *)0); 2549: key = sshkey_new(KEY_UNSPEC); 2559-2561: key->rsa = rsa; key->type = KEY_RSA; key->flags |= 0x0001;",
+        "evidence_decompiled_line": "77: struct sshkey *key = NULL; 131: if ((key = sshkey_new(KEY_UNSPEC)) == NULL); 135-137: key->rsa = rsa; key->flags |= SSHKEY_FLAG_EXT; key->type = KEY_RSA;"
+      },
+      {
+        "source_role": "局部变量 i",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "2460: int i; 2497: for (i = 0; i < 3; i++); 2567: for (i = 0; i < 3; i++)",
+        "evidence_decompiled_line": "78: int i; 102: for (i = 0; i < 3; i++); 141: for (i = 0; i < 3; i++)"
+      },
+      {
+        "source_role": "结构体 CK_ATTRIBUTE",
+        "source_type": "函数体内可见字段角色序列为 type、pValue、ulValueLen；精确字段数、偏移和大小不可见",
+        "decompiled_type": "函数体内可见字段角色序列为 type、pValue、ulValueLen；精确字段数、偏移和大小不可见",
+        "match": "undeterminable",
+        "evidence_source_line": "2463-2465: key_attr[0].type = (0x102); key_attr[1].type = (0x120); key_attr[2].type = (0x122); 2486-2487: key_attr[1].ulValueLen == 0 || key_attr[2].ulValueLen == 0; 2499: key_attr[i].pValue = xcalloc(...);",
+        "evidence_decompiled_line": "81-83: key_attr[0].type = CKA_ID; key_attr[1].type = CKA_MODULUS; key_attr[2].type = CKA_PUBLIC_EXPONENT; 96: key_attr[1].ulValueLen == 0 || key_attr[2].ulValueLen == 0; 104: key_attr[i].pValue = xcalloc(...);"
+      },
+      {
+        "source_role": "结构体 pkcs11_provider（含 slotinfo 元素的 session 访问）",
+        "source_type": "struct pkcs11_provider；函数体仅显示 function_list 与 slotinfo[slotidx].session 的访问角色，偏移/大小不可见",
+        "decompiled_type": "struct pkcs11_provider；函数体仅显示 function_list 与 slotinfo[slotidx].session 的访问角色，偏移/大小不可见",
+        "match": "undeterminable",
+        "evidence_source_line": "2467: session = p->slotinfo[slotidx].session; 2468: f = p->function_list;",
+        "evidence_decompiled_line": "85: f = p->function_list; 86: session = p->slotinfo[slotidx].session;"
+      },
+      {
+        "source_role": "结构体 sshkey",
+        "source_type": "struct sshkey；函数体可见字段角色为 rsa、type、flags，精确字段数、偏移和大小不可见",
+        "decompiled_type": "struct sshkey；函数体可见字段角色为 rsa、flags、type，精确字段数、偏移和大小不可见",
+        "match": "undeterminable",
+        "evidence_source_line": "2559-2561: key->rsa = rsa; key->type = KEY_RSA; key->flags |= 0x0001;",
+        "evidence_decompiled_line": "135-137: key->rsa = rsa; key->flags |= SSHKEY_FLAG_EXT; key->type = KEY_RSA;"
+      }
+    ],
+    "reasoning": "按 ABI 位置而非变量名对齐：第1参数是被解引用以取得 provider 数据的指针，第2参数同时充当 slotinfo 索引并原样传给包装调用，第3参数在两次属性读取调用中均被解引用为对象句柄；返回值的数据流均来自 sshkey_new。所有局部变量可由相同的产生点、调用参数位置及清理用途对齐，未发现 PTR-01、INT-01 或 FN-01 的可证类型错误；源码函数内没有静态局部对象，故无证据支持 SC-01。另一方面，限定只看本函数时，三个结构体均没有完整定义、字段偏移或 sizeof 数值；同名声明和相同字段访问角色不足以排除 ST-01，也不足以验证 LAYOUT-01。因此结构体恢复及总体 free_discovery 结论证据不足，严格给出 undeterminable。"
+  }
+]

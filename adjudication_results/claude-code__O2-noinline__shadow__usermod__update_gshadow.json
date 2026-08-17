@@ -1,0 +1,91 @@
+[
+  {
+    "function": "update_gshadow",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "函数签名（无参数）",
+        "source_type": "static void (void)",
+        "decompiled_type": "void (void)",
+        "match": "correct",
+        "evidence_source_line": "2053: static void update_gshadow (void)",
+        "evidence_decompiled_line": "66: void update_gshadow(void)"
+      },
+      {
+        "source_role": "局部变量：成员保留/新增决策状态",
+        "source_type": "_Bool",
+        "decompiled_type": "int",
+        "match": "wrong",
+        "evidence_source_line": "2056-2057: _Bool is_member; 2096-2097: is_member = Gflg && ((was_member && aflg) || is_on_list(user_groups, sgrp->sg_name)); 2107-2108: if (Gflg && rflg) { is_member = !is_member; }",
+        "evidence_decompiled_line": "73: int keep; 87: keep = 0; 91: keep = aflg; 93-94: keep = is_on_list(user_groups, sgrp->sg_namp) ? Gflg : 0; 104-105: keep ^= 1; 147: else ... (keep)"
+      },
+      {
+        "source_role": "局部变量：原成员状态",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "2059-2060: _Bool was_member; 2085: was_member = is_on_list (sgrp->sg_mem, user_name);",
+        "evidence_decompiled_line": "70: bool was_member; 76: was_member = is_on_list(sgrp->sg_mem, user_name);"
+      },
+      {
+        "source_role": "局部变量：原管理员状态",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "2062-2063: _Bool was_admin; 2090: was_admin = is_on_list (sgrp->sg_adm, user_name);",
+        "evidence_decompiled_line": "71: bool was_admin; 77: was_admin = is_on_list(sgrp->sg_adm, user_name);"
+      },
+      {
+        "source_role": "局部变量：条目是否发生修改",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "2065-2066: _Bool changed; 2070-2072: changed = 0; 2129-2131: changed = 1;",
+        "evidence_decompiled_line": "72: bool changed; 117: changed = false; 126: changed = true;"
+      },
+      {
+        "source_role": "局部变量：当前只读 gshadow 条目",
+        "source_type": "const struct sgrp *",
+        "decompiled_type": "const struct sgrp *",
+        "match": "correct",
+        "evidence_source_line": "2067: const struct sgrp *sgrp; 2078: while ((sgrp = sgr_next ()) != NULL); 2111: nsgrp = __sgr_dup (sgrp);",
+        "evidence_decompiled_line": "68: const struct sgrp *sgrp; 75: while ((sgrp = getsgent()) != NULL); 109: nsgrp = __sgr_dup(sgrp);"
+      },
+      {
+        "source_role": "局部变量及 free 目标：可修改的复制条目",
+        "source_type": "struct sgrp *",
+        "decompiled_type": "struct sgrp *",
+        "match": "correct",
+        "evidence_source_line": "2068: struct sgrp *nsgrp; 2111: nsgrp = __sgr_dup (sgrp); 2321: free (nsgrp);",
+        "evidence_decompiled_line": "69: struct sgrp *nsgrp; 109: nsgrp = __sgr_dup(sgrp); 168: free(nsgrp);"
+      },
+      {
+        "source_role": "宏展开局部变量：setlocale 返回指针 old_locale（各 SYSLOG 块同型）",
+        "source_type": "char *",
+        "decompiled_type": "char *（与保存副本复用为单个 _saved 临时量）",
+        "match": "correct",
+        "evidence_source_line": "2137-2145: char *old_locale = setlocale(6, NULL); ... saved_locale = strdup(old_locale);（同型实例还见 2181-2189、2219-2227、2256-2264、2296-2304）",
+        "evidence_decompiled_line": "55-56: char *_saved = setlocale(LC_ALL, NULL); ... (_saved = strdup(_saved)) != NULL"
+      },
+      {
+        "source_role": "宏展开局部变量及 free 目标：locale 堆副本 saved_locale（各 SYSLOG 块同型）",
+        "source_type": "char *",
+        "decompiled_type": "char *（单个 _saved 临时量的 strdup 后状态）",
+        "match": "correct",
+        "evidence_source_line": "2141-2145: char *saved_locale = NULL; ... saved_locale = strdup(old_locale); 2153-2155: setlocale(6, saved_locale); free(saved_locale);（其余同型实例见 2185-2199、2223-2237、2260-2274、2300-2314）",
+        "evidence_decompiled_line": "55-60: char *_saved = setlocale(...); ... _saved = strdup(_saved); setlocale(LC_ALL, _saved); free(_saved);"
+      },
+      {
+        "source_role": "结构体 sgrp（当前条目和复制条目的共同布局）",
+        "source_type": "struct sgrp；本函数仅可见名称字符串字段、管理员列表字段、成员列表字段的用途，完整字段数/偏移/大小不可见",
+        "decompiled_type": "struct sgrp { char * @+0x00; char * @+0x08; char ** @+0x10; char ** @+0x18; }",
+        "match": "undeterminable",
+        "evidence_source_line": "2085: sgrp->sg_mem; 2090: sgrp->sg_adm; 2097: sgrp->sg_name; 2127-2128: nsgrp->sg_adm 经 del_list/add_list 更新; 2169-2172: nsgrp->sg_mem 经 del_list/add_list 更新",
+        "evidence_decompiled_line": "16-22: struct sgrp 显式声明四个字段及 +0x00/+0x08/+0x10/+0x18 偏移；76-77、93、124-125、134 使用对应字符串列表/名称角色"
+      }
+    ],
+    "reasoning": "函数没有 ABI 参数，返回类型和无参数签名一致；源码的 static 缺失只改变 C 链接可见性，不构成参数/返回原型错配。按数据流而非名称对齐，反编译局部 keep 承担源码 is_member 的成员决策、取反和条件使用角色，但被声明为 int 而非 _Bool，确认 INT-01；其余直接可对齐局部变量的指针层级、const 方向和布尔类型正确，free(nsgrp) 与宏内 free(locale 副本) 也均被发现且释放目标类型正确。未发现静态局部对象被外部化或指针层级坍塌。源码函数体未给出 struct sgrp 的完整定义和字段偏移，故无法仅凭允许范围确认或否定 ST-01/LAYOUT-01；反编译布局只能对三个被访问字段的数据流角色进行部分对齐。"
+  }
+]

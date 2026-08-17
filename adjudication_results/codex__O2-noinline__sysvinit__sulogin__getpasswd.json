@@ -1,0 +1,291 @@
+[
+  {
+    "function": "getpasswd",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "struct console *",
+        "decompiled_type": "struct console *",
+        "match": "correct",
+        "evidence_source_line": "667: char *getpasswd(struct console *con)",
+        "evidence_decompiled_line": "36: char *getpasswd(struct console *con)"
+      }
+    ],
+    "reasoning": "ABI 第1参数及其所有字段访问均保持为指向 console 的指针，未见指针层级变化。"
+  },
+  {
+    "function": "getpasswd",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "静态局部对象pass",
+        "source_type": "static char[128]",
+        "decompiled_type": "static char[128] password",
+        "match": "correct",
+        "evidence_source_line": "669: static char pass[128], *ptr;",
+        "evidence_decompiled_line": "38: static char password[128];"
+      }
+    ],
+    "reasoning": "对象仍在函数体内声明为 static 数组，仅发生重命名；没有被恢复成全局外部对象，SC-01 不成立。"
+  },
+  {
+    "function": "getpasswd",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "静态局部对象ptr",
+        "source_type": "static char *",
+        "decompiled_type": "static char *",
+        "match": "correct",
+        "evidence_source_line": "669: static char pass[128], *ptr;",
+        "evidence_decompiled_line": "39: static char *ptr;"
+      }
+    ],
+    "reasoning": "静态游标仍为 char*，并在 password 缓冲区上递增/回退。"
+  },
+  {
+    "function": "getpasswd",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量sa",
+        "source_type": "struct sigaction",
+        "decompiled_type": "struct sigaction action",
+        "match": "correct",
+        "evidence_source_line": "670: struct sigaction sa;",
+        "evidence_decompiled_line": "41: struct sigaction action;"
+      }
+    ],
+    "reasoning": "同一局部结构被写入 sa_handler/sa_flags 后传给 sigaction，名称变化不影响类型。"
+  },
+  {
+    "function": "getpasswd",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "局部变量cp",
+        "source_type": "struct chardata *",
+        "decompiled_type": "未保留局部指针；直接访问con->erase/kill/eol/parity",
+        "match": "undeterminable",
+        "evidence_source_line": "671-682: struct chardata *cp; ... cp = &con->cp;",
+        "evidence_decompiled_line": "63,97,113,121,125: 直接访问con->eol、con->parity、con->erase、con->kill"
+      }
+    ],
+    "reasoning": "数据流等价于cp指向con->cp，但局部指针可能被优化消除；仅凭输出无法判定是合法消除还是PTR-01层级坍塌。"
+  },
+  {
+    "function": "getpasswd",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量tty",
+        "source_type": "struct termios",
+        "decompiled_type": "struct termios tio",
+        "match": "correct",
+        "evidence_source_line": "672,684: struct termios tty; tty = con->tio;",
+        "evidence_decompiled_line": "40,50: struct termios tio; tio = con->tio;"
+      }
+    ],
+    "reasoning": "完整 termios 局部副本及其 c_iflag/c_lflag/c_cflag 数据流一致。"
+  },
+  {
+    "function": "getpasswd",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量ret",
+        "source_type": "char *",
+        "decompiled_type": "char * result",
+        "match": "correct",
+        "evidence_source_line": "673: char *ret = pass;",
+        "evidence_decompiled_line": "42,84-85,140,149: char *result; ... result = NULL/password; return result"
+      }
+    ],
+    "reasoning": "返回值在成功路径指向静态字符数组、错误路径为NULL，指针层级一致。"
+  },
+  {
+    "function": "getpasswd",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "局部变量tc",
+        "source_type": "unsigned char",
+        "decompiled_type": "int termios_error",
+        "match": "wrong",
+        "evidence_source_line": "674,707-709: unsigned char tc; tc = (tcsetattr(...) == 0);",
+        "evidence_decompiled_line": "45,53,144: int termios_error; termios_error = tcsetattr(...); if (termios_error == 0)"
+      }
+    ],
+    "reasoning": "源码保存的是布尔结果的 unsigned char，反编译结果保存 tcsetattr 原始 int 返回值，宽度/语义类型不同，属于INT-01。"
+  },
+  {
+    "function": "getpasswd",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "局部变量c",
+        "source_type": "char",
+        "decompiled_type": "unsigned char ch（与ascval合并）",
+        "match": "wrong",
+        "evidence_source_line": "675,731,771-773: char c, ascval; read(fd, &c, 1);",
+        "evidence_decompiled_line": "43,70,88-99: unsigned char ch; read(con->fd, &ch, 1); 并原地改写ch"
+      }
+    ],
+    "reasoning": "两个源码 char 局部被合并成一个 unsigned char，且丢失c与ascval之间的独立类型/数据流，属于整数符号及变量恢复差异。"
+  },
+  {
+    "function": "getpasswd",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "局部变量ascval",
+        "source_type": "char",
+        "decompiled_type": "无独立变量；复用unsigned char ch",
+        "match": "wrong",
+        "evidence_source_line": "675,771-782: char c, ascval; ascval用于后续switch",
+        "evidence_decompiled_line": "43,88-101: unsigned char ch经掩码后直接用于switch"
+      }
+    ],
+    "reasoning": "ascval的独立局部实体未恢复，并与输入变量ch合并，不能视为精确类型/变量恢复。"
+  },
+  {
+    "function": "getpasswd",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量eightbit",
+        "source_type": "int",
+        "decompiled_type": "int eight_bit",
+        "match": "correct",
+        "evidence_source_line": "676,725-729: int eightbit; 以布尔表达式赋值",
+        "evidence_decompiled_line": "44,65-67: int eight_bit; 同样按flags/c_cflag计算"
+      }
+    ],
+    "reasoning": "宽度与有符号整数类别一致，且控制流用途完全对应。"
+  },
+  {
+    "function": "getpasswd",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "局部变量fd",
+        "source_type": "int",
+        "decompiled_type": "无独立变量；直接使用con->fd",
+        "match": "undeterminable",
+        "evidence_source_line": "677,681,731,837: int fd; fd = con->fd; 后续以fd调用",
+        "evidence_decompiled_line": "45,53,70,145: 直接以con->fd调用"
+      }
+    ],
+    "reasoning": "直接字段访问保持同一值，可能是合法的局部变量消除；输出不足以证明PTR-01或其他错误。"
+  },
+  {
+    "function": "getpasswd",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "局部变量bits",
+        "source_type": "uint32_t",
+        "decompiled_type": "unsigned int bits",
+        "match": "undeterminable",
+        "evidence_source_line": "774-779: uint32_t bits, mask; bits参与奇偶计数",
+        "evidence_decompiled_line": "90,95,97: unsigned int bits; ++bits并参与同样判断"
+      }
+    ],
+    "reasoning": "数据流一致，但仅凭两文件不能证明目标ABI上unsigned int与uint32_t的宽度/typedef完全相同。"
+  },
+  {
+    "function": "getpasswd",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "局部变量mask",
+        "source_type": "uint32_t",
+        "decompiled_type": "unsigned int mask",
+        "match": "undeterminable",
+        "evidence_source_line": "774-775: uint32_t bits, mask; mask按位移位",
+        "evidence_decompiled_line": "91,93: unsigned int mask; mask按位移位"
+      }
+    ],
+    "reasoning": "用途和循环边界一致，但unsigned int相对uint32_t的精确宽度无法由这两份文件单独确定。"
+  },
+  {
+    "function": "getpasswd",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "结构体console",
+        "source_type": "含struct chardata cp嵌套字段的console",
+        "decompiled_type": "将erase/kill/eol/parity四个字段直接置于console",
+        "match": "wrong",
+        "evidence_source_line": "16-26: struct console含struct chardata cp; struct chardata含4个uint8_t字段",
+        "evidence_decompiled_line": "10-22: console直接含cc_t erase/kill/eol及unsigned char parity，无cp字段"
+      }
+    ],
+    "reasoning": "虽然四字节区域及后续termios偏移可相同，但字段数量和嵌套类型序列不同，按显式布局规则属于LAYOUT-01。"
+  },
+  {
+    "function": "getpasswd",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "结构体chardata",
+        "source_type": "uint8_t erase, kill, eol, parity",
+        "decompiled_type": "未定义；字段被展平为console中的cc_t/unsigned char",
+        "match": "wrong",
+        "evidence_source_line": "10-15: struct chardata四个uint8_t字段",
+        "evidence_decompiled_line": "17-20: console直接声明erase/kill/eol/parity"
+      }
+    ],
+    "reasoning": "独立结构体实体未恢复，字段被并入外层结构；字段序列虽可能同偏移，但结构体类型恢复不一致。"
+  },
+  {
+    "function": "getpasswd",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "结构体console.flags",
+        "source_type": "uint32_t",
+        "decompiled_type": "int",
+        "match": "wrong",
+        "evidence_source_line": "19: uint32_t flags;",
+        "evidence_decompiled_line": "13: int flags;"
+      }
+    ],
+    "reasoning": "字段宽度通常同为32位但源码明确为无符号uint32_t，反编译声明为有符号int，属于INT-01类型/符号恢复差异。"
+  }
+]

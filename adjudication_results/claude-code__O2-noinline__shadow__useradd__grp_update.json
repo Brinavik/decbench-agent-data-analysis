@@ -1,0 +1,83 @@
+[
+  {
+    "function": "grp_update",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "函数签名（无参数）",
+        "source_type": "static void (void)",
+        "decompiled_type": "void (void)",
+        "match": "correct",
+        "evidence_source_line": "2112: static void grp_update (void)",
+        "evidence_decompiled_line": "54: void grp_update(void)"
+      },
+      {
+        "source_role": "局部变量：普通组记录只读迭代指针（由组枚举函数返回，随后读取组名并传给复制函数）",
+        "source_type": "const struct group *",
+        "decompiled_type": "struct group *",
+        "match": "wrong",
+        "evidence_source_line": "2114: const struct group *grp; 2120: for (gr_rewind (), grp = gr_next (); 2128: if (!is_on_list (user_groups, grp->gr_name)) { 2136: ngrp = __gr_dup (grp);",
+        "evidence_decompiled_line": "56: struct group *grp; 66: while ((grp = getgrent()) != NULL) { 71: grp_update (!is_on_list(user_groups, grp->gr_name)) { 78: ngrp = __gr_dup(grp);"
+      },
+      {
+        "source_role": "局部变量：普通组记录的可修改副本指针（由复制函数产生，修改成员列表后提交更新）",
+        "source_type": "struct group *",
+        "decompiled_type": "struct group *",
+        "match": "correct",
+        "evidence_source_line": "2115: struct group *ngrp; 2136: ngrp = __gr_dup (grp); 2179: ngrp->gr_mem = add_list (ngrp->gr_mem, user_name); 2180: if (gr_update (ngrp) == 0) {",
+        "evidence_decompiled_line": "57: struct group *ngrp; 78: ngrp = __gr_dup(grp); 92: ngrp->gr_mem = add_list(ngrp->gr_mem, user_name); 93: grp_update (gr_update(ngrp) == 0) {"
+      },
+      {
+        "source_role": "局部变量：影子组记录只读迭代指针（由影子组枚举函数返回，读取名称后传给复制函数）",
+        "source_type": "const struct sgrp *",
+        "decompiled_type": "struct sgrp *",
+        "match": "wrong",
+        "evidence_source_line": "2118: const struct sgrp *sgrp; 2255: for (sgr_rewind (), sgrp = sgr_next (); 2258: if (gr_locate (sgrp->sg_name) == 2272: nsgrp = __sgr_dup (sgrp);",
+        "evidence_decompiled_line": "58: struct sgrp *sgrp; 116: while ((sgrp = getsgent()) != NULL) { 121: grp_update (gr_locate(sgrp->sg_namp) == NULL) { 136: nsgrp = __sgr_dup(sgrp);"
+      },
+      {
+        "source_role": "局部变量：影子组记录的可修改副本指针（由复制函数产生，修改成员列表后提交更新）",
+        "source_type": "struct sgrp *",
+        "decompiled_type": "struct sgrp *",
+        "match": "correct",
+        "evidence_source_line": "2119: struct sgrp *nsgrp; 2272: nsgrp = __sgr_dup (sgrp); 2315: nsgrp->sg_mem = add_list (nsgrp->sg_mem, user_name); 2316: if (sgr_update (nsgrp) == 0) {",
+        "evidence_decompiled_line": "59: struct sgrp *nsgrp; 136: nsgrp = __sgr_dup(sgrp); 150: nsgrp->sg_mem = add_list(nsgrp->sg_mem, user_name); 151: grp_update (sgr_update(nsgrp) == 0) {"
+      },
+      {
+        "source_role": "块作用域局部变量组：SYSLOG 展开中的当前 locale 指针（各日志块重复出现）",
+        "source_type": "char *",
+        "decompiled_type": "未显式声明（反编译结果以 SYSLOG 宏调用表示该逻辑）",
+        "match": "undeterminable",
+        "evidence_source_line": "2145: do { char *old_locale = setlocale (",
+        "evidence_decompiled_line": "83: SYSLOG((LOG_ERR,"
+      },
+      {
+        "source_role": "块作用域局部变量组：SYSLOG 展开中的已保存 locale 指针（各日志块重复出现）",
+        "source_type": "char *",
+        "decompiled_type": "未显式声明（反编译结果以 SYSLOG 宏调用表示该逻辑）",
+        "match": "undeterminable",
+        "evidence_source_line": "2149: ); char *saved_locale =",
+        "evidence_decompiled_line": "83: SYSLOG((LOG_ERR,"
+      },
+      {
+        "source_role": "结构体 group（本函数可观察到名称字段和成员列表字段）",
+        "source_type": "struct group；本函数仅能观察名称字段被读取、成员列表字段被读取并回写，完整字段数量、偏移、大小和类型序列不可见",
+        "decompiled_type": "struct group；同样以名称字段读取和成员列表字段读写使用，未给出显式布局",
+        "match": "undeterminable",
+        "evidence_source_line": "2128: if (!is_on_list (user_groups, grp->gr_name)) { 2179: ngrp->gr_mem = add_list (ngrp->gr_mem, user_name);",
+        "evidence_decompiled_line": "71: grp_update (!is_on_list(user_groups, grp->gr_name)) { 92: ngrp->gr_mem = add_list(ngrp->gr_mem, user_name);"
+      },
+      {
+        "source_role": "结构体 sgrp（本函数可观察到名称角色字段和成员列表字段）",
+        "source_type": "struct sgrp；本函数仅能观察名称角色字段被读取、成员列表字段被读取并回写，完整字段数量、偏移、大小和类型序列不可见",
+        "decompiled_type": "struct sgrp；名称角色字段拼写为 sg_namp、成员列表字段为 sg_mem，但未给出显式布局",
+        "match": "undeterminable",
+        "evidence_source_line": "2258: if (gr_locate (sgrp->sg_name) == 2315: nsgrp->sg_mem = add_list (nsgrp->sg_mem, user_name);",
+        "evidence_decompiled_line": "121: grp_update (gr_locate(sgrp->sg_namp) == NULL) { 150: nsgrp->sg_mem = add_list(nsgrp->sg_mem, user_name);"
+      }
+    ],
+    "reasoning": "函数无 ABI 参数。四个主局部变量按产生位置和用途对齐：两个枚举返回值只被读取并作为复制源，两个复制结果的成员列表被修改后传给更新函数；因此不依赖变量名即可确认指针层级均为一级结构体指针。反编译结果将两个源侧 const struct 指针恢复成了可修改 struct 指针，构成明确的类型限定符丢失，所以 free_discovery 判为 confirmed；未发现 PTR-01 或 INT-01 的证据。源码的 static 是函数链接属性，不是 SC-01 所述的静态局部对象，且 void(void) 原型一致，故不能据此确认 SC-01 或 FN-01。sgrp 的 sg_name/sg_namp 拼写差异不能作为对齐依据；两者在数据流中都承担名称字符串角色。由于限定范围内没有 struct group 或 struct sgrp 的完整定义，也没有字段偏移和对象大小，ST-01 与 LAYOUT-01 均证据不足，结构体布局只能标记 undeterminable。SYSLOG 展开产生的 char * 块局部在反编译文本中被重新抽象为宏调用，缺少可单独对齐的声明，因此也标记 undeterminable。"
+  }
+]

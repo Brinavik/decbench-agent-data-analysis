@@ -1,0 +1,91 @@
+[
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "459:     int argc; 以及 479:     argc--, argv++;、486:     while (argc > 0)",
+        "evidence_decompiled_line": "13: int main(int argc, char **argv) 以及 29:     argc--;、37:     while (argc > 0)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "char **（源码写作 char *argv[]）",
+        "decompiled_type": "char **",
+        "match": "correct",
+        "evidence_source_line": "460:     char *argv[]; 以及 473:     prog = argv[0];、479:     argc--, argv++;",
+        "evidence_decompiled_line": "13: int main(int argc, char **argv) 以及 23:     prog = argv[0];、30:     argv++;"
+      },
+      {
+        "source_role": "局部变量 copyout",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "462:     int copyout = 0; 以及 488:         copyout = 1;、531:         if (copyout)",
+        "evidence_decompiled_line": "15:     int copyout = 0; 以及 39:             copyout = 1;、76:                 if (copyout)"
+      },
+      {
+        "source_role": "局部变量 uncompr",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "463:     int uncompr = 0; 以及 482:       uncompr = 1;、509:         if (uncompr)",
+        "evidence_decompiled_line": "16:     int uncompr = 0; 以及 33:         uncompr = 1;、62:         if (uncompr)"
+      },
+      {
+        "source_role": "局部变量 file",
+        "source_type": "gzFile，即 struct gzFile_s *",
+        "decompiled_type": "gzFile",
+        "match": "correct",
+        "evidence_source_line": "170: typedef struct gzFile_s *gzFile; 以及 464:     gzFile file;、510:             file = gzdopen(...)",
+        "evidence_decompiled_line": "4: #include <zlib.h>；17:     gzFile file; 以及 63:             file = gzdopen(fileno(stdin), \"rb\");"
+      },
+      {
+        "source_role": "局部变量 bname",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "465:     char *bname, outmode[20]; 以及 474:     bname = strrchr(argv[0], '/');、476:       bname++;",
+        "evidence_decompiled_line": "18:     char *bname; 以及 24:     bname = strrchr(argv[0], '/');、26:         bname++;"
+      },
+      {
+        "source_role": "局部变量 outmode",
+        "source_type": "char[20]",
+        "decompiled_type": "char[20]",
+        "match": "correct",
+        "evidence_source_line": "465:     char *bname, outmode[20]; 以及 468:     snprintf(outmode, sizeof(outmode), \"%s\", \"wb6 \");、492:         outmode[3] = 'f';",
+        "evidence_decompiled_line": "19:     char outmode[20]; 以及 21:     strcpy(outmode, \"wb6 \");、43:             outmode[3] = 'f';"
+      },
+      {
+        "source_role": "分支内局部变量 in",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "553:                     FILE * in = fopen(*argv, \"rb\"); 以及 567:                         gz_compress(in, file);",
+        "evidence_decompiled_line": "87:                     FILE *in = fopen(*argv, \"rb\"); 以及 95:                         gz_compress(in, file);"
+      },
+      {
+        "source_role": "main 访问的文件作用域静态对象 prog",
+        "source_type": "static char *（文件内链接）",
+        "decompiled_type": "extern char *（外部链接）",
+        "match": "wrong",
+        "evidence_source_line": "273: static char *prog; 以及 473:     prog = argv[0];",
+        "evidence_decompiled_line": "6: extern char *prog; 以及 23:     prog = argv[0];"
+      },
+      {
+        "source_role": "结构体 gzFile_s",
+        "source_type": "struct gzFile_s { unsigned have; unsigned char *next; off64_t pos; }",
+        "decompiled_type": "未在该反编译函数文件中显式展开；仅通过 gzFile 使用",
+        "match": "undeterminable",
+        "evidence_source_line": "233: struct gzFile_s {；234:     unsigned have;；235:     unsigned char *next;；236:     off64_t pos;；237: };",
+        "evidence_decompiled_line": "4: #include <zlib.h>；17:     gzFile file;（没有可核对字段偏移、大小或类型序列的显式定义）"
+      }
+    ],
+    "reasoning": "按 ABI 位置，第1、2个参数分别稳定对应 int argc 与 char **argv；各自动局部变量依据初始化、数组下标、指针递增、库调用实参位置及分支用途均可一一对齐，未发现 PTR-01、INT-01 或 FN-01。源码的 prog 是文件作用域 static char *，反编译结果却声明为 extern char *，且二者都由 argv[0] 赋值，数据流确认是同一实体，因此确认存在 SC-01 类的内部链接对象被恢复为外部对象的问题。gzFile_s 在源码中有三字段显式布局，但反编译结果未展开该结构体，故 LAYOUT-01 不能确认也不能排除；没有证据支持 ST-01。"
+  }
+]

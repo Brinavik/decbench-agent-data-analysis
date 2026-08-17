@@ -1,0 +1,219 @@
+[
+  {
+    "function": "inflate_fast",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "z_streamp（即 struct z_stream_s *）",
+        "decompiled_type": "z_streamp（即 struct z_stream_s *）",
+        "match": "correct",
+        "evidence_source_line": "386: z_streamp strm; 416: state = (struct inflate_state *)strm->state;",
+        "evidence_decompiled_line": "103: void inflate_fast(z_streamp strm, unsigned start); 127: state = (struct inflate_state *)strm->state;"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "unsigned int",
+        "decompiled_type": "unsigned int",
+        "match": "correct",
+        "evidence_source_line": "387: unsigned start; 420: beg = out - (start - strm->avail_out);",
+        "evidence_decompiled_line": "103: void inflate_fast(z_streamp strm, unsigned start); 131: beg = out - (start - strm->avail_out);"
+      },
+      {
+        "source_role": "局部变量state（由第1参数的state字段取得的解压状态）",
+        "source_type": "struct inflate_state *",
+        "decompiled_type": "struct inflate_state *",
+        "match": "correct",
+        "evidence_source_line": "389: struct inflate_state *state; 416: state = (struct inflate_state *)strm->state;",
+        "evidence_decompiled_line": "105: struct inflate_state *state; 127: state = (struct inflate_state *)strm->state;"
+      },
+      {
+        "source_role": "局部变量in（当前输入游标）",
+        "source_type": "unsigned char *",
+        "decompiled_type": "const unsigned char *",
+        "match": "wrong",
+        "evidence_source_line": "390: unsigned char *in; 417: in = strm->next_in;",
+        "evidence_decompiled_line": "106: const unsigned char *in; 128: in = strm->next_in;"
+      },
+      {
+        "source_role": "局部变量last（快速循环的输入边界）",
+        "source_type": "unsigned char *",
+        "decompiled_type": "const unsigned char *",
+        "match": "wrong",
+        "evidence_source_line": "391: unsigned char *last; 418: last = in + (strm->avail_in - 5);",
+        "evidence_decompiled_line": "107: const unsigned char *last; 129: last = in + (strm->avail_in - 5);"
+      },
+      {
+        "source_role": "局部变量out（当前输出游标）",
+        "source_type": "unsigned char *",
+        "decompiled_type": "unsigned char *",
+        "match": "correct",
+        "evidence_source_line": "392: unsigned char *out; 419: out = strm->next_out;",
+        "evidence_decompiled_line": "108: unsigned char *out; 130: out = strm->next_out;"
+      },
+      {
+        "source_role": "局部变量beg（本次输出起点）",
+        "source_type": "unsigned char *",
+        "decompiled_type": "unsigned char *",
+        "match": "correct",
+        "evidence_source_line": "393: unsigned char *beg; 420: beg = out - (start - strm->avail_out);",
+        "evidence_decompiled_line": "109: unsigned char *beg; 131: beg = out - (start - strm->avail_out);"
+      },
+      {
+        "source_role": "局部变量end（快速循环的输出边界）",
+        "source_type": "unsigned char *",
+        "decompiled_type": "unsigned char *",
+        "match": "correct",
+        "evidence_source_line": "394: unsigned char *end; 421: end = out + (strm->avail_out - 257);",
+        "evidence_decompiled_line": "110: unsigned char *end; 132: end = out + (strm->avail_out - 257);"
+      },
+      {
+        "source_role": "局部变量wsize（滑动窗口大小）",
+        "source_type": "unsigned int",
+        "decompiled_type": "unsigned int",
+        "match": "correct",
+        "evidence_source_line": "398: unsigned wsize; 425: wsize = state->wsize;",
+        "evidence_decompiled_line": "111: unsigned wsize; 133: wsize = state->wsize;"
+      },
+      {
+        "source_role": "局部变量whave（窗口内有效字节数）",
+        "source_type": "unsigned int",
+        "decompiled_type": "unsigned int",
+        "match": "correct",
+        "evidence_source_line": "399: unsigned whave; 426: whave = state->whave;",
+        "evidence_decompiled_line": "112: unsigned whave; 134: whave = state->whave;"
+      },
+      {
+        "source_role": "局部变量wnext（窗口下一写入位置）",
+        "source_type": "unsigned int",
+        "decompiled_type": "unsigned int",
+        "match": "correct",
+        "evidence_source_line": "400: unsigned wnext; 427: wnext = state->wnext;",
+        "evidence_decompiled_line": "113: unsigned wnext; 135: wnext = state->wnext;"
+      },
+      {
+        "source_role": "局部变量window（滑动窗口基址）",
+        "source_type": "unsigned char *",
+        "decompiled_type": "unsigned char *",
+        "match": "correct",
+        "evidence_source_line": "401: unsigned char *window; 428: window = state->window;",
+        "evidence_decompiled_line": "114: unsigned char *window; 136: window = state->window;"
+      },
+      {
+        "source_role": "局部变量hold（位输入缓冲）",
+        "source_type": "unsigned long",
+        "decompiled_type": "unsigned long",
+        "match": "correct",
+        "evidence_source_line": "402: unsigned long hold; 429: hold = state->hold;",
+        "evidence_decompiled_line": "115: unsigned long hold; 137: hold = state->hold;"
+      },
+      {
+        "source_role": "局部变量bits（hold中的有效位数）",
+        "source_type": "unsigned int",
+        "decompiled_type": "unsigned int",
+        "match": "correct",
+        "evidence_source_line": "403: unsigned bits; 430: bits = state->bits;",
+        "evidence_decompiled_line": "116: unsigned bits; 138: bits = state->bits;"
+      },
+      {
+        "source_role": "局部变量lcode（字面量/长度码表基址）",
+        "source_type": "const code *",
+        "decompiled_type": "const code *",
+        "match": "correct",
+        "evidence_source_line": "404: code const *lcode; 431: lcode = state->lencode;",
+        "evidence_decompiled_line": "117: const code *lcode; 139: lcode = state->lencode;"
+      },
+      {
+        "source_role": "局部变量dcode（距离码表基址）",
+        "source_type": "const code *",
+        "decompiled_type": "const code *",
+        "match": "correct",
+        "evidence_source_line": "405: code const *dcode; 432: dcode = state->distcode;",
+        "evidence_decompiled_line": "118: const code *dcode; 140: dcode = state->distcode;"
+      },
+      {
+        "source_role": "局部变量lmask（长度码表索引掩码）",
+        "source_type": "unsigned int",
+        "decompiled_type": "unsigned int",
+        "match": "correct",
+        "evidence_source_line": "406: unsigned lmask; 433: lmask = (1U << state->lenbits) - 1;",
+        "evidence_decompiled_line": "119: unsigned lmask; 141: lmask = (1U << state->lenbits) - 1;"
+      },
+      {
+        "source_role": "局部变量dmask（距离码表索引掩码）",
+        "source_type": "unsigned int",
+        "decompiled_type": "unsigned int",
+        "match": "correct",
+        "evidence_source_line": "407: unsigned dmask; 434: dmask = (1U << state->distbits) - 1;",
+        "evidence_decompiled_line": "120: unsigned dmask; 142: dmask = (1U << state->distbits) - 1;"
+      },
+      {
+        "source_role": "局部变量here（当前码表项的指针）",
+        "source_type": "const code *",
+        "decompiled_type": "code（按值对象）",
+        "match": "wrong",
+        "evidence_source_line": "408: code const *here; 445: here = lcode + (hold & lmask); 447: op = (unsigned)(here->bits);",
+        "evidence_decompiled_line": "121: code here; 151: here = lcode[hold & lmask]; 153: op = here.bits;"
+      },
+      {
+        "source_role": "局部变量op（码表操作/临时计数）",
+        "source_type": "unsigned int",
+        "decompiled_type": "unsigned int",
+        "match": "correct",
+        "evidence_source_line": "409: unsigned op; 450: op = (unsigned)(here->op);",
+        "evidence_decompiled_line": "122: unsigned op; 156: op = here.op;"
+      },
+      {
+        "source_role": "局部变量len（匹配长度/回退字节数）",
+        "source_type": "unsigned int",
+        "decompiled_type": "unsigned int",
+        "match": "correct",
+        "evidence_source_line": "411: unsigned len; 458: len = (unsigned)(here->val);",
+        "evidence_decompiled_line": "123: unsigned len; 161: len = here.val;"
+      },
+      {
+        "source_role": "局部变量dist（匹配距离）",
+        "source_type": "unsigned int",
+        "decompiled_type": "unsigned int",
+        "match": "correct",
+        "evidence_source_line": "412: unsigned dist; 483: dist = (unsigned)(here->val);",
+        "evidence_decompiled_line": "124: unsigned dist; 185: dist = here.val;"
+      },
+      {
+        "source_role": "局部变量from（匹配复制源游标）",
+        "source_type": "unsigned char *",
+        "decompiled_type": "unsigned char *",
+        "match": "correct",
+        "evidence_source_line": "413: unsigned char *from; 515: from = window;",
+        "evidence_decompiled_line": "125: unsigned char *from; 208: from = window;"
+      },
+      {
+        "source_role": "结构体code（码表项）",
+        "source_type": "3字段：unsigned char, unsigned char, unsigned short（顺序偏移0,1,2；通常大小4）",
+        "decompiled_type": "3字段：unsigned char, unsigned char, unsigned short（顺序偏移0,1,2；通常大小4）",
+        "match": "correct",
+        "evidence_source_line": "291-295: typedef struct { unsigned char op; unsigned char bits; unsigned short val; } code;",
+        "evidence_decompiled_line": "2-6: typedef struct { unsigned char op; unsigned char bits; unsigned short val; } code;"
+      },
+      {
+        "source_role": "结构体z_stream_s（第1参数所指对象）",
+        "source_type": "15字段z_stream；next_in为 unsigned char *，msg为 char *，其余字段布局见47-67行",
+        "decompiled_type": "15字段z_stream；next_in为 const unsigned char *，msg为 const char *，字段大小与顺序保持一致",
+        "match": "wrong",
+        "evidence_source_line": "47-67: struct z_stream_s依次含next_in/avail_in/total_in/next_out/avail_out/total_out/msg/state/zalloc/zfree/opaque/data_type/adler/reserved，其中48: Bytef *next_in，56: char *msg；8,17: Bytef为unsigned char",
+        "evidence_decompiled_line": "46-61: z_stream同样的15字段顺序，其中47: const unsigned char *next_in，53: const char *msg"
+      },
+      {
+        "source_role": "结构体inflate_state（state局部变量所指对象）",
+        "source_type": "35个标量/指针/数组字段；关键序列wsize,whave,wnext,window,hold,bits,lencode,distcode,lenbits,distbits及尾部codes[1444],sane,back,was",
+        "decompiled_type": "同样35个字段、相同类型序列和数组长度；gz_headerp被展开为struct gz_header_s *",
+        "match": "correct",
+        "evidence_source_line": "339-383: struct inflate_state完整字段；353-370为本函数读取的窗口、位缓冲和码表字段；379: code codes[(852 +592)]",
+        "evidence_decompiled_line": "65-101: struct inflate_state完整字段；76-89为对应窗口、位缓冲和码表字段；97: code codes[1444]"
+      }
+    ],
+    "reasoning": "按ABI位置，第1参数与第2参数分别稳定对应z_stream指针和unsigned start，函数签名无FN-01。局部量依据从strm/state取值、码表索引、位缓冲和复制游标的数据流逐一对齐。明确发现PTR-01：源码here是const code *并以here->field解引用，反编译将其恢复成code按值对象并以here.field访问；这是指针层级坍塌，故free_discovery为confirmed。反编译还给in/last以及z_stream的next_in、msg增加了源码不存在的const限定，属于类型限定恢复不精确，但不改变ABI布局。code与inflate_state的字段数量、顺序、宽度和数组长度一致，z_stream字段顺序及大小也一致，因此无LAYOUT-01；未见静态局部对象，故无SC-01证据；未见同名结构冲突，故无ST-01证据；整数宽度和符号均一致，typedef展开不构成INT-01。"
+  }
+]

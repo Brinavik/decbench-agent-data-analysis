@@ -1,0 +1,83 @@
+[
+  {
+    "function": "grp_update",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "函数参数列表",
+        "source_type": "void（无参数），返回类型 void；源码函数具有 static 内部链接",
+        "decompiled_type": "void（无参数），返回类型 void；未写 static",
+        "match": "correct",
+        "evidence_source_line": "2112: static void grp_update (void)",
+        "evidence_decompiled_line": "51: void grp_update(void)"
+      },
+      {
+        "source_role": "局部变量：普通组迭代器当前项（由 gr_next 返回、随后读取组名）",
+        "source_type": "const struct group *",
+        "decompiled_type": "const struct group *",
+        "match": "correct",
+        "evidence_source_line": "2114: const struct group *grp; 2120-2122: grp = gr_next (); ... grp = gr_next (); 2128: grp->gr_name",
+        "evidence_decompiled_line": "53: const struct group *grp; 57: while ((grp = gr_next()) != NULL) { 58: grp->gr_name"
+      },
+      {
+        "source_role": "局部变量：普通组可修改副本（由 __gr_dup 产生、随后更新成员表）",
+        "source_type": "struct group *",
+        "decompiled_type": "struct group *",
+        "match": "correct",
+        "evidence_source_line": "2115: struct group *ngrp; 2136: ngrp = __gr_dup (grp); 2179: ngrp->gr_mem = add_list (ngrp->gr_mem, user_name);",
+        "evidence_decompiled_line": "54: struct group *ngrp; 61: ngrp = __gr_dup(grp); 71: ngrp->gr_mem = add_list(ngrp->gr_mem, user_name);"
+      },
+      {
+        "source_role": "局部变量：影子组迭代器当前项（由 sgr_next 返回、随后读取首字段组名）",
+        "source_type": "const struct sgrp *",
+        "decompiled_type": "const struct sgrp *",
+        "match": "correct",
+        "evidence_source_line": "2118: const struct sgrp *sgrp; 2255-2257: sgrp = sgr_next (); ... sgrp = sgr_next (); 2258: sgrp->sg_name",
+        "evidence_decompiled_line": "90: const struct sgrp *sgrp = sgr_next(); 95: gr_locate(sgrp->sg_namp)"
+      },
+      {
+        "source_role": "局部变量：影子组可修改副本（由 __sgr_dup 产生、随后更新成员表）",
+        "source_type": "struct sgrp *",
+        "decompiled_type": "struct sgrp *",
+        "match": "correct",
+        "evidence_source_line": "2119: struct sgrp *nsgrp; 2272: nsgrp = __sgr_dup (sgrp); 2315: nsgrp->sg_mem = add_list (nsgrp->sg_mem, user_name);",
+        "evidence_decompiled_line": "91: struct sgrp *nsgrp; 100: nsgrp = __sgr_dup(sgrp); 110: nsgrp->sg_mem = add_list(nsgrp->sg_mem, user_name);"
+      },
+      {
+        "source_role": "宏展开块内局部变量 old_locale（每次 SYSLOG 逻辑均由 setlocale 返回）",
+        "source_type": "char *",
+        "decompiled_type": "const char *",
+        "match": "wrong",
+        "evidence_source_line": "2145: do { char *old_locale = setlocale (...); 同类声明还见 2186、2221、2281、2322、2357 行",
+        "evidence_decompiled_line": "38: const char *current_locale = setlocale(LC_ALL, NULL);"
+      },
+      {
+        "source_role": "宏展开块内局部变量 saved_locale（由 strdup 结果持有并传给 free）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "2149: char *saved_locale = ((void *)0); 2153: saved_locale = strdup (old_locale); 2163: free (saved_locale); 同类展开还见 2190、2225、2285、2326、2361 行",
+        "evidence_decompiled_line": "39: char *saved_locale = current_locale != NULL; 40: ? strdup(current_locale); 47: free(saved_locale);"
+      },
+      {
+        "source_role": "结构体 sgrp（本函数使用首字段组名与第4字段成员表）",
+        "source_type": "struct sgrp { char *sg_name; char *sg_passwd; char **sg_adm; char **sg_mem; }",
+        "decompiled_type": "struct sgrp（通过 <gshadow.h> 引入；本文件未展开完整定义）",
+        "match": "undeterminable",
+        "evidence_source_line": "27-32: struct sgrp { char *sg_name; char *sg_passwd; char **sg_adm; char **sg_mem; }; 2258: sgrp->sg_name; 2315: nsgrp->sg_mem",
+        "evidence_decompiled_line": "4: #include <gshadow.h>; 90: const struct sgrp *sgrp = sgr_next(); 95: sgrp->sg_namp; 110: nsgrp->sg_mem"
+      },
+      {
+        "source_role": "结构体 group（本函数使用组名字段和成员表字段）",
+        "source_type": "struct group（指定源码文件中未展开完整定义）",
+        "decompiled_type": "struct group（通过 <grp.h> 引入；本文件未展开完整定义）",
+        "match": "undeterminable",
+        "evidence_source_line": "2114-2115: const struct group *grp; struct group *ngrp; 2128: grp->gr_name; 2179: ngrp->gr_mem",
+        "evidence_decompiled_line": "3: #include <grp.h>; 53-54: const struct group *grp; struct group *ngrp; 58: grp->gr_name; 71: ngrp->gr_mem"
+      }
+    ],
+    "reasoning": "函数没有 ABI 参数；返回类型和空参数列表一致。四个主要指针局部量不是按名称对齐，而是分别依据 gr_next/sgr_next 的返回流、__gr_dup/__sgr_dup 的复制流以及后续 gr_mem/sg_mem 更新用途对齐，指针层级与 const 性均正确。源码宏展开产生的 old_locale 是 char *，反编译结果的统一宏模板却声明为 const char *，因此 free_discovery 得到 confirmed（存在明确的类型限定符恢复错误）；saved_locale 仍为 char *，可被 free，恢复正确。源码显式 sgrp 为四个字段，类型序列是 char *、char *、char **、char **；反编译文件只包含 <gshadow.h> 而未给出定义，虽可从首字段和第4字段的用途观察到兼容迹象，但不能只凭字段名或外部头文件知识确认完整偏移、大小和类型序列，故布局标为 undeterminable。group 的完整定义在两个指定文件中都未展开，同理不能判断 LAYOUT-01。源码 static 与反编译缺少 static 是链接属性差异，不改变本函数的 ABI 参数位置或实体数据类型，故参数/返回类型项仍判 correct。"
+  }
+]

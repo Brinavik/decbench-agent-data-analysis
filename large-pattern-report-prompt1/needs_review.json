@@ -1,0 +1,707 @@
+[
+  {
+    "file": "adjudication_results/claude-code__O2-noinline__coreutils__comm__compare_files.json",
+    "function": "compare_files",
+    "decompiler": "claude-code",
+    "entry_verdict": "confirmed",
+    "entity_index": 0,
+    "assigned_pattern": "ARRAY-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "数组长度/维度差异",
+    "entity": {
+      "source_role": "局部变量 alt",
+      "source_type": "int [2][3]",
+      "decompiled_type": "int [2][2]",
+      "match": "wrong",
+      "evidence_source_line": "2510: int alt[2][3];; 2528-2530 and 2653-2655: alt[i][2] is explicitly used",
+      "evidence_decompiled_line": "62-64: int alt[2][2];; 160-161: only alt[i][1] and alt[i][0] are maintained"
+    }
+  },
+  {
+    "file": "adjudication_results/claude-code__O2-noinline__e2fsprogs__e2fsck__check_ea_in_inode.json",
+    "function": "check_ea_in_inode",
+    "decompiler": "claude-code",
+    "entry_verdict": "confirmed",
+    "entity_index": 12,
+    "assigned_pattern": "OTHER",
+    "review_status": "semantic_review_completed",
+    "review_basis": "现有六模式未覆盖的类型恢复差异",
+    "entity": {
+      "source_role": "分支内局部变量 quota_blocks",
+      "source_type": "blk64_t（作为 check_large_ea_inode 的输出指针）",
+      "decompiled_type": "struct ea_quota（作为 check_ea_inode 的输出结构体指针）",
+      "match": "wrong",
+      "evidence_source_line": "4342-4345: blk64_t quota_blocks; problem = check_large_ea_inode(ctx, entry, pctx, &quota_blocks);",
+      "evidence_decompiled_line": "178-182: struct ea_quota ea_ibody_val_quota; ... ret = check_ea_inode(ctx, entry, pctx, &ea_ibody_val_quota);"
+    }
+  },
+  {
+    "file": "adjudication_results/claude-code__O2-noinline__e2fsprogs__e2fsck__check_ea_in_inode.json",
+    "function": "check_ea_in_inode",
+    "decompiler": "claude-code",
+    "entry_verdict": "confirmed",
+    "entity_index": 13,
+    "assigned_pattern": "OTHER",
+    "review_status": "semantic_review_completed",
+    "review_basis": "现有六模式未覆盖的类型恢复差异",
+    "entity": {
+      "source_role": "分支内临时返回值（无独立源码局部实体）",
+      "source_type": "源码直接将 helper 返回值写入 problem_t",
+      "decompiled_type": "int ret",
+      "match": "wrong",
+      "evidence_source_line": "4344-4347: problem = check_large_ea_inode(...); if (problem != 0)",
+      "evidence_decompiled_line": "179-185: int ret; ret = check_ea_inode(...); if (ret) { problem = ret; ... }"
+    }
+  },
+  {
+    "file": "adjudication_results/claude-code__O2-noinline__gnutls__gnutls-cli__send_ocsp_request.json",
+    "function": "send_ocsp_request",
+    "decompiler": "claude-code",
+    "entry_verdict": "confirmed",
+    "entity_index": 0,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "局部变量 hostname",
+      "source_type": "const char *",
+      "decompiled_type": "char *",
+      "match": "wrong",
+      "evidence_source_line": "6916: const char *hostname; 6974: hostname = host_from_url(url, &port, &path);",
+      "evidence_decompiled_line": "62: char *hostname; 110: hostname = get_hostname(url, &port, &path);"
+    }
+  },
+  {
+    "file": "adjudication_results/claude-code__O2-noinline__gnutls__gnutls-cli__send_ocsp_request.json",
+    "function": "send_ocsp_request",
+    "decompiler": "claude-code",
+    "entry_verdict": "confirmed",
+    "entity_index": 1,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "局部变量 path",
+      "source_type": "const char *",
+      "decompiled_type": "char *",
+      "match": "wrong",
+      "evidence_source_line": "6917: const char *path = \"\"; 6988: snprintf(..., path, hostname, ...);",
+      "evidence_decompiled_line": "63: char *path; 121-128: snprintf(..., path, hostname, req.size);"
+    }
+  },
+  {
+    "file": "adjudication_results/claude-code__O2-noinline__gnutls__ocsptool__socket_open2.json",
+    "function": "socket_open2",
+    "decompiler": "claude-code",
+    "entry_verdict": "rejected",
+    "entity_index": 12,
+    "assigned_pattern": "ARRAY-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "数组长度/维度差异",
+    "entity": {
+      "source_role": "局部数组 buffer",
+      "source_type": "char[4097]",
+      "decompiled_type": "char[4096]",
+      "match": "wrong",
+      "evidence_source_line": "6871: char buffer[4096 + 1];",
+      "evidence_decompiled_line": "94: char buffer[4096];"
+    }
+  },
+  {
+    "file": "adjudication_results/claude-code__O2-noinline__sysvinit__shutdown__wall.json",
+    "function": "wall",
+    "decompiler": "claude-code",
+    "entry_verdict": "confirmed",
+    "entity_index": 7,
+    "assigned_pattern": "ARRAY-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "数组长度/维度差异",
+    "entity": {
+      "source_role": "局部变量：终端设备路径缓冲区",
+      "source_type": "char[32 + strlen(\"/dev/\") + 1]，即 char[38]",
+      "decompiled_type": "char[dev_len + 0x30]，且 dev_len=strlen(\"/dev/\")，即 char[53]",
+      "match": "wrong",
+      "evidence_source_line": "139-143: char term[32 + strlen(\"/dev/\") + 1]; 221-228: 该缓冲区接收 ut_line 或格式化后的 /dev/%.*s",
+      "evidence_decompiled_line": "21-22: size_t dev_len = strlen(\"/dev/\"); char line[dev_len + 0x30]; 73-75: 实际写入界限分别为 dev_len + 0x20 和 dev_len + 0x21"
+    }
+  },
+  {
+    "file": "adjudication_results/claude-code__O2-noinline__zlib__minigzip64__inflate_fast.json",
+    "function": "inflate_fast",
+    "decompiler": "claude-code",
+    "entry_verdict": "confirmed",
+    "entity_index": 3,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "局部变量 in",
+      "source_type": "unsigned char *",
+      "decompiled_type": "const unsigned char *",
+      "match": "wrong",
+      "evidence_source_line": "391: unsigned char *in;",
+      "evidence_decompiled_line": "59: const unsigned char *in;"
+    }
+  },
+  {
+    "file": "adjudication_results/claude-code__O2-noinline__zlib__minigzip64__inflate_fast.json",
+    "function": "inflate_fast",
+    "decompiler": "claude-code",
+    "entry_verdict": "confirmed",
+    "entity_index": 4,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "局部变量 last",
+      "source_type": "unsigned char *",
+      "decompiled_type": "const unsigned char *",
+      "match": "wrong",
+      "evidence_source_line": "392: unsigned char *last;",
+      "evidence_decompiled_line": "60: const unsigned char *last;"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__coreutils__comm__compare_files.json",
+    "function": "compare_files",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 6,
+    "assigned_pattern": "ARRAY-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "数组长度/维度差异",
+    "entity": {
+      "source_role": "局部变量alt",
+      "source_type": "int alt[2][3]",
+      "decompiled_type": "int alt[2][2]",
+      "match": "wrong",
+      "evidence_source_line": "2510: int alt[2][3];; 2528-2530 and 2653-2655 use indices 0,1,2",
+      "evidence_decompiled_line": "47: int alt[2][2] = { { 0, 0 }, { 0, 0 } };; 131-135 only model two slots"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+    "function": "dopass",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 0,
+    "assigned_pattern": "ARRAY-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "数组长度/维度差异",
+    "entity": {
+      "source_role": "块内局部变量 buf",
+      "source_type": "char[21]（64位 uintmax_t 下源码常量表达式求值）",
+      "decompiled_type": "char[652] (size_buf，被合并复用)",
+      "match": "wrong",
+      "evidence_source_line": "2884: char buf[((((((sizeof (uintmax_t) * 8) - ... ) * 146 + 484) / 485) + ... ) + 1)];",
+      "evidence_decompiled_line": "90: char size_buf[HUMAN_BUFSIZE];（第39行 HUMAN_BUFSIZE = 652）；157-159: umaxtostr (..., size_buf)"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+    "function": "dopass",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 0,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "块内局部变量 human_offset",
+      "source_type": "char const *",
+      "decompiled_type": "char * (progress)",
+      "match": "wrong",
+      "evidence_source_line": "2979-2981: char const *human_offset = human_readable (offset, offset_buf, ...);",
+      "evidence_decompiled_line": "208-209: char *progress = human_readable ((uintmax_t) offset, progress_buf, ...);"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+    "function": "dopass",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 0,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "块内局部变量 human_size",
+      "source_type": "char const *",
+      "decompiled_type": "char * (total)",
+      "match": "wrong",
+      "evidence_source_line": "2996-2999: char const *human_size = human_readable (size, size_buf, ...);",
+      "evidence_decompiled_line": "223-224: char *total = human_readable ((uintmax_t) target_size, size_buf, ...);"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+    "function": "cmp",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 0,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "首次差异分支 byte_num",
+      "source_type": "char const *",
+      "decompiled_type": "char *",
+      "match": "wrong",
+      "evidence_source_line": "1529: char const *byte_num = offtostr (byte_number, byte_buf);",
+      "evidence_decompiled_line": "163: char *byte_string = offtostr(byte_number, byte_buf);"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+    "function": "cmp",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 0,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "首次差异分支 line_num",
+      "source_type": "char const *",
+      "decompiled_type": "char *",
+      "match": "wrong",
+      "evidence_source_line": "1530: char const *line_num = offtostr (line_number, line_buf);",
+      "evidence_decompiled_line": "164: char *line_string = offtostr(line_number, line_buf);"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+    "function": "cmp",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 0,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "全部差异分支 byte_num",
+      "source_type": "char const *",
+      "decompiled_type": "char *",
+      "match": "wrong",
+      "evidence_source_line": "1585: char const *byte_num = offtostr (byte_number, byte_buf);",
+      "evidence_decompiled_line": "202-203: char *number_string = offtostr(byte_number, number_buf);"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+    "function": "cmp",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 0,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "EOF 分支 byte_num/line_num",
+      "source_type": "char const *（两个变量）",
+      "decompiled_type": "char *（byte_string/line_string）",
+      "match": "wrong",
+      "evidence_source_line": "1632: char const *byte_num = offtostr (...); 1637-1638: char const *line_num = offtostr (...);",
+      "evidence_decompiled_line": "248: char *byte_string = offtostr(...); 258-259: char *line_string = offtostr(...);"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__gnutls__ocsptool__socket_open2.json",
+    "function": "socket_open2",
+    "decompiler": "codex",
+    "entry_verdict": "rejected",
+    "entity_index": 18,
+    "assigned_pattern": "ARRAY-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "数组长度/维度差异",
+    "entity": {
+      "source_role": "局部变量buffer（数值地址文本缓冲区）",
+      "source_type": "char[4097]",
+      "decompiled_type": "char[4096]",
+      "match": "wrong",
+      "evidence_source_line": "6871: char buffer[4096 + 1]; 6934-6935: getnameinfo(ptr->ai_addr, ptr->ai_addrlen, buffer, 4096, ...)",
+      "evidence_decompiled_line": "87: char ip[4096]; 128-129: ret = getnameinfo(addr->ai_addr, addr->ai_addrlen, ip, sizeof(ip), ...);"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__gnutls__systemkey__print_list.json",
+    "function": "print_list",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 14,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "局部变量list（priorities分支复用的通用列表指针）",
+      "source_type": "const unsigned int *",
+      "decompiled_type": "const gnutls_protocol_t * / const gnutls_cipher_algorithm_t * / const gnutls_mac_algorithm_t * / const gnutls_kx_algorithm_t * / const gnutls_group_t * / const gnutls_sign_algorithm_t *",
+      "match": "wrong",
+      "evidence_source_line": "7334: const unsigned int *list; 7391-7404, 7417-7430, 7443-7456, 7469-7482, 7494-7509, 7521-7536: the same pointer slot is filled by six list APIs and indexed",
+      "evidence_decompiled_line": "75-80: six separately typed pointer locals; 119-126, 131-137, 142-148, 153-159, 164-170, 175-182: each receives and indexes one API result",
+      "reasoning": "Pointer depth and const qualification are preserved, so PTR-01 is rejected for this entity. However, the source's single pointer-to-unsigned-int stack role is reconstructed as six pointer-to-enum-typedef roles; in this decompilation those typedefs are int-based, so the pointee typedef/signedness and source reuse are not recovered exactly (INT-01)."
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__libacl__chacl__main.json",
+    "function": "main",
+    "decompiler": "codex",
+    "entry_verdict": "undeterminable",
+    "entity_index": 2,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "局部变量file",
+      "source_type": "char *",
+      "decompiled_type": "const char *",
+      "match": "wrong",
+      "evidence_source_line": "139: char *file; 218: file = argv[optind];",
+      "evidence_decompiled_line": "108: const char *path = argv[optind];"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__shadow__login__main.json",
+    "function": "main",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 22,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "宏展开块局部变量（当前locale借用指针）",
+      "source_type": "char *",
+      "decompiled_type": "const char *",
+      "match": "wrong",
+      "evidence_source_line": "1342: do { char *old_locale = setlocale (...);",
+      "evidence_decompiled_line": "112: const char *old_locale; 258: old_locale = setlocale(LC_ALL, NULL);",
+      "reasoning": "按setlocale返回值、仅用于strdup的同一临时角色对齐；源码声明为char *，反编译增加了const限定，类型不精确。"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__shadow__login__main.json",
+    "function": "main",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 24,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "块局部变量（PAM环境字符串列表游标）",
+      "source_type": "const char *const *",
+      "decompiled_type": "char **（pam_env及块内ep）",
+      "match": "wrong",
+      "evidence_source_line": "2013: const char *const *env; 2015: env = (const char *const *) pam_getenvlist (pamh);",
+      "evidence_decompiled_line": "115: char **pam_env; 361: pam_env = pam_getenvlist(pamh); 363: char **ep = pam_env;",
+      "reasoning": "按pam_getenvlist结果的逐元素遍历和addenv输入用途对齐；指针层级仍为二级，但两层const限定均未恢复。"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__shadow__newusers__close_files.json",
+    "function": "close_files",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 1,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "第1次SYSLOG展开局部变量old_locale（pw_close失败分支）",
+      "source_type": "char *",
+      "decompiled_type": "const char *",
+      "match": "wrong",
+      "evidence_source_line": "1691-1695: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+      "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__shadow__newusers__close_files.json",
+    "function": "close_files",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 3,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "第2次SYSLOG展开局部变量old_locale（pw_unlock失败分支）",
+      "source_type": "char *",
+      "decompiled_type": "const char *",
+      "match": "wrong",
+      "evidence_source_line": "1720-1724: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+      "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__shadow__newusers__close_files.json",
+    "function": "close_files",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 5,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "第3次SYSLOG展开局部变量old_locale（spw_close失败分支）",
+      "source_type": "char *",
+      "decompiled_type": "const char *",
+      "match": "wrong",
+      "evidence_source_line": "1754-1758: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+      "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__shadow__newusers__close_files.json",
+    "function": "close_files",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 7,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "第4次SYSLOG展开局部变量old_locale（spw_unlock失败分支）",
+      "source_type": "char *",
+      "decompiled_type": "const char *",
+      "match": "wrong",
+      "evidence_source_line": "1785-1789: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+      "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__shadow__newusers__close_files.json",
+    "function": "close_files",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 9,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "第5次SYSLOG展开局部变量old_locale（gr_close失败分支）",
+      "source_type": "char *",
+      "decompiled_type": "const char *",
+      "match": "wrong",
+      "evidence_source_line": "1819-1823: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+      "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__shadow__newusers__close_files.json",
+    "function": "close_files",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 11,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "第6次SYSLOG展开局部变量old_locale（sub_uid_close失败分支）",
+      "source_type": "char *",
+      "decompiled_type": "const char *",
+      "match": "wrong",
+      "evidence_source_line": "1850-1854: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+      "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__shadow__newusers__close_files.json",
+    "function": "close_files",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 13,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "第7次SYSLOG展开局部变量old_locale（sub_gid_close失败分支）",
+      "source_type": "char *",
+      "decompiled_type": "const char *",
+      "match": "wrong",
+      "evidence_source_line": "1880-1884: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+      "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__shadow__newusers__close_files.json",
+    "function": "close_files",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 15,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "第8次SYSLOG展开局部变量old_locale（gr_unlock失败分支）",
+      "source_type": "char *",
+      "decompiled_type": "const char *",
+      "match": "wrong",
+      "evidence_source_line": "1913-1917: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+      "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__shadow__newusers__close_files.json",
+    "function": "close_files",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 17,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "第9次SYSLOG展开局部变量old_locale（sgr_close失败分支）",
+      "source_type": "char *",
+      "decompiled_type": "const char *",
+      "match": "wrong",
+      "evidence_source_line": "1948-1952: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+      "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__shadow__newusers__close_files.json",
+    "function": "close_files",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 19,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "第10次SYSLOG展开局部变量old_locale（sgr_unlock失败分支）",
+      "source_type": "char *",
+      "decompiled_type": "const char *",
+      "match": "wrong",
+      "evidence_source_line": "1979-1983: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+      "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__shadow__newusers__close_files.json",
+    "function": "close_files",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 21,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "第11次SYSLOG展开局部变量old_locale（sub_uid_unlock失败分支）",
+      "source_type": "char *",
+      "decompiled_type": "const char *",
+      "match": "wrong",
+      "evidence_source_line": "2013-2017: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+      "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__shadow__newusers__close_files.json",
+    "function": "close_files",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 23,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "第12次SYSLOG展开局部变量old_locale（sub_gid_unlock失败分支）",
+      "source_type": "char *",
+      "decompiled_type": "const char *",
+      "match": "wrong",
+      "evidence_source_line": "2045-2049: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+      "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__shadow__useradd__grp_update.json",
+    "function": "grp_update",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 5,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "宏展开块内局部变量 old_locale（每次 SYSLOG 逻辑均由 setlocale 返回）",
+      "source_type": "char *",
+      "decompiled_type": "const char *",
+      "match": "wrong",
+      "evidence_source_line": "2145: do { char *old_locale = setlocale (...); 同类声明还见 2186、2221、2281、2322、2357 行",
+      "evidence_decompiled_line": "38: const char *current_locale = setlocale(LC_ALL, NULL);"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__sysvinit__bootlogd__main.json",
+    "function": "main",
+    "decompiler": "codex",
+    "entry_verdict": "undeterminable",
+    "entity_index": 4,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "局部变量 logfile（日志路径指针）",
+      "source_type": "char *",
+      "decompiled_type": "const char *",
+      "match": "wrong",
+      "evidence_source_line": "源码571: char *logfile;；源码600: logfile = optarg;",
+      "evidence_decompiled_line": "反编译38: const char *logfile = \"/var/log/boot\";；反编译65: logfile = optarg;"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__sysvinit__bootlogd__main.json",
+    "function": "main",
+    "decompiler": "codex",
+    "entry_verdict": "undeterminable",
+    "entity_index": 5,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "局部变量 pidfile（PID 路径指针）",
+      "source_type": "char *",
+      "decompiled_type": "const char *",
+      "match": "wrong",
+      "evidence_source_line": "源码572: char *pidfile;；源码610: pidfile = optarg;",
+      "evidence_decompiled_line": "反编译39: const char *pidfile = NULL;；反编译68: pidfile = optarg;"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__zlib__minigzip64__inflate_fast.json",
+    "function": "inflate_fast",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 3,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "局部变量in（当前输入游标）",
+      "source_type": "unsigned char *",
+      "decompiled_type": "const unsigned char *",
+      "match": "wrong",
+      "evidence_source_line": "390: unsigned char *in; 417: in = strm->next_in;",
+      "evidence_decompiled_line": "106: const unsigned char *in; 128: in = strm->next_in;"
+    }
+  },
+  {
+    "file": "adjudication_results/codex__O2-noinline__zlib__minigzip64__inflate_fast.json",
+    "function": "inflate_fast",
+    "decompiler": "codex",
+    "entry_verdict": "confirmed",
+    "entity_index": 4,
+    "assigned_pattern": "QUAL-01",
+    "review_status": "semantic_review_completed",
+    "review_basis": "const限定差异",
+    "entity": {
+      "source_role": "局部变量last（快速循环的输入边界）",
+      "source_type": "unsigned char *",
+      "decompiled_type": "const unsigned char *",
+      "match": "wrong",
+      "evidence_source_line": "391: unsigned char *last; 418: last = in + (strm->avail_in - 5);",
+      "evidence_decompiled_line": "107: const unsigned char *last; 129: last = in + (strm->avail_in - 5);"
+    }
+  }
+]

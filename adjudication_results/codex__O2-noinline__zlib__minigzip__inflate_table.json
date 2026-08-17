@@ -1,0 +1,139 @@
+[
+  {
+    "function": "inflate_table",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "codetype",
+        "decompiled_type": "codetype",
+        "match": "correct",
+        "evidence_source_line": "源码302,310-316: inflate_table 的第1参数为 codetype type。",
+        "evidence_decompiled_line": "反编译14-15: 第1参数为 codetype type。"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "unsigned short *",
+        "decompiled_type": "unsigned short *",
+        "match": "correct",
+        "evidence_source_line": "源码302,310-316: 第2参数 lens 声明为 unsigned short *；源码355 和392按 short 元素索引读取。",
+        "evidence_decompiled_line": "反编译14-15: 第2参数为 unsigned short *lens；反编译66 和105作相同元素访问。"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "unsigned",
+        "decompiled_type": "unsigned",
+        "match": "correct",
+        "evidence_source_line": "源码302,310-316: 第3参数 codes 声明为 unsigned。",
+        "evidence_decompiled_line": "反编译14-15: 第3参数 codes 为 unsigned。"
+      },
+      {
+        "source_role": "第4个参数",
+        "source_type": "code **",
+        "decompiled_type": "code **",
+        "match": "correct",
+        "evidence_source_line": "源码302,314: 第4参数为 code * *table；源码366-367和513对其解引用并更新指针。",
+        "evidence_decompiled_line": "反编译14-15: 第4参数为 code **table；反编译78-79和208保留双重解引用及更新。"
+      },
+      {
+        "source_role": "第5个参数",
+        "source_type": "unsigned *",
+        "decompiled_type": "unsigned *",
+        "match": "correct",
+        "evidence_source_line": "源码302,315: 第5参数 bits 为 unsigned *；源码358和514读写该 unsigned 对象。",
+        "evidence_decompiled_line": "反编译14-15: 第5参数 bits 为 unsigned *；反编译68和209读写该对象。"
+      },
+      {
+        "source_role": "第6个参数",
+        "source_type": "unsigned short *",
+        "decompiled_type": "unsigned short *",
+        "match": "correct",
+        "evidence_source_line": "源码302,316: 第6参数 work 为 unsigned short *；源码392写入转换后的 unsigned short。",
+        "evidence_decompiled_line": "反编译14-15: 第6参数为 unsigned short *work；反编译105作同样写入。"
+      },
+      {
+        "source_role": "局部变量 len, sym, min, max, root, curr, drop, used, huff, incr, fill, low, mask, match",
+        "source_type": "unsigned（14个标量）",
+        "decompiled_type": "unsigned（14个同角色标量）",
+        "match": "correct",
+        "evidence_source_line": "源码318-330,335: 声明这些 unsigned 局部变量；源码410-418建立其状态数据流。",
+        "evidence_decompiled_line": "反编译17-30,35: 声明同一组 unsigned 局部变量；反编译123-131呈现相同状态数据流。"
+      },
+      {
+        "source_role": "局部变量 left",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码324: left 声明为 int；源码376-383和480-486依赖其有符号负值/非正测试。",
+        "evidence_decompiled_line": "反编译24: left 声明为 int；反编译90-98和182-189保留有符号测试。"
+      },
+      {
+        "source_role": "局部变量 here",
+        "source_type": "code",
+        "decompiled_type": "code",
+        "match": "correct",
+        "evidence_source_line": "源码331: here 声明为 code；源码428-439按 op、bits、val 三字段写入。",
+        "evidence_decompiled_line": "反编译31: here 声明为 code；反编译137-148按同三字段写入。"
+      },
+      {
+        "source_role": "局部变量 next",
+        "source_type": "code *",
+        "decompiled_type": "code *",
+        "match": "correct",
+        "evidence_source_line": "源码332,413,448: next 为 code *，接收 *table 并索引写入 code。",
+        "evidence_decompiled_line": "反编译32,126,156: next 为 code *，接收 *table 并作相同索引写入。"
+      },
+      {
+        "source_role": "局部变量 base, extra",
+        "source_type": "const unsigned short *（各一个）",
+        "decompiled_type": "const unsigned short *（各一个）",
+        "match": "correct",
+        "evidence_source_line": "源码333-334,395-405: 两者为 const unsigned short *，分别指向 work 或静态 short 表。",
+        "evidence_decompiled_line": "反编译33-34,109-120: 两者为 const unsigned short *，保持相同指向选择。"
+      },
+      {
+        "source_role": "局部变量 count, offs",
+        "source_type": "unsigned short[16]（各一个）",
+        "decompiled_type": "unsigned short[16]（各一个）",
+        "match": "correct",
+        "evidence_source_line": "源码336-337: count[15 +1] 与 offs[15 +1]；源码352-353和386-388使用 0..15 索引。",
+        "evidence_decompiled_line": "反编译36-37: count[16] 与 offs[16]；反编译63-64和100-102使用同样索引范围。"
+      },
+      {
+        "source_role": "静态局部对象 lbase, lext",
+        "source_type": "static const unsigned short[31]（各一个）",
+        "decompiled_type": "static const unsigned short[31]（各一个）",
+        "match": "correct",
+        "evidence_source_line": "源码338-343: 两对象在函数体内声明为 static const unsigned short[31]。",
+        "evidence_decompiled_line": "反编译38-49: 两对象仍在函数体内声明为 static const unsigned short[31]，不是全局外部对象。"
+      },
+      {
+        "source_role": "静态局部对象 dbase, dext",
+        "source_type": "static const unsigned short[32]（各一个）",
+        "decompiled_type": "static const unsigned short[32]（各一个）",
+        "match": "correct",
+        "evidence_source_line": "源码344-351: 两对象在函数体内声明为 static const unsigned short[32]。",
+        "evidence_decompiled_line": "反编译50-61: 两对象仍在函数体内声明为 static const unsigned short[32]，不是全局外部对象。"
+      },
+      {
+        "source_role": "结构体 code",
+        "source_type": "{ unsigned char op; unsigned char bits; unsigned short val; }",
+        "decompiled_type": "{ unsigned char op; unsigned char bits; unsigned short val; }",
+        "match": "correct",
+        "evidence_source_line": "源码288-292: code 依次含 unsigned char op、unsigned char bits、unsigned short val。",
+        "evidence_decompiled_line": "反编译8-12: code 以相同字段顺序、宽度和类型定义；反编译195-197以相同字段访问。"
+      },
+      {
+        "source_role": "枚举 codetype",
+        "source_type": "enum { CODES, LENS, DISTS }",
+        "decompiled_type": "enum { CODES, LENS, DISTS }",
+        "match": "correct",
+        "evidence_source_line": "源码296-300: codetype 的三个枚举值依次为 CODES、LENS、DISTS。",
+        "evidence_decompiled_line": "反编译2-6: codetype 保留同一枚举值序列；反编译107-120按该序列分支。"
+      }
+    ],
+    "reasoning": "按六个 ABI 参数位置，反编译签名逐项保留枚举、unsigned 宽度和所有指针层级，故 FN-01、PTR-01、INT-01 不成立。局部变量可由初始化、数组索引、表指针选择和 code 字段写入的数据流唯一对齐；所有声明类型一致。code 的字段序列为 1-byte、1-byte、2-byte，显式布局一致，故 LAYOUT-01 与 ST-01 不成立。四个静态表仍是函数内 static const 对象，故 SC-01 不成立。反编译 lext 的末两个初始值（72,78）不同于源码（194,65），但这是一项表内容语义差异，不能证明上述任一类型或结构体恢复错误。"
+  }
+]

@@ -1,0 +1,83 @@
+[
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "459:    int argc;",
+        "evidence_decompiled_line": "18: int main(int argc, char *argv[]) {"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "char **",
+        "decompiled_type": "char **",
+        "match": "correct",
+        "evidence_source_line": "460:    char *argv[];",
+        "evidence_decompiled_line": "18: int main(int argc, char *argv[]) {"
+      },
+      {
+        "source_role": "局部变量 copyout",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "462:    int copyout = 0;",
+        "evidence_decompiled_line": "19:    int copyout = 0;"
+      },
+      {
+        "source_role": "局部变量 uncompr",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "463:    int uncompr = 0;",
+        "evidence_decompiled_line": "20:    int uncompr = 0;"
+      },
+      {
+        "source_role": "局部变量 file",
+        "source_type": "gzFile",
+        "decompiled_type": "gzFile",
+        "match": "correct",
+        "evidence_source_line": "464:    gzFile file;",
+        "evidence_decompiled_line": "21:    gzFile file;"
+      },
+      {
+        "source_role": "局部变量 bname",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "465:    char *bname, outmode[20];",
+        "evidence_decompiled_line": "22:    char *bname, outmode[20];"
+      },
+      {
+        "source_role": "局部变量 outmode",
+        "source_type": "char[20]",
+        "decompiled_type": "char[20]",
+        "match": "correct",
+        "evidence_source_line": "465:    char *bname, outmode[20];",
+        "evidence_decompiled_line": "22:    char *bname, outmode[20];"
+      },
+      {
+        "source_role": "分支局部变量 in",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "553:                    FILE * in = fopen(*argv, \"rb\");",
+        "evidence_decompiled_line": "83:                    FILE *in = fopen(*argv, \"rb\");"
+      },
+      {
+        "source_role": "gzFile/FILE 所指向的结构体布局",
+        "source_type": "函数体内未定义的库/头文件不透明结构",
+        "decompiled_type": "函数体内未定义的库/头文件不透明结构",
+        "match": "undeterminable",
+        "evidence_source_line": "464:    gzFile file; / 553: FILE * in = fopen(*argv, \"rb\");",
+        "evidence_decompiled_line": "21:    gzFile file; / 83: FILE *in = fopen(*argv, \"rb\");"
+      }
+    ],
+    "reasoning": "按 ABI 位置，第1、2参数分别为 int 与 char**，且反编译签名一致。局部标志位、char 指针、20 字节数组和文件句柄在声明及后续数据流中的用途均一致；声明中没有静态局部对象，因此没有 SC-01 证据。函数体未定义 gzFile 或 FILE 的底层结构字段，无法据此验证 LAYOUT-01，但也没有观察到指针层级、整数宽度或函数签名不匹配。"
+  }
+]

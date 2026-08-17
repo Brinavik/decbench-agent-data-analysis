@@ -1,0 +1,147 @@
+[
+  {
+    "function": "readproc",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "函数返回值/无显式参数",
+        "source_type": "int readproc()（旧式未原型化声明；函数体未使用参数）",
+        "decompiled_type": "int readproc(void)",
+        "match": "undeterminable",
+        "evidence_source_line": "源码459行：int readproc()",
+        "evidence_decompiled_line": "反编译24行：int readproc(void)"
+      },
+      {
+        "source_role": "局部变量 dir",
+        "source_type": "DIR *",
+        "decompiled_type": "DIR *",
+        "match": "correct",
+        "evidence_source_line": "源码461行：DIR *dir；源码483行：dir = opendir(\".\")",
+        "evidence_decompiled_line": "反编译35行：DIR *dir；反编译57行：dir = opendir(\".\")"
+      },
+      {
+        "source_role": "局部变量 fp",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "源码462行：FILE *fp；源码522行：fp = fopen(path, \"r\")",
+        "evidence_decompiled_line": "反编译39行：FILE *fp；反编译86行：fp = fopen(path, \"r\")"
+      },
+      {
+        "source_role": "局部变量 p",
+        "source_type": "PROC *",
+        "decompiled_type": "PROC *",
+        "match": "correct",
+        "evidence_source_line": "源码463行：PROC *p, *n；源码515行：p = (PROC *)xmalloc(sizeof(PROC))",
+        "evidence_decompiled_line": "反编译37行：PROC *proc；反编译82行：proc = xmalloc(sizeof(*proc))"
+      },
+      {
+        "source_role": "局部变量 n",
+        "source_type": "PROC *",
+        "decompiled_type": "PROC *",
+        "match": "correct",
+        "evidence_source_line": "源码463行：PROC *p, *n；源码493-495行：n = plist，n = p->next",
+        "evidence_decompiled_line": "反编译38行：PROC *next；反编译63-64行：proc = plist，next = proc->next"
+      },
+      {
+        "source_role": "局部变量 d",
+        "source_type": "struct dirent *",
+        "decompiled_type": "struct dirent *",
+        "match": "correct",
+        "evidence_source_line": "源码464行：struct dirent *d；源码507、512行：d = readdir(dir)，atoi(d->d_name)",
+        "evidence_decompiled_line": "反编译36行：struct dirent *entry；反编译77-79行：entry = readdir(dir)，atoi(entry->d_name)"
+      },
+      {
+        "source_role": "局部变量 path",
+        "source_type": "char[4097]",
+        "decompiled_type": "char[PATH_MAX + 1]",
+        "match": "undeterminable",
+        "evidence_source_line": "源码465-467行：char path[4096 + 1]；源码519行：snprintf(path, sizeof(path), ...)",
+        "evidence_decompiled_line": "反编译40行：char path[PATH_MAX + 1]；反编译85行：snprintf(path, sizeof(path), ...)"
+      },
+      {
+        "source_role": "局部变量 buf",
+        "source_type": "char[4097]",
+        "decompiled_type": "char[PATH_MAX + 1]",
+        "match": "undeterminable",
+        "evidence_source_line": "源码468-470行：char buf[4096 + 1]；源码527行：fread(buf, sizeof(char), sizeof(buf)-1, fp)",
+        "evidence_decompiled_line": "反编译41行：char line[PATH_MAX + 1]；反编译92行：fread(line, 1, PATH_MAX, fp)"
+      },
+      {
+        "source_role": "局部变量 s",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "源码471行：char *s, *q；源码541-544行：s = buf 并扫描进程名",
+        "evidence_decompiled_line": "反编译43行：char *name；反编译101-109行：name = line 并扫描进程名"
+      },
+      {
+        "source_role": "局部变量 q",
+        "source_type": "char *",
+        "decompiled_type": "char *（end/rest 两个阶段性变量）",
+        "match": "correct",
+        "evidence_source_line": "源码471行：char *s, *q；源码546、569-570行：q 定位结尾后递增并跳过空格",
+        "evidence_decompiled_line": "反编译44-45行：char *rest、*end；反编译109、135-140行：end 定位结尾，rest 指向后续字段"
+      },
+      {
+        "source_role": "局部变量 startcode",
+        "source_type": "unsigned long",
+        "decompiled_type": "unsigned long",
+        "match": "correct",
+        "evidence_source_line": "源码472行：unsigned long startcode, endcode；源码575、581行：startcode = 0，&startcode 传给 sscanf",
+        "evidence_decompiled_line": "反编译46行：unsigned long startcode；反编译146、149行：startcode = 0，&startcode 传给 sscanf"
+      },
+      {
+        "source_role": "局部变量 endcode",
+        "source_type": "unsigned long",
+        "decompiled_type": "unsigned long",
+        "match": "correct",
+        "evidence_source_line": "源码472行：unsigned long startcode, endcode；源码575、581行：endcode = 0，&endcode 传给 sscanf",
+        "evidence_decompiled_line": "反编译47行：unsigned long endcode；反编译147、149行：endcode = 0，&endcode 传给 sscanf"
+      },
+      {
+        "source_role": "局部变量 pid",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码473行：int pid, f；源码512行：pid = atoi(d->d_name)；源码692行：p->pid = pid",
+        "evidence_decompiled_line": "反编译50行：int pid；反编译78行：pid = atoi(entry->d_name)；反编译229行：proc->pid = pid"
+      },
+      {
+        "source_role": "局部变量 f",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码473行：int pid, f；源码626、630行：f = readarg(...)，xmalloc(f + 1)",
+        "evidence_decompiled_line": "反编译49行：int arglen；反编译195、197行：arglen = readarg(...)，xmalloc(arglen + 1)"
+      },
+      {
+        "source_role": "局部变量 process_status",
+        "source_type": "char[11]",
+        "decompiled_type": "char[11]",
+        "match": "correct",
+        "evidence_source_line": "源码474行：char process_status[11]；源码580、600行：作为 sscanf 输出和 strchr 输入",
+        "evidence_decompiled_line": "反编译42行：char state[11]；反编译148、169行：作为 sscanf 输出和 strchr 输入"
+      },
+      {
+        "source_role": "局部变量 len",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "源码525行：size_t len；源码527-528行：len = fread(...)，buf[len] = '\\0'",
+        "evidence_decompiled_line": "反编译48行：size_t count；反编译92-93行：count = fread(...)，line[count] = '\\0'"
+      },
+      {
+        "source_role": "结构体 PROC",
+        "source_type": "char *pathname, *argv0, *argv0base, *argv1, *argv1base, *statname；pid_t pid, sid；char kernel, nfs；struct proc *next",
+        "decompiled_type": "char *pathname, *argv0, *argv0base, *argv1, *argv1base, *statname；pid_t pid, sid；char kernel；struct proc *next",
+        "match": "wrong",
+        "evidence_source_line": "源码3-15行：PROC 在 kernel（12行）与 next（14行）之间声明 char nfs（13行）；源码495、690行在本函数读取 p->next 并写入 p->next",
+        "evidence_decompiled_line": "反编译11-22行：PROC 的 kernel（20行）后直接为 next（21行）；反编译64、230行读取和写入 proc->next"
+      }
+    ],
+    "reasoning": "按无参数函数入口、局部变量在相同调用/缓冲/链表数据流中的角色，以及 PROC 的字段声明顺序对齐。所有可观察局部类型均恢复一致；PATH_MAX 是否等于源码常量 4096 仅从允许检查的两段代码不能证明。PROC 的 nfs 字段被遗漏，字段序列不完整，构成 LAYOUT-01 的已证实错误；未发现源码静态局部被重构为外部对象的证据，且旧式无原型声明与 void 原型的 ABI 等价性不能仅据函数体断定。"
+  }
+]

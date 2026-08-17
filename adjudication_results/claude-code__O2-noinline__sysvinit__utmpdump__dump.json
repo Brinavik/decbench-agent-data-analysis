@@ -1,0 +1,67 @@
+[
+  {
+    "function": "dump",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "164: dump(FILE *fp, int forever, int oldfmt); 170: fseek(fp, ...); 176: fread(..., fp)",
+        "evidence_decompiled_line": "21: void dump(FILE *stream, int follow, int small_records); 28: fseek(stream, ...); 35: fread(..., stream)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "164: dump(FILE *fp, int forever, int oldfmt); 169: if (forever); 181-182: if (forever) sleep(1); } while (forever);",
+        "evidence_decompiled_line": "21: void dump(FILE *stream, int follow, int small_records); 27: if (follow); 42: if (!follow); 45: sleep(1)"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "164: dump(FILE *fp, int forever, int oldfmt); 170: oldfmt ? sizeof uto : sizeof ut; 175: if (oldfmt)",
+        "evidence_decompiled_line": "21: void dump(FILE *stream, int follow, int small_records); 29-30: small_records ? ...sizeof(record_t) : ...sizeof(entry_t); 34: if (small_records)"
+      },
+      {
+        "source_role": "局部变量ut（非oldfmt分支的输入记录）",
+        "source_type": "struct utmp",
+        "decompiled_type": "entry_t（typedef struct { char data[384]; }）",
+        "match": "undeterminable",
+        "evidence_source_line": "166: struct utmp ut; 179-180: fread(&ut, sizeof ut, 1, fp) ... print_utline(ut)",
+        "evidence_decompiled_line": "10-13: typedef struct { char data[384]; } entry_t; 24: entry_t big; 38-39: fread(&big, sizeof(big), 1, stream) ... sub_1a00(big)"
+      },
+      {
+        "source_role": "局部变量uto（oldfmt分支的输入记录）",
+        "source_type": "struct oldutmp",
+        "decompiled_type": "record_t（typedef struct { char data[64]; }）",
+        "match": "wrong",
+        "evidence_source_line": "2-11: struct oldutmp { short ut_type; int ut_pid; char ut_line[12]; char ut_id[4]; long ut_oldtime; char ut_user[8]; char ut_host[16]; long ut_oldaddr; }; 167: struct oldutmp uto; 176-177: fread(&uto, sizeof uto, 1, fp) ... oldtonew(uto)",
+        "evidence_decompiled_line": "5-8: typedef struct { char data[64]; } record_t; 23: record_t small; 35-36: fread(&small, sizeof(small), 1, stream) ... sub_1610(small)"
+      },
+      {
+        "source_role": "结构体oldutmp",
+        "source_type": "struct oldutmp：8个字段，类型序列为 short, int, char[12], char[4], long, char[8], char[16], long；在该目标的LP64布局下大小64字节，字段偏移为0, 4, 8, 20, 24, 32, 40, 56",
+        "decompiled_type": "record_t：1个字段 char[64]，偏移0，大小64字节",
+        "match": "wrong",
+        "evidence_source_line": "2-11: struct oldutmp { short ut_type; int ut_pid; char ut_line[12]; char ut_id[4]; long ut_oldtime; char ut_user[8]; char ut_host[16]; long ut_oldaddr; }; 170,176: sizeof uto用于定位和读取记录",
+        "evidence_decompiled_line": "5-8: /* On-disk record (64 bytes) */ typedef struct { char data[64]; } record_t; 29,35: sizeof(record_t)/sizeof(small)用于同一分支的定位和读取"
+      },
+      {
+        "source_role": "结构体utmp",
+        "source_type": "struct utmp（本指定源码文件未给出字段定义）",
+        "decompiled_type": "entry_t：1个字段 char[384]，偏移0，大小384字节",
+        "match": "undeterminable",
+        "evidence_source_line": "166: struct utmp ut; 170,179-180: sizeof ut用于定位/读取，随后按值传给print_utline；指定文件内没有struct utmp的字段定义",
+        "evidence_decompiled_line": "10-13: /* Expanded/decoded entry (384 bytes) */ typedef struct { char data[384]; } entry_t; 30,38-39: sizeof(entry_t)/sizeof(big)用于对应分支的定位和读取，随后按值传递"
+      }
+    ],
+    "reasoning": "按参数ABI位置及用途对齐：第1参数均进入fseek/fread，第2参数均控制尾随循环，第3参数均选择64字节旧格式分支。按栈上角色和数据流，uto对应small（均为旧格式fread目标并先转换），ut对应big（均为直接消费的普通格式fread目标）。发现并确认LAYOUT-01：oldutmp虽总大小同为64字节，但源码是8字段异构布局，反编译结果仅恢复成单一char[64]字段，字段数量、偏移和类型序列均不匹配。未发现SC-01：两个局部对象都仍为自动局部对象；未发现PTR-01、INT-01或FN-01：参数的指针层级、整数类型和函数签名均一致。ST-01无同名类型对齐证据。由于指定源码未包含struct utmp字段定义，对其字段级布局不作猜测，标记undeterminable。"
+  }
+]

@@ -1,0 +1,211 @@
+[
+  {
+    "function": "close_files",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "函数原型（无参数）",
+        "source_type": "void (void)",
+        "decompiled_type": "void (void)",
+        "match": "correct",
+        "evidence_source_line": "1685: static void close_files (void)",
+        "evidence_decompiled_line": "80: void close_files(void)"
+      },
+      {
+        "source_role": "pw_close 失败日志块局部变量 old_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *（与 saved_locale 合并复用）",
+        "match": "correct",
+        "evidence_source_line": "1691-1699: do { char *old_locale = setlocale (...); ... old_locale) { saved_locale = strdup (old_locale); }",
+        "evidence_decompiled_line": "27-29: char *saved_locale = setlocale(...); ... (saved_locale = strdup(saved_locale)) ..."
+      },
+      {
+        "source_role": "pw_close 失败日志块局部变量 saved_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1695-1709: char *saved_locale = ((void *)0); ... setlocale (..., saved_locale); free (saved_locale);",
+        "evidence_decompiled_line": "27-33: char *saved_locale = setlocale(...); ... setlocale(..., saved_locale); free(saved_locale);"
+      },
+      {
+        "source_role": "pw_unlock 失败日志块局部变量 old_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *（与 saved_locale 合并复用）",
+        "match": "correct",
+        "evidence_source_line": "1720-1728: char *old_locale = setlocale (...); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "27-29, 93: SYSLOG 展开以 char *saved_locale 接收 setlocale 返回值并再接收 strdup 返回值"
+      },
+      {
+        "source_role": "pw_unlock 失败日志块局部变量 saved_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1724-1738: char *saved_locale = ((void *)0); ... free (saved_locale);",
+        "evidence_decompiled_line": "27-33, 93: SYSLOG 展开的 saved_locale 经 strdup 后传给 setlocale 和 free"
+      },
+      {
+        "source_role": "spw_close 失败日志块局部变量 old_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *（与 saved_locale 合并复用）",
+        "match": "correct",
+        "evidence_source_line": "1754-1762: char *old_locale = setlocale (...); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "27-29, 103-104: SYSLOG 展开以 char *saved_locale 串接 setlocale 与 strdup"
+      },
+      {
+        "source_role": "spw_close 失败日志块局部变量 saved_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1758-1772: char *saved_locale = ((void *)0); ... setlocale (..., saved_locale); free (saved_locale);",
+        "evidence_decompiled_line": "27-33, 103-104: SYSLOG 展开的 char *saved_locale 最终传给 setlocale 和 free"
+      },
+      {
+        "source_role": "spw_unlock 失败日志块局部变量 old_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *（与 saved_locale 合并复用）",
+        "match": "correct",
+        "evidence_source_line": "1785-1793: char *old_locale = setlocale (...); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "27-29, 110: SYSLOG 展开以 char *saved_locale 串接 setlocale 与 strdup"
+      },
+      {
+        "source_role": "spw_unlock 失败日志块局部变量 saved_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1789-1803: char *saved_locale = ((void *)0); ... free (saved_locale);",
+        "evidence_decompiled_line": "27-33, 110: SYSLOG 展开的 char *saved_locale 经 strdup 后传给 setlocale 和 free"
+      },
+      {
+        "source_role": "gr_close 失败日志块局部变量 old_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *（与 saved_locale 合并复用）",
+        "match": "correct",
+        "evidence_source_line": "1819-1827: char *old_locale = setlocale (...); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "27-29, 120-121: SYSLOG 展开以 char *saved_locale 串接 setlocale 与 strdup"
+      },
+      {
+        "source_role": "gr_close 失败日志块局部变量 saved_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1823-1837: char *saved_locale = ((void *)0); ... free (saved_locale);",
+        "evidence_decompiled_line": "27-33, 120-121: SYSLOG 展开的 char *saved_locale 最终传给 setlocale 和 free"
+      },
+      {
+        "source_role": "sub_uid_close 失败日志块局部变量 old_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *（与 saved_locale 合并复用）",
+        "match": "correct",
+        "evidence_source_line": "1850-1858: char *old_locale = setlocale (...); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "27-29, 129-130: SYSLOG 展开以 char *saved_locale 串接 setlocale 与 strdup"
+      },
+      {
+        "source_role": "sub_uid_close 失败日志块局部变量 saved_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1854-1868: char *saved_locale = ((void *)0); ... free (saved_locale);",
+        "evidence_decompiled_line": "27-33, 129-130: SYSLOG 展开的 char *saved_locale 经 strdup 后传给 setlocale 和 free"
+      },
+      {
+        "source_role": "sub_gid_close 失败日志块局部变量 old_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *（与 saved_locale 合并复用）",
+        "match": "correct",
+        "evidence_source_line": "1880-1888: char *old_locale = setlocale (...); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "27-29, 138-139: SYSLOG 展开以 char *saved_locale 串接 setlocale 与 strdup"
+      },
+      {
+        "source_role": "sub_gid_close 失败日志块局部变量 saved_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1884-1898: char *saved_locale = ((void *)0); ... free (saved_locale);",
+        "evidence_decompiled_line": "27-33, 138-139: SYSLOG 展开的 char *saved_locale 经 strdup 后传给 setlocale 和 free"
+      },
+      {
+        "source_role": "gr_unlock 失败日志块局部变量 old_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *（与 saved_locale 合并复用）",
+        "match": "correct",
+        "evidence_source_line": "1913-1921: char *old_locale = setlocale (...); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "27-29, 146: SYSLOG 展开以 char *saved_locale 串接 setlocale 与 strdup"
+      },
+      {
+        "source_role": "gr_unlock 失败日志块局部变量 saved_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1917-1931: char *saved_locale = ((void *)0); ... free (saved_locale);",
+        "evidence_decompiled_line": "27-33, 146: SYSLOG 展开的 char *saved_locale 最终传给 setlocale 和 free"
+      },
+      {
+        "source_role": "sgr_close 失败日志块局部变量 old_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *（与 saved_locale 合并复用）",
+        "match": "correct",
+        "evidence_source_line": "1948-1956: char *old_locale = setlocale (...); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "27-29, 156-157: SYSLOG 展开以 char *saved_locale 串接 setlocale 与 strdup"
+      },
+      {
+        "source_role": "sgr_close 失败日志块局部变量 saved_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1952-1966: char *saved_locale = ((void *)0); ... free (saved_locale);",
+        "evidence_decompiled_line": "27-33, 156-157: SYSLOG 展开的 char *saved_locale 经 strdup 后传给 setlocale 和 free"
+      },
+      {
+        "source_role": "sgr_unlock 失败日志块局部变量 old_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *（与 saved_locale 合并复用）",
+        "match": "correct",
+        "evidence_source_line": "1979-1987: char *old_locale = setlocale (...); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "27-29, 163: SYSLOG 展开以 char *saved_locale 串接 setlocale 与 strdup"
+      },
+      {
+        "source_role": "sgr_unlock 失败日志块局部变量 saved_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1983-1997: char *saved_locale = ((void *)0); ... free (saved_locale);",
+        "evidence_decompiled_line": "27-33, 163: SYSLOG 展开的 char *saved_locale 最终传给 setlocale 和 free"
+      },
+      {
+        "source_role": "sub_uid_unlock 失败日志块局部变量 old_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *（与 saved_locale 合并复用）",
+        "match": "correct",
+        "evidence_source_line": "2013-2021: char *old_locale = setlocale (...); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "27-29, 173-174: SYSLOG 展开以 char *saved_locale 串接 setlocale 与 strdup"
+      },
+      {
+        "source_role": "sub_uid_unlock 失败日志块局部变量 saved_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "2017-2031: char *saved_locale = ((void *)0); ... free (saved_locale);",
+        "evidence_decompiled_line": "27-33, 173-174: SYSLOG 展开的 char *saved_locale 经 strdup 后传给 setlocale 和 free"
+      },
+      {
+        "source_role": "sub_gid_unlock 失败日志块局部变量 old_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *（与 saved_locale 合并复用）",
+        "match": "correct",
+        "evidence_source_line": "2045-2053: char *old_locale = setlocale (...); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "27-29, 184-185: SYSLOG 展开以 char *saved_locale 串接 setlocale 与 strdup"
+      },
+      {
+        "source_role": "sub_gid_unlock 失败日志块局部变量 saved_locale",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "2049-2063: char *saved_locale = ((void *)0); ... setlocale (..., saved_locale); free (saved_locale);",
+        "evidence_decompiled_line": "27-33, 184-185: SYSLOG 展开的 char *saved_locale 经 strdup 后传给 setlocale 和 free"
+      }
+    ],
+    "reasoning": "按 ABI 位置核对，源码与反编译定义均为零参数并返回 void，函数类型正确；源码函数内无结构体实体，故 ST-01 与 LAYOUT-01 无适用实体；也无静态局部对象，SC-01 不成立。12次日志宏展开各产生两个 char * 局部实体；反编译第27-33行用一个 char * 槽位先承接 setlocale 返回值、再承接 strdup 返回值，这是优化后的生存期合并，指针层级仍为一级，故不构成 PTR-01 或 INT-01。源码第1685行的 static 与反编译第80行的外部链接是存储类/链接属性差异，不改变函数类型，故不据此判 FN-01。反编译第28行及函数体多处把条件控制写成 close_files (...) 的文本是控制流/语法重构错误，但不改变上述实体类型判断。"
+  }
+]

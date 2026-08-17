@@ -1,0 +1,107 @@
+# 质量监控
+
+- JSON 文件：103/103；无法解析：0
+- 缺失任务文件：{'claude-code': ['O2-noinline__shadow__login__main'], 'codex': []}；多余任务文件：无
+- schema 异常文件：93（详细异常见 quality_monitor.json）
+- entity match：correct 1180 (75.4%)；wrong 199 (12.7%)；undeterminable 186 (11.9%)
+- 条目 verdict：confirmed 67；rejected 191；undeterminable 49
+- codex entity wrong 命中率：108/791 (13.7%)；任务 wrong 命中率：36/52 (69.2%)
+- claude-code entity wrong 命中率：91/774 (11.8%)；任务 wrong 命中率：30/51 (58.8%)
+- 最终拆分：QUAL-01 31；ARRAY-01 6；残余 OTHER 2
+- 未完成语义复核：0
+
+## Schema 异常文件清单
+
+- adjudication_results/claude-code__O2-noinline__coreutils__chown__usage.json
+- adjudication_results/claude-code__O2-noinline__coreutils__comm__compare_files.json
+- adjudication_results/claude-code__O2-noinline__coreutils__cp__copy_reg.json
+- adjudication_results/claude-code__O2-noinline__coreutils__df__filter_mount_list.json
+- adjudication_results/claude-code__O2-noinline__coreutils__shred__dopass.json
+- adjudication_results/claude-code__O2-noinline__coreutils__sort__mergelines_node.json
+- adjudication_results/claude-code__O2-noinline__coreutils__touch__main.json
+- adjudication_results/claude-code__O2-noinline__cronie__cronnext__get_range.json
+- adjudication_results/claude-code__O2-noinline__cronie__crontab__get_range.json
+- adjudication_results/claude-code__O2-noinline__diffutils__cmp__cmp.json
+- adjudication_results/claude-code__O2-noinline__diffutils__diff3__output_diff3_edscript.json
+- adjudication_results/claude-code__O2-noinline__dpkg__dpkg-divert__diversion_add.json
+- adjudication_results/claude-code__O2-noinline__dpkg__dpkg-query__pkg_array_match_patterns.json
+- adjudication_results/claude-code__O2-noinline__e2fsprogs__e2fsck__check_ea_in_inode.json
+- adjudication_results/claude-code__O2-noinline__gnutls__gnutls-cli__send_ocsp_request.json
+- adjudication_results/claude-code__O2-noinline__gnutls__gnutls-serv__main.json
+- adjudication_results/claude-code__O2-noinline__gnutls__ocsptool__socket_open2.json
+- adjudication_results/claude-code__O2-noinline__gnutls__psktool__process_options.json
+- adjudication_results/claude-code__O2-noinline__gnutls__systemkey__print_list.json
+- adjudication_results/claude-code__O2-noinline__libacl__chacl__main.json
+- adjudication_results/claude-code__O2-noinline__libacl__setfacl__restore.json
+- adjudication_results/claude-code__O2-noinline__libopencm3__cdcacm__dwc_poll.json
+- adjudication_results/claude-code__O2-noinline__libopencm3__msc___usbd_standard_request_device.json
+- adjudication_results/claude-code__O2-noinline__libopencm3__sdram__main.json
+- adjudication_results/claude-code__O2-noinline__openssh-portable__ssh-add__revoked_certs_generate.json
+- adjudication_results/claude-code__O2-noinline__openssh-portable__ssh-keygen__ssh_rsa_verify.json
+- adjudication_results/claude-code__O2-noinline__openssh-portable__ssh-keyscan__argv_split.json
+- adjudication_results/claude-code__O2-noinline__openssh-portable__ssh-pkcs11-helper__pkcs11_fetch_rsa_pubkey.json
+- adjudication_results/claude-code__O2-noinline__openssh-portable__ssh-sk-helper__cert_parse.json
+- adjudication_results/claude-code__O2-noinline__openssh-portable__ssh__revoked_serial_tree_RB_REMOVE_COLOR.json
+- adjudication_results/claude-code__O2-noinline__shadow__groupmod__grp_update.json
+- adjudication_results/claude-code__O2-noinline__shadow__grpunconv__main.json
+- adjudication_results/claude-code__O2-noinline__shadow__newusers__close_files.json
+- adjudication_results/claude-code__O2-noinline__shadow__useradd__grp_update.json
+- adjudication_results/claude-code__O2-noinline__shadow__usermod__update_gshadow.json
+- adjudication_results/claude-code__O2-noinline__shadow__vipw__main.json
+- adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json
+- adjudication_results/claude-code__O2-noinline__sysvinit__init__check_init_fifo.json
+- adjudication_results/claude-code__O2-noinline__sysvinit__killall5__readproc.json
+- adjudication_results/claude-code__O2-noinline__sysvinit__last__list.json
+- adjudication_results/claude-code__O2-noinline__sysvinit__shutdown__wall.json
+- adjudication_results/claude-code__O2-noinline__sysvinit__sulogin__getpasswd.json
+- adjudication_results/claude-code__O2-noinline__sysvinit__utmpdump__dump.json
+- adjudication_results/claude-code__O2-noinline__sysvinit__wall__wall.json
+- adjudication_results/claude-code__O2-noinline__zlib__libz.so.1.2__deflate_slow.json
+- adjudication_results/claude-code__O2-noinline__zlib__minigzip64__inflate_fast.json
+- adjudication_results/claude-code__O2-noinline__zlib__minigzip__inflate_table.json
+- adjudication_results/claude-code__O2-noinline__zlib__minigzipsh__main.json
+- adjudication_results/codex__O2-noinline__bash__man2html__scan_format.json
+- adjudication_results/codex__O2-noinline__coreutils__chown__usage.json
+- adjudication_results/codex__O2-noinline__coreutils__comm__compare_files.json
+- adjudication_results/codex__O2-noinline__coreutils__cp__copy_reg.json
+- adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json
+- adjudication_results/codex__O2-noinline__coreutils__touch__main.json
+- adjudication_results/codex__O2-noinline__cronie__cronnext__get_range.json
+- adjudication_results/codex__O2-noinline__cronie__crontab__get_range.json
+- adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json
+- adjudication_results/codex__O2-noinline__diffutils__diff3__output_diff3_edscript.json
+- adjudication_results/codex__O2-noinline__dpkg__dpkg-divert__diversion_add.json
+- adjudication_results/codex__O2-noinline__dpkg__dpkg-query__pkg_array_match_patterns.json
+- adjudication_results/codex__O2-noinline__e2fsprogs__e2fsck__check_ea_in_inode.json
+- adjudication_results/codex__O2-noinline__gnutls__certtool__yyparse.json
+- adjudication_results/codex__O2-noinline__gnutls__gnutls-cli__send_ocsp_request.json
+- adjudication_results/codex__O2-noinline__gnutls__gnutls-serv__main.json
+- adjudication_results/codex__O2-noinline__gnutls__ocsptool__socket_open2.json
+- adjudication_results/codex__O2-noinline__gnutls__psktool__process_options.json
+- adjudication_results/codex__O2-noinline__gnutls__systemkey__print_list.json
+- adjudication_results/codex__O2-noinline__libacl__chacl__main.json
+- adjudication_results/codex__O2-noinline__libacl__setfacl__restore.json
+- adjudication_results/codex__O2-noinline__libopencm3__msc___usbd_standard_request_device.json
+- adjudication_results/codex__O2-noinline__libopencm3__sdram__main.json
+- adjudication_results/codex__O2-noinline__libopencm3__usbmidi__dwc_poll.json
+- adjudication_results/codex__O2-noinline__openssh-portable__ssh-add__revoked_certs_generate.json
+- adjudication_results/codex__O2-noinline__openssh-portable__ssh-keygen__ssh_rsa_verify.json
+- adjudication_results/codex__O2-noinline__openssh-portable__ssh-keyscan__argv_split.json
+- adjudication_results/codex__O2-noinline__openssh-portable__ssh-sk-helper__cert_parse.json
+- adjudication_results/codex__O2-noinline__openssh-portable__ssh__revoked_serial_tree_RB_REMOVE_COLOR.json
+- adjudication_results/codex__O2-noinline__shadow__groupmod__grp_update.json
+- adjudication_results/codex__O2-noinline__shadow__grpunconv__main.json
+- adjudication_results/codex__O2-noinline__shadow__newusers__close_files.json
+- adjudication_results/codex__O2-noinline__shadow__useradd__grp_update.json
+- adjudication_results/codex__O2-noinline__shadow__vipw__main.json
+- adjudication_results/codex__O2-noinline__sysvinit__bootlogd__main.json
+- adjudication_results/codex__O2-noinline__sysvinit__init__check_init_fifo.json
+- adjudication_results/codex__O2-noinline__sysvinit__killall5__readproc.json
+- adjudication_results/codex__O2-noinline__sysvinit__last__list.json
+- adjudication_results/codex__O2-noinline__sysvinit__shutdown__wall.json
+- adjudication_results/codex__O2-noinline__sysvinit__sulogin__getpasswd.json
+- adjudication_results/codex__O2-noinline__sysvinit__utmpdump__dump.json
+- adjudication_results/codex__O2-noinline__sysvinit__wall__wall.json
+- adjudication_results/codex__O2-noinline__zlib__minigzip64__inflate_fast.json
+- adjudication_results/codex__O2-noinline__zlib__minigzip__inflate_table.json
+- adjudication_results/codex__O2-noinline__zlib__minigzipsh__main.json

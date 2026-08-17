@@ -1,0 +1,147 @@
+[
+  {
+    "function": "cert_parse",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "第1个参数（ABI位置1）",
+        "source_type": "struct sshbuf *",
+        "decompiled_type": "struct sshbuf *",
+        "match": "correct",
+        "evidence_source_line": "3863: cert_parse(struct sshbuf *b, struct sshkey *key, struct sshbuf *certbuf)",
+        "evidence_decompiled_line": "65: cert_parse(struct sshbuf *b, struct sshkey *key, const struct sshbuf *certbuf)"
+      },
+      {
+        "source_role": "第2个参数（ABI位置2）",
+        "source_type": "struct sshkey *",
+        "decompiled_type": "struct sshkey *",
+        "match": "correct",
+        "evidence_source_line": "3863: cert_parse(struct sshbuf *b, struct sshkey *key, struct sshbuf *certbuf)",
+        "evidence_decompiled_line": "65: cert_parse(struct sshbuf *b, struct sshkey *key, const struct sshbuf *certbuf)"
+      },
+      {
+        "source_role": "第3个参数（ABI位置3）",
+        "source_type": "struct sshbuf *",
+        "decompiled_type": "const struct sshbuf *",
+        "match": "wrong",
+        "evidence_source_line": "3863: cert_parse(struct sshbuf *b, struct sshkey *key, struct sshbuf *certbuf)",
+        "evidence_decompiled_line": "65: cert_parse(struct sshbuf *b, struct sshkey *key, const struct sshbuf *certbuf)"
+      },
+      {
+        "source_role": "局部变量 principals",
+        "source_type": "struct sshbuf *",
+        "decompiled_type": "struct sshbuf *",
+        "match": "correct",
+        "evidence_source_line": "3865-3869: struct sshbuf *principals = ((void *)0), *crit = ((void *)0);; 3889: sshbuf_froms(b, &principals)",
+        "evidence_decompiled_line": "67: struct sshbuf *principals = NULL, *crit = NULL;; 80: sshbuf_froms(b, &principals)"
+      },
+      {
+        "source_role": "局部变量 crit",
+        "source_type": "struct sshbuf *",
+        "decompiled_type": "struct sshbuf *",
+        "match": "correct",
+        "evidence_source_line": "3865-3869: struct sshbuf *principals = ((void *)0), *crit = ((void *)0);; 3892: sshbuf_froms(b, &crit)",
+        "evidence_decompiled_line": "67: struct sshbuf *principals = NULL, *crit = NULL;; 83: sshbuf_froms(b, &crit)"
+      },
+      {
+        "source_role": "局部变量 exts",
+        "source_type": "struct sshbuf *",
+        "decompiled_type": "struct sshbuf *",
+        "match": "correct",
+        "evidence_source_line": "3870-3874: struct sshbuf *exts = ((void *)0), *ca = ((void *)0);; 3893: sshbuf_froms(b, &exts)",
+        "evidence_decompiled_line": "68: struct sshbuf *exts = NULL, *ca = NULL;; 84: sshbuf_froms(b, &exts)"
+      },
+      {
+        "source_role": "局部变量 ca",
+        "source_type": "struct sshbuf *",
+        "decompiled_type": "struct sshbuf *",
+        "match": "correct",
+        "evidence_source_line": "3870-3874: struct sshbuf *exts = ((void *)0), *ca = ((void *)0);; 3899: sshbuf_froms(b, &ca)",
+        "evidence_decompiled_line": "68: struct sshbuf *exts = NULL, *ca = NULL;; 86: sshbuf_froms(b, &ca)"
+      },
+      {
+        "source_role": "局部变量 sig",
+        "source_type": "u_char *",
+        "decompiled_type": "u_char *",
+        "match": "correct",
+        "evidence_source_line": "3875-3877: u_char *sig = ((void *)0);; 3908: sshbuf_get_string(b, &sig, &slen)",
+        "evidence_decompiled_line": "69: u_char *sig = NULL;; 96: sshbuf_get_string(b, &sig, &slen)"
+      },
+      {
+        "source_role": "局部变量 signed_len",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "3878: size_t signed_len = 0, slen = 0, kidlen = 0;; 3906: signed_len = sshbuf_len(key->cert->certblob) - sshbuf_len(b)",
+        "evidence_decompiled_line": "70: size_t signed_len = 0, slen = 0, kidlen = 0;; 93: signed_len = sshbuf_len(key->cert->certblob) - sshbuf_len(b)"
+      },
+      {
+        "source_role": "局部变量 slen",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "3878: size_t signed_len = 0, slen = 0, kidlen = 0;; 3908: sshbuf_get_string(b, &sig, &slen)",
+        "evidence_decompiled_line": "70: size_t signed_len = 0, slen = 0, kidlen = 0;; 96: sshbuf_get_string(b, &sig, &slen)"
+      },
+      {
+        "source_role": "局部变量 kidlen",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "3878: size_t signed_len = 0, slen = 0, kidlen = 0;; 3888: sshbuf_get_cstring(b, &key->cert->key_id, &kidlen)",
+        "evidence_decompiled_line": "70: size_t signed_len = 0, slen = 0, kidlen = 0;; 79: sshbuf_get_cstring(b, &key->cert->key_id, &kidlen)"
+      },
+      {
+        "source_role": "局部变量 ret",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "3879: int ret = -1;; 4031: return ret;",
+        "evidence_decompiled_line": "71: int ret = SSH_ERR_INTERNAL_ERROR;; 188: return ret;"
+      },
+      {
+        "source_role": "循环内局部变量 principal",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "3921-3923: char *principal = ((void *)0);; 3932: sshbuf_get_cstring(principals, &principal, ...)",
+        "evidence_decompiled_line": "109: char *principal = NULL;; 116: sshbuf_get_cstring(principals, &principal, NULL)"
+      },
+      {
+        "source_role": "循环内局部变量 oprincipals",
+        "source_type": "char **",
+        "decompiled_type": "char **",
+        "match": "correct",
+        "evidence_source_line": "3924-3926: char **oprincipals = ((void *)0);; 3939: oprincipals = key->cert->principals",
+        "evidence_decompiled_line": "110: char **oprincipals;; 120: oprincipals = key->cert->principals"
+      },
+      {
+        "source_role": "结构体 sshkey_cert（由第2参数经 cert 指针访问）",
+        "source_type": "struct sshkey_cert { struct sshbuf *; u_int; u_int64_t; char *; u_int; char **; u_int64_t; u_int64_t; struct sshbuf *; struct sshbuf *; struct sshkey *; char *; }",
+        "decompiled_type": "struct sshkey_cert { struct sshbuf *; u_int; u_int64_t; char *; u_int; char **; u_int64_t; u_int64_t; struct sshbuf *; struct sshbuf *; struct sshkey *; char *; }",
+        "match": "correct",
+        "evidence_source_line": "972-984: struct sshkey_cert 声明依次为 certblob, type, serial, key_id, nprincipals, principals, valid_after, valid_before, critical, extensions, signature_key, signature_type",
+        "evidence_decompiled_line": "21-34: struct sshkey_cert 显式给出同一字段类型序列及偏移 0x00,0x08,0x10,0x18,0x20,0x28,0x30,0x38,0x40,0x48,0x50,0x58"
+      },
+      {
+        "source_role": "结构体 sshkey（第2参数的指向对象）",
+        "source_type": "struct sshkey，含 type、flags、多个密钥/状态指针及 cert 等字段；cert 位于源布局中的偏移 0x80",
+        "decompiled_type": "struct sshkey { int type; char pad[0x80 - sizeof(int)]; struct sshkey_cert *cert; }",
+        "match": "wrong",
+        "evidence_source_line": "987-1012: struct sshkey 从 int type、int flags 起，经过 rsa/dsa/ecdsa/ed25519/xmss/sk 字段后才声明 struct sshkey_cert *cert",
+        "evidence_decompiled_line": "36-40: struct sshkey 仅声明 int type、char pad[0x80 - sizeof(int)]、struct sshkey_cert *cert"
+      },
+      {
+        "source_role": "结构体 sshbuf（第1、第3参数及四个局部指针的指向对象）",
+        "source_type": "struct sshbuf（本指定源码文件中未给出完整定义）",
+        "decompiled_type": "struct sshbuf（仅前置声明）",
+        "match": "undeterminable",
+        "evidence_source_line": "3863: 参数仅以 struct sshbuf * 出现；3865-3874: 局部变量也仅为 struct sshbuf *，本函数证据不展示其字段布局",
+        "evidence_decompiled_line": "19: struct sshbuf;; 65-68: 参数和局部变量仅以 struct sshbuf * 使用"
+      }
+    ],
+    "reasoning": "按 ABI 位置对齐三个参数，发现第3参数从可变指针恢复成了 const 指针，构成 FN-01 签名限定符不匹配。按取地址传参、长度运算、释放及 principals 数组扩容的数据流对齐，所有局部变量的指针层级和整数/size_t 类型均一致，故未发现 PTR-01 或 INT-01。函数没有静态局部对象，因而没有 SC-01 证据；也没有同名头文件冲突的证据。sshkey_cert 的字段数量、偏移和类型序列一致；但 sshkey 被压缩成 type、人工 pad、cert 三字段，虽保住本函数所需的 cert@0x80 和 type@0x00，却不等同于源码的完整显式字段布局，确认 LAYOUT-01。sshbuf 两侧均无完整定义，不能判断其布局。"
+  }
+]

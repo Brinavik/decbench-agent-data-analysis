@@ -1,0 +1,171 @@
+[
+  {
+    "function": "list",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "第1个参数（按ABI位置对齐，登录记录指针）",
+        "source_type": "struct utmp *",
+        "decompiled_type": "struct utmp *",
+        "match": "correct",
+        "evidence_source_line": "293: int list(struct utmp *p, time_t t, int what); 312-314: strncat(utline, p->ut_line, 32); 350-352: tmp = (time_t)p->ut_tv.tv_sec",
+        "evidence_decompiled_line": "60: int list(struct utmp *p, time_t t, int what); 78: strncat(utline, p->ut_line, sizeof(p->ut_line)); 102: tmp = (int) p->ut_tv.tv_sec"
+      },
+      {
+        "source_role": "第2个参数（按ABI位置对齐，结束时间）",
+        "source_type": "time_t",
+        "decompiled_type": "time_t",
+        "match": "correct",
+        "evidence_source_line": "293: int list(struct utmp *p, time_t t, int what); 362-364: secs = t - p->ut_tv.tv_sec",
+        "evidence_decompiled_line": "60: int list(struct utmp *p, time_t t, int what); 113: secs = t - (int) p->ut_tv.tv_sec"
+      },
+      {
+        "source_role": "第3个参数（按ABI位置对齐，记录状态选择值）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "293: int list(struct utmp *p, time_t t, int what); 373: switch(what)",
+        "evidence_decompiled_line": "60: int list(struct utmp *p, time_t t, int what); 122: switch (what)"
+      },
+      {
+        "source_role": "局部变量secs（时间差）",
+        "source_type": "time_t",
+        "decompiled_type": "time_t",
+        "match": "correct",
+        "evidence_source_line": "295: time_t secs, tmp; 362-367: secs = t - p->ut_tv.tv_sec; mins = (secs / 60) % 60; hours = (secs / 3600) % 24; days = secs / 86400",
+        "evidence_decompiled_line": "62: time_t tmp, secs; 113-116: secs = t - (int) p->ut_tv.tv_sec; mins = (secs / 60) % 60; hours = (secs / 3600) % 24; days = secs / 86400"
+      },
+      {
+        "source_role": "局部变量tmp（传给ctime的登录时间副本）",
+        "source_type": "time_t",
+        "decompiled_type": "time_t",
+        "match": "correct",
+        "evidence_source_line": "295: time_t secs, tmp; 350-353: tmp = (time_t)p->ut_tv.tv_sec; strncpy(logintime, ctime(&tmp), sizeof(logintime))",
+        "evidence_decompiled_line": "62: time_t tmp, secs; 102-103: tmp = (int) p->ut_tv.tv_sec; strncpy(logintime, ctime(&tmp), 31)"
+      },
+      {
+        "source_role": "局部变量logintime（登录时间文本缓冲区）",
+        "source_type": "char[32]",
+        "decompiled_type": "char[32]",
+        "match": "correct",
+        "evidence_source_line": "296: char logintime[32]; 353-354: strncpy(logintime, ctime(&tmp), sizeof(logintime)); logintime[sizeof(logintime)-1] = 0",
+        "evidence_decompiled_line": "68: char logintime[32]; 103-104: strncpy(logintime, ctime(&tmp), 31); logintime[31] = 0"
+      },
+      {
+        "source_role": "局部变量logouttime（退出时间或状态文本缓冲区）",
+        "source_type": "char[32]",
+        "decompiled_type": "char[32]",
+        "match": "correct",
+        "evidence_source_line": "297: char logouttime[32]; 356: sprintf(logouttime, \"- %s\", ctime(&t)); 375: sprintf(logouttime, \"- crash\")",
+        "evidence_decompiled_line": "69: char logouttime[32]; 106: sprintf(logouttime, \"- %s\", ctime(&t)); 124: sprintf(logouttime, \"- crash\")"
+      },
+      {
+        "source_role": "局部变量length（会话时长文本缓冲区）",
+        "source_type": "char[32]",
+        "decompiled_type": "char[32]",
+        "match": "correct",
+        "evidence_source_line": "298: char length[32]; 369-371: sprintf(length, \"(%d+%02d:%02d)\", days, hours, mins) / sprintf(length, \" (%02d:%02d)\", hours, mins)",
+        "evidence_decompiled_line": "70: char length[32]; 117-120: sprintf(length, \"(%d+%02d:%02d)\", days, hours, mins) / sprintf(length, \" (%02d:%02d)\", hours, mins)"
+      },
+      {
+        "source_role": "局部变量final（最终输出行缓冲区）",
+        "source_type": "char[512]",
+        "decompiled_type": "char[512]",
+        "match": "correct",
+        "evidence_source_line": "299: char final[512]; 427-435: len = snprintf(final, sizeof(final), ...); 497: for (s = final; *s; s++)",
+        "evidence_decompiled_line": "72: char final[512]; 169-174: len = snprintf(final, sizeof(final), ...); 218: for (s = final; *s; s++)"
+      },
+      {
+        "source_role": "局部变量utline（终端名副本缓冲区）",
+        "source_type": "char[33]",
+        "decompiled_type": "char[sizeof(p->ut_line) + 1]（由反编译结构定义可化为char[33]）",
+        "match": "correct",
+        "evidence_source_line": "300-302: char utline[32 +1]; 311-314: utline[0] = 0; strncat(utline, p->ut_line, 32)",
+        "evidence_decompiled_line": "16: char ut_line[32]; 67: char utline[sizeof(p->ut_line) + 1]; 77-78: utline[0] = 0; strncat(utline, p->ut_line, sizeof(p->ut_line))"
+      },
+      {
+        "source_role": "局部变量domain（远端主机文本缓冲区）",
+        "source_type": "char[256]",
+        "decompiled_type": "char[256]",
+        "match": "correct",
+        "evidence_source_line": "303: char domain[256]; 413: r = dns_lookup(domain, sizeof(domain), useip, p->ut_addr_v6); 419-420: domain[0] = 0; strncat(domain, p->ut_host, len)",
+        "evidence_decompiled_line": "71: char domain[256]; 160: r = dns_lookup(domain, sizeof(domain), useip, p->ut_addr_v6); 162-163: domain[0] = 0; strncat(domain, p->ut_host, sizeof(domain) - 1)"
+      },
+      {
+        "source_role": "局部变量s（遍历最终输出缓冲区的字符指针）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "304: char *s, **walk; 497-501: for (s = final; *s; s++) ... putchar(*s)",
+        "evidence_decompiled_line": "66: char *s; 218-222: for (s = final; *s; s++) ... putchar(*s)"
+      },
+      {
+        "source_role": "局部变量walk（遍历字符串指针列表的二级指针）",
+        "source_type": "char **",
+        "decompiled_type": "char **",
+        "match": "correct",
+        "evidence_source_line": "304: char *s, **walk; 332-344: for (walk = show; *walk; walk++) ... if (*walk == NULL) return 0",
+        "evidence_decompiled_line": "65: char **walk; 87-96: for (walk = show; *walk; walk++) ... if (*walk == NULL) return 0"
+      },
+      {
+        "source_role": "局部变量mins（时长分钟分量）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "305: int mins, hours, days; 365: mins = (secs / 60) % 60; 369: sprintf(length, ..., mins)",
+        "evidence_decompiled_line": "63: int days, hours, mins; 114: mins = (secs / 60) % 60; 118: sprintf(length, ..., mins)"
+      },
+      {
+        "source_role": "局部变量hours（时长小时分量）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "305: int mins, hours, days; 366: hours = (secs / 3600) % 24; 369: sprintf(length, ..., hours, mins)",
+        "evidence_decompiled_line": "63: int days, hours, mins; 115: hours = (secs / 3600) % 24; 118: sprintf(length, ..., hours, mins)"
+      },
+      {
+        "source_role": "局部变量days（时长天数分量）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "305: int mins, hours, days; 367-369: days = secs / 86400; if (days) sprintf(length, ..., days, hours, mins)",
+        "evidence_decompiled_line": "63: int days, hours, mins; 116-118: days = secs / 86400; if (days) sprintf(length, ..., days, hours, mins)"
+      },
+      {
+        "source_role": "局部变量r（DNS查询返回值）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "306: int r, len; 411-414: r = -1; ... r = dns_lookup(...); if (r < 0)",
+        "evidence_decompiled_line": "64: int len, r; 158-161: r = -1; ... r = dns_lookup(...); if (r < 0)"
+      },
+      {
+        "source_role": "局部变量len（格式化长度/主机复制上限）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "306: int r, len; 415-420: len = 256; ... strncat(domain, p->ut_host, len); 427: len = snprintf(final, sizeof(final), ...)",
+        "evidence_decompiled_line": "64: int len, r; 163: strncat(domain, p->ut_host, sizeof(domain) - 1); 169: len = snprintf(final, sizeof(final), ...)"
+      },
+      {
+        "source_role": "结构体utmp（第1个参数所指记录；按字段访问的数据流对齐）",
+        "source_type": "struct utmp；指定源码函数仅显示ut_line、ut_user、ut_tv.tv_sec、ut_addr_v6、ut_host成员的使用，未给出完整定义、偏移、总大小或全部字段类型序列",
+        "decompiled_type": "显式struct utmp：ut_type@0x00 short int, ut_pid@0x04 int, ut_line@0x08 char[32], ut_id@0x28 char[4], ut_user@0x2c char[32], ut_host@0x4c char[256], ut_exit@0x14c struct exit_status, ut_session@0x150 int, ut_tv@0x154 {int,int}, ut_addr_v6@0x15c int[4], __unused[20]",
+        "match": "undeterminable",
+        "evidence_source_line": "293: int list(struct utmp *p, time_t t, int what); 312-314: p->ut_line; 333-337: p->ut_user; 350-352: p->ut_tv.tv_sec; 413: p->ut_addr_v6; 420: p->ut_host（函数范围内没有struct utmp定义或字段偏移）",
+        "evidence_decompiled_line": "13-28: struct utmp的完整显式布局；60: int list(struct utmp *p, time_t t, int what); 78, 89, 102, 160, 163: 分别访问ut_line、ut_user、ut_tv.tv_sec、ut_addr_v6、ut_host"
+      },
+      {
+        "source_role": "结构体utmp中的ut_tv子对象（由成员访问可知含tv_sec，但源码函数内无布局定义）",
+        "source_type": "未命名/未在指定源码函数中定义的结构体子对象；仅能确认存在成员tv_sec，其完整类型序列与偏移未知",
+        "decompiled_type": "匿名结构体 { int tv_sec; int tv_usec; }，位于struct utmp偏移0x154",
+        "match": "undeterminable",
+        "evidence_source_line": "350-352: tmp = (time_t)p->ut_tv.tv_sec; 362-364: secs = t - p->ut_tv.tv_sec（无ut_tv定义、tv_usec或偏移证据）",
+        "evidence_decompiled_line": "22-25: struct { int tv_sec; int tv_usec; } ut_tv /* 0x154 */; 102,113: 使用p->ut_tv.tv_sec"
+      }
+    ],
+    "reasoning": "按ABI参数位置，第1至第3参数分别是一层struct utmp指针、time_t和int，签名一致，未见FN-01或PTR-01。15个局部变量均可通过其声明、栈上缓冲区容量及读写数据流逐一对齐，未见SC-01或INT-01。反编译结果额外给出了struct utmp及ut_tv的完整显式布局，但指定源码函数只包含成员访问，没有结构体定义、字段偏移、总大小和完整类型序列；依据不得读取其他函数文件/头文件的限制，无法验证ST-01或LAYOUT-01，也不能仅凭同名认定正确。因此free_discovery整体为undeterminable，而非猜测确认或排除结构体布局错误。"
+  }
+]

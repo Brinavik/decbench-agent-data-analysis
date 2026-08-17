@@ -1,0 +1,155 @@
+[
+  {
+    "function": "grp_update",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "函数签名（无参数）",
+        "source_type": "static void grp_update(void)",
+        "decompiled_type": "void grp_update(void)",
+        "match": "correct",
+        "evidence_source_line": "845: static void grp_update (void)",
+        "evidence_decompiled_line": "73: void grp_update(void)"
+      }
+    ],
+    "reasoning": "两端均明确为 void 参数表，按 ABI 参数位置不存在可坍塌的参数。"
+  },
+  {
+    "function": "grp_update",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 grp",
+        "source_type": "struct group",
+        "decompiled_type": "struct group grpent",
+        "match": "correct",
+        "evidence_source_line": "847: struct group grp; 871: grp = *ogrp; 872: new_grent (&grp);",
+        "evidence_decompiled_line": "77: struct group grpent; 89: grpent = *ogrp; 90: new_grp(&grpent);"
+      }
+    ],
+    "reasoning": "该对象都接收第一个 group 指针解引用的完整记录，并以地址传给记录更新例程；数据流和对象角色一致。"
+  },
+  {
+    "function": "grp_update",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 ogrp",
+        "source_type": "const struct group *",
+        "decompiled_type": "const struct group *",
+        "match": "correct",
+        "evidence_source_line": "848: const struct group *ogrp; 860: ogrp = gr_locate (group_name); 871: grp = *ogrp;",
+        "evidence_decompiled_line": "75: const struct group *ogrp; 81: ogrp = gr_locate(group_name); 89: grpent = *ogrp;"
+      }
+    ],
+    "reasoning": "返回值被保存、与空指针比较并解引用为 group 对象，指针层级及 const 限定均在反编译声明中保留。"
+  },
+  {
+    "function": "grp_update",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 sgrp",
+        "source_type": "struct sgrp",
+        "decompiled_type": "struct sgrp sgent",
+        "match": "correct",
+        "evidence_source_line": "851: struct sgrp sgrp; 880: sgrp = *osgrp; 892: memset (&sgrp, 0, sizeof sgrp);",
+        "evidence_decompiled_line": "78: struct sgrp sgent; 99: sgent = *osgrp; 104: memset(&sgent, 0, sizeof(sgent));"
+      }
+    ],
+    "reasoning": "两端的 sgrp 自动对象既可由 osgrp 解引用复制，也可被清零后逐字段构造，随后其地址用于更新；栈上角色一致。"
+  },
+  {
+    "function": "grp_update",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 osgrp",
+        "source_type": "const struct sgrp *",
+        "decompiled_type": "const struct sgrp *",
+        "match": "correct",
+        "evidence_source_line": "852: const struct sgrp *osgrp = ((void *)0); 876: osgrp = sgr_locate (group_name); 898: osgrp = &sgrp;",
+        "evidence_decompiled_line": "76: const struct sgrp *osgrp = (const struct sgrp *)0; 97: osgrp = sgr_locate(group_name); 110: osgrp = &sgent;"
+      }
+    ],
+    "reasoning": "该指针在两端均初始为空，保存定位结果或指向本地 sgrp 对象，并作为是否提交 shadow 记录的存在性标记；层级和 const 一致。"
+  },
+  {
+    "function": "grp_update",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 token",
+        "source_type": "char *",
+        "decompiled_type": "char *member",
+        "match": "correct",
+        "evidence_source_line": "908: char *token; 926: token = strtok(user_list, \",\"); 936: grp.gr_mem = add_list(grp.gr_mem, token);",
+        "evidence_decompiled_line": "79: char *member; 136: for (member = strtok(user_list, \",\"); 145: grpent.gr_mem = add_list(grpent.gr_mem, member);"
+      }
+    ],
+    "reasoning": "两端均保存 strtok 返回的可变字符指针，作为循环中的用户名并传给 add_list；数据流确定其为单层 char 指针。"
+  },
+  {
+    "function": "grp_update",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "静态局部对象 empty",
+        "source_type": "static char *empty",
+        "decompiled_type": "static char *empty_admins[1]",
+        "match": "wrong",
+        "evidence_source_line": "884: static char *empty = ((void *)0); 895: sgrp.sg_adm = &empty;",
+        "evidence_decompiled_line": "71: static char *empty_admins[1]; 107: sgent.sg_adm = empty_admins;"
+      }
+    ],
+    "reasoning": "使用处均向 sg_adm 提供 char ** 存储地址，但源码是函数块内的静态指针标量并显式取址，反编译结果是文件作用域静态一元素数组并发生数组衰变。因此对象声明和作用域未精确恢复；但反编译行 71 具有 static 内部链接，不是 SC-01 所称的全局外部对象，故该具体假设不成立。"
+  },
+  {
+    "function": "grp_update",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "结构体 struct group",
+        "source_type": "仅函数内可见的 struct group 字段使用：gr_name、gr_passwd、gr_gid、gr_mem",
+        "decompiled_type": "struct group { char *; char *; gid_t; char **; }，声明偏移为 0x00/0x08/0x10/0x18",
+        "match": "undeterminable",
+        "evidence_source_line": "871: grp = *ogrp; 883: strcmp (grp.gr_passwd, \"x\"); 904: update_primary_groups (ogrp->gr_gid, group_newid); 916: grp.gr_mem = (char **)xmalloc(sizeof(char *));",
+        "evidence_decompiled_line": "9-14: struct group fields are declared at +0x00, +0x08, +0x10, and +0x18."
+      }
+    ],
+    "reasoning": "源码函数使用证明字段角色和顺序名称，但未在该函数内给出字段大小、对齐、偏移或 gid_t 的具体宽度。禁止借助函数外声明或头文件推断，故不能严格确认或否定反编译结果的显式布局。"
+  },
+  {
+    "function": "grp_update",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "结构体 struct sgrp",
+        "source_type": "仅函数内可见的 struct sgrp 字段使用：sg_name、sg_passwd、sg_adm、sg_mem",
+        "decompiled_type": "struct sgrp { char *; char *; char **; char **; }，声明偏移为 0x00/0x08/0x10/0x18",
+        "match": "undeterminable",
+        "evidence_source_line": "892: memset (&sgrp, 0, sizeof sgrp); 893: sgrp.sg_name = xstrdup (grp.gr_name); 895: sgrp.sg_adm = &empty; 896: sgrp.sg_mem = dup_list (grp.gr_mem);",
+        "evidence_decompiled_line": "17-22: struct sgrp fields are declared at +0x00, +0x08, +0x10, and +0x18."
+      }
+    ],
+    "reasoning": "函数体仅显示字段访问和 sizeof 整体清零，不能从中严格推出指针宽度、各字段偏移或完整布局；因此 LAYOUT-01 在限定证据下不可判定。"
+  }
+]

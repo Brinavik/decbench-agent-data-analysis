@@ -1,0 +1,212 @@
+[
+  {
+    "function": "close_files",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "函数签名（无参数）",
+        "source_type": "static void (void)",
+        "decompiled_type": "void (void)，外部链接",
+        "match": "wrong",
+        "evidence_source_line": "1685: static void close_files (void)",
+        "evidence_decompiled_line": "11: void close_files(void)",
+        "reasoning": "参数列表与返回类型一致，但源码的 static 内部链接在反编译定义中丢失。"
+      },
+      {
+        "source_role": "第1次SYSLOG展开局部变量old_locale（pw_close失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "const char *",
+        "match": "wrong",
+        "evidence_source_line": "1691-1695: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+        "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+      },
+      {
+        "source_role": "第1次SYSLOG展开局部变量saved_locale（pw_close失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1695-1699: char *saved_locale = ((void *)0); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "48-50: char *saved_locale = NULL; ... saved_locale = strdup(current_locale);"
+      },
+      {
+        "source_role": "第2次SYSLOG展开局部变量old_locale（pw_unlock失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "const char *",
+        "match": "wrong",
+        "evidence_source_line": "1720-1724: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+        "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+      },
+      {
+        "source_role": "第2次SYSLOG展开局部变量saved_locale（pw_unlock失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1724-1728: char *saved_locale = ((void *)0); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "48-50: char *saved_locale = NULL; ... saved_locale = strdup(current_locale);"
+      },
+      {
+        "source_role": "第3次SYSLOG展开局部变量old_locale（spw_close失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "const char *",
+        "match": "wrong",
+        "evidence_source_line": "1754-1758: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+        "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+      },
+      {
+        "source_role": "第3次SYSLOG展开局部变量saved_locale（spw_close失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1758-1762: char *saved_locale = ((void *)0); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "48-50: char *saved_locale = NULL; ... saved_locale = strdup(current_locale);"
+      },
+      {
+        "source_role": "第4次SYSLOG展开局部变量old_locale（spw_unlock失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "const char *",
+        "match": "wrong",
+        "evidence_source_line": "1785-1789: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+        "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+      },
+      {
+        "source_role": "第4次SYSLOG展开局部变量saved_locale（spw_unlock失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1789-1793: char *saved_locale = ((void *)0); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "48-50: char *saved_locale = NULL; ... saved_locale = strdup(current_locale);"
+      },
+      {
+        "source_role": "第5次SYSLOG展开局部变量old_locale（gr_close失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "const char *",
+        "match": "wrong",
+        "evidence_source_line": "1819-1823: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+        "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+      },
+      {
+        "source_role": "第5次SYSLOG展开局部变量saved_locale（gr_close失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1823-1827: char *saved_locale = ((void *)0); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "48-50: char *saved_locale = NULL; ... saved_locale = strdup(current_locale);"
+      },
+      {
+        "source_role": "第6次SYSLOG展开局部变量old_locale（sub_uid_close失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "const char *",
+        "match": "wrong",
+        "evidence_source_line": "1850-1854: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+        "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+      },
+      {
+        "source_role": "第6次SYSLOG展开局部变量saved_locale（sub_uid_close失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1854-1858: char *saved_locale = ((void *)0); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "48-50: char *saved_locale = NULL; ... saved_locale = strdup(current_locale);"
+      },
+      {
+        "source_role": "第7次SYSLOG展开局部变量old_locale（sub_gid_close失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "const char *",
+        "match": "wrong",
+        "evidence_source_line": "1880-1884: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+        "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+      },
+      {
+        "source_role": "第7次SYSLOG展开局部变量saved_locale（sub_gid_close失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1884-1888: char *saved_locale = ((void *)0); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "48-50: char *saved_locale = NULL; ... saved_locale = strdup(current_locale);"
+      },
+      {
+        "source_role": "第8次SYSLOG展开局部变量old_locale（gr_unlock失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "const char *",
+        "match": "wrong",
+        "evidence_source_line": "1913-1917: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+        "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+      },
+      {
+        "source_role": "第8次SYSLOG展开局部变量saved_locale（gr_unlock失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1917-1921: char *saved_locale = ((void *)0); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "48-50: char *saved_locale = NULL; ... saved_locale = strdup(current_locale);"
+      },
+      {
+        "source_role": "第9次SYSLOG展开局部变量old_locale（sgr_close失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "const char *",
+        "match": "wrong",
+        "evidence_source_line": "1948-1952: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+        "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+      },
+      {
+        "source_role": "第9次SYSLOG展开局部变量saved_locale（sgr_close失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1952-1956: char *saved_locale = ((void *)0); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "48-50: char *saved_locale = NULL; ... saved_locale = strdup(current_locale);"
+      },
+      {
+        "source_role": "第10次SYSLOG展开局部变量old_locale（sgr_unlock失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "const char *",
+        "match": "wrong",
+        "evidence_source_line": "1979-1983: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+        "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+      },
+      {
+        "source_role": "第10次SYSLOG展开局部变量saved_locale（sgr_unlock失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1983-1987: char *saved_locale = ((void *)0); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "48-50: char *saved_locale = NULL; ... saved_locale = strdup(current_locale);"
+      },
+      {
+        "source_role": "第11次SYSLOG展开局部变量old_locale（sub_uid_unlock失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "const char *",
+        "match": "wrong",
+        "evidence_source_line": "2013-2017: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+        "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+      },
+      {
+        "source_role": "第11次SYSLOG展开局部变量saved_locale（sub_uid_unlock失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "2017-2021: char *saved_locale = ((void *)0); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "48-50: char *saved_locale = NULL; ... saved_locale = strdup(current_locale);"
+      },
+      {
+        "source_role": "第12次SYSLOG展开局部变量old_locale（sub_gid_unlock失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "const char *",
+        "match": "wrong",
+        "evidence_source_line": "2045-2049: do { char *old_locale = setlocale ( 6, ((void *)0) );",
+        "evidence_decompiled_line": "47: const char *current_locale = setlocale(LC_ALL, NULL);"
+      },
+      {
+        "source_role": "第12次SYSLOG展开局部变量saved_locale（sub_gid_unlock失败分支）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "2049-2053: char *saved_locale = ((void *)0); ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "48-50: char *saved_locale = NULL; ... saved_locale = strdup(current_locale);"
+      }
+    ],
+    "reasoning": "源码函数和反编译函数均为零参数、void 返回，故不存在可按 ABI 序号对齐的参数；本函数也未声明或访问结构体，故无可核对的布局实体。按控制流中的12个SYSLOG调用点及“setlocale返回值→strdup输入”和“strdup返回值→setlocale恢复参数并free”的数据流，源码的12对块内局部量分别对齐到反编译SYSLOG宏体的current_locale与saved_locale。它们均仍是自动局部对象，故SC-01不成立；一级指针层级一致，故PTR-01不成立；无整数或结构体实体可支持INT-01、ST-01或LAYOUT-01。错误为12个setlocale返回值局部量被增加const限定，以及函数定义丢失static内部链接，因此free_discovery确认存在恢复偏差。"
+  }
+]

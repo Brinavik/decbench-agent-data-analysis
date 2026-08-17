@@ -1,0 +1,187 @@
+[
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码564: int main(int argc, char **argv)",
+        "evidence_decompiled_line": "反编译36: int main(int argc, char **argv)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "char **",
+        "decompiled_type": "char **",
+        "match": "correct",
+        "evidence_source_line": "源码564: int main(int argc, char **argv)",
+        "evidence_decompiled_line": "反编译36: int main(int argc, char **argv)"
+      },
+      {
+        "source_role": "函数返回类型",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码564: int main(int argc, char **argv)",
+        "evidence_decompiled_line": "反编译36: int main(int argc, char **argv)"
+      },
+      {
+        "source_role": "局部变量 fp（日志 FILE 指针）",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "源码566: FILE *fp;；源码864: fp = fopen(logfile, \"a\");",
+        "evidence_decompiled_line": "反编译42: FILE *log = NULL;；反编译223: log = fopen(logfile, \"a\");"
+      },
+      {
+        "source_role": "局部变量 logfile（日志路径指针）",
+        "source_type": "char *",
+        "decompiled_type": "const char *",
+        "match": "wrong",
+        "evidence_source_line": "源码571: char *logfile;；源码600: logfile = optarg;",
+        "evidence_decompiled_line": "反编译38: const char *logfile = \"/var/log/boot\";；反编译65: logfile = optarg;"
+      },
+      {
+        "source_role": "局部变量 pidfile（PID 路径指针）",
+        "source_type": "char *",
+        "decompiled_type": "const char *",
+        "match": "wrong",
+        "evidence_source_line": "源码572: char *pidfile;；源码610: pidfile = optarg;",
+        "evidence_decompiled_line": "反编译39: const char *pidfile = NULL;；反编译68: pidfile = optarg;"
+      },
+      {
+        "source_role": "局部变量 buf（伪终端名称/轮转临时缓冲区）",
+        "source_type": "char[1024]",
+        "decompiled_type": "char[1024]",
+        "match": "correct",
+        "evidence_source_line": "源码569: char buf[1024];；源码683: findpty(&ptm, &pts, buf)",
+        "evidence_decompiled_line": "反编译41: char name[1024];；反编译117: findpty(&master, &slave, name)"
+      },
+      {
+        "source_role": "局部变量 rotate（选项状态）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码573: int rotate;；源码603: rotate = 1;",
+        "evidence_decompiled_line": "反编译43: int rotate = 0;；反编译71: rotate = 1;"
+      },
+      {
+        "source_role": "局部变量 dontfork（选项状态）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码574: int dontfork;；源码616: dontfork = 1;",
+        "evidence_decompiled_line": "反编译44: int dont_fork = 0;；反编译59: dont_fork = 1;"
+      },
+      {
+        "source_role": "局部变量 print_escape_sequence（选项状态）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码585: int print_escape_sequence = 0;；源码619: print_escape_sequence = 1;",
+        "evidence_decompiled_line": "反编译45: int keep_escape_sequences = 0;；反编译62: keep_escape_sequences = 1;"
+      },
+      {
+        "source_role": "局部变量 ptm/pts（findpty 的两个 int 输出）",
+        "source_type": "int, int",
+        "decompiled_type": "int, int",
+        "match": "correct",
+        "evidence_source_line": "源码575: int ptm, pts;；源码683: findpty(&ptm, &pts, buf)",
+        "evidence_decompiled_line": "反编译48-49: int master = -1; int slave = -1;；反编译117: findpty(&master, &slave, name)"
+      },
+      {
+        "source_role": "局部变量 considx（控制台数组循环索引）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码582: int considx;；源码657: for (considx = 0; considx < num_consoles; considx++)",
+        "evidence_decompiled_line": "反编译51: int i;；反编译99: for (i = 0; i < console_count; i++)"
+      },
+      {
+        "source_role": "局部变量 num_consoles/consoles_left（控制台计数）",
+        "source_type": "int, int",
+        "decompiled_type": "int, int",
+        "match": "correct",
+        "evidence_source_line": "源码584: int num_consoles, consoles_left;；源码656: consoles_left = num_consoles;",
+        "evidence_decompiled_line": "反编译46-47: int console_count; int active_consoles;；反编译98: active_consoles = console_count;"
+      },
+      {
+        "source_role": "局部变量 p（向控制台写入时的当前数据指针）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "源码570: char *p;；源码810: p = inptr;；源码815: p += i;",
+        "evidence_decompiled_line": "反编译176: char *data;；反编译182: data = buffer_out;；反编译197: data += written;"
+      },
+      {
+        "source_role": "局部变量 n（open/read 返回值）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码577: int n, m, i;；源码701-703: if ((n = open(\"/dev/tty0\", 02)) >= 0)；源码802: if ((n = read(ptm, inptr, endptr - inptr)) >= 0)",
+        "evidence_decompiled_line": "反编译50: int option;；反编译51: int i;；反编译124-125: i = open(\"/dev/tty0\", O_RDWR);；反编译171: int count = (int)read(master, buffer_out, ...);"
+      },
+      {
+        "source_role": "局部变量 m（控制台写入剩余长度）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码577: int n, m, i;；源码809: m = n;；源码812-815: i = write(...); if (i >= 0) { m -= i; p += i; }",
+        "evidence_decompiled_line": "反编译177: int left;；反编译183: left = count;；反编译185-198: written = (int)write(...); left -= written; data += written;"
+      },
+      {
+        "source_role": "局部变量 i（通用循环/写入临时整数）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码577: int n, m, i;；源码812: i = write(cons[considx].fd, p, m)",
+        "evidence_decompiled_line": "反编译51: int i;；反编译99: for (i = 0; ...); 反编译185: int written = (int)write(...);"
+      },
+      {
+        "source_role": "局部变量 todo（待写日志长度）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码578: int todo;；源码872-874: todo = inptr - outptr / endptr - outptr;",
+        "evidence_decompiled_line": "反编译230: int count;；反编译232-235: count = (int)(buffer_end - buffer_in) / (buffer_out - buffer_in);"
+      },
+      {
+        "source_role": "结构体 real_cons 及局部数组 cons[16]",
+        "source_type": "struct real_cons { char name[1024]; int fd; }[16]",
+        "decompiled_type": "console_device { char device[1024]; int fd; }[16]",
+        "match": "correct",
+        "evidence_source_line": "源码29-32: struct real_cons { char name[1024]; int fd; };；源码583: struct real_cons cons[16];",
+        "evidence_decompiled_line": "反编译12-15: typedef struct { char device[1024]; int fd; } console_device;；反编译40: console_device consoles[16];"
+      },
+      {
+        "source_role": "局部变量 tv（select 超时结构）",
+        "source_type": "struct timeval",
+        "decompiled_type": "struct timeval",
+        "match": "correct",
+        "evidence_source_line": "源码567: struct timeval tv;；源码778-779: tv.tv_sec = 0; tv.tv_usec = 500000;",
+        "evidence_decompiled_line": "反编译161: struct timeval timeout;；反编译164-165: timeout.tv_sec = 0; timeout.tv_usec = 500000;"
+      },
+      {
+        "source_role": "局部变量 fds（select 读集合）",
+        "source_type": "fd_set",
+        "decompiled_type": "fd_set",
+        "match": "correct",
+        "evidence_source_line": "源码568: fd_set fds;；源码794: select(ptm + 1, &fds, ...)",
+        "evidence_decompiled_line": "反编译160: fd_set readfds;；反编译168: select(master + 1, &readfds, NULL, NULL, &timeout)"
+      },
+      {
+        "source_role": "局部变量 child_pid（fork 返回值）",
+        "source_type": "pid_t",
+        "decompiled_type": "pid_t",
+        "match": "correct",
+        "evidence_source_line": "源码735: pid_t child_pid = fork();",
+        "evidence_decompiled_line": "反编译137: pid_t pid = fork();"
+      }
+    ],
+    "reasoning": "参数按 ABI 第一、第二位置及返回类型直接对齐。局部量按同一调用的取址参数、循环计数、指针递增和日志写入数据流对齐；名称不作为依据。控制台数组的元素布局在两文件中均为连续的 char[1024] 后接 int，因而布局一致。源码 main 没有静态局部对象，故无法从本函数证明 SC-01；free_discovery 未给出可判定命题，故总判定为 undeterminable。已可直接证明的差异仅为两条路径指针的被指向类型从 char 被收窄为 const char。"
+  }
+]

@@ -1,0 +1,161 @@
+[
+  {
+    "function": "cert_parse",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "函数签名/链接属性",
+        "source_type": "static int (struct sshbuf *, struct sshkey *, struct sshbuf *)",
+        "decompiled_type": "int (struct sshbuf *, struct sshkey *, const struct sshbuf *)",
+        "match": "wrong",
+        "evidence_source_line": "源码3862-3863行: static int / cert_parse(struct sshbuf *b, struct sshkey *key, struct sshbuf *certbuf)",
+        "evidence_decompiled_line": "反编译57-58行: int / cert_parse(struct sshbuf *b, struct sshkey *key, const struct sshbuf *certbuf)",
+        "reasoning": "返回类型和三个 ABI 参数槽一致，但反编译声明丢失 static 内部链接，并给第3参数所指对象增加了源码没有的 const，故 FN-01 成立；这不是静态局部对象被外部化，不能据此确认 SC-01。"
+      },
+      {
+        "source_role": "第1个参数",
+        "source_type": "struct sshbuf *",
+        "decompiled_type": "struct sshbuf *",
+        "match": "correct",
+        "evidence_source_line": "源码3863行: cert_parse(struct sshbuf *b, struct sshkey *key, struct sshbuf *certbuf)",
+        "evidence_decompiled_line": "反编译58行: cert_parse(struct sshbuf *b, struct sshkey *key, const struct sshbuf *certbuf)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "struct sshkey *",
+        "decompiled_type": "struct sshkey *",
+        "match": "correct",
+        "evidence_source_line": "源码3863行: cert_parse(struct sshbuf *b, struct sshkey *key, struct sshbuf *certbuf)",
+        "evidence_decompiled_line": "反编译58行: cert_parse(struct sshbuf *b, struct sshkey *key, const struct sshbuf *certbuf)"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "struct sshbuf *",
+        "decompiled_type": "const struct sshbuf *",
+        "match": "wrong",
+        "evidence_source_line": "源码3863行: 第3个 ABI 参数为 struct sshbuf *certbuf；源码3882行将其传给 sshbuf_putb",
+        "evidence_decompiled_line": "反编译58行: 第3个 ABI 参数为 const struct sshbuf *certbuf；反编译68行将其传给 sshbuf_putb",
+        "reasoning": "按第3个 ABI 参数槽及 sshbuf_putb 的第二实参数据流对齐。指针层级仍为一级，PTR-01 不成立；但所指对象的 const 限定与源码不符。"
+      },
+      {
+        "source_role": "局部变量principals",
+        "source_type": "struct sshbuf *",
+        "decompiled_type": "struct sshbuf *",
+        "match": "correct",
+        "evidence_source_line": "源码3865-3869行声明；3889行以 &principals 输出；3920行读取；4029行释放",
+        "evidence_decompiled_line": "反编译60行声明；74行以 &principals 输出；97行读取；159行释放"
+      },
+      {
+        "source_role": "局部变量crit",
+        "source_type": "struct sshbuf *",
+        "decompiled_type": "struct sshbuf *",
+        "match": "correct",
+        "evidence_source_line": "源码3867-3869行声明；3892行以 &crit 输出；3968行读取；4027行释放",
+        "evidence_decompiled_line": "反编译60行对应变量 critical；77行以 &critical 输出；124行读取；157行释放"
+      },
+      {
+        "source_role": "局部变量exts",
+        "source_type": "struct sshbuf *",
+        "decompiled_type": "struct sshbuf *",
+        "match": "correct",
+        "evidence_source_line": "源码3870-3874行声明；3893行以 &exts 输出；3984-3986行读取；4028行释放",
+        "evidence_decompiled_line": "反编译61行对应变量 extensions；78行以 &extensions 输出；133行读取；158行释放"
+      },
+      {
+        "source_role": "局部变量ca",
+        "source_type": "struct sshbuf *",
+        "decompiled_type": "struct sshbuf *",
+        "match": "correct",
+        "evidence_source_line": "源码3872-3874行声明；3899行以 &ca 输出；4004行作为证书密钥 blob 使用；4026行释放",
+        "evidence_decompiled_line": "反编译61行声明；80行以 &ca 输出；142行作为证书密钥 blob 使用；156行释放"
+      },
+      {
+        "source_role": "局部变量sig",
+        "source_type": "u_char *",
+        "decompiled_type": "unsigned char *",
+        "match": "correct",
+        "evidence_source_line": "源码3875-3877行: u_char *sig；3908行以 &sig 输出；4030行 free(sig)",
+        "evidence_decompiled_line": "反编译62行: unsigned char *sig；86行以 &sig 输出；160行 free(sig)",
+        "reasoning": "u_char 与 unsigned char 为等价 typedef 展开，宽度、符号和一级指针层级均保留。"
+      },
+      {
+        "source_role": "局部变量signed_len",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "源码3878行声明；3906行保存两个 sshbuf_len 返回值之差；4012-4017行作为 sshkey_verify 长度实参",
+        "evidence_decompiled_line": "反编译65行声明；85行保存两个 sshbuf_len 返回值之差；148-149行作为 sshkey_verify 长度实参"
+      },
+      {
+        "source_role": "局部变量slen",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "源码3878行声明；3908行以 &slen 接收签名长度；4012及4019行作为签名长度使用",
+        "evidence_decompiled_line": "反编译65行对应变量 siglen；86行以 &siglen 接收签名长度；148及153行作为签名长度使用"
+      },
+      {
+        "source_role": "局部变量kidlen",
+        "source_type": "size_t",
+        "decompiled_type": "size_t",
+        "match": "correct",
+        "evidence_source_line": "源码3878行声明；3888行以 &kidlen 接收 key_id 长度",
+        "evidence_decompiled_line": "反编译65行对应变量 key_id_len；73行以 &key_id_len 接收 key_id 长度"
+      },
+      {
+        "source_role": "局部变量ret",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码3879行: int ret = -1；3882行接收返回码；4031行返回",
+        "evidence_decompiled_line": "反编译66行: int ret；68行接收返回码；161行返回"
+      },
+      {
+        "source_role": "循环局部变量principal",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "源码3921-3923行声明；3932-3935行以 &principal 输出；3946行释放或3951行存入 principals 数组",
+        "evidence_decompiled_line": "反编译63行声明；98-100行以 &principal 输出；109行释放或114行存入 principals 数组"
+      },
+      {
+        "source_role": "循环局部变量oprincipals",
+        "source_type": "char **",
+        "decompiled_type": "char **",
+        "match": "correct",
+        "evidence_source_line": "源码3924-3926行声明；3939行保存旧 principals 数组；3947行在分配失败时恢复",
+        "evidence_decompiled_line": "反编译64行对应变量 old_principals；104行保存旧 principals 数组；110行在分配失败时恢复"
+      },
+      {
+        "source_role": "结构体sshbuf",
+        "source_type": "struct sshbuf（本函数所给源码范围内未展示定义，仅经指针使用）",
+        "decompiled_type": "struct sshbuf（仅前向声明）",
+        "match": "undeterminable",
+        "evidence_source_line": "源码3863行三个相关参数均经 struct sshbuf * 使用；3865-3874行四个局部对象也均为 struct sshbuf *",
+        "evidence_decompiled_line": "反编译6行: struct sshbuf;；58、60-61行均只经指针使用",
+        "reasoning": "目标函数没有按字段解引用 sshbuf，反编译结果也无显式字段布局，无法依据本函数数据流判断其字段数量、偏移、大小和类型序列。"
+      },
+      {
+        "source_role": "结构体sshkey_cert",
+        "source_type": "12字段：sshbuf *；u_int；u_int64_t；char *；u_int；char **；u_int64_t；u_int64_t；sshbuf *；sshbuf *；sshkey *；char *",
+        "decompiled_type": "12字段：sshbuf *；uint32_t；uint64_t；char *；unsigned int；char **；uint64_t；uint64_t；sshbuf *；sshbuf *；sshkey *；char *",
+        "match": "correct",
+        "evidence_source_line": "源码972-984行给出 struct sshkey_cert 的完整字段序列；3886-3893、3906、3928-3951、3958-3962、4004-4020行按这些字段使用",
+        "evidence_decompiled_line": "反编译9-22行给出相同的12字段序列；71-78、85、99-115、118-121、142-153行按这些字段使用",
+        "reasoning": "按字段序列和 LP64 对齐规则，偏移依次为 0、8、16、24、32、40、48、56、64、72、80、88，总大小96字节；u_int/unsigned int/uint32_t 及 u_int64_t/uint64_t 的宽度与符号一致，故 ST-01、INT-01、LAYOUT-01 在该结构体上均不成立。"
+      },
+      {
+        "source_role": "结构体sshkey",
+        "source_type": "源码987-1018行的22字段结构体；cert 位于前置 type、flags、RSA/DSA/EC/Ed25519/XMSS/SK 字段之后",
+        "decompiled_type": "3字段：int type；unsigned char opaque[124]；struct sshkey_cert *cert",
+        "match": "wrong",
+        "evidence_source_line": "源码987-1018行: struct sshkey 含 type、flags、多个具名指针/整数字段、cert 及其后4个字段；1012行 cert；4008行读取 signature_key->type",
+        "evidence_decompiled_line": "反编译24-28行: struct sshkey { int type; unsigned char opaque[124]; struct sshkey_cert *cert; };；143行读取 signature_key->type",
+        "reasoning": "按 LP64 布局，两边 type 均在偏移0、cert 均在偏移128，因此本函数访问的两个偏移被保住；但反编译显式结构把源码偏移4至127的多个不同类型字段合并为单一字节数组，且完全遗漏 cert 后字段，字段数量和类型序列不匹配，故 LAYOUT-01 成立。由于不是另一个同名完整结构体造成的可证冲突，ST-01 证据不足。"
+      }
+    ],
+    "reasoning": "按三个 ABI 参数位置对齐，并以 froms/get_string 的输出槽、长度值的消费者、释放点和 principals 数组失败恢复路径对齐全部局部变量，不依赖变量名。发现 FN-01（链接/限定签名不匹配）和 LAYOUT-01（sshkey 显式字段序列不匹配），因此 free_discovery 为 confirmed。未发现 PTR-01 或整数宽度/符号丢失；函数内没有静态局部对象，SC-01 被拒绝；sshbuf 布局因本函数无字段访问而保持 undeterminable。"
+  }
+]

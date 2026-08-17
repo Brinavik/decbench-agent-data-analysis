@@ -1,0 +1,495 @@
+[
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "函数 main 的签名",
+        "source_type": "int (int, char **)",
+        "decompiled_type": "int (int, char **)",
+        "match": "correct",
+        "evidence_source_line": "源码564行: int main(int argc, char **argv)",
+        "evidence_decompiled_line": "反编译43行: int main(int argc, char **argv)"
+      }
+    ],
+    "reasoning": "FN-01 rejected：返回类型、参数数量及 ABI 位置上的第1、第2参数类型均一致。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码564行: int main(int argc, char **argv); 源码596行: getopt(argc, argv, \"cdesl:p:rv\")",
+        "evidence_decompiled_line": "反编译43行: int main(int argc, char **argv); 反编译58行: getopt(argc, argv, \"cdesl:p:rv\")"
+      }
+    ],
+    "reasoning": "按 ABI 第1参数位置对齐，且均作为 getopt 的参数计数使用；INT-01/FN-01 均无误。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第2个参数",
+        "source_type": "char **",
+        "decompiled_type": "char **",
+        "match": "correct",
+        "evidence_source_line": "源码564行: int main(int argc, char **argv); 源码596行: getopt(argc, argv, \"cdesl:p:rv\")",
+        "evidence_decompiled_line": "反编译43行: int main(int argc, char **argv); 反编译58行: getopt(argc, argv, \"cdesl:p:rv\")"
+      }
+    ],
+    "reasoning": "按 ABI 第2参数位置对齐，且均作为 getopt 的参数向量使用；PTR-01/FN-01 均无误。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 fp",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "源码566行: FILE *fp; 源码756行: fp = fopen(pidfile, \"w\"); 源码875-876行: if (fp && todo) writelog(fp, ...)",
+        "evidence_decompiled_line": "反编译48行: FILE *fp; 反编译165行: fp = fopen(pidfile, \"w\"); 反编译248-254行: if (fp != NULL) ... writelog(fp, ...)"
+      }
+    ],
+    "reasoning": "按 fopen 返回值、fprintf/fclose/writelog 的流对象数据流对齐，指针层级保持为一级指针；PTR-01 rejected。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 tv",
+        "source_type": "struct timeval",
+        "decompiled_type": "struct timeval",
+        "match": "correct",
+        "evidence_source_line": "源码567行: struct timeval tv; 源码778-779行: tv.tv_sec = 0; tv.tv_usec = 500000; 源码794-798行: select(..., &tv)",
+        "evidence_decompiled_line": "反编译46行: struct timeval tv; 反编译180-183行: tv.tv_sec = 0; tv.tv_usec = 500000; select(..., &tv)"
+      }
+    ],
+    "reasoning": "不依赖名称，按同一栈对象的两个时间字段赋值及作为 select 超时参数传址的数据流对齐；对象类型恢复正确。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "结构体 timeval 的显式布局",
+        "source_type": "struct timeval（定义未在指定源码文件中展开）",
+        "decompiled_type": "struct timeval（定义未在指定反编译文件中展开）",
+        "match": "undeterminable",
+        "evidence_source_line": "源码567行: struct timeval tv; 源码778-779行仅出现 tv_sec、tv_usec 字段访问",
+        "evidence_decompiled_line": "反编译46行: struct timeval tv; 反编译180-181行仅出现 tv_sec、tv_usec 字段访问"
+      }
+    ],
+    "reasoning": "LAYOUT-01 undeterminable：两个指定文件都没有给出字段偏移、字段大小和结构体总大小，不能仅凭类型名或字段名断言布局完全一致。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 fds",
+        "source_type": "fd_set",
+        "decompiled_type": "fd_set",
+        "match": "correct",
+        "evidence_source_line": "源码568行: fd_set fds; 源码781-798行: 清零 fds、设置 ptm 位并将 &fds 传给 select",
+        "evidence_decompiled_line": "反编译47行: fd_set fds; 反编译178-183行: FD_ZERO(&fds); FD_SET(master, &fds); select(..., &fds, ...)"
+      }
+    ],
+    "reasoning": "按位集合栈对象被清零、加入主伪终端描述符并作为 select 读集合传址的角色对齐；类型用途正确。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "fd_set 的显式底层布局",
+        "source_type": "fd_set（源码宏展开显示 fds_bits 数组，但 typedef 定义未在指定文件中）",
+        "decompiled_type": "fd_set（定义未在指定反编译文件中展开）",
+        "match": "undeterminable",
+        "evidence_source_line": "源码781-792行: fd_set *__arr = (&fds); ((__arr)->fds_bits)[...] = 0 / |= ...",
+        "evidence_decompiled_line": "反编译47行: fd_set fds; 反编译178-183行仅通过 FD_ZERO、FD_SET、select 使用"
+      }
+    ],
+    "reasoning": "LAYOUT-01 undeterminable：反编译结果未显式给出 fds_bits 的元素类型、数组长度、偏移和总大小，无法完成严格布局序列比较。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 buf",
+        "source_type": "char[1024]",
+        "decompiled_type": "char[1024]",
+        "match": "correct",
+        "evidence_source_line": "源码569行: char buf[1024]; 源码682-683行: buf[0] = 0; findpty(&ptm, &pts, buf); 源码861行: snprintf(buf, sizeof(buf), ...)",
+        "evidence_decompiled_line": "反编译49行: char buf[1024]; 反编译127-129行: buf[0] = 0; getpty(&master, &slave, buf); 反编译235行: snprintf(buf, sizeof(buf), ...)"
+      }
+    ],
+    "reasoning": "按 1024 字节栈缓冲区、伪终端名称输出和日志轮转路径缓冲用途对齐；数组长度和元素类型一致。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 p",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "源码570行: char *p; 源码809-815行: p = inptr; write(..., p, m); p += i",
+        "evidence_decompiled_line": "反编译52行: char *p, *oldptr; 反编译192-199行: p = inptr; write(..., p, len); p += w"
+      }
+    ],
+    "reasoning": "按输出缓冲区游标的赋值、传给 write 及按已写字节递增的数据流对齐；PTR-01 rejected。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 logfile",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "源码571行: char *logfile; 源码589行: logfile = \"/var/log/boot\"; 源码600行: logfile = optarg; 源码857-864行: access/rename/fopen(logfile, ...)",
+        "evidence_decompiled_line": "反编译50行: char *logfile = LOGFILE; 反编译70行: logfile = optarg; 反编译233-239行: access/rename/fopen(logfile, ...)"
+      }
+    ],
+    "reasoning": "按默认日志路径、getopt 的字符串参数和文件路径 API 用途对齐；一级字符指针正确。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 pidfile",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "源码572行: char *pidfile; 源码590-592行: pidfile = NULL; 源码610行: pidfile = optarg; 源码754-756行: unlink(pidfile); fopen(pidfile, \"w\")",
+        "evidence_decompiled_line": "反编译51行: char *pidfile = NULL; 反编译73行: pidfile = optarg; 反编译163-165行: unlink(pidfile); fopen(pidfile, \"w\")"
+      }
+    ],
+    "reasoning": "按可空路径指针、getopt 字符串和 unlink/fopen 路径参数对齐；PTR-01 rejected。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 rotate",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码573行: int rotate; 源码593行: rotate = 0; 源码603行: rotate = 1; 源码860-863行: if (rotate) ... rename(...) ",
+        "evidence_decompiled_line": "反编译55行: int rotate = 0, ...; 反编译76行: rotate = 1; 反编译234-238行: if (rotate) ... rename(...)"
+      }
+    ],
+    "reasoning": "按布尔式整数标志的数据流对齐，整数类型一致；INT-01 rejected。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 dontfork",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码574行: int dontfork; 源码594行: dontfork = 0; 源码616行: dontfork = 1; 源码734行: if (!dontfork)",
+        "evidence_decompiled_line": "反编译55行: int rotate = 0, dontfork = 0, printbuf = 0; 反编译64行: dontfork = 1; 反编译149行: if (!dontfork)"
+      }
+    ],
+    "reasoning": "按控制 fork 分支的整数标志对齐，类型一致；INT-01 rejected。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 ptm",
+        "source_type": "int",
+        "decompiled_type": "int（master）",
+        "match": "correct",
+        "evidence_source_line": "源码575行: int ptm, pts; 源码680-683行: ptm = -1; findpty(&ptm, &pts, buf); 源码789-802行: FD_SET(ptm,...); select(ptm + 1,...); read(ptm,...)",
+        "evidence_decompiled_line": "反编译53行: int master, slave, fd; 反编译128-129行: master = slave = -1; getpty(&master, &slave, buf); 反编译179-184行: FD_SET(master,...); select(master + 1,...); read(master,...)"
+      }
+    ],
+    "reasoning": "不按名称，按 getpty/findpty 第1个输出地址及随后 select/read 的主伪终端描述符角色对齐；int 正确。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 pts",
+        "source_type": "int",
+        "decompiled_type": "int（slave）",
+        "match": "correct",
+        "evidence_source_line": "源码575行: int ptm, pts; 源码681-683行: pts = -1; findpty(&ptm, &pts, buf); 源码713行: ioctl(pts,...); 源码822行: write_err(pts,...)",
+        "evidence_decompiled_line": "反编译53行: int master, slave, fd; 反编译128-140行: getpty(&master, &slave, buf); ioctl(slave,...); 反编译203行: reopen(slave,...)"
+      }
+    ],
+    "reasoning": "按 getpty/findpty 第2个输出地址、TIOCCONS ioctl 和重开控制台时的从伪终端描述符角色对齐；int 正确。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 n",
+        "source_type": "int",
+        "decompiled_type": "int（fd 与 n 两个生命周期拆分变量）",
+        "match": "correct",
+        "evidence_source_line": "源码577行: int n, m, i; 源码701-709行: n = open(...); ioctl(n,...); close(n); 源码802行: n = read(ptm,...)",
+        "evidence_decompiled_line": "反编译53行: int master, slave, fd; 反编译56行: int i, n, w, len, pid, c; 反编译136-138行: fd = open(...); ioctl(fd,...); close(fd); 反编译184行: n = read(master,...)"
+      }
+    ],
+    "reasoning": "源码同一 int 局部量在不重叠生命周期中先作临时文件描述符、后作 read 返回值；反编译将其拆为两个 int，不构成类型错误。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 m",
+        "source_type": "int",
+        "decompiled_type": "int（len）",
+        "match": "correct",
+        "evidence_source_line": "源码577行: int n, m, i; 源码809-815行: m = n; while (m > 0); write(..., m); m -= i",
+        "evidence_decompiled_line": "反编译56行: int i, n, w, len, pid, c; 反编译193-199行: len = n; write(..., len); len -= w"
+      }
+    ],
+    "reasoning": "按尚待写出的字节计数角色对齐，均参与 write 长度参数和整数减法；INT-01 rejected。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 i",
+        "source_type": "int",
+        "decompiled_type": "int（c 与 w 两个生命周期拆分变量）",
+        "match": "correct",
+        "evidence_source_line": "源码577行: int n, m, i; 源码596-598行: i = getopt(...); switch(i); 源码812-815行: i = write(...); m -= i; p += i",
+        "evidence_decompiled_line": "反编译56行: int i, n, w, len, pid, c; 反编译58-59行: c = getopt(...); switch(c); 反编译195-198行: w = write(...); len -= w; p += w"
+      }
+    ],
+    "reasoning": "源码同一 int 在不重叠阶段承担 getopt 返回值和 write 返回值；反编译拆为 c、w，二者类型均为 int，类型恢复正确。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 todo",
+        "source_type": "int",
+        "decompiled_type": "int（len）",
+        "match": "correct",
+        "evidence_source_line": "源码578行: int todo; 源码871-876行: todo = inptr - outptr / endptr - outptr; writelog(..., todo, ...)",
+        "evidence_decompiled_line": "反编译56行: int ... len ...; 反编译249-254行: len = inptr - outptr / endptr - outptr; writelog(..., len, ...)"
+      }
+    ],
+    "reasoning": "按待写日志字节数及 writelog 长度参数角色对齐；反编译复用 len 表达该 int 生命周期，类型正确。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 considx",
+        "source_type": "int",
+        "decompiled_type": "int（i）",
+        "match": "correct",
+        "evidence_source_line": "源码582行: int considx; 源码657-663行: for (considx = 0; considx < num_consoles; considx++) ... cons[considx]",
+        "evidence_decompiled_line": "反编译56行: int i, ...; 反编译109-114行: for (i = 0; i < consoles; i++) ... cons[i]"
+      }
+    ],
+    "reasoning": "按控制台数组下标和循环界限数据流对齐，int 类型一致。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部数组 cons",
+        "source_type": "struct real_cons[16]",
+        "decompiled_type": "struct real_cons[MAX_CONSOLES]，其中 MAX_CONSOLES=16",
+        "match": "correct",
+        "evidence_source_line": "源码583行: struct real_cons cons[16]; 源码654行: consolenames(cons, 16); 源码657-663行按 considx 访问 name、fd",
+        "evidence_decompiled_line": "反编译14行: #define MAX_CONSOLES 16; 反编译45行: struct real_cons cons[MAX_CONSOLES]; 反编译104-114行按 i 访问 name、fd"
+      }
+    ],
+    "reasoning": "按栈上连续控制台记录数组、容量实参16及相同索引下的字符串字段/描述符字段用途对齐；元素数和元素类型正确。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "结构体 real_cons",
+        "source_type": "struct real_cons { char name[1024]; int fd; }；字段偏移序列为 name@0、fd@1024，通常总大小1028",
+        "decompiled_type": "struct real_cons { char name[1024]; int fd; }；字段偏移序列为 name@0、fd@1024，通常总大小1028",
+        "match": "correct",
+        "evidence_source_line": "源码29-32行: struct real_cons { char name[1024]; int fd; }; 源码658-663行分别以字符串 API 使用 name、以 open_nb 返回值写 fd",
+        "evidence_decompiled_line": "反编译19-22行: struct real_cons { char name[1024]; int fd; }; 反编译110-114行分别以字符串 API 使用 name、以 openfd 返回值写 fd"
+      }
+    ],
+    "reasoning": "ST-01/LAYOUT-01 rejected：不靠结构体名，而由两个字段的类型序列、数组长度、自然偏移及数据流用途逐项一致确认；未发现同名冲突。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 num_consoles",
+        "source_type": "int",
+        "decompiled_type": "int（consoles）",
+        "match": "correct",
+        "evidence_source_line": "源码584行: int num_consoles, consoles_left; 源码654-657行: num_consoles = consolenames(...); for (... < num_consoles)",
+        "evidence_decompiled_line": "反编译54行: int consoles, working; 反编译104-109行: consoles = consolenames(...); for (... < consoles)"
+      }
+    ],
+    "reasoning": "按 consolenames 返回的控制台总数及循环上界角色对齐，int 类型一致。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 consoles_left",
+        "source_type": "int",
+        "decompiled_type": "int（working）",
+        "match": "correct",
+        "evidence_source_line": "源码584行: int num_consoles, consoles_left; 源码656-674行: consoles_left = num_consoles; 失败时递减并测试；源码832行再次递减",
+        "evidence_decompiled_line": "反编译54行: int consoles, working; 反编译108-121行: working = consoles; 失败时递减并测试；反编译208-209行再次递减"
+      }
+    ],
+    "reasoning": "按仍可工作的控制台计数器数据流对齐，int 类型一致。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 print_escape_sequence",
+        "source_type": "int",
+        "decompiled_type": "int（printbuf）",
+        "match": "correct",
+        "evidence_source_line": "源码585行: int print_escape_sequence = 0; 源码618-620行: 选项 e 时置1; 源码876行作为 writelog 第4参数",
+        "evidence_decompiled_line": "反编译55行: int ... printbuf = 0; 反编译66-68行: 选项 e 时置1; 反编译254行作为 writelog 第4参数"
+      }
+    ],
+    "reasoning": "按命令行选项控制的 writelog 整数标志角色对齐，int 类型一致。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "if (!dontfork) 块内局部变量 child_pid",
+        "source_type": "pid_t",
+        "decompiled_type": "int（pid）",
+        "match": "wrong",
+        "evidence_source_line": "源码734-736行: if (!dontfork) { pid_t child_pid = fork(); switch (child_pid) {",
+        "evidence_decompiled_line": "反编译56行: int i, n, w, len, pid, c; 反编译149-155行: if (!dontfork) { if ((pid = fork()) == -1) ... if (pid > 0)"
+      }
+    ],
+    "reasoning": "INT-01 confirmed：按 fork 返回值、与-1/0比较以及父子进程分支的数据流可唯一对齐；反编译保留了常见 ABI 下的整数表示，但丢失了源码 pid_t typedef。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "FD_ZERO 宏展开块内临时变量 __i",
+        "source_type": "unsigned int",
+        "decompiled_type": "无显式局部变量；被重构为 FD_ZERO(&fds)",
+        "match": "undeterminable",
+        "evidence_source_line": "源码781-783行: do { unsigned int __i; fd_set *__arr = (&fds); for (__i = 0; ...; ++__i) ... } while (0)",
+        "evidence_decompiled_line": "反编译178行: FD_ZERO(&fds)"
+      }
+    ],
+    "reasoning": "该实体是宏展开产生的循环临时量，反编译结果将整体语义提升回宏调用，未保留可独立对齐的存储实体；其具体类型恢复无法判定。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "FD_ZERO 宏展开块内临时变量 __arr",
+        "source_type": "fd_set *",
+        "decompiled_type": "无显式局部变量；被重构为 FD_ZERO(&fds)",
+        "match": "undeterminable",
+        "evidence_source_line": "源码781-783行: fd_set *__arr = (&fds); ... ((__arr)->fds_bits)[__i] = 0",
+        "evidence_decompiled_line": "反编译178行: FD_ZERO(&fds)"
+      }
+    ],
+    "reasoning": "宏临时指针在反编译输出中没有独立实体，不能据此判为 PTR-01；只能确认 FD_ZERO 的整体目标仍是 &fds，独立指针层级恢复不可判定。"
+  }
+]

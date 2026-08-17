@@ -1,0 +1,147 @@
+[
+  {
+    "function": "wall",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "const char *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "133: void wall(const char *text, int remote); 261: feputs(text, tp);",
+        "evidence_decompiled_line": "13: void wall(const char *message, int no_banner); 89: sub_2b40(message, stream);"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "133: void wall(const char *text, int remote); 178: if (remote) {",
+        "evidence_decompiled_line": "13: void wall(const char *message, int no_banner); 45: if (no_banner) {"
+      },
+      {
+        "source_role": "局部变量tp（输出流）",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "135: FILE *tp; 257: (tp = fdopen(fd, \"w\")) != NULL; 260-262: fputs(line, tp); feputs(text, tp); fflush(tp);",
+        "evidence_decompiled_line": "62: FILE *stream; 86: stream = fdopen(fd, \"w\"); 88-90: fputs(banner, stream); sub_2b40(message, stream); fflush(stream);"
+      },
+      {
+        "source_role": "局部变量sa（信号动作对象）",
+        "source_type": "struct sigaction",
+        "decompiled_type": "struct sigaction",
+        "match": "correct",
+        "evidence_source_line": "136: struct sigaction sa; 194-204: memset(&sa, 0, sizeof(sa)); sa.__sigaction_handler.sa_handler = handler; sa.sa_flags = 0; sigemptyset(&sa.sa_mask); sigaction(14, &sa, NULL);",
+        "evidence_decompiled_line": "29: struct sigaction action = { .sa_handler = sub_2a10 }; 57-58: sigemptyset(&action.sa_mask); sigaction(SIGALRM, &action, NULL);"
+      },
+      {
+        "source_role": "局部变量utmp（登录记录指针）",
+        "source_type": "struct utmp *",
+        "decompiled_type": "struct utmp *",
+        "match": "correct",
+        "evidence_source_line": "137: struct utmp *utmp; 208-215: utmp = getutent(); utmp->ut_type; utmp->ut_user[0]; utmp->ut_line;",
+        "evidence_decompiled_line": "28: struct utmp *entry; 61-68: entry = getutent(); entry->ut_type; entry->ut_user[0]; entry->ut_line;"
+      },
+      {
+        "source_role": "局部变量t（时间值）",
+        "source_type": "time_t",
+        "decompiled_type": "time_t",
+        "match": "correct",
+        "evidence_source_line": "138: time_t t; 172-173: time(&t); date = ctime(&t);",
+        "evidence_decompiled_line": "27: time_t now; 39-40: time(&now); date = ctime(&now);"
+      },
+      {
+        "source_role": "局部变量term（终端路径缓冲区）",
+        "source_type": "char[32 + strlen(\"/dev/\") + 1]（VLA）",
+        "decompiled_type": "char[path_size]，其中 path_size 为 strlen(\"/dev/\") + sizeof(entry->ut_line) + 1",
+        "match": "undeterminable",
+        "evidence_source_line": "139-143: char term[32 + strlen(\"/dev/\") + 1]; 221-228: strncat/snprintf 写入 term，字段最大宽度为 32。",
+        "evidence_decompiled_line": "30-31: size_t path_size = strlen(\"/dev/\") + sizeof(entry->ut_line) + 1; char path[path_size]; 70-73: strncat/snprintf 写入 path。"
+      },
+      {
+        "source_role": "局部变量line（广播头缓冲区）",
+        "source_type": "char[256]",
+        "decompiled_type": "char[256]",
+        "match": "correct",
+        "evidence_source_line": "144: char line[256]; 179-185: snprintf(line, sizeof(line), ...); 260: fputs(line, tp);",
+        "evidence_decompiled_line": "26: char banner[256]; 46-51: snprintf(banner, sizeof(banner), ...); 88: fputs(banner, stream);"
+      },
+      {
+        "source_role": "局部变量hostname（主机名缓冲区）",
+        "source_type": "char[65]",
+        "decompiled_type": "char[65]",
+        "match": "correct",
+        "evidence_source_line": "145-147: char hostname[64 + 1]; 163-169: gethostname(hostname, sizeof(hostname)); hostname[sizeof(hostname)-1] = 0;",
+        "evidence_decompiled_line": "25: char hostname[65]; 35-37: gethostname(hostname, sizeof(hostname)); hostname[sizeof(hostname) - 1] = '\\0';"
+      },
+      {
+        "source_role": "局部变量date（ctime 返回字符串指针）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "148: char *date, *p; 173: date = ctime(&t);",
+        "evidence_decompiled_line": "23: char *date; 40: date = ctime(&now);"
+      },
+      {
+        "source_role": "局部变量p（日期字符串扫描指针）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "148: char *date, *p; 174-176: for (p = date; *p && *p != '\\n'; p++); *p = 0;",
+        "evidence_decompiled_line": "24: char *end; 41-43: for (end = date; *end != '\\0' && *end != '\\n'; ++end); *end = '\\0';"
+      },
+      {
+        "source_role": "局部变量user（用户名字符串指针）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "149: char *user, *tty; 159: getuidtty(&user, &tty); 185: user 作为 %s 参数。",
+        "evidence_decompiled_line": "21: char *user; 33: sub_2bf0(&user, &tty); 51: user 作为 %s 参数。"
+      },
+      {
+        "source_role": "局部变量tty（终端名字符串指针）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "149: char *user, *tty; 159: getuidtty(&user, &tty); 185: tty 作为 %s 参数。",
+        "evidence_decompiled_line": "22: char *tty; 33: sub_2bf0(&user, &tty); 51: tty 作为 %s 参数。"
+      },
+      {
+        "source_role": "局部变量fd（文件描述符）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "150: int fd, flags; 255-267: fd = open(...); isatty(fd); fdopen(fd, \"w\"); close(fd);",
+        "evidence_decompiled_line": "63: int fd; 84-98: fd = open(...); isatty(fd); fdopen(fd, \"w\"); close(fd);"
+      },
+      {
+        "source_role": "局部变量flags（open 标志位）",
+        "source_type": "int",
+        "decompiled_type": "无独立声明；被折叠为 open 的标志常量表达式",
+        "match": "undeterminable",
+        "evidence_source_line": "150: int fd, flags; 247-255: flags = 01 | 04000 | 0400; fd = open(term, flags);",
+        "evidence_decompiled_line": "84: fd = open(path, O_WRONLY | O_NOCTTY | O_NONBLOCK);"
+      },
+      {
+        "source_role": "结构体sigaction",
+        "source_type": "struct sigaction（使用 handler、flags、mask 三个逻辑字段）",
+        "decompiled_type": "struct sigaction（使用 handler、mask；其余字段由初始化器置零）",
+        "match": "correct",
+        "evidence_source_line": "194-204: sizeof(sa) 整体清零后写 sa_handler、sa_flags、sa_mask，并将 &sa 作为 sigaction 第2参数。",
+        "evidence_decompiled_line": "29: struct sigaction action = { .sa_handler = sub_2a10 }; 57-58: 写 action.sa_mask，并将 &action 作为 sigaction 第2参数。"
+      },
+      {
+        "source_role": "结构体utmp",
+        "source_type": "struct utmp（本函数可见字段序列：ut_type、ut_user[]、ut_line[]）",
+        "decompiled_type": "struct utmp（本函数可见字段序列：ut_type、ut_user[]、ut_line[]）",
+        "match": "correct",
+        "evidence_source_line": "208-228: getutent() 结果经 ut_type、ut_user[0]、ut_line 访问；ut_line 的源码宽度用途为 32。",
+        "evidence_decompiled_line": "61-73: getutent() 结果经 entry->ut_type、entry->ut_user[0]、entry->ut_line 访问；宽度由 sizeof(entry->ut_line) 表示。"
+      }
+    ],
+    "reasoning": "按 ABI 位置对齐两个参数：第1参数均作为消息字符串传给输出辅助调用，第2参数均控制同一远程广播格式串分支，名称变化不影响判断。局部变量按地址传递、库函数返回值、缓冲区读写和文件描述符/流的数据流对齐；除 flags 被优化成常量表达式外，宽度、指针层级及 typedef 均一致。term/path 都是路径字符 VLA，但仅凭这两个函数文本无法证明反编译端 sizeof(entry->ut_line) 的数值必为源码写明的 32，故该数组边界严格标为 undeterminable。两个结构体均由同一名义结构体类型及相同字段用途表达，未出现显式重建且相互冲突的字段偏移、大小或类型序列。没有行级证据支持 SC-01、ST-01、PTR-01、INT-01、FN-01 或 LAYOUT-01 中的任何错误，因此 free_discovery 错误假设被拒绝；优化消失或边界数值证据不足的实体不被猜测为错误。"
+  }
+]

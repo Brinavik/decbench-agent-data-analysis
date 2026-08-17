@@ -1,0 +1,99 @@
+[
+  {
+    "function": "check_init_fifo",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "函数签名（无参数）",
+        "source_type": "static void (void)",
+        "decompiled_type": "void (void)",
+        "match": "correct",
+        "evidence_source_line": "2791-2792: static / void check_init_fifo(void)",
+        "evidence_decompiled_line": "58: void check_init_fifo(void)"
+      },
+      {
+        "source_role": "局部变量 request（read 的目标缓冲区，随后按 magic/cmd/runlevel/sleeptime/i.data 访问）",
+        "source_type": "struct init_request",
+        "decompiled_type": "struct init_request",
+        "match": "correct",
+        "evidence_source_line": "2794: struct init_request request; 2896: n = read(pipe_fd, &request, sizeof(request)); 2926: if (request.magic != 0x03091969 || n != sizeof(request)); 2930: switch(request.cmd)",
+        "evidence_decompiled_line": "60: struct init_request request; 126: n = read(pipe_fd, &request, sizeof(request)); 142: if (request.magic != INIT_MAGIC || n != sizeof(request)); 147: switch (request.cmd)"
+      },
+      {
+        "source_role": "局部变量 tv（select 超时对象）",
+        "source_type": "struct timeval",
+        "decompiled_type": "struct timeval",
+        "match": "correct",
+        "evidence_source_line": "2795: struct timeval tv; 2879-2880: tv.tv_sec = 5; tv.tv_usec = 0; 2881-2885: select(..., &tv)",
+        "evidence_decompiled_line": "63: struct timeval tv; 116-117: tv.tv_sec = 5; tv.tv_usec = 0; 119: select(..., &tv)"
+      },
+      {
+        "source_role": "局部变量 st（已打开 FIFO 的 fstat 结果）",
+        "source_type": "struct stat",
+        "decompiled_type": "struct stat",
+        "match": "correct",
+        "evidence_source_line": "2796: struct stat st, st2; 2816: fstat(pipe_fd, &st); 2818-2819: st.st_dev != st2.st_dev || st.st_ino != st2.st_ino",
+        "evidence_decompiled_line": "61: struct stat st, st2; 77: fstat(pipe_fd, &st); 79-80: st.st_dev != st2.st_dev || st.st_ino != st2.st_ino"
+      },
+      {
+        "source_role": "局部变量 st2（路径 stat 结果）",
+        "source_type": "struct stat",
+        "decompiled_type": "struct stat",
+        "match": "correct",
+        "evidence_source_line": "2796: struct stat st, st2; 2804: stat(\"/run/initctl\", &st2); 2817-2819: stat(..., &st2) and device/inode comparison",
+        "evidence_decompiled_line": "61: struct stat st, st2; 69: stat(INIT_FIFO, &st2); 78-80: stat(..., &st2) and device/inode comparison"
+      },
+      {
+        "source_role": "局部变量 fds（select 读集合）",
+        "source_type": "fd_set",
+        "decompiled_type": "fd_set",
+        "match": "correct",
+        "evidence_source_line": "2797: fd_set fds; 2866-2878: FD_ZERO/FD_SET 宏展开作用于 &fds; 2881-2885: select(..., &fds, ..., &tv)",
+        "evidence_decompiled_line": "62: fd_set fds; 114-115: FD_ZERO(&fds); FD_SET(pipe_fd, &fds); 119: select(..., &fds, ..., &tv)"
+      },
+      {
+        "source_role": "局部变量 n（select/read 的整数返回值）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "2798: int n; 2881: n = select(...); 2896: n = read(...); 2926: n != sizeof(request)",
+        "evidence_decompiled_line": "64: int n; 119: n = select(...); 126: n = read(...); 142: n != sizeof(request)"
+      },
+      {
+        "source_role": "局部变量 quit（循环终止标志）",
+        "source_type": "int",
+        "decompiled_type": "未显式表示；由 break/continue/return 控制流替代",
+        "match": "undeterminable",
+        "evidence_source_line": "2799: int quit = 0; 2862: while(!quit); 2934,2939,2944,2949: quit = 1",
+        "evidence_decompiled_line": "112: while (pipe_fd >= 0); 151,155,159,163: break; 166,169: continue; 171: return（不存在可按栈角色对齐的 quit 对象）"
+      },
+      {
+        "source_role": "结构体 init_request",
+        "source_type": "struct init_request { int magic@0; int cmd@4; int runlevel@8; int sleeptime@12; union i@16,size 368; }，总大小 384 字节",
+        "decompiled_type": "struct init_request { int magic@0; int cmd@4; int runlevel@8; int sleeptime@12; union i@16,size 368; }，总大小 384 字节",
+        "match": "correct",
+        "evidence_source_line": "58-67: 四个连续 int 字段，随后 union { struct init_request_bsd bsd; char data[368]; } i；2794/2896/2926 表明该完整对象作为固定长度请求使用",
+        "evidence_decompiled_line": "19-37: 四个连续 int 字段，随后 union { struct init_request_bsd bsd; char data[368]; } i；60/126/142 表明该完整对象作为固定长度请求使用"
+      },
+      {
+        "source_role": "结构体 init_request_bsd（init_request.i 的联合体成员）",
+        "source_type": "char[8]@0, char[16]@8, char[64]@24, char[16]@88, int@104, int@108, char[128]@112, char[128]@240；大小 368 字节",
+        "decompiled_type": "char[8]@0, char[16]@8, char[64]@24, char[16]@88, int@104, int@108, char[128]@112, char[128]@240；大小 368 字节",
+        "match": "correct",
+        "evidence_source_line": "46-57: gen_id[8], tty_id[16], host[64], term_type[16], int signal, int pid, exec_name[128], reserved[128]",
+        "evidence_decompiled_line": "25-34: gen_id[8], tty_id[16], host[64], term_type[16], int signal, int pid, exec_name[128], reserved[128]"
+      },
+      {
+        "source_role": "函数引用的文件作用域对象 pipe_fd（FIFO 描述符状态）",
+        "source_type": "int（文件作用域定义，非静态）",
+        "decompiled_type": "static int",
+        "match": "correct",
+        "evidence_source_line": "112: int pipe_fd = -1; 2815-2821: 与 0 比较、传给 fstat/close 并赋值 -1；2829-2852: 接收 open/dup2 后的文件描述符",
+        "evidence_decompiled_line": "53: static int pipe_fd = -1; 76-82: 与 0 比较、传给 fstat/close 并赋值 -1；89-106: 接收 open/dup2 后的文件描述符"
+      }
+    ],
+    "reasoning": "该函数 ABI 上无参数，源码与反编译结果均为 void(void)；源码的 static 仅影响链接可见性，不改变函数 ABI 类型。局部对象按调用目标和后续字段访问对齐：两个 stat 对象分别承担 fstat 与路径 stat 角色，fd_set/timeval 进入 select，n 接收 select/read 的整数返回值，request 是 read 的 384 字节协议缓冲区。init_request 及嵌套 init_request_bsd 的字段顺序、偏移、标量/数组类型和总大小完全一致，因此无 ST-01、PTR-01、INT-01 或 LAYOUT-01 证据。quit 在优化后的反编译控制流中没有独立存储实体，不能据此判定整数类型恢复错误，故单项为 undeterminable。pipe_fd 在两侧都明确是文件作用域 int；反编译结果把其链接属性写成 static，但并未把静态局部对象重构为全局外部对象，因而不支持 SC-01。综合来看，free_discovery 所指的类型恢复错误假设被拒绝。"
+  }
+]

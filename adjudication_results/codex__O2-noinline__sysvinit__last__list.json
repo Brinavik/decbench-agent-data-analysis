@@ -1,0 +1,147 @@
+[
+  {
+    "function": "list",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "struct utmp *",
+        "decompiled_type": "struct utmp *",
+        "match": "correct",
+        "evidence_source_line": "293: int list(struct utmp *p, time_t t, int what)",
+        "evidence_decompiled_line": "9: int list(struct utmp *ut, time_t logout_time, int status)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "time_t",
+        "decompiled_type": "time_t",
+        "match": "correct",
+        "evidence_source_line": "293: int list(struct utmp *p, time_t t, int what); 350-356: p->ut_tv.tv_sec and ctime(&t)",
+        "evidence_decompiled_line": "9: int list(struct utmp *ut, time_t logout_time, int status); 60-68: ut->ut_tv.tv_sec and ctime(&logout_time)"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "293: int list(struct utmp *p, time_t t, int what); 373-406: switch(what)",
+        "evidence_decompiled_line": "9: int list(struct utmp *ut, time_t logout_time, int status); 81-112: switch (status)"
+      },
+      {
+        "source_role": "局部变量 secs/tmp",
+        "source_type": "time_t",
+        "decompiled_type": "time_t elapsed/login_time",
+        "match": "correct",
+        "evidence_source_line": "295: time_t secs, tmp; 350-353: tmp = (time_t)p->ut_tv.tv_sec; 362-367: secs = t - p->ut_tv.tv_sec",
+        "evidence_decompiled_line": "33-34: time_t login_time; time_t elapsed; 60-72: login_time = ut->ut_tv.tv_sec; elapsed = logout_time - login_time"
+      },
+      {
+        "source_role": "局部数组 logintime",
+        "source_type": "char[32]",
+        "decompiled_type": "char[32] login_date",
+        "match": "correct",
+        "evidence_source_line": "296: char logintime[32]; 353-359: strncpy/sprintf into logintime",
+        "evidence_decompiled_line": "25: char login_date[32]; 61-68: strncpy/sprintf into login_date"
+      },
+      {
+        "source_role": "局部数组 logouttime",
+        "source_type": "char[32]",
+        "decompiled_type": "char[32] logout_date",
+        "match": "correct",
+        "evidence_source_line": "297: char logouttime[32]; 356-405: writes and status formatting",
+        "evidence_decompiled_line": "26: char logout_date[32]; 64-111: writes and status formatting"
+      },
+      {
+        "source_role": "局部数组 length",
+        "source_type": "char[32]",
+        "decompiled_type": "char[32] duration",
+        "match": "correct",
+        "evidence_source_line": "298: char length[32]; 365-371, 381-395: duration/status writes",
+        "evidence_decompiled_line": "27: char duration[32]; 76-79, 89-103: duration/status writes"
+      },
+      {
+        "source_role": "局部数组 final",
+        "source_type": "char[512]",
+        "decompiled_type": "char[512] output",
+        "match": "correct",
+        "evidence_source_line": "299: char final[512]; 427-495: snprintf(final, sizeof(final), ...)",
+        "evidence_decompiled_line": "30: char output[512]; 126-186: snprintf(output, sizeof(output), ...)"
+      },
+      {
+        "source_role": "局部数组 utline",
+        "source_type": "char[33]",
+        "decompiled_type": "char[UT_LINESIZE + 1] line",
+        "match": "undeterminable",
+        "evidence_source_line": "300-302: char utline[32 + 1]; 311-340: line construction and filtering",
+        "evidence_decompiled_line": "28: char line[UT_LINESIZE + 1]; 40-53: line construction and filtering"
+      },
+      {
+        "source_role": "局部数组 domain",
+        "source_type": "char[256]",
+        "decompiled_type": "char[UT_HOSTSIZE] host",
+        "match": "undeterminable",
+        "evidence_source_line": "303: char domain[256]; 411-421: dns_lookup/fallback host writes",
+        "evidence_decompiled_line": "29: char host[UT_HOSTSIZE]; 114-119: sub_3740/fallback host writes"
+      },
+      {
+        "source_role": "局部变量 s",
+        "source_type": "char *",
+        "decompiled_type": "char * p",
+        "match": "correct",
+        "evidence_source_line": "304: char *s, **walk; 497-502: for (s = final; *s; s++)",
+        "evidence_decompiled_line": "32: char *p; 189-192: for (p = output; *p != '\\0'; p++)"
+      },
+      {
+        "source_role": "局部变量 walk",
+        "source_type": "char **",
+        "decompiled_type": "char ** name",
+        "match": "correct",
+        "evidence_source_line": "304: char *s, **walk; 332-344: walk iterates show entries",
+        "evidence_decompiled_line": "31: char **name; 49-57: name iterates name_list entries"
+      },
+      {
+        "source_role": "局部变量 mins/hours/days",
+        "source_type": "int, int, int",
+        "decompiled_type": "int minutes, int hours, int days",
+        "match": "correct",
+        "evidence_source_line": "305: int mins, hours, days; 365-371: arithmetic and formatting",
+        "evidence_decompiled_line": "35-37: int days; int hours; int minutes; 72-79: arithmetic and formatting"
+      },
+      {
+        "source_role": "局部变量 r",
+        "source_type": "int",
+        "decompiled_type": "优化后无独立变量；sub_3740 返回值直接与 0 比较",
+        "match": "correct",
+        "evidence_source_line": "306: int r, len; 411-414: r = -1; r = dns_lookup(...); if (r < 0)",
+        "evidence_decompiled_line": "23: extern int sub_3740(...); 115-117: if (sub_3740(...) < 0)"
+      },
+      {
+        "source_role": "局部变量 len",
+        "source_type": "int",
+        "decompiled_type": "int length",
+        "match": "correct",
+        "evidence_source_line": "306: int r, len; 415-418 and 427-495: len bounds and snprintf result",
+        "evidence_decompiled_line": "38: int length; 126-186 and 194-195: snprintf result and bounds"
+      },
+      {
+        "source_role": "结构体 utmp（第1个参数所指对象）",
+        "source_type": "struct utmp; accessed fields ut_line, ut_user, ut_tv.tv_sec, ut_addr_v6, ut_host",
+        "decompiled_type": "struct utmp; same field access sequence",
+        "match": "undeterminable",
+        "evidence_source_line": "312-314, 333-335, 350-363, 413, 420, 432-435: accesses ut_line/ut_user/ut_tv.tv_sec/ut_addr_v6/ut_host",
+        "evidence_decompiled_line": "41, 50, 60, 72, 116-117, 129-130: accesses ut_line/ut_user/ut_tv.tv_sec/ut_addr_v6/ut_host"
+      },
+      {
+        "source_role": "静态局部对象",
+        "source_type": "不存在；list 的局部声明均无 static，所引用状态在文件作用域定义",
+        "decompiled_type": "不存在对应静态局部；状态对象以 extern int/char ** 声明",
+        "match": "correct",
+        "evidence_source_line": "27-40: maxrecs/recsdone/showhost/altlist/allow_long_username/usedns/useip/fulltime/name_len/domain_len/oldfmt/show 均在文件作用域定义；295-306: list 的全部局部声明均无 static",
+        "evidence_decompiled_line": "11-22: 状态对象声明为 extern int 或 extern char **；25-38: list 的全部局部声明均无 static"
+      }
+    ],
+    "reasoning": "按三个参数的 ABI 顺序，源码与反编译签名均为 (struct utmp *, time_t, int)。局部对象按栈上用途和可见数组大小逐一对应；r 被优化为直接比较调用结果，但其 int 返回类型由源码赋值/比较及反编译 extern 原型共同确定。UT_LINESIZE、UT_HOSTSIZE 的数值和 struct utmp 的完整偏移/字段序列未在指定函数证据中展开，故这三项不猜测。源码 list 内没有 static 局部对象，相关状态是文件级普通全局变量；因此不存在被错误重构为全局外部对象的静态局部，free_discovery 假设被拒绝。"
+  }
+]

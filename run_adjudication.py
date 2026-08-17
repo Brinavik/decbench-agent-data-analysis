@@ -22,7 +22,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--tasks", type=Path, default=ROOT / "tasks.json")
     p.add_argument("--template", type=Path, default=ROOT / "prompt_template.txt")
     p.add_argument("--dataset-root", type=Path, default=ROOT / "decbench-large")
-    p.add_argument("--output-dir", type=Path, default=ROOT / "results")
+    p.add_argument("--output-dir", type=Path, default=ROOT / "adjudication_results")
     p.add_argument("--concurrency", "-j", type=int, default=1)
     p.add_argument("--timeout", type=float, default=1800.0, help="seconds per attempt")
     p.add_argument("--retries", type=int, default=2, help="retries after the first attempt")

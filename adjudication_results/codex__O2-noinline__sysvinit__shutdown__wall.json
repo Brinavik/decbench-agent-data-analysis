@@ -1,0 +1,131 @@
+[
+  {
+    "function": "wall",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "const char *",
+        "decompiled_type": "char *",
+        "match": "wrong",
+        "evidence_source_line": "133: void wall(const char *text, int remote)",
+        "evidence_decompiled_line": "13: void wall(char *message, int remote)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "133: void wall(const char *text, int remote)",
+        "evidence_decompiled_line": "13: void wall(char *message, int remote)"
+      },
+      {
+        "source_role": "局部变量 tp",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "135: FILE *tp;",
+        "evidence_decompiled_line": "31: FILE *term;"
+      },
+      {
+        "source_role": "局部变量 sa/action",
+        "source_type": "struct sigaction",
+        "decompiled_type": "struct sigaction",
+        "match": "correct",
+        "evidence_source_line": "136: struct sigaction sa;",
+        "evidence_decompiled_line": "57: struct sigaction action = { .sa_handler = sub_4200 };"
+      },
+      {
+        "source_role": "局部变量 utmp/ut",
+        "source_type": "struct utmp *",
+        "decompiled_type": "struct utmp *",
+        "match": "correct",
+        "evidence_source_line": "137: struct utmp *utmp;",
+        "evidence_decompiled_line": "29: char device[sizeof(ut->ut_line) + strlen(\"/dev/\") + 1];"
+      },
+      {
+        "source_role": "局部变量 t/now",
+        "source_type": "time_t",
+        "decompiled_type": "time_t",
+        "match": "correct",
+        "evidence_source_line": "138: time_t t;",
+        "evidence_decompiled_line": "27: time_t now;"
+      },
+      {
+        "source_role": "局部变量 term/device",
+        "source_type": "char [32 + strlen(\"/dev/\") + 1]",
+        "decompiled_type": "char [sizeof(ut->ut_line) + strlen(\"/dev/\") + 1]",
+        "match": "correct",
+        "evidence_source_line": "139-143: char term[32 + strlen(\"/dev/\") + 1];",
+        "evidence_decompiled_line": "29: char device[sizeof(ut->ut_line) + strlen(\"/dev/\") + 1];"
+      },
+      {
+        "source_role": "局部变量 line/header",
+        "source_type": "char [256]",
+        "decompiled_type": "char [256]",
+        "match": "correct",
+        "evidence_source_line": "144: char line[256];",
+        "evidence_decompiled_line": "24: char header[256];"
+      },
+      {
+        "source_role": "局部变量 hostname",
+        "source_type": "char [65]",
+        "decompiled_type": "char [65]",
+        "match": "correct",
+        "evidence_source_line": "145-147: char hostname[64 +1];",
+        "evidence_decompiled_line": "23: char hostname[65];"
+      },
+      {
+        "source_role": "局部变量 date/p",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "148: char *date, *p;",
+        "evidence_decompiled_line": "25-26: char *date; char *newline;"
+      },
+      {
+        "source_role": "局部变量 user/tty",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "149: char *user, *tty;",
+        "evidence_decompiled_line": "21-22: char *user; char *tty;"
+      },
+      {
+        "source_role": "局部变量 fd",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "150: int fd, flags;",
+        "evidence_decompiled_line": "30: int fd;"
+      },
+      {
+        "source_role": "局部变量 flags",
+        "source_type": "int",
+        "decompiled_type": "未声明（常量表达式直接传给 open）",
+        "match": "undeterminable",
+        "evidence_source_line": "150: int fd, flags; 247-255: flags = 01 | 04000 | 0400; ... open(term, flags)",
+        "evidence_decompiled_line": "82-84: sub_4220(device) && (fd = open(device, O_WRONLY | O_NONBLOCK | O_NOCTTY)) >= 0"
+      },
+      {
+        "source_role": "结构体 struct sigaction 的字段布局",
+        "source_type": "sigaction with sa_handler, sa_flags, sa_mask fields",
+        "decompiled_type": "sigaction with sa_handler, sa_flags, sa_mask fields",
+        "match": "correct",
+        "evidence_source_line": "194-200: memset(&sa, 0, sizeof(sa)); sa.__sigaction_handler.sa_handler = handler; sa.sa_flags = 0; sigemptyset(&sa.sa_mask); sigaction(14, &sa, ((void *)0));",
+        "evidence_decompiled_line": "57-60: struct sigaction action = { .sa_handler = sub_4200 }; sigemptyset(&action.sa_mask); sigaction(SIGALRM, &action, NULL);"
+      },
+      {
+        "source_role": "结构体 struct utmp 的字段布局",
+        "source_type": "struct utmp (ut_type, ut_user[], ut_line[])",
+        "decompiled_type": "struct utmp (ut_type, ut_user[], ut_line[])",
+        "match": "correct",
+        "evidence_source_line": "211-216: if(utmp->ut_type != 7 || utmp->ut_user[0] == 0) ... strncmp(utmp->ut_line, \"/dev/\", ...)",
+        "evidence_decompiled_line": "63-67: if (ut->ut_type != USER_PROCESS || ut->ut_user[0] == '\\0') ... strncmp(ut->ut_line, \"/dev/\", ... )"
+      }
+    ],
+    "reasoning": "按 ABI 位置，第2个参数及其余可见局部变量类型和数组大小均与源码一致；FILE*、utmp*、time_t 及两个结构体的字段访问/初始化布局也一致。第1个参数源码为 const char*，反编译声明为 char*，构成限定符丢失，因此本假设确认。flags 在反编译结果中被编译器折叠为 open 的位掩码，无法从该函数证明其独立局部实体的恢复类型，标记 undeterminable。未发现静态局部对象被重构为外部全局对象。"
+  }
+]

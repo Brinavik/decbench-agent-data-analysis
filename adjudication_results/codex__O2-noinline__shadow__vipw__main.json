@@ -1,0 +1,138 @@
+[
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "函数 main（返回类型与完整签名）",
+        "source_type": "int (int, char **)",
+        "decompiled_type": "int (int, char **)",
+        "match": "correct",
+        "evidence_source_line": "1283: int main (int argc, char **argv); 1455-1457: return 0;",
+        "evidence_decompiled_line": "43: int main(int argc, char **argv); 140: return EXIT_SUCCESS;"
+      }
+    ],
+    "reasoning": "main 的返回类型和两个参数按 ABI 位置逐项一致，返回值也保持 int/成功状态语义；未发现 FN-01。"
+  },
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "1283: int main (int argc, char **argv); 1306: process_root_flag (\"-R\", argc, argv); 1361: getopt_long (argc, argv, ...)",
+        "evidence_decompiled_line": "43: int main(int argc, char **argv); 71: process_root_flag(\"-R\", argc, argv); 76: getopt_long(argc, argv, ...)"
+      }
+    ],
+    "reasoning": "第1个 ABI 参数在两版中均为 int，并以参数个数传入相同调用；整数宽度和符号未丢失，未发现 INT-01。"
+  },
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第2个参数",
+        "source_type": "char **",
+        "decompiled_type": "char **",
+        "match": "correct",
+        "evidence_source_line": "1283: int main (int argc, char **argv); 1294: Prog = Basename (argv[0]); 1306: process_root_flag (\"-R\", argc, argv);",
+        "evidence_decompiled_line": "43: int main(int argc, char **argv); 63: Prog = Basename(argv[0]); 71: process_root_flag(\"-R\", argc, argv);"
+      }
+    ],
+    "reasoning": "第2个 ABI 参数在两版中均保持 char 的二级指针，并通过 argv[0] 取出一级字符指针；未发生 PTR-01。"
+  },
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 editshadow",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "1286-1289: _Bool editshadow = 0; 1393-1396: case 's': editshadow = 1; 1414: if (editshadow)",
+        "evidence_decompiled_line": "60: bool do_shadow = false; 91-93: case 's': do_shadow = true; 103: if (do_shadow)"
+      }
+    ],
+    "reasoning": "不依赖名称：两者均为初值 false、仅在 -s 分支置 true，并控制 passwd/group 各自的 shadow 编辑路径。C 的 bool 是 _Bool 的别名，恢复正确。"
+  },
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 do_vipw",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "1291-1292: _Bool do_vipw; 1308: do_vipw = (strcmp (Prog, \"vigr\") != 0); 1371-1384: case 'g'/'p' 分别赋 0/1; 1413: if (do_vipw)",
+        "evidence_decompiled_line": "59: bool do_vipw; 73: do_vipw = strcmp(Prog, \"vigr\") != 0; 78-85: case 'g'/'p' 分别赋 false/true; 102: if (do_vipw)"
+      }
+    ],
+    "reasoning": "该栈上布尔量的定义点、两个选项赋值和最终控制分支完全对应；bool 与 _Bool 等价，未发现 INT-01。"
+  },
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 c",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "1320: int c; 1361-1370: c = getopt_long (...)，随后 switch (c)",
+        "evidence_decompiled_line": "61: int c; 76-77: c = getopt_long(...)，随后 switch (c)"
+      }
+    ],
+    "reasoning": "两者都是接收 getopt_long 返回值并与 -1、字符选项比较的 int 自动局部变量，宽度和符号恢复一致。"
+  },
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "静态局部变量 long_options",
+        "source_type": "static struct option[7]",
+        "decompiled_type": "static struct option[7]",
+        "match": "correct",
+        "evidence_source_line": "1321: static struct option long_options[] = {; 1322-1359: 6 个命名项及 1 个全零终止项; 1367: long_options 作为 getopt_long 参数",
+        "evidence_decompiled_line": "50: static struct option long_options[] = {; 51-57: 6 个命名项及 1 个全零终止项; 76: long_options 作为 getopt_long 参数"
+      }
+    ],
+    "reasoning": "按存储期和数据流对齐：两版对象都声明在 main 函数体内、均带 static、均含 7 个元素并传给 getopt_long。源码中的内层块被提升到 main 顶层块不改变其静态局部属性，因此 SC-01 被否定。"
+  },
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "结构体 struct option",
+        "source_type": "struct option（本函数仅可观察到每个元素有 4 个位置初始化值；完整字段声明、偏移、大小不可见）",
+        "decompiled_type": "struct option（本函数仅可观察到每个元素有 4 个位置初始化值；完整字段声明、偏移、大小不可见）",
+        "match": "undeterminable",
+        "evidence_source_line": "1321-1326: static struct option long_options[] = { {\"group\", 0, ((void *)0), 'g'}, ... }; 1355-1359: {((void *)0), 0, ((void *)0), '\\0'}",
+        "evidence_decompiled_line": "50-57: static struct option long_options[] = { { \"group\", no_argument, NULL, 'g' }, ... { NULL, 0, NULL, 0 } }"
+      }
+    ],
+    "reasoning": "两个函数体都显示相同的 struct option 标签、4 个位置初始化值及相同元素顺序，因此未见直接冲突；但完整结构体定义不在获准分析的 main 函数内，无法从这些行严格证明字段精确类型、偏移、对齐和 sizeof，也无法排除同名标签来自不同定义。故 ST-01 与 LAYOUT-01 均只能标记为证据不足。"
+  }
+]

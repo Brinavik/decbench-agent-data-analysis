@@ -1,0 +1,155 @@
+[
+  {
+    "function": "getpasswd",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "struct console *",
+        "decompiled_type": "struct console *",
+        "match": "correct",
+        "evidence_source_line": "667: char *getpasswd(struct console *con)",
+        "evidence_decompiled_line": "53: char *getpasswd(struct console *con)"
+      },
+      {
+        "source_role": "局部变量 pass（函数内静态数组）",
+        "source_type": "static char[128]",
+        "decompiled_type": "非局部 char 数组（函数体内未声明；精确大小与链接属性 undeterminable）",
+        "match": "wrong",
+        "evidence_source_line": "669: static char pass[128], *ptr;",
+        "evidence_decompiled_line": "150: if ((size_t)(ptr - pass) >= sizeof(pass) - 1) {"
+      },
+      {
+        "source_role": "局部变量 ptr（函数内静态指针）",
+        "source_type": "static char *",
+        "decompiled_type": "非局部 char *（由 *ptr 和 ptr++ 用法推定）",
+        "match": "wrong",
+        "evidence_source_line": "669: static char pass[128], *ptr;",
+        "evidence_decompiled_line": "82: ptr = pass;"
+      },
+      {
+        "source_role": "局部变量 sa",
+        "source_type": "struct sigaction",
+        "decompiled_type": "struct sigaction",
+        "match": "correct",
+        "evidence_source_line": "670: struct sigaction sa;",
+        "evidence_decompiled_line": "57: struct sigaction sa;"
+      },
+      {
+        "source_role": "局部变量 cp",
+        "source_type": "struct chardata *",
+        "decompiled_type": "struct chardata *",
+        "match": "correct",
+        "evidence_source_line": "671: struct chardata *cp;",
+        "evidence_decompiled_line": "55: struct chardata *cp = &con->cp;"
+      },
+      {
+        "source_role": "局部变量 tty",
+        "source_type": "struct termios",
+        "decompiled_type": "struct termios",
+        "match": "correct",
+        "evidence_source_line": "672: struct termios tty;",
+        "evidence_decompiled_line": "56: struct termios tty;"
+      },
+      {
+        "source_role": "局部变量 ret",
+        "source_type": "char *",
+        "decompiled_type": "无独立局部对象（以 return pass / return NULL 控制流表示）",
+        "match": "undeterminable",
+        "evidence_source_line": "673: char *ret = pass;",
+        "evidence_decompiled_line": "168: return pass;"
+      },
+      {
+        "source_role": "局部变量 tc",
+        "source_type": "unsigned char",
+        "decompiled_type": "int",
+        "match": "wrong",
+        "evidence_source_line": "674: unsigned char tc;",
+        "evidence_decompiled_line": "59: int tc;"
+      },
+      {
+        "source_role": "局部变量 c",
+        "source_type": "char",
+        "decompiled_type": "unsigned char",
+        "match": "wrong",
+        "evidence_source_line": "675: char c, ascval;",
+        "evidence_decompiled_line": "61: unsigned char c;"
+      },
+      {
+        "source_role": "局部变量 ascval",
+        "source_type": "char",
+        "decompiled_type": "int",
+        "match": "wrong",
+        "evidence_source_line": "675: char c, ascval;",
+        "evidence_decompiled_line": "62: int ascval;"
+      },
+      {
+        "source_role": "局部变量 eightbit",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "676: int eightbit;",
+        "evidence_decompiled_line": "60: int eightbit;"
+      },
+      {
+        "source_role": "局部变量 fd",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "677: int fd;",
+        "evidence_decompiled_line": "58: int fd;"
+      },
+      {
+        "source_role": "局部变量 bits",
+        "source_type": "uint32_t",
+        "decompiled_type": "int",
+        "match": "wrong",
+        "evidence_source_line": "774: uint32_t bits, mask;",
+        "evidence_decompiled_line": "63: int bits, mask;"
+      },
+      {
+        "source_role": "局部变量 mask",
+        "source_type": "uint32_t",
+        "decompiled_type": "int",
+        "match": "wrong",
+        "evidence_source_line": "774: uint32_t bits, mask;",
+        "evidence_decompiled_line": "63: int bits, mask;"
+      },
+      {
+        "source_role": "结构体 console",
+        "source_type": "显式布局在本函数体中未定义；仅可见 flags、fd、cp、tio、tty 字段访问",
+        "decompiled_type": "显式布局在本函数体中未定义；仅可见 flags、fd、cp、tio、tty 字段访问",
+        "match": "undeterminable",
+        "evidence_source_line": "681: fd = con->fd;",
+        "evidence_decompiled_line": "68: fd = con->fd;"
+      },
+      {
+        "source_role": "结构体 chardata",
+        "source_type": "显式布局在本函数体中未定义；仅可见 eol、parity、erase、kill 字段访问",
+        "decompiled_type": "显式布局在本函数体中未定义；仅可见 eol、parity、erase、kill 字段访问",
+        "match": "undeterminable",
+        "evidence_source_line": "723: cp->eol = *ptr = '\\0';",
+        "evidence_decompiled_line": "84: cp->eol = '\\0';"
+      },
+      {
+        "source_role": "结构体 termios",
+        "source_type": "显式布局在本函数体中未定义；仅可见 c_iflag、c_lflag、c_cflag 字段访问",
+        "decompiled_type": "显式布局在本函数体中未定义；仅可见 c_iflag、c_lflag、c_cflag 字段访问",
+        "match": "undeterminable",
+        "evidence_source_line": "685: tty.c_iflag &= ~( ... );",
+        "evidence_decompiled_line": "72: tty.c_iflag &= ~(IUCLC | IXON | IXANY | IXOFF);"
+      },
+      {
+        "source_role": "结构体 sigaction",
+        "source_type": "显式布局在本函数体中未定义；仅可见 handler、sa_flags 字段访问",
+        "decompiled_type": "显式布局在本函数体中未定义；仅可见 sa_handler、sa_flags 字段访问",
+        "match": "undeterminable",
+        "evidence_source_line": "711: sa.__sigaction_handler.sa_handler = alrm_handler;",
+        "evidence_decompiled_line": "76: sa.sa_handler = alrm_handler;"
+      }
+    ],
+    "reasoning": "第1个 ABI 参数在两端均为 console 指针，cp 的取址和其余局部声明/数据流可对应。源码将 pass 与 ptr 定义为函数内 static（669），反编译局部声明区（55-63）没有对应声明，却在 82 和 150 直接作为非局部状态使用，故静态局部对象被移出函数作用域这一 SC-01 现象得到确认；仅凭函数体无法断言其外部链接属性或精确数组大小。tc、c、ascval、bits、mask 的声明直接显示宽度/符号或 typedef 丢失。由于两端函数体均未提供任一结构体的字段偏移、大小和完整类型序列，LAYOUT-01 与 ST-01 不能仅据此判定。"
+  }
+]

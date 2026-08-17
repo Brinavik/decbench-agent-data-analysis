@@ -1,0 +1,91 @@
+[
+  {
+    "function": "check_init_fifo",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "函数签名（无参数）",
+        "source_type": "static void (void)",
+        "decompiled_type": "void (void)",
+        "match": "correct",
+        "evidence_source_line": "2791-2792: static / void check_init_fifo(void)",
+        "evidence_decompiled_line": "17: void check_init_fifo(void)"
+      },
+      {
+        "source_role": "局部变量 request（read 的目标缓冲区）",
+        "source_type": "struct init_request",
+        "decompiled_type": "局部定义的 struct init_request，字段为 int,int,int,int,char[368]",
+        "match": "wrong",
+        "evidence_source_line": "2794: struct init_request request; 2896: n = read(pipe_fd, &request, sizeof(request)); 2952: initcmd_setenv(request.i.data, sizeof(request.i.data));",
+        "evidence_decompiled_line": "30-36: struct init_request { int magic; int cmd; int runlevel; int sleeptime; char data[368]; } request; 92: n = read(pipe_fd, &request, sizeof(request)); 134: init_setenv(request.data);"
+      },
+      {
+        "source_role": "局部变量 tv（select 超时对象）",
+        "source_type": "struct timeval",
+        "decompiled_type": "struct timeval",
+        "match": "correct",
+        "evidence_source_line": "2795: struct timeval tv; 2879-2885: tv.tv_sec = 5; tv.tv_usec = 0; ... select(..., &tv);",
+        "evidence_decompiled_line": "40: struct timeval timeout; 83-86: timeout.tv_sec = 5; timeout.tv_usec = 0; ... select(..., &timeout);"
+      },
+      {
+        "source_role": "局部变量 st（已打开 FIFO 的 fstat 结果）",
+        "source_type": "struct stat",
+        "decompiled_type": "struct stat（fst）",
+        "match": "correct",
+        "evidence_source_line": "2796: struct stat st, st2; 2816: fstat(pipe_fd, &st); 2818-2819: st.st_dev != st2.st_dev || st.st_ino != st2.st_ino",
+        "evidence_decompiled_line": "39: struct stat fst; 48: fstat(pipe_fd, &fst); 50: fst.st_dev != st.st_dev || fst.st_ino != st.st_ino"
+      },
+      {
+        "source_role": "局部变量 st2（路径 stat 结果）",
+        "source_type": "struct stat",
+        "decompiled_type": "struct stat（st）",
+        "match": "correct",
+        "evidence_source_line": "2796: struct stat st, st2; 2804: stat(\"/run/initctl\", &st2); 2817-2819: stat(..., &st2) ... st.st_dev != st2.st_dev",
+        "evidence_decompiled_line": "38: struct stat st; 44: stat(fifo_name, &st); 49-50: stat(fifo_name, &st) ... fst.st_dev != st.st_dev"
+      },
+      {
+        "source_role": "局部变量 fds（select 可读集合）",
+        "source_type": "fd_set",
+        "decompiled_type": "fd_set（readfds）",
+        "match": "correct",
+        "evidence_source_line": "2797: fd_set fds; 2866-2878: FD_ZERO/FD_SET 展开后均操作 &fds; 2881-2885: select(pipe_fd + 1, &fds, ..., &tv)",
+        "evidence_decompiled_line": "41: fd_set readfds; 81-86: FD_ZERO(&readfds); FD_SET(pipe_fd, &readfds); ... select(..., &readfds, ..., &timeout)"
+      },
+      {
+        "source_role": "局部变量 n（select/read 返回值）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "2798: int n; 2881: n = select(...); 2896: n = read(...); 2926: n != sizeof(request)",
+        "evidence_decompiled_line": "42: int n; 86: n = select(...); 92: n = read(...); 107: n != (int)sizeof(request)"
+      },
+      {
+        "source_role": "局部变量 quit（循环退出标志）",
+        "source_type": "int",
+        "decompiled_type": "无独立局部实体；重构为无限循环和直接 return",
+        "match": "undeterminable",
+        "evidence_source_line": "2799: int quit = 0; 2862: while(!quit); 2934: quit = 1; 2958: 循环结束",
+        "evidence_decompiled_line": "80: for (;;); 116: break; 144-146: if (pipe_fd == -1) pause(); return;"
+      },
+      {
+        "source_role": "结构体 init_request",
+        "source_type": "struct { int magic@0; int cmd@4; int runlevel@8; int sleeptime@12; union { struct init_request_bsd bsd; char data[368]; } i@16; }（总大小由本文件字段可得 384 字节）",
+        "decompiled_type": "struct { int magic@0; int cmd@4; int runlevel@8; int sleeptime@12; char data[368]@16; }（384 字节）",
+        "match": "wrong",
+        "evidence_source_line": "58-66: struct init_request 含四个 int，偏移 16 处为 union i；union 成员为 struct init_request_bsd bsd 与 char data[368]",
+        "evidence_decompiled_line": "30-36: struct init_request 被恢复为四个 int 后直接跟随 char data[368]，缺少偏移 16 处的 union 与 bsd 成员"
+      },
+      {
+        "source_role": "结构体 init_request_bsd（init_request.i 的 union 成员类型）",
+        "source_type": "struct { char[8]; char[16]; char[64]; char[16]; int; int; char[128]; char[128]; }（字段顺序对应偏移 0,8,24,88,104,108,112,240，总大小 368 字节）",
+        "decompiled_type": "未恢复；对应 368 字节区域仅声明为 char data[368]",
+        "match": "wrong",
+        "evidence_source_line": "46-57: struct init_request_bsd 的八个字段；63-65: 其作为 union i 的 bsd 成员并与 char data[368] 共用存储",
+        "evidence_decompiled_line": "30-36: 唯一恢复的请求结构在偏移 16 处只有 char data[368]，没有 init_request_bsd 的字段序列"
+      }
+    ],
+    "reasoning": "函数无 ABI 参数。局部实体按系统调用参数位置和后续数据流对齐：两份 stat 分别承担 fstat 与路径 stat，timeval/fd_set 分别进入 select 的第5/第2参数，n 同时承接 select/read 返回值。静态函数的 static 是链接属性而非参数或返回类型，因此不据此判 FN-01；源码也没有静态局部对象，故无 SC-01。quit 在优化后的控制流中没有独立存储，不能判断其恢复类型。可确认的错误是 LAYOUT-01：请求对象两侧读取尺寸均为 384 字节且前四个 int 一致，但源码偏移16处是含两个成员的 union，其中 bsd 具有八字段布局；反编译将整个区域直接恢复为 char[368]，丢失 union 和嵌套结构字段类型序列。没有证据支持 ST-01、PTR-01 或 INT-01。"
+  }
+]

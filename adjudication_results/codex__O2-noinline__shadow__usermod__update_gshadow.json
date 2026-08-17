@@ -1,0 +1,92 @@
+[
+  {
+    "function": "update_gshadow",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "函数参数列表",
+        "source_type": "void (void)",
+        "decompiled_type": "void (void)",
+        "match": "correct",
+        "evidence_source_line": "2053: static void update_gshadow (void)",
+        "evidence_decompiled_line": "30: void update_gshadow(void)",
+        "reasoning": "两者 ABI 参数位置均为空，返回类型均为 void；源码的 static 仅是链接属性，不改变函数类型。"
+      },
+      {
+        "source_role": "局部变量 is_member",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "2056-2057: _Bool is_member; ; 2096-2097: is_member = Gflg && (...)",
+        "evidence_decompiled_line": "35-37: bool was_member; bool was_admin; bool is_member; ; 59-76: is_member = Gflg ... is_member = !is_member",
+        "reasoning": "该局部承载成员资格布尔值并参与条件分支；C bool 与源码 _Bool 语义和宽度一致。"
+      },
+      {
+        "source_role": "局部变量 was_member",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "2059-2060: _Bool was_member; ; 2085: was_member = is_on_list (sgrp->sg_mem, user_name)",
+        "evidence_decompiled_line": "35: bool was_member; ; 57: was_member = is_on_list(sgrp->sg_mem, user_name)",
+        "reasoning": "同一 ABI 局部角色保存 is_on_list 的布尔结果，并在后续分支中读取。"
+      },
+      {
+        "source_role": "局部变量 was_admin",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "2062-2063: _Bool was_admin; ; 2090: was_admin = is_on_list (sgrp->sg_adm, user_name)",
+        "evidence_decompiled_line": "36: bool was_admin; ; 58: was_admin = is_on_list(sgrp->sg_adm, user_name)",
+        "reasoning": "同一数据流角色保存管理员列表查询结果，类型为布尔值。"
+      },
+      {
+        "source_role": "局部变量 changed",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "2065-2066: _Bool changed; ; 2070-2072: changed = 0; ; 2279: if (!changed)",
+        "evidence_decompiled_line": "38: bool changed; ; 90: changed = false; ; 122: if (!changed)",
+        "reasoning": "该变量是更新是否发生的布尔标志，初始化、置真和条件读取均一致。"
+      },
+      {
+        "source_role": "局部变量 sgrp",
+        "source_type": "const struct sgrp *",
+        "decompiled_type": "const struct sgrp *",
+        "match": "correct",
+        "evidence_source_line": "2067: const struct sgrp *sgrp; ; 2078-2080: while ((sgrp = sgr_next ()) != ((void *)0))",
+        "evidence_decompiled_line": "33: const struct sgrp *sgrp; ; 56: while ((sgrp = sgr_next()) != NULL)",
+        "reasoning": "第一个结构体指针局部接收 sgr_next 返回值，只读访问 sg_mem、sg_adm 和名称字段，const 指针层级保持。"
+      },
+      {
+        "source_role": "局部变量 nsgrp",
+        "source_type": "struct sgrp *",
+        "decompiled_type": "struct sgrp *",
+        "match": "correct",
+        "evidence_source_line": "2068: struct sgrp *nsgrp; ; 2111: nsgrp = __sgr_dup (sgrp); ; 2127-2128: nsgrp->sg_adm = ...",
+        "evidence_decompiled_line": "34: struct sgrp *nsgrp; ; 82: nsgrp = __sgr_dup(sgrp); ; 93-94: nsgrp->sg_adm = ...",
+        "reasoning": "第二个结构体指针接收可写副本并修改其成员，未丢失一级指针或 const 属性。"
+      },
+      {
+        "source_role": "结构体 sgrp（字段布局）",
+        "source_type": "struct sgrp；通过 sg_mem、sg_adm、sg_name 访问的 gshadow 结构体",
+        "decompiled_type": "struct sgrp；通过 sg_mem、sg_adm、sg_namp 访问",
+        "match": "correct",
+        "evidence_source_line": "2085: sgrp->sg_mem; 2090: sgrp->sg_adm; 2097: sgrp->sg_name; 2111: __sgr_dup(sgrp)",
+        "evidence_decompiled_line": "57: sgrp->sg_mem; 58: sgrp->sg_adm; 66,69: sgrp->sg_namp; 82: __sgr_dup(sgrp)",
+        "reasoning": "访问序列显示同一 sgrp 指针的成员列表字段和首名称字段均按相同用途传给 is_on_list/syslog；sg_namp 只是反编译器的字段命名，不能据名称判定布局错误。可确认指针层级和成员访问角色一致；未观察到字段偏移、大小或类型序列改变。"
+      },
+      {
+        "source_role": "局部枚举常量 E_GRP_UPDATE",
+        "source_type": "源码中无对应局部对象（错误码使用整数字面量 10）",
+        "decompiled_type": "enum { E_GRP_UPDATE = 10 }",
+        "match": "correct",
+        "evidence_source_line": "2119: fail_exit (10); 2318: fail_exit (10)",
+        "evidence_decompiled_line": "32: enum { E_GRP_UPDATE = 10 }; 87,133: fail_exit(E_GRP_UPDATE)",
+        "reasoning": "反编译器将重复使用的整数字面量提升为函数内枚举常量；其值和传参 ABI 均为 int 10，不是静态局部对象或全局外部对象。"
+      }
+    ],
+    "reasoning": "函数无参数，所有源码局部变量均能按数据流一一对齐；未发现静态局部对象被外置。结构体字段名存在 sg_name/sg_namp 文本差异，但证据显示相同成员访问位置和用途，不能据名称认定布局冲突。因此 free_discovery 假设被拒绝。"
+  }
+]

@@ -1,0 +1,155 @@
+[
+  {
+    "function": "wall",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "const char *",
+        "decompiled_type": "char *",
+        "match": "wrong",
+        "evidence_source_line": "133: void wall(const char *text, int remote)",
+        "evidence_decompiled_line": "29: void wall(char *mbuf, int remote)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "133: void wall(const char *text, int remote); 178: if (remote)",
+        "evidence_decompiled_line": "29: void wall(char *mbuf, int remote); 52: if (remote)"
+      },
+      {
+        "source_role": "局部变量tp（终端输出流）",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "135: FILE *tp; 257: (tp = fdopen(fd, \"w\")) != NULL; 260: fputs(line, tp)",
+        "evidence_decompiled_line": "38: FILE *fp; 96: fp = fdopen(fd, \"w\"); 98: fputs(lbuf, fp)"
+      },
+      {
+        "source_role": "局部变量sa（信号动作对象）",
+        "source_type": "struct sigaction",
+        "decompiled_type": "struct sigaction",
+        "match": "correct",
+        "evidence_source_line": "136: struct sigaction sa; 194: memset(&sa, 0, sizeof(sa)); 199: sigemptyset(&sa.sa_mask)",
+        "evidence_decompiled_line": "36: struct sigaction sa; 63: memset(&sa, 0, sizeof(sa)); 65: sigemptyset(&sa.sa_mask)"
+      },
+      {
+        "source_role": "局部变量utmp（当前登录记录指针）",
+        "source_type": "struct utmp *",
+        "decompiled_type": "struct utmp *",
+        "match": "correct",
+        "evidence_source_line": "137: struct utmp *utmp; 208: while ((utmp = getutent()) != NULL); 211-215: utmp->ut_type, utmp->ut_user[0], utmp->ut_line",
+        "evidence_decompiled_line": "35: struct utmp *ut; 69: while ((ut = getutent()) != NULL); 70-75: ut->ut_type, ut->ut_user[0], ut->ut_line"
+      },
+      {
+        "source_role": "局部变量t（当前时间值）",
+        "source_type": "time_t",
+        "decompiled_type": "time_t",
+        "match": "correct",
+        "evidence_source_line": "138: time_t t; 172: time(&t); 173: date = ctime(&t)",
+        "evidence_decompiled_line": "37: time_t now; 46: time(&now); 47: date = ctime(&now)"
+      },
+      {
+        "source_role": "局部变量term（终端设备路径缓冲区）",
+        "source_type": "char[32 + strlen(\"/dev/\") + 1]",
+        "decompiled_type": "char[strlen(_PATH_DEV) + UT_LINESIZE + 1]，其中本文件定义UT_LINESIZE=32、_PATH_DEV=\"/dev/\"",
+        "match": "correct",
+        "evidence_source_line": "139-143: char term[32 + strlen(\"/dev/\") + 1]; 223-228: snprintf(term, sizeof(term), \"/dev/\" \"%.*s\", 32, utmp->ut_line)",
+        "evidence_decompiled_line": "12-17: _PATH_DEV为\"/dev/\"且UT_LINESIZE为32; 31: char device[strlen(_PATH_DEV) + UT_LINESIZE + 1]; 80-81: snprintf(device, sizeof(device), \"/dev/%.*s\", UT_LINESIZE, ut->ut_line)"
+      },
+      {
+        "source_role": "局部变量line（广播标题缓冲区）",
+        "source_type": "char[256]",
+        "decompiled_type": "char[256]",
+        "match": "correct",
+        "evidence_source_line": "144: char line[256]; 179: snprintf(line, sizeof(line), ...); 260: fputs(line, tp)",
+        "evidence_decompiled_line": "33: char lbuf[256]; 53: snprintf(lbuf, sizeof(lbuf), ...); 98: fputs(lbuf, fp)"
+      },
+      {
+        "source_role": "局部变量hostname（主机名缓冲区）",
+        "source_type": "char[65]",
+        "decompiled_type": "char[65]",
+        "match": "correct",
+        "evidence_source_line": "145-147: char hostname[64 +1]; 163: gethostname(hostname, sizeof(hostname))",
+        "evidence_decompiled_line": "32: char hostname[65]; 43: gethostname(hostname, sizeof(hostname))"
+      },
+      {
+        "source_role": "局部变量date（ctime结果指针）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "148: char *date, *p; 173: date = ctime(&t)",
+        "evidence_decompiled_line": "34: char *whom, *where, *date, *cp; 47: date = ctime(&now)"
+      },
+      {
+        "source_role": "局部变量p（日期字符串遍历指针）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "148: char *date, *p; 174-176: for(p = date; *p && *p != '\\n'; p++); *p = 0",
+        "evidence_decompiled_line": "34: char *whom, *where, *date, *cp; 48-50: for (cp = date; *cp != '\\0' && *cp != '\\n'; cp++); *cp = '\\0'"
+      },
+      {
+        "source_role": "局部变量user（发送者字符串指针）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "149: char *user, *tty; 159: getuidtty(&user, &tty); 183-185: snprintf(..., user, hostname, tty, date)",
+        "evidence_decompiled_line": "34: char *whom, *where, *date, *cp; 41: get_who_where(&whom, &where); 56-58: snprintf(..., whom, hostname, where, date)"
+      },
+      {
+        "source_role": "局部变量tty（终端说明字符串指针）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "149: char *user, *tty; 159: getuidtty(&user, &tty); 183-185: snprintf(..., user, hostname, tty, date)",
+        "evidence_decompiled_line": "34: char *whom, *where, *date, *cp; 41: get_who_where(&whom, &where); 56-58: snprintf(..., whom, hostname, where, date)"
+      },
+      {
+        "source_role": "局部变量fd（终端文件描述符）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "150: int fd, flags; 231: fd = -1; 255: (fd = open(term, flags)) >= 0; 267: if (fd >= 0) close(fd)",
+        "evidence_decompiled_line": "39: int fd; 88: fd = -1; 92: fd = open(device, ...); 107-108: if (fd >= 0) close(fd)"
+      },
+      {
+        "source_role": "局部变量flags（open标志位）",
+        "source_type": "int",
+        "decompiled_type": "无独立实体（常量表达式直接传给open）",
+        "match": "undeterminable",
+        "evidence_source_line": "150: int fd, flags; 247-255: flags = 01 | 04000 | 0400; ... open(term, flags)",
+        "evidence_decompiled_line": "92-93: fd = open(device, O_WRONLY | O_NONBLOCK | O_NOCTTY)"
+      },
+      {
+        "source_role": "结构体sigaction（本函数可观察字段）",
+        "source_type": "struct sigaction；本函数使用处理器字段、sa_flags、sa_mask并以sizeof整体清零",
+        "decompiled_type": "struct sigaction；本函数使用sa_handler、sa_mask并以sizeof整体清零，flags由清零隐式置0",
+        "match": "correct",
+        "evidence_source_line": "194-204: memset(&sa, 0, sizeof(sa)); sa.__sigaction_handler.sa_handler = handler; sa.sa_flags = 0; sigemptyset(&sa.sa_mask); sigaction(14, &sa, NULL)",
+        "evidence_decompiled_line": "63-66: memset(&sa, 0, sizeof(sa)); sa.sa_handler = timeout_handler; sigemptyset(&sa.sa_mask); sigaction(SIGALRM, &sa, NULL)"
+      },
+      {
+        "source_role": "结构体utmp（本函数可观察字段）",
+        "source_type": "struct utmp *；依次使用ut_type、ut_user字符数组、ut_line字符数组",
+        "decompiled_type": "struct utmp *；依次使用ut_type、ut_user字符数组、ut_line字符数组",
+        "match": "correct",
+        "evidence_source_line": "208-228: getutent返回struct utmp *，随后读取ut_type、ut_user[0]和ut_line并按32字符上限复制",
+        "evidence_decompiled_line": "69-81: getutent返回struct utmp *，随后读取ut_type、ut_user[0]和ut_line并按UT_LINESIZE=32复制"
+      },
+      {
+        "source_role": "本函数使用的静态跳转缓冲区对象",
+        "source_type": "static sigjmp_buf（文件作用域、内部链接）",
+        "decompiled_type": "extern sigjmp_buf（外部链接声明）",
+        "match": "wrong",
+        "evidence_source_line": "2: static sigjmp_buf jbuf; 239-245: __sigsetjmp(jbuf, 1) == 0",
+        "evidence_decompiled_line": "26-27: Shared with timeout_handler(); extern sigjmp_buf jmp_env; 89: if (sigsetjmp(jmp_env, 1) == 0)"
+      }
+    ],
+    "reasoning": "按ABI位置，第1参数在两侧都流向消息输出调用，但反编译签名将const char *恢复为char *，因此FN-01/限定符恢复错误成立；第2参数均作为remote分支条件，int正确。局部变量依据调用参数位置、赋值来源及后续用途对齐，而非名称；flags被O2常量传播后没有独立反编译实体，不能据此判断其声明类型。两个结构体在本函数可观察范围内具有相同的整体sizeof操作、字段用途和字段类型序列，未发现ST-01或LAYOUT-01证据；但结论只覆盖本函数实际访问的字段。跳转缓冲区在源码中明确为static内部链接对象，反编译结果却声明为extern外部对象，确认SC-01。未发现PTR-01或整数宽度/符号错误。"
+  }
+]

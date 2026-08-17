@@ -1,0 +1,121 @@
+[
+  {
+    "function": "deflate_slow",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "deflate_state *",
+        "decompiled_type": "deflate_state *",
+        "match": "correct",
+        "evidence_source_line": "1965-1967: static block_state deflate_slow(s, flush); deflate_state *s;",
+        "evidence_decompiled_line": "192-193: static block_state deflate_slow(deflate_state *s, int flush)"
+      }
+    ],
+    "reasoning": "函数第1个参数的声明和数据流用途一致。"
+  },
+  {
+    "function": "deflate_slow",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第2个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "1965-1967: static block_state deflate_slow(s, flush); int flush;",
+        "evidence_decompiled_line": "192: static block_state deflate_slow(deflate_state *s, int flush)"
+      }
+    ],
+    "reasoning": "第2个参数的ABI位置和整数类型直接匹配。"
+  },
+  {
+    "function": "deflate_slow",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "局部变量 hash_head",
+        "source_type": "IPos",
+        "decompiled_type": "IPos (反编译文件typedef为unsigned int)",
+        "match": "undeterminable",
+        "evidence_source_line": "1969, 1990-1992: IPos hash_head; hash_head = 0; ... hash_head = s->prev[...] = s->head[...]",
+        "evidence_decompiled_line": "194, 215-217: IPos hash_head; hash_head = NIL; INSERT_STRING(s, s->strstart, hash_head);"
+      }
+    ],
+    "reasoning": "名称和用途可对齐，底层整数类型证据不足。"
+  },
+  {
+    "function": "deflate_slow",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 bflush",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "1970, 2031, 2058, 2077: int bflush; ... bflush = (s->sym_next == s->sym_end);",
+        "evidence_decompiled_line": "195, 253-254, 279-281, 296: int bflush; ... bflush is assigned from sym_next == sym_end"
+      }
+    ],
+    "reasoning": "局部变量声明、数据流和控制用途均匹配。"
+  },
+  {
+    "function": "deflate_slow",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量 max_insert",
+        "source_type": "uInt",
+        "decompiled_type": "uInt",
+        "match": "correct",
+        "evidence_source_line": "2025-2026: if (...){ uInt max_insert = s->strstart + s->lookahead - 3;",
+        "evidence_decompiled_line": "247-249: if (...){ uInt max_insert = s->strstart + s->lookahead - MIN_MATCH;"
+      }
+    ],
+    "reasoning": "局部变量的栈角色、算术来源和比较用途一致。"
+  },
+  {
+    "function": "deflate_slow",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "结构体 deflate_state",
+        "source_type": "deflate_state（函数内仅以结构体指针字段访问可见）",
+        "decompiled_type": "typedef struct internal_state { ... } deflate_state",
+        "match": "undeterminable",
+        "evidence_source_line": "1966, 1979-2086: deflate_state *s; 并访问lookahead、window、prev、head、dyn_ltree、strm等字段",
+        "evidence_decompiled_line": "68-130, 204-306: typedef struct internal_state {...} deflate_state; 并访问相同字段"
+      }
+    ],
+    "reasoning": "结构体指针的字段数据流相符，但完整内存布局证据不在指定源码函数内。"
+  },
+  {
+    "function": "deflate_slow",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "函数签名/返回类型",
+        "source_type": "static block_state deflate_slow(deflate_state *, int)",
+        "decompiled_type": "static block_state deflate_slow(deflate_state *, int)",
+        "match": "correct",
+        "evidence_source_line": "1965-1967: static block_state deflate_slow(s, flush); deflate_state *s; int flush;",
+        "evidence_decompiled_line": "192: static block_state deflate_slow(deflate_state *s, int flush)"
+      }
+    ],
+    "reasoning": "函数原型在ABI位置和类型层面一致。"
+  }
+]

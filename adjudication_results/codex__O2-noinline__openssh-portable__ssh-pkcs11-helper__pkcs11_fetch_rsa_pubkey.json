@@ -1,0 +1,182 @@
+[
+  {
+    "function": "pkcs11_fetch_rsa_pubkey",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "函数返回值",
+        "source_type": "struct sshkey *",
+        "decompiled_type": "struct sshkey *",
+        "match": "correct",
+        "evidence_source_line": "源码2433-2445行: static struct sshkey * / pkcs11_fetch_rsa_pubkey(...)",
+        "evidence_decompiled_line": "反编译66-68行: struct sshkey * / pkcs11_fetch_rsa_pubkey(...)",
+        "reasoning": "返回值由局部key承载并在源码2571行、反编译132行返回，指针层级一致。"
+      },
+      {
+        "source_role": "第1个参数",
+        "source_type": "struct pkcs11_provider *",
+        "decompiled_type": "struct pkcs11_provider *",
+        "match": "correct",
+        "evidence_source_line": "源码2444行: pkcs11_fetch_rsa_pubkey(struct pkcs11_provider *p, CK_ULONG slotidx,",
+        "evidence_decompiled_line": "反编译67行: pkcs11_fetch_rsa_pubkey(struct pkcs11_provider *p, CK_ULONG slotidx,",
+        "reasoning": "按第1个ABI参数位置对齐；两侧均经一次解引用访问function_list和slotinfo（源码2467-2468行，反编译83-84行）。"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "CK_ULONG（unsigned long int）",
+        "decompiled_type": "CK_ULONG（unsigned long）",
+        "match": "correct",
+        "evidence_source_line": "源码845行: typedef unsigned long int CK_ULONG;；源码2444行: ..., CK_ULONG slotidx,",
+        "evidence_decompiled_line": "反编译5行: typedef unsigned long CK_ULONG;；反编译67行: ..., CK_ULONG slotidx,",
+        "reasoning": "按第2个ABI参数位置及其作为slotinfo数组下标的数据流对齐；宽度和无符号性一致。"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "CK_OBJECT_HANDLE *（unsigned long *）",
+        "decompiled_type": "CK_OBJECT_HANDLE *（unsigned long *）",
+        "match": "correct",
+        "evidence_source_line": "源码408行: typedef unsigned long CK_OBJECT_HANDLE;；源码2445行: CK_OBJECT_HANDLE *obj",
+        "evidence_decompiled_line": "反编译8行: typedef CK_ULONG CK_OBJECT_HANDLE;；反编译68行: CK_OBJECT_HANDLE *obj",
+        "reasoning": "按第3个ABI参数位置对齐；调用C_GetAttributeValue时两侧均解引用一次作为对象句柄值（源码2471行，反编译85行），未发生指针层级坍塌。"
+      },
+      {
+        "source_role": "局部变量key_attr",
+        "source_type": "CK_ATTRIBUTE[3]",
+        "decompiled_type": "CK_ATTRIBUTE[3]",
+        "match": "correct",
+        "evidence_source_line": "源码2447行: CK_ATTRIBUTE key_attr[3];；源码2462-2465行初始化三个元素",
+        "evidence_decompiled_line": "反编译76-80行: CK_ATTRIBUTE key_attr[3] = { ... }",
+        "reasoning": "按栈上三元素属性模板角色及后续索引访问对齐；数组长度和元素类型一致。"
+      },
+      {
+        "source_role": "局部变量session",
+        "source_type": "CK_SESSION_HANDLE（unsigned long）",
+        "decompiled_type": "CK_SESSION_HANDLE（unsigned long）",
+        "match": "correct",
+        "evidence_source_line": "源码2448行: CK_SESSION_HANDLE session;；源码2467行: session = p->slotinfo[slotidx].session;",
+        "evidence_decompiled_line": "反编译7行: typedef CK_ULONG CK_SESSION_HANDLE;；反编译73、84行: CK_SESSION_HANDLE session; ... session = p->slotinfo[slotidx].session;",
+        "reasoning": "由provider的slot数组取出并作为C_GetAttributeValue第1参数，数据流与无符号长整数类型一致。"
+      },
+      {
+        "source_role": "局部变量f",
+        "source_type": "CK_FUNCTION_LIST *（struct _CK_FUNCTION_LIST *）",
+        "decompiled_type": "struct ck_function_list *",
+        "match": "correct",
+        "evidence_source_line": "源码890行: typedef struct _CK_FUNCTION_LIST CK_FUNCTION_LIST;；源码2449行: CK_FUNCTION_LIST *f；源码2468行: f = p->function_list;",
+        "evidence_decompiled_line": "反编译20-24行声明struct ck_function_list；反编译74、83行: struct ck_function_list *f; f = p->function_list;",
+        "reasoning": "不按标签名称对齐，而按从provider字段取得函数表、再间接调用C_GetAttributeValue的数据流对齐；指针层级正确。完整结构体恢复另行判断。"
+      },
+      {
+        "source_role": "局部变量rv",
+        "source_type": "CK_RV（unsigned long）",
+        "decompiled_type": "CK_RV（unsigned long）",
+        "match": "correct",
+        "evidence_source_line": "源码461行: typedef unsigned long CK_RV;；源码2452行: CK_RV rv;；源码2471行接收函数返回值",
+        "evidence_decompiled_line": "反编译6行: typedef CK_ULONG CK_RV;；反编译75、85行: CK_RV rv; ... (rv = f->C_GetAttributeValue(...))",
+        "reasoning": "两侧均承载PKCS#11调用返回码并与0比较；宽度、符号和typedef语义一致。"
+      },
+      {
+        "source_role": "局部变量rsa",
+        "source_type": "RSA *",
+        "decompiled_type": "RSA *",
+        "match": "correct",
+        "evidence_source_line": "源码2453-2455行: RSA *rsa = ((void *)0);；源码2510行: rsa = RSA_new();",
+        "evidence_decompiled_line": "反编译17行: typedef struct rsa_st RSA;；反编译71、103行: RSA *rsa = NULL; ... rsa = RSA_new()",
+        "reasoning": "按RSA_new产生、RSA_set0_key/pkcs11_rsa_wrap消费及RSA_free清理的数据流对齐，均为单层指针。"
+      },
+      {
+        "source_role": "局部变量rsa_n",
+        "source_type": "BIGNUM *",
+        "decompiled_type": "BIGNUM *",
+        "match": "correct",
+        "evidence_source_line": "源码2456行: BIGNUM *rsa_n, *rsa_e;；源码2520-2522行: rsa_n = BN_bin2bn(...) ",
+        "evidence_decompiled_line": "反编译18行: typedef struct bignum_st BIGNUM;；反编译72、107-108行: BIGNUM *rsa_n, *rsa_e; rsa_n = BN_bin2bn(...) ",
+        "reasoning": "按BN_bin2bn结果和RSA_set0_key模数参数的数据流对齐，单层指针正确。"
+      },
+      {
+        "source_role": "局部变量rsa_e",
+        "source_type": "BIGNUM *",
+        "decompiled_type": "BIGNUM *",
+        "match": "correct",
+        "evidence_source_line": "源码2456行: BIGNUM *rsa_n, *rsa_e;；源码2523-2525行: rsa_e = BN_bin2bn(...) ",
+        "evidence_decompiled_line": "反编译72、109-110行: BIGNUM *rsa_n, *rsa_e; rsa_e = BN_bin2bn(...) ",
+        "reasoning": "按BN_bin2bn结果和RSA_set0_key指数参数的数据流对齐，单层指针正确。"
+      },
+      {
+        "source_role": "局部变量key",
+        "source_type": "struct sshkey *",
+        "decompiled_type": "struct sshkey *",
+        "match": "correct",
+        "evidence_source_line": "源码2457-2459行: struct sshkey *key = ((void *)0);；源码2549行: key = sshkey_new(KEY_UNSPEC);",
+        "evidence_decompiled_line": "反编译70行: struct sshkey *key = NULL;；反编译119行: (key = sshkey_new(KEY_UNSPEC))",
+        "reasoning": "按sshkey_new产生、字段写入并作为函数返回值的数据流对齐，指针类型正确；其目标结构体布局另行判断。"
+      },
+      {
+        "source_role": "局部变量i",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码2460行: int i;；源码2497-2499行: for (i = 0; i < 3; i++)",
+        "evidence_decompiled_line": "反编译81行: int i;；反编译94-96行: for (i = 0; i < 3; i++)",
+        "reasoning": "按遍历固定三元素属性数组的循环计数器角色对齐，类型一致。"
+      },
+      {
+        "source_role": "结构体CK_ATTRIBUTE（struct _CK_ATTRIBUTE）",
+        "source_type": "3字段布局: CK_ATTRIBUTE_TYPE/void */unsigned long",
+        "decompiled_type": "3字段布局: CK_ATTRIBUTE_TYPE/void */CK_ULONG",
+        "match": "correct",
+        "evidence_source_line": "源码430-435行: struct _CK_ATTRIBUTE { CK_ATTRIBUTE_TYPE type; void *pValue; unsigned long ulValueLen; };",
+        "evidence_decompiled_line": "反编译11-15行: typedef struct { CK_ATTRIBUTE_TYPE type; void *pValue; CK_ULONG ulValueLen; } CK_ATTRIBUTE;",
+        "reasoning": "字段数量、顺序及LP64下的8/8/8字节类型序列一致；数组索引及字段数据流也一致。"
+      },
+      {
+        "source_role": "结构体pkcs11_slotinfo",
+        "source_type": "CK_TOKEN_INFO token; CK_SESSION_HANDLE session; int logged_in",
+        "decompiled_type": "unsigned char _pad[0xd0]; CK_SESSION_HANDLE session; unsigned char _tail[8]",
+        "match": "wrong",
+        "evidence_source_line": "源码1432-1436行: struct pkcs11_slotinfo { CK_TOKEN_INFO token; CK_SESSION_HANDLE session; int logged_in; };",
+        "evidence_decompiled_line": "反编译26-30行: struct pkcs11_slotinfo { unsigned char _pad[0xd0]; CK_SESSION_HANDLE session; unsigned char _tail[8]; };",
+        "reasoning": "访问所需的session偏移和数组步长被填充数组保住，但显式恢复的字段数量与类型序列不等价：token和logged_in被降为无类型字节填充，故完整结构体恢复错误。"
+      },
+      {
+        "source_role": "结构体pkcs11_provider",
+        "source_type": "name/handle/function_list/info/nslots/slotlist/slotinfo/valid/refcount/next共10个顺序字段",
+        "decompiled_type": "_pad0[0x10]/function_list/_pad18[0x68]/slotinfo共4个字段",
+        "match": "wrong",
+        "evidence_source_line": "源码1438-1449行: struct pkcs11_provider { char *name; void *handle; CK_FUNCTION_LIST *function_list; CK_INFO info; CK_ULONG nslots; CK_SLOT_ID *slotlist; struct pkcs11_slotinfo *slotinfo; int valid; int refcount; ... next; };",
+        "evidence_decompiled_line": "反编译32-37行: struct pkcs11_provider { unsigned char _pad0[0x10]; struct ck_function_list *function_list; unsigned char _pad18[0x68]; struct pkcs11_slotinfo *slotinfo; };",
+        "reasoning": "function_list与slotinfo两个被访问字段的偏移得到保持，足以复现本函数数据流；但反编译显式声明遗漏尾部字段并把多个具类型字段合并成字节填充，字段数量、总大小和类型序列不匹配。"
+      },
+      {
+        "source_role": "结构体CK_FUNCTION_LIST（struct _CK_FUNCTION_LIST）",
+        "source_type": "version后跟完整PKCS#11函数指针序列，含C_GetAttributeValue",
+        "decompiled_type": "_pad[0xc8]后仅一个C_GetAttributeValue函数指针",
+        "match": "wrong",
+        "evidence_source_line": "源码750-782行的struct _CK_FUNCTION_LIST函数指针序列，源码778行: CK_C_GetAttributeValue C_GetAttributeValue;",
+        "evidence_decompiled_line": "反编译20-24行: struct ck_function_list { unsigned char _pad[0xc8]; CK_RV (*C_GetAttributeValue)(...); };",
+        "reasoning": "间接调用槽位及函数原型在本函数中可用，但结构体被截断为偏移填充加单字段，完整字段数量、总大小及类型序列不匹配。"
+      },
+      {
+        "source_role": "结构体sshkey",
+        "source_type": "完整结构体；前缀为int type; int flags; RSA *rsa;，其后还有DSA、ECDSA、密钥材料、证书及shield字段",
+        "decompiled_type": "仅3字段: int type; unsigned int flags; RSA *rsa",
+        "match": "wrong",
+        "evidence_source_line": "源码1218-1249行声明完整struct sshkey，其中1219-1222行: int type; int flags; RSA *rsa;",
+        "evidence_decompiled_line": "反编译39-43行: struct sshkey { int type; unsigned int flags; RSA *rsa; };",
+        "reasoning": "type、flags、rsa三个被访问字段的偏移一致，但flags从有符号int误恢复为unsigned int，且结构体在rsa后被截断，故同时存在INT-01与LAYOUT-01。"
+      },
+      {
+        "source_role": "函数指针C_GetAttributeValue",
+        "source_type": "CK_RV (*)(CK_SESSION_HANDLE, CK_OBJECT_HANDLE, struct _CK_ATTRIBUTE *, unsigned long)",
+        "decompiled_type": "CK_RV (*)(CK_SESSION_HANDLE, CK_OBJECT_HANDLE, CK_ATTRIBUTE *, CK_ULONG)",
+        "match": "correct",
+        "evidence_source_line": "源码546行: typedef CK_RV (*CK_C_GetAttributeValue) (CK_SESSION_HANDLE session, CK_OBJECT_HANDLE object, struct _CK_ATTRIBUTE *templ, unsigned long count)",
+        "evidence_decompiled_line": "反编译22-23行: CK_RV (*C_GetAttributeValue)(CK_SESSION_HANDLE, CK_OBJECT_HANDLE, CK_ATTRIBUTE *, CK_ULONG);",
+        "reasoning": "四个ABI参数的位置、指针层级、整数宽度与返回类型一致；CK_ATTRIBUTE和struct _CK_ATTRIBUTE是同一源码实体的typedef关系。"
+      }
+    ],
+    "reasoning": "按ABI位置而非变量名对齐后，函数返回类型、3个参数、9个局部变量及C_GetAttributeValue原型均无FN-01或PTR-01。函数内没有静态局部对象，故无SC-01证据；结构体标签改名本身也不能证明ST-01。可确认的错误为：sshkey.flags的有符号性丢失（INT-01），以及pkcs11_slotinfo、pkcs11_provider、CK_FUNCTION_LIST、sshkey被以填充或访问前缀替代，显式字段数量/类型序列或总大小不匹配（LAYOUT-01）。因此free_discovery总体为confirmed。"
+  }
+]

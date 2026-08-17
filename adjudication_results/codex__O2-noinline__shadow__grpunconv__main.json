@@ -1,0 +1,83 @@
+[
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "824: int main (int argc, char **argv)",
+        "evidence_decompiled_line": "71: int main(int argc, char **argv); 85: process_root_flag(\"-R\", argc, argv); 87: process_flags(argc, argv);"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "char **",
+        "decompiled_type": "char **",
+        "match": "correct",
+        "evidence_source_line": "824: int main (int argc, char **argv); 830: Prog = Basename (argv[0]);",
+        "evidence_decompiled_line": "71: int main(int argc, char **argv); 77: Prog = Basename(argv[0]);"
+      },
+      {
+        "source_role": "局部变量gr（当前组记录指针）",
+        "source_type": "const struct group *",
+        "decompiled_type": "const struct group *",
+        "match": "correct",
+        "evidence_source_line": "826: const struct group *gr; 904: while ((gr = gr_next ()) != NULL); 907: sg = sgr_locate (gr->gr_name);",
+        "evidence_decompiled_line": "73: const struct group *group; 118: while ((group = gr_next()) != NULL); 119: shadow = sgr_locate(group->gr_name);"
+      },
+      {
+        "source_role": "局部变量grent（可修改的组记录副本）",
+        "source_type": "struct group",
+        "decompiled_type": "struct group",
+        "match": "correct",
+        "evidence_source_line": "827: struct group grent; 913: grent = *gr; 914: grent.gr_passwd = sg->sg_passwd; 915: if (gr_update (&grent) == 0)",
+        "evidence_decompiled_line": "75: struct group updated_group; 127: updated_group = *group; 128: updated_group.gr_passwd = shadow->sg_passwd; 129: main (!gr_update(&updated_group))"
+      },
+      {
+        "source_role": "局部变量sg（影子组记录指针）",
+        "source_type": "const struct sgrp *",
+        "decompiled_type": "const struct sgrp *",
+        "match": "correct",
+        "evidence_source_line": "828: const struct sgrp *sg; 907: sg = sgr_locate (gr->gr_name); 914: grent.gr_passwd = sg->sg_passwd;",
+        "evidence_decompiled_line": "74: const struct sgrp *shadow; 119: shadow = sgr_locate(group->gr_name); 128: updated_group.gr_passwd = shadow->sg_passwd;"
+      },
+      {
+        "source_role": "结构体sgrp",
+        "source_type": "struct sgrp { char *; char *; char **; char **; }（依次为偏移0、一个指针大小、两个指针大小、三个指针大小）",
+        "decompiled_type": "struct sgrp（由 <gshadow.h> 引入；本文件未展开定义）",
+        "match": "undeterminable",
+        "evidence_source_line": "35-40: struct sgrp { char *sg_name; char *sg_passwd; char **sg_adm; char **sg_mem; }; 914: grent.gr_passwd = sg->sg_passwd;",
+        "evidence_decompiled_line": "4: #include <gshadow.h>; 62: extern const struct sgrp *sgr_locate(const char *name); 128: updated_group.gr_passwd = shadow->sg_passwd;"
+      },
+      {
+        "source_role": "结构体group",
+        "source_type": "struct group（本源码文件未展开完整定义；main 使用 gr_name 与 gr_passwd 两个 char *语义字段）",
+        "decompiled_type": "struct group（由 <grp.h> 引入；本文件未展开定义）",
+        "match": "undeterminable",
+        "evidence_source_line": "826-827: const struct group *gr; struct group grent; 907: sgr_locate (gr->gr_name); 911: strcmp (gr->gr_passwd, \"x\"); 913: grent = *gr;",
+        "evidence_decompiled_line": "3: #include <grp.h>; 73-75: const struct group *group; ... struct group updated_group; 119: sgr_locate(group->gr_name); 123: strcmp(group->gr_passwd, SHADOW_PASSWD_STRING); 127: updated_group = *group;"
+      },
+      {
+        "source_role": "文件作用域静态对象gr_locked（main中写入）",
+        "source_type": "static _Bool",
+        "decompiled_type": "extern bool",
+        "match": "wrong",
+        "evidence_source_line": "672-676: static _Bool gr_locked = 0; 864-866: gr_locked = 1;",
+        "evidence_decompiled_line": "41: extern bool gr_locked; 98: gr_locked = true;"
+      },
+      {
+        "source_role": "文件作用域静态对象sgr_locked（main中写入）",
+        "source_type": "static _Bool",
+        "decompiled_type": "extern bool",
+        "match": "wrong",
+        "evidence_source_line": "677-681: static _Bool sgr_locked = 0; 887-889: sgr_locked = 1;",
+        "evidence_decompiled_line": "42: extern bool sgr_locked; 110: sgr_locked = true;"
+      }
+    ],
+    "reasoning": "main 的两个参数按 ABI 位置逐一对齐，三个局部实体按 gr_next/sgr_locate 返回值、整结构体复制、字段写入及取址调用的数据流对齐，均未发现 PTR-01、INT-01 或 FN-01。struct sgrp 与 struct group 的完整反编译布局未展开，LAYOUT-01 只能标记为证据不足。与此同时，main 写入的 gr_locked 和 sgr_locked 可凭锁成功后的赋值路径明确对应；源码将它们定义为文件作用域 static _Bool，而反编译结果声明为 extern bool，因此 free_discovery 总体 verdict 为 confirmed，具体错误类别为 SC-01。未见足以确认 ST-01 的证据。"
+  }
+]

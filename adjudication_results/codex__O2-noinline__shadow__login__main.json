@@ -1,0 +1,254 @@
+[
+  {
+    "function": "main",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "第1个参数（ABI位置1）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "1126: int main (int argc, char **argv)",
+        "evidence_decompiled_line": "90: int main(int argc, char **argv)",
+        "reasoning": "按函数入口ABI参数位置1对齐。"
+      },
+      {
+        "source_role": "第2个参数（ABI位置2）",
+        "source_type": "char **",
+        "decompiled_type": "char **",
+        "match": "correct",
+        "evidence_source_line": "1126: int main (int argc, char **argv)",
+        "evidence_decompiled_line": "90: int main(int argc, char **argv)",
+        "reasoning": "按函数入口ABI参数位置2对齐；两边均以argv[0]及参数偏移方式使用。"
+      },
+      {
+        "source_role": "局部变量（ttyname返回值）",
+        "source_type": "const char *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "1128: const char *tmptty; 1224: tmptty = ttyname (0);",
+        "evidence_decompiled_line": "109: const char *tty_name; 156: tty_name = ttyname(STDIN_FILENO);",
+        "reasoning": "按ttyname返回值、NULL回退和随后复制到终端缓冲区的数据流对齐。"
+      },
+      {
+        "source_role": "局部变量（终端路径缓冲区）",
+        "source_type": "char[8192]",
+        "decompiled_type": "char[8192]",
+        "match": "correct",
+        "evidence_source_line": "1129-1131: char tty[8192]; 1230: strncpy((tty), (tmptty), sizeof(tty) - 1)",
+        "evidence_decompiled_line": "116: char tty[8192]; 159: strncpy(tty, tty_name, sizeof(tty) - 1);",
+        "reasoning": "按栈数组大小及接收ttyname字符串的数据流对齐。"
+      },
+      {
+        "source_role": "局部变量（认证失败延迟）",
+        "source_type": "unsigned int",
+        "decompiled_type": "int",
+        "match": "wrong",
+        "evidence_source_line": "1139: unsigned int delay; 1329: delay = getdef_unum (\"FAIL_DELAY\", 1);",
+        "evidence_decompiled_line": "122: int fail_delay; 199: fail_delay = getdef_num(\"FAIL_DELAY\", 1);",
+        "reasoning": "按配置键及乘以1000000后传入pam_fail_delay的数据流对齐；反编译丢失unsigned并改成有符号取值接口，属于INT-01。"
+      },
+      {
+        "source_role": "局部变量（最大认证重试数）",
+        "source_type": "unsigned int",
+        "decompiled_type": "int",
+        "match": "wrong",
+        "evidence_source_line": "1140: unsigned int retries; 1330: retries = getdef_unum (\"LOGIN_RETRIES\", 3);",
+        "evidence_decompiled_line": "123: int retries; 200: retries = getdef_num(\"LOGIN_RETRIES\", 3);",
+        "reasoning": "按LOGIN_RETRIES配置值及与无符号failcount比较的数据流对齐；反编译恢复为有符号int，属于INT-01。"
+      },
+      {
+        "source_role": "局部变量（子系统重启标志）",
+        "source_type": "_Bool",
+        "decompiled_type": "未恢复为局部实体",
+        "match": "undeterminable",
+        "evidence_source_line": "1142-1145: _Bool subroot = 0; 1928-1931: subroot = 1;",
+        "evidence_decompiled_line": "322-329: pw_shell以'*'开头时调用subsystem后直接goto restart_authentication，未出现对应标志变量",
+        "reasoning": "源码标志在所示main内只被赋值而无可见读取，优化后可被删除；不存在可可靠对齐的反编译实体。"
+      },
+      {
+        "source_role": "局部变量（shell执行返回状态）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "1149: int err; 2128: err = shell (tmp, pwd->pw_shell, newenvp);",
+        "evidence_decompiled_line": "125: int status; 408: status = shell_exec(fake_shell, pwd->pw_shell, newenvp);",
+        "reasoning": "按接收shell执行结果并与ENOENT比较后形成main返回值的数据流对齐。"
+      },
+      {
+        "source_role": "局部变量（登录超时秒数）",
+        "source_type": "unsigned int",
+        "decompiled_type": "int",
+        "match": "wrong",
+        "evidence_source_line": "1150: unsigned int timeout; 1318: timeout = getdef_unum (\"LOGIN_TIMEOUT\", 60);",
+        "evidence_decompiled_line": "121: int timeout; 191: timeout = getdef_num(\"LOGIN_TIMEOUT\", 60);",
+        "reasoning": "按LOGIN_TIMEOUT配置、格式化输出和alarm参数的数据流对齐；反编译恢复为有符号int，属于INT-01。"
+      },
+      {
+        "source_role": "局部变量（远端主机字符串选择结果）",
+        "source_type": "const char *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "1151: const char *cp; 1297-1305: cp = hostname / utent->ut_host / \"\";",
+        "evidence_decompiled_line": "184: const char *host = hflg ? hostname : utent->ut_host;",
+        "reasoning": "按从hostname或utmp主机字段选值并送入hostinfo格式化的数据流对齐；控制流重构不改变指针类型。"
+      },
+      {
+        "source_role": "局部变量（先后承载TERM和FAKE_SHELL配置字符串的复用栈槽）",
+        "source_type": "const char *",
+        "decompiled_type": "const char *（拆分为term和fake_shell）",
+        "match": "correct",
+        "evidence_source_line": "1152: const char *tmp; 1279: tmp = getenv (\"TERM\"); 2124: tmp = getdef_str (\"FAKE_SHELL\");",
+        "evidence_decompiled_line": "111: const char *fake_shell; 173: const char *term = getenv(\"TERM\"); 406: fake_shell = getdef_str(\"FAKE_SHELL\");",
+        "reasoning": "源码同一指针的两个不重叠活跃区间被反编译拆分；两者均保持const char *。"
+      },
+      {
+        "source_role": "局部变量（登录来源描述缓冲区）",
+        "source_type": "char[512]",
+        "decompiled_type": "char[512]",
+        "match": "correct",
+        "evidence_source_line": "1153: char fromhost[512]; 1309: snprintf (fromhost, sizeof fromhost, ...);",
+        "evidence_decompiled_line": "117: char hostinfo[512]; 185: snprintf(hostinfo, sizeof(hostinfo), ...);",
+        "reasoning": "按栈数组大小、格式化内容及后续syslog用途对齐。"
+      },
+      {
+        "source_role": "局部变量（口令记录指针）",
+        "source_type": "struct passwd *",
+        "decompiled_type": "struct passwd *",
+        "match": "correct",
+        "evidence_source_line": "1154-1156: struct passwd *pwd = NULL; 1830: pwd = xgetpwnam (username);",
+        "evidence_decompiled_line": "108: struct passwd *pwd; 295: pwd = xgetpwnam(username);",
+        "reasoning": "按xgetpwnam返回值和pw_uid/pw_shell字段访问的数据流对齐。"
+      },
+      {
+        "source_role": "局部变量（初始环境游标）",
+        "source_type": "char **",
+        "decompiled_type": "char **（saved_environ及块内ep）",
+        "match": "correct",
+        "evidence_source_line": "1157: char **envp = environ; 1263-1267: *envp ... envp++;",
+        "evidence_decompiled_line": "106: char **saved_environ = environ; 169-171: char **ep = saved_environ; ... addenv(*ep++, NULL);",
+        "reasoning": "按environ初值和逐元素递增遍历用途对齐；反编译只是拆分了保存值与游标。"
+      },
+      {
+        "source_role": "局部变量（用于日志的用户名指针）",
+        "source_type": "const char *",
+        "decompiled_type": "const char *",
+        "match": "correct",
+        "evidence_source_line": "1158: const char *failent_user; 1577: failent_user = get_failent_user (pam_user);",
+        "evidence_decompiled_line": "110: const char *logname; 248: logname = pam_user_for_log(pam_username);",
+        "reasoning": "按认证用户名过滤后的日志参数及失败日志用途对齐。"
+      },
+      {
+        "source_role": "局部变量（当前utmp记录指针）",
+        "source_type": "struct utmp *",
+        "decompiled_type": "struct login_utmp *",
+        "match": "undeterminable",
+        "evidence_source_line": "1162: struct utmp *utent; 1208: utent = get_current_utmp (); 1301-1302: utent->ut_host[0] / utent->ut_host;",
+        "evidence_decompiled_line": "26-29: struct login_utmp { unsigned char pad[76]; char ut_host[256]; }; 107: struct login_utmp *utent;",
+        "reasoning": "返回值、NULL判断和ut_host访问证明两者承担同一数据流角色；但指定源码文件没有给出struct utmp的字段偏移、总大小和完整类型序列，禁止借助其他文件或平台常识推断，因此无法严格裁定显式布局是否匹配。"
+      },
+      {
+        "source_role": "局部变量（PAM返回码）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "1166: int retcode; 1333: retcode = pam_start (...);",
+        "evidence_decompiled_line": "124: int pamret; 202: pamret = pam_start(...);",
+        "reasoning": "按连续接收PAM API返回值并与PAM状态常量比较的数据流对齐。"
+      },
+      {
+        "source_role": "局部变量（fork返回的子进程标识）",
+        "source_type": "pid_t",
+        "decompiled_type": "pid_t",
+        "match": "correct",
+        "evidence_source_line": "1167: pid_t child; 1951: child = fork ();",
+        "evidence_decompiled_line": "126: pid_t child; 334: child = fork();",
+        "reasoning": "按fork返回值及负数/父进程分支用途对齐，typedef得到保留。"
+      },
+      {
+        "source_role": "局部变量（PAM用户名输出指针）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1168-1170: char *pam_user = NULL; 1497: get_pam_user (&pam_user);",
+        "evidence_decompiled_line": "114: char *pam_username = NULL; 231: get_pam_user(&pam_username);",
+        "reasoning": "按传址输出（char **实参）和随后字符解引用的数据流对齐，指针层级未坍塌。"
+      },
+      {
+        "source_role": "块局部变量（认证失败计数）",
+        "source_type": "unsigned int",
+        "decompiled_type": "unsigned int",
+        "match": "correct",
+        "evidence_source_line": "1452: unsigned int failcount = 0; 1542: failcount++;",
+        "evidence_decompiled_line": "120: unsigned int failcount; 238: failcount = 0; 257: ++failcount;",
+        "reasoning": "按初始化、递增、%u日志输出和重试上限比较用途对齐。"
+      },
+      {
+        "source_role": "块局部变量（本地主机名缓冲区）",
+        "source_type": "char[256]",
+        "decompiled_type": "char[256]",
+        "match": "correct",
+        "evidence_source_line": "1453: char hostn[256]; 1457: gethostname (hostn, sizeof (hostn));",
+        "evidence_decompiled_line": "118: char hostname_buf[256]; 222: gethostname(hostname_buf, sizeof(hostname_buf));",
+        "reasoning": "按栈数组大小和gethostname输出用途对齐。"
+      },
+      {
+        "source_role": "块局部变量（登录提示缓冲区）",
+        "source_type": "char[256]",
+        "decompiled_type": "char[256]",
+        "match": "correct",
+        "evidence_source_line": "1454: char loginprompt[256]; 1458-1460: snprintf (loginprompt, sizeof (loginprompt), ...);",
+        "evidence_decompiled_line": "119: char prompt[256]; 223-225: strncpy(prompt, ...) / snprintf(prompt, sizeof(prompt), ...);",
+        "reasoning": "按栈数组大小、提示文本构造及传给PAM_USER_PROMPT的用途对齐。"
+      },
+      {
+        "source_role": "宏展开块局部变量（当前locale借用指针）",
+        "source_type": "char *",
+        "decompiled_type": "const char *",
+        "match": "wrong",
+        "evidence_source_line": "1342: do { char *old_locale = setlocale (...);",
+        "evidence_decompiled_line": "112: const char *old_locale; 258: old_locale = setlocale(LC_ALL, NULL);",
+        "reasoning": "按setlocale返回值、仅用于strdup的同一临时角色对齐；源码声明为char *，反编译增加了const限定，类型不精确。"
+      },
+      {
+        "source_role": "宏展开块局部变量（locale副本所有权指针）",
+        "source_type": "char *",
+        "decompiled_type": "char *",
+        "match": "correct",
+        "evidence_source_line": "1346-1350: char *saved_locale = NULL; ... saved_locale = strdup (old_locale);",
+        "evidence_decompiled_line": "113: char *saved_locale; 259: saved_locale = old_locale != NULL ? strdup(old_locale) : NULL;",
+        "reasoning": "按strdup产生、setlocale消费并free释放的所有权数据流对齐；反编译将多次宏展开的同角色栈槽合并。"
+      },
+      {
+        "source_role": "块局部变量（PAM环境字符串列表游标）",
+        "source_type": "const char *const *",
+        "decompiled_type": "char **（pam_env及块内ep）",
+        "match": "wrong",
+        "evidence_source_line": "2013: const char *const *env; 2015: env = (const char *const *) pam_getenvlist (pamh);",
+        "evidence_decompiled_line": "115: char **pam_env; 361: pam_env = pam_getenvlist(pamh); 363: char **ep = pam_env;",
+        "reasoning": "按pam_getenvlist结果的逐元素遍历和addenv输入用途对齐；指针层级仍为二级，但两层const限定均未恢复。"
+      },
+      {
+        "source_role": "结构体struct passwd",
+        "source_type": "struct passwd（本函数通过指针使用pw_shell和pw_uid）",
+        "decompiled_type": "struct passwd（由系统头文件声明）",
+        "match": "undeterminable",
+        "evidence_source_line": "1154: struct passwd *pwd; 1925-1926: pwd->pw_shell[0] / pwd->pw_shell++; 2078: pwd->pw_uid",
+        "evidence_decompiled_line": "7: #include <pwd.h>; 108: struct passwd *pwd; 322-323: pwd->pw_shell[0] / ++pwd->pw_shell; 385: pwd->pw_uid",
+        "reasoning": "字段访问语义一致，但两个指定文件均未显式列出struct passwd的完整字段数量、偏移、大小和类型序列，故不能在不读取其他文件的前提下裁定LAYOUT-01。"
+      },
+      {
+        "source_role": "结构体struct utmp",
+        "source_type": "struct utmp（本文件仅可见ut_host字段访问，完整布局未给出）",
+        "decompiled_type": "struct login_utmp { unsigned char pad[76]; char ut_host[256]; }",
+        "match": "undeterminable",
+        "evidence_source_line": "1162: struct utmp *utent; 1301-1302: utent->ut_host[0] / utent->ut_host;",
+        "evidence_decompiled_line": "26-29: struct login_utmp { unsigned char pad[76]; char ut_host[256]; };",
+        "reasoning": "名称不作为依据；数据流只证明反编译字段承担ut_host角色。源码缺少完整布局证据，无法核验反编译给出的偏移76、数组大小256及被省略的其余字段，因此LAYOUT-01为undeterminable。"
+      }
+    ],
+    "reasoning": "按main的两个ABI参数位置、各局部量的定义-使用链和可见字段访问独立对齐。已确认INT-01：FAIL_DELAY、LOGIN_RETRIES、LOGIN_TIMEOUT三个源码unsigned int被恢复成int；另确认const限定恢复不精确。未发现源码main中的static局部对象，故没有SC-01可确认实体；参数签名与可对齐指针层级未见FN-01或PTR-01。反编译显式构造的login_utmp虽与源码utmp数据流对齐，但源码文件内无完整struct utmp布局，严格标为undeterminable而不依赖名称或外部平台知识。因存在可证实的类型恢复错误，free_discovery总体判定为confirmed。"
+  }
+]

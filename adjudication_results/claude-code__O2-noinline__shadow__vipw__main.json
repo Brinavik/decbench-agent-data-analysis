@@ -1,0 +1,121 @@
+[
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码第1283行: int main (int argc, char **argv)",
+        "evidence_decompiled_line": "反编译第59行: int main(int argc, char **argv)"
+      }
+    ],
+    "reasoning": "按函数调用 ABI 的第1参数位置对齐；两侧签名都直接声明该位置为 int，未见 INT-01 或 FN-01。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第2个参数",
+        "source_type": "char **",
+        "decompiled_type": "char **",
+        "match": "correct",
+        "evidence_source_line": "源码第1283行: int main (int argc, char **argv)；第1294行: Prog = Basename (argv[0]);",
+        "evidence_decompiled_line": "反编译第59行: int main(int argc, char **argv)；第67行: Prog = Basename(argv[0]);"
+      }
+    ],
+    "reasoning": "按 ABI 的第2参数位置对齐，并由两侧均以 argv[0] 取出首个字符串指针的数据流佐证二级指针层级；未见 PTR-01 或 FN-01。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量editshadow（控制是否编辑shadow数据库的布尔标志）",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "源码第1286-1289行: _Bool editshadow = 0;；第1393-1396行: case 's': editshadow = 1;；第1414行: if (editshadow)",
+        "evidence_decompiled_line": "反编译第61行: bool editshadow = false;；第109-110行: case 's': editshadow = true;；第123行: if (editshadow)"
+      }
+    ],
+    "reasoning": "按初始化为假、's' 分支置真、随后控制数据库分支的局部数据流对齐；C 的 bool 表示 _Bool，类型恢复正确。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量do_vipw（选择passwd或group工作流的布尔标志）",
+        "source_type": "_Bool",
+        "decompiled_type": "bool",
+        "match": "correct",
+        "evidence_source_line": "源码第1291-1292行: _Bool do_vipw;；第1308行: do_vipw = (strcmp (Prog, \"vigr\") != 0);；第1413行: if (do_vipw)",
+        "evidence_decompiled_line": "反编译第62行: bool do_vipw;；第77行: do_vipw = (strcmp(Prog, \"vigr\") != 0);；第122行: if (do_vipw)"
+      }
+    ],
+    "reasoning": "按 strcmp 比较结果赋值、选项分支改写及最终控制主工作流的数据流对齐；bool 与 _Bool 等价，未见 INT-01。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "局部变量c（getopt_long返回值及switch判别值）",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "源码第1320行: int c;；第1361-1370行: while ((c = getopt_long (...)) != -1) { switch (c) {",
+        "evidence_decompiled_line": "反编译第82行: int c;；第92-94行: while ((c = getopt_long(...)) != -1) { switch (c) {"
+      }
+    ],
+    "reasoning": "按 getopt_long 返回值接收、与 -1 比较并作为 switch 判别值的栈上角色对齐；两侧均为 int，宽度和符号恢复无可见错误。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "函数块内静态局部对象long_options（getopt_long选项表）",
+        "source_type": "static struct option[]",
+        "decompiled_type": "static struct option[]",
+        "match": "correct",
+        "evidence_source_line": "源码第1321行: static struct option long_options[] = {；第1367行: long_options,",
+        "evidence_decompiled_line": "反编译第83行: static struct option long_options[] = {；第93行: long_options, NULL)) != -1) {"
+      }
+    ],
+    "reasoning": "按其位于 main 内部块作用域、具有 static 存储期、并作为 getopt_long 的选项表实参这一角色对齐。反编译结果仍将其声明在函数块内且保留 static，故 SC-01 被拒绝；该结论不依赖对象名称。"
+  },
+  {
+    "function": "main",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "undeterminable",
+    "entities": [
+      {
+        "source_role": "结构体struct option（静态选项表的元素类型）",
+        "source_type": "struct option；main 内仅可见每个初始化项有4个位置，结构体定义、字段偏移和字段大小不可见",
+        "decompiled_type": "struct option；反编译 main 内同样仅显示4位置初始化项，未显示结构体定义或显式偏移",
+        "match": "undeterminable",
+        "evidence_source_line": "源码第1321-1326行: static struct option long_options[] = { {\"group\", 0, ((void *)0), 'g'}, ... }；第1355-1359行: {((void *)0), 0, ((void *)0), '\\0'}",
+        "evidence_decompiled_line": "反编译第83-90行: static struct option long_options[] = { {\"group\", no_argument, NULL, 'g'}, ... {NULL, 0, NULL, '\\0'} }"
+      }
+    ],
+    "reasoning": "两侧初始化序列均表现为4个语义位置：字符串指针、选项参数类别整数、空指针、字符/整数值，且数组都传给 getopt_long；但禁止仅凭同名结构体判断，而 main 函数文本没有 struct option 的定义、字段偏移、字段大小或总大小，无法严格验证 ST-01 与 LAYOUT-01，因此必须标记 undeterminable。"
+  }
+]

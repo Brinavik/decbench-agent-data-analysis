@@ -1,0 +1,128 @@
+[
+  {
+    "function": "deflate_slow",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "deflate_state *",
+        "decompiled_type": "deflate_state *",
+        "match": "correct",
+        "evidence_source_line": "1965-1967: static block_state deflate_slow(s, flush); deflate_state *s;",
+        "evidence_decompiled_line": "128: block_state deflate_slow(deflate_state *s, int flush)",
+        "reasoning": "ABI第1参数均为指向同一状态结构的指针，且函数内均通过s->字段访问；静态链接属性不改变参数ABI。"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "1965-1967: deflate_slow(s, flush); int flush;",
+        "evidence_decompiled_line": "128: block_state deflate_slow(deflate_state *s, int flush)",
+        "reasoning": "ABI第2参数均为int，并在比较flush==0和flush==4处承担相同控制流用途（源码1981、2081；反编译136、252）。"
+      },
+      {
+        "source_role": "局部变量hash_head",
+        "source_type": "IPos（源码typedef unsigned）",
+        "decompiled_type": "IPos（typedef unsigned int）",
+        "match": "correct",
+        "evidence_source_line": "1969: IPos hash_head; 1990-1992: hash_head=0并接收s->head索引值",
+        "evidence_decompiled_line": "11,130,142,146: typedef uInt IPos; IPos hash_head; hash_head=s->head[s->ins_h]",
+        "reasoning": "该变量保存head表中的位置索引并作为longest_match第二参数；源码与反编译typedef及数据流一致。"
+      },
+      {
+        "source_role": "局部变量bflush",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "1970,2031,2058: int bflush; 由sym_next==sym_end赋值并作条件",
+        "evidence_decompiled_line": "131,181,217: int bflush; bflush=s->sym_next==s->sym_end",
+        "reasoning": "布尔比较结果存入int并驱动_flush_block分支，类型和用途一致。"
+      },
+      {
+        "source_role": "局部变量max_insert",
+        "source_type": "uInt",
+        "decompiled_type": "uInt",
+        "match": "correct",
+        "evidence_source_line": "2025-2026: uInt max_insert=s->strstart+s->lookahead-3;",
+        "evidence_decompiled_line": "167-168: uInt max_insert=s->strstart+s->lookahead-3;",
+        "reasoning": "相同无符号索引算术并用于strstart上界比较。"
+      },
+      {
+        "source_role": "局部变量len（宏块临时量）",
+        "source_type": "uch",
+        "decompiled_type": "uch lc",
+        "match": "correct",
+        "evidence_source_line": "2031: uch len=(uch)(s->prev_length-3)，写入sym_buf并索引_length_code",
+        "evidence_decompiled_line": "169-176: uch lc=(uch)(s->prev_length-3)，写入sym_buf并索引_length_code[lc]",
+        "reasoning": "名称不同但赋值、窄化宽度、三字节符号编码及长度码索引完全对应。"
+      },
+      {
+        "source_role": "局部变量dist（宏块临时量）",
+        "source_type": "ush",
+        "decompiled_type": "ush dist",
+        "match": "correct",
+        "evidence_source_line": "2031: ush dist=(ush)(s->strstart-1-s->prev_match)，随后右移并递减",
+        "evidence_decompiled_line": "169,173-179: ush dist同式赋值、写入两个字节、dist--并查_dist_code",
+        "reasoning": "窄化为ush及后续字节拆分、距离码查表数据流一致。"
+      },
+      {
+        "source_role": "局部变量cc（两个同作用域临时量）",
+        "source_type": "uch",
+        "decompiled_type": "uch cc",
+        "match": "correct",
+        "evidence_source_line": "2058,2077: uch cc=s->window[s->strstart-1]并写入sym_buf/dyn_ltree",
+        "evidence_decompiled_line": "211,216,241,246: uch cc同一字节读取并用于相同写入和频次递增",
+        "reasoning": "两个词法块中的字符临时量均按字节读取，反编译保留uch类型和用途。"
+      },
+      {
+        "source_role": "结构体deflate_state（整体布局）",
+        "source_type": "internal_state字段序列，含strm、window、prev/head、匹配状态、三组ct_data数组及计数缓冲区",
+        "decompiled_type": "deflate_state字段序列与上述字段及数组维度相同",
+        "match": "correct",
+        "evidence_source_line": "318-451: deflate_state字段顺序；397-399数组，419-427符号缓冲和计数，343-375匹配字段",
+        "evidence_decompiled_line": "51-111: deflate_state字段顺序；89-91数组，100-107符号缓冲和计数，68-82匹配字段",
+        "reasoning": "本函数访问的字段在两份声明中顺序、元素类型和数组计数一致；仅指针目标类型退化另列判断。"
+      },
+      {
+        "source_role": "结构体deflate_state.gzhead字段",
+        "source_type": "gz_headerp（gz_header *；源码70-87、326）",
+        "decompiled_type": "void *",
+        "match": "wrong",
+        "evidence_source_line": "70-87: typedef gz_header *gz_headerp; 318-327: gz_headerp gzhead;",
+        "evidence_decompiled_line": "51-60: struct internal_state中void *gzhead;",
+        "reasoning": "字段仍为单指针宽度但指向结构体的类型信息丢失，违反要求的类型序列恢复；属于PTR-01/布局类型信息错误。"
+      },
+      {
+        "source_role": "结构体z_stream（函数内经s->strm访问的嵌套结构）",
+        "source_type": "z_stream字段序列，zalloc为alloc_func函数指针、zfree为free_func函数指针",
+        "decompiled_type": "z_stream字段序列；zalloc/zfree声明为void *",
+        "match": "wrong",
+        "evidence_source_line": "42-62: z_stream布局；37-38定义alloc_func/free_func；2064、2082、2086通过strm->avail_out访问",
+        "evidence_decompiled_line": "15-30: z_stream布局且25-26将zalloc/zfree声明为void *；207-208、231、261、273访问avail_out",
+        "reasoning": "字段顺序和avail_out偏移用途可对齐，但函数指针字段的类型序列被void*替代，不能判为完整结构体类型恢复正确。"
+      },
+      {
+        "source_role": "结构体ct_data及fc联合体（dyn_ltree/dyn_dtree元素）",
+        "source_type": "ct_data{fc:union{ush freq/code}, dl:union{ush dad/len}}",
+        "decompiled_type": "同样的两个ush联合体字段",
+        "match": "correct",
+        "evidence_source_line": "286-295: ct_data两个ush联合体；2031、2058、2077访问.fc.freq",
+        "evidence_decompiled_line": "32-41: ct_data同样联合体布局；176、180、216、246访问.fc.freq",
+        "reasoning": "元素大小、联合体成员类型和访问字段一致。"
+      },
+      {
+        "source_role": "结构体tree_desc（deflate_state内嵌字段）",
+        "source_type": "ct_data *dyn_tree; int max_code; const static_tree_desc *stat_desc",
+        "decompiled_type": "相同三字段序列",
+        "match": "correct",
+        "evidence_source_line": "304-308: tree_desc字段序列；401-403: deflate_state内嵌l_desc/d_desc/bl_desc",
+        "evidence_decompiled_line": "45-49: tree_desc字段序列；92-94: deflate_state内嵌三个描述符",
+        "reasoning": "虽本函数不直接读描述符字段，但两份同一结构声明的字段数、顺序和类型序列一致。"
+      }
+    ],
+    "reasoning": "按参数ABI位置和局部变量数据流，函数参数、hash_head/bflush及宏块临时量均正确恢复；deflate_state、ct_data、tree_desc布局可对齐。可确认的恢复错误是嵌套结构中的gzhead、zalloc、zfree指针目标/函数指针类型被退化为void*。源码中没有静态局部对象，故SC-01不成立；本函数无法证明未使用结构字段的运行时偏移差异，已仅按声明布局判断。"
+  }
+]

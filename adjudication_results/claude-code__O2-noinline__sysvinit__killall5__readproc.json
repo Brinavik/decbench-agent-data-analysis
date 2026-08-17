@@ -1,0 +1,115 @@
+[
+  {
+    "function": "readproc",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "函数签名（无参数，返回值）",
+        "source_type": "int readproc()；无 ABI 参数",
+        "decompiled_type": "int readproc(void)；无 ABI 参数",
+        "match": "correct",
+        "evidence_source_line": "459: int readproc(); 697: return 0;",
+        "evidence_decompiled_line": "33: int readproc(void); 227: return 0;"
+      },
+      {
+        "source_role": "局部变量dir（/proc目录流）",
+        "source_type": "DIR *",
+        "decompiled_type": "DIR *",
+        "match": "correct",
+        "evidence_source_line": "461: DIR *dir; 483: if ((dir = opendir('.')) == ...); 694: closedir(dir);",
+        "evidence_decompiled_line": "35: DIR *dir; 49: dir = opendir('.'); 226: closedir(dir);"
+      },
+      {
+        "source_role": "局部变量fp（stat/cmdline文件流）",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "462: FILE *fp; 522: if ((fp = fopen(path, 'r')) != ...); 527: len = fread(..., fp);",
+        "evidence_decompiled_line": "71: FILE *fp; 82: fp = fopen(path, 'r'); 92: n = fread(..., fp);"
+      },
+      {
+        "source_role": "局部变量p、n（当前PROC节点与链表遍历后继）",
+        "source_type": "PROC *、PROC *",
+        "decompiled_type": "struct proc_info *node、struct proc_info *p",
+        "match": "correct",
+        "evidence_source_line": "463: PROC *p, *n; 493-495: n = plist; for (p = plist; n; p = n) { n = p->next; }; 515: p = (PROC *)xmalloc(sizeof(PROC));",
+        "evidence_decompiled_line": "37: struct proc_info *node, *p; 56-58: for (p = proc_list; p != NULL; ) { node = p; p = p->next; }; 77: node = xmalloc(sizeof(*node));"
+      },
+      {
+        "source_role": "局部变量d（readdir返回的目录项）",
+        "source_type": "struct dirent *",
+        "decompiled_type": "struct dirent *",
+        "match": "correct",
+        "evidence_source_line": "464: struct dirent *d; 507: while ((d = readdir(dir)) != ...); 512: atoi(d->d_name);",
+        "evidence_decompiled_line": "36: struct dirent *de; 67: while ((de = readdir(dir)) != NULL); 68: char *dname = de->d_name;"
+      },
+      {
+        "source_role": "局部数组path",
+        "source_type": "char[4097]",
+        "decompiled_type": "char[4097]",
+        "match": "correct",
+        "evidence_source_line": "465-467: char path[4096 +1]; 519: snprintf(path, sizeof(path), ...);",
+        "evidence_decompiled_line": "38: char path[4097]; 81: snprintf(path, sizeof(path), ...);"
+      },
+      {
+        "source_role": "局部数组buf",
+        "source_type": "char[4097]",
+        "decompiled_type": "char[4097]",
+        "match": "correct",
+        "evidence_source_line": "468-470: char buf[4096 +1]; 527-528: len = fread(... sizeof(buf)-1 ...); buf[len] = '\\0';",
+        "evidence_decompiled_line": "39: char buf[4097]; 92-93: n = fread(buf, 1, 0x1000, fp); buf[n] = '\\0';"
+      },
+      {
+        "source_role": "局部变量s、q（stat缓冲区内的名称起点和结束/余串游标）",
+        "source_type": "char *、char *",
+        "decompiled_type": "char *cur、*comm、*end、*rest、*q（控制流拆分后）",
+        "match": "correct",
+        "evidence_source_line": "471: char *s, *q; 541-546: s = buf; ... q = strrchr(buf, ')'); 569-572: if (*q) *q++ = 0; ... strcpy(p->statname, s);",
+        "evidence_decompiled_line": "69: char *cur, *comm, *end, *rest, *q; 103: cur = buf; 118: end = strrchr(buf, ')'); 144-153: rest = end; ... strcpy(node->name, comm);"
+      },
+      {
+        "source_role": "局部变量startcode、endcode（sscanf的%lu输出）",
+        "source_type": "unsigned long、unsigned long",
+        "decompiled_type": "unsigned long、unsigned long",
+        "match": "correct",
+        "evidence_source_line": "472: unsigned long startcode, endcode; 575-581: startcode = endcode = 0; ... %lu %lu ... &startcode, &endcode;",
+        "evidence_decompiled_line": "41: unsigned long start_code, end_code; 155-158: sscanf(... %lu %lu, state, &node->sid, &start_code, &end_code);"
+      },
+      {
+        "source_role": "局部变量pid、f（目录名PID与readarg返回值）",
+        "source_type": "int、int",
+        "decompiled_type": "int pid、int n",
+        "match": "correct",
+        "evidence_source_line": "473: int pid, f; 512: pid = atoi(d->d_name); 626: f = readarg(fp, buf, sizeof(buf)); 630: xmalloc(f + 1);",
+        "evidence_decompiled_line": "42: int pid, n; 73: pid = atoi(dname); 196: n = read_field(fp, buf, sizeof(buf)); 198: xmalloc(n + 1);"
+      },
+      {
+        "source_role": "块局部变量len（fread返回的字节数）",
+        "source_type": "size_t",
+        "decompiled_type": "int n",
+        "match": "wrong",
+        "evidence_source_line": "525: size_t len; 527-528: len = fread(...); buf[len] = '\\0';",
+        "evidence_decompiled_line": "42: int pid, n; 92-93: n = fread(buf, 1, 0x1000, fp); buf[n] = '\\0';"
+      },
+      {
+        "source_role": "局部数组process_status（stat状态字段）",
+        "source_type": "char[11]",
+        "decompiled_type": "char[11]",
+        "match": "correct",
+        "evidence_source_line": "474: char process_status[11]; 576-581: sscanf(q, '%10s ...', process_status, ...); 600: strchr(process_status, 'Z');",
+        "evidence_decompiled_line": "40: char state[11]; 155-158: sscanf(rest, '%10s ...', state, ...); 175: strchr(state, 'Z');"
+      },
+      {
+        "source_role": "结构体PROC（由当前节点分配大小及字段数据流对齐）",
+        "source_type": "struct proc，大小0x48；字段序列为6个char *，pid_t pid，pid_t sid，char kernel，char nfs，填充后struct proc *next",
+        "decompiled_type": "struct proc_info，大小0x48；6个char *，int pid，int sid，char kernel_thread，省略了0x39处char nfs，0x40处struct proc_info *next",
+        "match": "wrong",
+        "evidence_source_line": "3-15: typedef struct proc { char *pathname; char *argv0; char *argv0base; char *argv1; char *argv1base; char *statname; pid_t pid; pid_t sid; char kernel; char nfs; struct proc *next; } PROC; 515-516: xmalloc(sizeof(PROC)); memset(p, 0, sizeof(PROC));",
+        "evidence_decompiled_line": "8-20: struct proc_info size 0x48，字段偏移0x00..0x38及next@0x40，但无0x39字段；77-78: node = xmalloc(sizeof(*node)); memset(node, 0, sizeof(*node));"
+      }
+    ],
+    "reasoning": "readproc两侧均无 ABI 参数且返回int。局部实体按资源用途、调用参数和缓冲区内游标数据流对齐，而非按名称对齐；PROC按六个连续指针、两个PID字段、标志字节、尾部next指针及0x48分配大小对齐。反编译把fread的size_t结果与read_field的int结果合并为int n，属于INT-01；其显式0x48结构体又漏掉源码0x39处的char nfs，字段数量和类型序列不一致，属于LAYOUT-01。因此free_discovery整体恢复并非完全正确，判为rejected。仅凭本函数对pid_t底层是否等同int不能独立证明typedef语义恢复，故该点不额外判错；未见参数指针层级坍塌，也没有静态局部对象被改写成外部全局对象的函数内证据。"
+  }
+]

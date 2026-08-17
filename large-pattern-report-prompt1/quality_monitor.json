@@ -1,0 +1,1598 @@
+{
+  "file_count": 103,
+  "expected_file_count": 103,
+  "count_delta": 0,
+  "schema_errors": [
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__coreutils__chown__usage.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__coreutils__comm__compare_files.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__coreutils__comm__compare_files.json",
+      "entry": 1,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__coreutils__comm__compare_files.json",
+      "entry": 2,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__coreutils__comm__compare_files.json",
+      "entry": 3,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__coreutils__comm__compare_files.json",
+      "entry": 4,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__coreutils__comm__compare_files.json",
+      "entry": 5,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__coreutils__comm__compare_files.json",
+      "entry": 6,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__coreutils__comm__compare_files.json",
+      "entry": 7,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__coreutils__comm__compare_files.json",
+      "entry": 8,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__coreutils__comm__compare_files.json",
+      "entry": 9,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__coreutils__comm__compare_files.json",
+      "entry": 10,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__coreutils__comm__compare_files.json",
+      "entry": 11,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__coreutils__comm__compare_files.json",
+      "entry": 12,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__coreutils__comm__compare_files.json",
+      "entry": 13,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__coreutils__cp__copy_reg.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning; entity 18 missing reasoning; entity 19 missing reasoning; entity 20 missing reasoning; entity 21 missing reasoning; entity 22 missing reasoning; entity 23 missing reasoning; entity 24 missing reasoning; entity 25 missing reasoning; entity 26 missing reasoning; entity 27 missing reasoning; entity 28 missing reasoning; entity 29 missing reasoning; entity 30 missing reasoning; entity 31 missing reasoning; entity 32 missing reasoning; entity 33 missing reasoning; entity 34 missing reasoning; entity 35 missing reasoning; entity 36 missing reasoning; entity 37 missing reasoning; entity 38 missing reasoning; entity 39 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__coreutils__df__filter_mount_list.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning; entity 18 missing reasoning; entity 19 missing reasoning; entity 20 missing reasoning; entity 21 missing reasoning; entity 22 missing reasoning; entity 23 missing reasoning; entity 24 missing reasoning; entity 25 missing reasoning; entity 26 missing reasoning; entity 27 missing reasoning; entity 28 missing reasoning; entity 29 missing reasoning; entity 30 missing reasoning; entity 31 missing reasoning; entity 32 missing reasoning; entity 33 missing reasoning; entity 34 missing reasoning; entity 35 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__coreutils__sort__mergelines_node.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__coreutils__touch__main.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__cronie__cronnext__get_range.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__cronie__crontab__get_range.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__diffutils__diff3__output_diff3_edscript.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__dpkg__dpkg-divert__diversion_add.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__dpkg__dpkg-query__pkg_array_match_patterns.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__e2fsprogs__e2fsck__check_ea_in_inode.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning; entity 18 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__gnutls__gnutls-cli__send_ocsp_request.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__gnutls__gnutls-cli__send_ocsp_request.json",
+      "entry": 1,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__gnutls__gnutls-cli__send_ocsp_request.json",
+      "entry": 2,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__gnutls__gnutls-cli__send_ocsp_request.json",
+      "entry": 3,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__gnutls__gnutls-cli__send_ocsp_request.json",
+      "entry": 4,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__gnutls__gnutls-cli__send_ocsp_request.json",
+      "entry": 5,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__gnutls__gnutls-cli__send_ocsp_request.json",
+      "entry": 6,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__gnutls__gnutls-serv__main.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__gnutls__ocsptool__socket_open2.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__gnutls__psktool__process_options.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning; entity 18 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__gnutls__systemkey__print_list.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning; entity 18 missing reasoning; entity 19 missing reasoning; entity 20 missing reasoning; entity 21 missing reasoning; entity 22 missing reasoning; entity 23 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__libacl__chacl__main.json",
+      "entry": 0,
+      "error": "entity 1 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning; entity 18 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__libacl__setfacl__restore.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__libopencm3__cdcacm__dwc_poll.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__libopencm3__msc___usbd_standard_request_device.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__libopencm3__sdram__main.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__openssh-portable__ssh-add__revoked_certs_generate.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning; entity 18 missing reasoning; entity 19 missing reasoning; entity 20 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__openssh-portable__ssh-keygen__ssh_rsa_verify.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__openssh-portable__ssh-keyscan__argv_split.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__openssh-portable__ssh-pkcs11-helper__pkcs11_fetch_rsa_pubkey.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__openssh-portable__ssh-sk-helper__cert_parse.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__openssh-portable__ssh__revoked_serial_tree_RB_REMOVE_COLOR.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__shadow__groupmod__grp_update.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__shadow__groupmod__grp_update.json",
+      "entry": 1,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__shadow__groupmod__grp_update.json",
+      "entry": 2,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__shadow__groupmod__grp_update.json",
+      "entry": 3,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__shadow__groupmod__grp_update.json",
+      "entry": 4,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__shadow__groupmod__grp_update.json",
+      "entry": 5,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__shadow__groupmod__grp_update.json",
+      "entry": 6,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__shadow__groupmod__grp_update.json",
+      "entry": 7,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__shadow__groupmod__grp_update.json",
+      "entry": 8,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__shadow__grpunconv__main.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__shadow__newusers__close_files.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning; entity 18 missing reasoning; entity 19 missing reasoning; entity 20 missing reasoning; entity 21 missing reasoning; entity 22 missing reasoning; entity 23 missing reasoning; entity 24 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__shadow__useradd__grp_update.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__shadow__usermod__update_gshadow.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__shadow__vipw__main.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__shadow__vipw__main.json",
+      "entry": 1,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__shadow__vipw__main.json",
+      "entry": 2,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__shadow__vipw__main.json",
+      "entry": 3,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__shadow__vipw__main.json",
+      "entry": 4,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__shadow__vipw__main.json",
+      "entry": 5,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__shadow__vipw__main.json",
+      "entry": 6,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 1,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 2,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 3,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 4,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 5,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 6,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 7,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 8,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 9,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 10,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 11,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 12,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 13,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 14,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 15,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 16,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 17,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 18,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 19,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 20,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 21,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 22,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 23,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 24,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 25,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 26,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 27,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 28,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__init__check_init_fifo.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__killall5__readproc.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__last__list.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning; entity 18 missing reasoning; entity 19 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__shutdown__wall.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__sulogin__getpasswd.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__utmpdump__dump.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__sysvinit__wall__wall.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__zlib__libz.so.1.2__deflate_slow.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__zlib__libz.so.1.2__deflate_slow.json",
+      "entry": 1,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__zlib__libz.so.1.2__deflate_slow.json",
+      "entry": 2,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__zlib__libz.so.1.2__deflate_slow.json",
+      "entry": 3,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__zlib__libz.so.1.2__deflate_slow.json",
+      "entry": 4,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__zlib__libz.so.1.2__deflate_slow.json",
+      "entry": 5,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__zlib__libz.so.1.2__deflate_slow.json",
+      "entry": 6,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__zlib__minigzip64__inflate_fast.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning; entity 18 missing reasoning; entity 19 missing reasoning; entity 20 missing reasoning; entity 21 missing reasoning; entity 22 missing reasoning; entity 23 missing reasoning; entity 24 missing reasoning; entity 25 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__zlib__minigzip__inflate_table.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning; entity 18 missing reasoning; entity 19 missing reasoning; entity 20 missing reasoning; entity 21 missing reasoning; entity 22 missing reasoning; entity 23 missing reasoning; entity 24 missing reasoning; entity 25 missing reasoning; entity 26 missing reasoning; entity 27 missing reasoning; entity 28 missing reasoning; entity 29 missing reasoning; entity 30 missing reasoning; entity 31 missing reasoning; entity 32 missing reasoning; entity 33 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/claude-code__O2-noinline__zlib__minigzipsh__main.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__bash__man2html__scan_format.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__chown__usage.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__comm__compare_files.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__cp__copy_reg.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning; entity 18 missing reasoning; entity 19 missing reasoning; entity 20 missing reasoning; entity 21 missing reasoning; entity 22 missing reasoning; entity 23 missing reasoning; entity 24 missing reasoning; entity 25 missing reasoning; entity 26 missing reasoning; entity 27 missing reasoning; entity 28 missing reasoning; entity 29 missing reasoning; entity 30 missing reasoning; entity 31 missing reasoning; entity 32 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 1,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 2,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 3,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 4,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 5,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 6,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 7,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 8,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 9,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 10,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 11,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 12,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 13,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 14,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 15,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 16,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 17,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 18,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 19,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 20,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 21,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 22,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 23,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 24,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 25,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 26,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 27,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 28,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 29,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 30,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 31,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 32,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 33,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 34,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 35,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 36,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 37,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+      "entry": 38,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__touch__main.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__touch__main.json",
+      "entry": 1,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__touch__main.json",
+      "entry": 2,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__touch__main.json",
+      "entry": 3,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__touch__main.json",
+      "entry": 4,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__touch__main.json",
+      "entry": 5,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__touch__main.json",
+      "entry": 6,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__touch__main.json",
+      "entry": 7,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__touch__main.json",
+      "entry": 8,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__coreutils__touch__main.json",
+      "entry": 9,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__cronie__cronnext__get_range.json",
+      "entry": 0,
+      "error": "noncanonical decompiler; entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__cronie__crontab__get_range.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__cronie__crontab__get_range.json",
+      "entry": 1,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__cronie__crontab__get_range.json",
+      "entry": 2,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__cronie__crontab__get_range.json",
+      "entry": 3,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__cronie__crontab__get_range.json",
+      "entry": 4,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__cronie__crontab__get_range.json",
+      "entry": 5,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__cronie__crontab__get_range.json",
+      "entry": 6,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__cronie__crontab__get_range.json",
+      "entry": 7,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__cronie__crontab__get_range.json",
+      "entry": 8,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__cronie__crontab__get_range.json",
+      "entry": 9,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__cronie__crontab__get_range.json",
+      "entry": 10,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__cronie__crontab__get_range.json",
+      "entry": 11,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__cronie__crontab__get_range.json",
+      "entry": 12,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 1,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 2,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 3,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 4,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 5,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 6,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 7,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 8,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 9,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 10,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 11,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 12,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 13,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 14,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 15,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 16,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 17,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 18,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 19,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 20,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 21,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 22,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 23,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 24,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 25,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 26,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 27,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 28,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 29,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 30,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 31,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 32,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 33,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 34,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 35,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 36,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+      "entry": 37,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__diffutils__diff3__output_diff3_edscript.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning; entity 18 missing reasoning; entity 19 missing reasoning; entity 20 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__dpkg__dpkg-divert__diversion_add.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__dpkg__dpkg-query__pkg_array_match_patterns.json",
+      "entry": 0,
+      "error": "noncanonical decompiler; entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__e2fsprogs__e2fsck__check_ea_in_inode.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__gnutls__certtool__yyparse.json",
+      "entry": 0,
+      "error": "noncanonical decompiler; entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__gnutls__certtool__yyparse.json",
+      "entry": 1,
+      "error": "noncanonical decompiler; entity 0 missing reasoning; entity 1 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__gnutls__certtool__yyparse.json",
+      "entry": 2,
+      "error": "noncanonical decompiler; entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__gnutls__certtool__yyparse.json",
+      "entry": 3,
+      "error": "noncanonical decompiler; entity 0 missing reasoning; entity 1 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__gnutls__certtool__yyparse.json",
+      "entry": 4,
+      "error": "noncanonical decompiler; entity 0 missing reasoning; entity 1 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__gnutls__certtool__yyparse.json",
+      "entry": 5,
+      "error": "noncanonical decompiler; entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__gnutls__gnutls-cli__send_ocsp_request.json",
+      "entry": 0,
+      "error": "noncanonical decompiler"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__gnutls__gnutls-serv__main.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__gnutls__ocsptool__socket_open2.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning; entity 18 missing reasoning; entity 19 missing reasoning; entity 20 missing reasoning; entity 21 missing reasoning; entity 22 missing reasoning; entity 23 missing reasoning; entity 24 missing reasoning; entity 25 missing reasoning; entity 26 missing reasoning; entity 27 missing reasoning; entity 28 missing reasoning; entity 29 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__gnutls__psktool__process_options.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__gnutls__systemkey__print_list.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning; entity 18 missing reasoning; entity 19 missing reasoning; entity 20 missing reasoning; entity 21 missing reasoning; entity 22 missing reasoning; entity 23 missing reasoning; entity 24 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__libacl__chacl__main.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__libacl__setfacl__restore.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__libopencm3__msc___usbd_standard_request_device.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__libopencm3__sdram__main.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__libopencm3__sdram__main.json",
+      "entry": 1,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__libopencm3__sdram__main.json",
+      "entry": 2,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__libopencm3__sdram__main.json",
+      "entry": 3,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__libopencm3__sdram__main.json",
+      "entry": 4,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__libopencm3__usbmidi__dwc_poll.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__openssh-portable__ssh-add__revoked_certs_generate.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning; entity 18 missing reasoning; entity 19 missing reasoning; entity 20 missing reasoning; entity 21 missing reasoning; entity 22 missing reasoning; entity 23 missing reasoning; entity 24 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__openssh-portable__ssh-keygen__ssh_rsa_verify.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__openssh-portable__ssh-keyscan__argv_split.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__openssh-portable__ssh-sk-helper__cert_parse.json",
+      "entry": 0,
+      "error": "entity 1 missing reasoning; entity 2 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__openssh-portable__ssh__revoked_serial_tree_RB_REMOVE_COLOR.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__shadow__groupmod__grp_update.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__shadow__grpunconv__main.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__shadow__newusers__close_files.json",
+      "entry": 0,
+      "error": "entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning; entity 18 missing reasoning; entity 19 missing reasoning; entity 20 missing reasoning; entity 21 missing reasoning; entity 22 missing reasoning; entity 23 missing reasoning; entity 24 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__shadow__useradd__grp_update.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__shadow__vipw__main.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__shadow__vipw__main.json",
+      "entry": 1,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__shadow__vipw__main.json",
+      "entry": 2,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__shadow__vipw__main.json",
+      "entry": 3,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__shadow__vipw__main.json",
+      "entry": 4,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__shadow__vipw__main.json",
+      "entry": 5,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__shadow__vipw__main.json",
+      "entry": 6,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__shadow__vipw__main.json",
+      "entry": 7,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__bootlogd__main.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning; entity 18 missing reasoning; entity 19 missing reasoning; entity 20 missing reasoning; entity 21 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__init__check_init_fifo.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__killall5__readproc.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__last__list.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__shutdown__wall.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__sulogin__getpasswd.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__sulogin__getpasswd.json",
+      "entry": 1,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__sulogin__getpasswd.json",
+      "entry": 2,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__sulogin__getpasswd.json",
+      "entry": 3,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__sulogin__getpasswd.json",
+      "entry": 4,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__sulogin__getpasswd.json",
+      "entry": 5,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__sulogin__getpasswd.json",
+      "entry": 6,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__sulogin__getpasswd.json",
+      "entry": 7,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__sulogin__getpasswd.json",
+      "entry": 8,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__sulogin__getpasswd.json",
+      "entry": 9,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__sulogin__getpasswd.json",
+      "entry": 10,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__sulogin__getpasswd.json",
+      "entry": 11,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__sulogin__getpasswd.json",
+      "entry": 12,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__sulogin__getpasswd.json",
+      "entry": 13,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__sulogin__getpasswd.json",
+      "entry": 14,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__sulogin__getpasswd.json",
+      "entry": 15,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__sulogin__getpasswd.json",
+      "entry": 16,
+      "error": "entity 0 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__utmpdump__dump.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__sysvinit__wall__wall.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__zlib__minigzip64__inflate_fast.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning; entity 16 missing reasoning; entity 17 missing reasoning; entity 18 missing reasoning; entity 19 missing reasoning; entity 20 missing reasoning; entity 21 missing reasoning; entity 22 missing reasoning; entity 23 missing reasoning; entity 24 missing reasoning; entity 25 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__zlib__minigzip__inflate_table.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning; entity 10 missing reasoning; entity 11 missing reasoning; entity 12 missing reasoning; entity 13 missing reasoning; entity 14 missing reasoning; entity 15 missing reasoning"
+    },
+    {
+      "file": "adjudication_results/codex__O2-noinline__zlib__minigzipsh__main.json",
+      "entry": 0,
+      "error": "entity 0 missing reasoning; entity 1 missing reasoning; entity 2 missing reasoning; entity 3 missing reasoning; entity 4 missing reasoning; entity 5 missing reasoning; entity 6 missing reasoning; entity 7 missing reasoning; entity 8 missing reasoning; entity 9 missing reasoning"
+    }
+  ],
+  "schema_error_file_count": 93,
+  "match_distribution": {
+    "wrong": 199,
+    "correct": 1180,
+    "undeterminable": 186
+  },
+  "match_total": 1565,
+  "undeterminable_entity_rate": 0.11884984025559106,
+  "verdict_distribution": {
+    "rejected": 191,
+    "confirmed": 67,
+    "undeterminable": 49
+  },
+  "wrong_by_decompiler": {
+    "claude-code": {
+      "wrong": 91,
+      "entities": 774,
+      "rate": 0.11757105943152454
+    },
+    "codex": {
+      "wrong": 108,
+      "entities": 791,
+      "rate": 0.13653603034134007
+    }
+  },
+  "needs_review_count": 39,
+  "quality_flag": "",
+  "unique_function_tasks": 52,
+  "missing_task_files": {
+    "claude-code": [
+      "O2-noinline__shadow__login__main"
+    ],
+    "codex": []
+  },
+  "extra_task_files": {
+    "claude-code": [],
+    "codex": []
+  },
+  "schema_error_files": [
+    "adjudication_results/claude-code__O2-noinline__coreutils__chown__usage.json",
+    "adjudication_results/claude-code__O2-noinline__coreutils__comm__compare_files.json",
+    "adjudication_results/claude-code__O2-noinline__coreutils__cp__copy_reg.json",
+    "adjudication_results/claude-code__O2-noinline__coreutils__df__filter_mount_list.json",
+    "adjudication_results/claude-code__O2-noinline__coreutils__shred__dopass.json",
+    "adjudication_results/claude-code__O2-noinline__coreutils__sort__mergelines_node.json",
+    "adjudication_results/claude-code__O2-noinline__coreutils__touch__main.json",
+    "adjudication_results/claude-code__O2-noinline__cronie__cronnext__get_range.json",
+    "adjudication_results/claude-code__O2-noinline__cronie__crontab__get_range.json",
+    "adjudication_results/claude-code__O2-noinline__diffutils__cmp__cmp.json",
+    "adjudication_results/claude-code__O2-noinline__diffutils__diff3__output_diff3_edscript.json",
+    "adjudication_results/claude-code__O2-noinline__dpkg__dpkg-divert__diversion_add.json",
+    "adjudication_results/claude-code__O2-noinline__dpkg__dpkg-query__pkg_array_match_patterns.json",
+    "adjudication_results/claude-code__O2-noinline__e2fsprogs__e2fsck__check_ea_in_inode.json",
+    "adjudication_results/claude-code__O2-noinline__gnutls__gnutls-cli__send_ocsp_request.json",
+    "adjudication_results/claude-code__O2-noinline__gnutls__gnutls-serv__main.json",
+    "adjudication_results/claude-code__O2-noinline__gnutls__ocsptool__socket_open2.json",
+    "adjudication_results/claude-code__O2-noinline__gnutls__psktool__process_options.json",
+    "adjudication_results/claude-code__O2-noinline__gnutls__systemkey__print_list.json",
+    "adjudication_results/claude-code__O2-noinline__libacl__chacl__main.json",
+    "adjudication_results/claude-code__O2-noinline__libacl__setfacl__restore.json",
+    "adjudication_results/claude-code__O2-noinline__libopencm3__cdcacm__dwc_poll.json",
+    "adjudication_results/claude-code__O2-noinline__libopencm3__msc___usbd_standard_request_device.json",
+    "adjudication_results/claude-code__O2-noinline__libopencm3__sdram__main.json",
+    "adjudication_results/claude-code__O2-noinline__openssh-portable__ssh-add__revoked_certs_generate.json",
+    "adjudication_results/claude-code__O2-noinline__openssh-portable__ssh-keygen__ssh_rsa_verify.json",
+    "adjudication_results/claude-code__O2-noinline__openssh-portable__ssh-keyscan__argv_split.json",
+    "adjudication_results/claude-code__O2-noinline__openssh-portable__ssh-pkcs11-helper__pkcs11_fetch_rsa_pubkey.json",
+    "adjudication_results/claude-code__O2-noinline__openssh-portable__ssh-sk-helper__cert_parse.json",
+    "adjudication_results/claude-code__O2-noinline__openssh-portable__ssh__revoked_serial_tree_RB_REMOVE_COLOR.json",
+    "adjudication_results/claude-code__O2-noinline__shadow__groupmod__grp_update.json",
+    "adjudication_results/claude-code__O2-noinline__shadow__grpunconv__main.json",
+    "adjudication_results/claude-code__O2-noinline__shadow__newusers__close_files.json",
+    "adjudication_results/claude-code__O2-noinline__shadow__useradd__grp_update.json",
+    "adjudication_results/claude-code__O2-noinline__shadow__usermod__update_gshadow.json",
+    "adjudication_results/claude-code__O2-noinline__shadow__vipw__main.json",
+    "adjudication_results/claude-code__O2-noinline__sysvinit__bootlogd__main.json",
+    "adjudication_results/claude-code__O2-noinline__sysvinit__init__check_init_fifo.json",
+    "adjudication_results/claude-code__O2-noinline__sysvinit__killall5__readproc.json",
+    "adjudication_results/claude-code__O2-noinline__sysvinit__last__list.json",
+    "adjudication_results/claude-code__O2-noinline__sysvinit__shutdown__wall.json",
+    "adjudication_results/claude-code__O2-noinline__sysvinit__sulogin__getpasswd.json",
+    "adjudication_results/claude-code__O2-noinline__sysvinit__utmpdump__dump.json",
+    "adjudication_results/claude-code__O2-noinline__sysvinit__wall__wall.json",
+    "adjudication_results/claude-code__O2-noinline__zlib__libz.so.1.2__deflate_slow.json",
+    "adjudication_results/claude-code__O2-noinline__zlib__minigzip64__inflate_fast.json",
+    "adjudication_results/claude-code__O2-noinline__zlib__minigzip__inflate_table.json",
+    "adjudication_results/claude-code__O2-noinline__zlib__minigzipsh__main.json",
+    "adjudication_results/codex__O2-noinline__bash__man2html__scan_format.json",
+    "adjudication_results/codex__O2-noinline__coreutils__chown__usage.json",
+    "adjudication_results/codex__O2-noinline__coreutils__comm__compare_files.json",
+    "adjudication_results/codex__O2-noinline__coreutils__cp__copy_reg.json",
+    "adjudication_results/codex__O2-noinline__coreutils__shred__dopass.json",
+    "adjudication_results/codex__O2-noinline__coreutils__touch__main.json",
+    "adjudication_results/codex__O2-noinline__cronie__cronnext__get_range.json",
+    "adjudication_results/codex__O2-noinline__cronie__crontab__get_range.json",
+    "adjudication_results/codex__O2-noinline__diffutils__cmp__cmp.json",
+    "adjudication_results/codex__O2-noinline__diffutils__diff3__output_diff3_edscript.json",
+    "adjudication_results/codex__O2-noinline__dpkg__dpkg-divert__diversion_add.json",
+    "adjudication_results/codex__O2-noinline__dpkg__dpkg-query__pkg_array_match_patterns.json",
+    "adjudication_results/codex__O2-noinline__e2fsprogs__e2fsck__check_ea_in_inode.json",
+    "adjudication_results/codex__O2-noinline__gnutls__certtool__yyparse.json",
+    "adjudication_results/codex__O2-noinline__gnutls__gnutls-cli__send_ocsp_request.json",
+    "adjudication_results/codex__O2-noinline__gnutls__gnutls-serv__main.json",
+    "adjudication_results/codex__O2-noinline__gnutls__ocsptool__socket_open2.json",
+    "adjudication_results/codex__O2-noinline__gnutls__psktool__process_options.json",
+    "adjudication_results/codex__O2-noinline__gnutls__systemkey__print_list.json",
+    "adjudication_results/codex__O2-noinline__libacl__chacl__main.json",
+    "adjudication_results/codex__O2-noinline__libacl__setfacl__restore.json",
+    "adjudication_results/codex__O2-noinline__libopencm3__msc___usbd_standard_request_device.json",
+    "adjudication_results/codex__O2-noinline__libopencm3__sdram__main.json",
+    "adjudication_results/codex__O2-noinline__libopencm3__usbmidi__dwc_poll.json",
+    "adjudication_results/codex__O2-noinline__openssh-portable__ssh-add__revoked_certs_generate.json",
+    "adjudication_results/codex__O2-noinline__openssh-portable__ssh-keygen__ssh_rsa_verify.json",
+    "adjudication_results/codex__O2-noinline__openssh-portable__ssh-keyscan__argv_split.json",
+    "adjudication_results/codex__O2-noinline__openssh-portable__ssh-sk-helper__cert_parse.json",
+    "adjudication_results/codex__O2-noinline__openssh-portable__ssh__revoked_serial_tree_RB_REMOVE_COLOR.json",
+    "adjudication_results/codex__O2-noinline__shadow__groupmod__grp_update.json",
+    "adjudication_results/codex__O2-noinline__shadow__grpunconv__main.json",
+    "adjudication_results/codex__O2-noinline__shadow__newusers__close_files.json",
+    "adjudication_results/codex__O2-noinline__shadow__useradd__grp_update.json",
+    "adjudication_results/codex__O2-noinline__shadow__vipw__main.json",
+    "adjudication_results/codex__O2-noinline__sysvinit__bootlogd__main.json",
+    "adjudication_results/codex__O2-noinline__sysvinit__init__check_init_fifo.json",
+    "adjudication_results/codex__O2-noinline__sysvinit__killall5__readproc.json",
+    "adjudication_results/codex__O2-noinline__sysvinit__last__list.json",
+    "adjudication_results/codex__O2-noinline__sysvinit__shutdown__wall.json",
+    "adjudication_results/codex__O2-noinline__sysvinit__sulogin__getpasswd.json",
+    "adjudication_results/codex__O2-noinline__sysvinit__utmpdump__dump.json",
+    "adjudication_results/codex__O2-noinline__sysvinit__wall__wall.json",
+    "adjudication_results/codex__O2-noinline__zlib__minigzip64__inflate_fast.json",
+    "adjudication_results/codex__O2-noinline__zlib__minigzip__inflate_table.json",
+    "adjudication_results/codex__O2-noinline__zlib__minigzipsh__main.json"
+  ],
+  "unresolved_review_count": 0,
+  "wrong_task_rate_by_decompiler": {
+    "claude-code": {
+      "tasks_with_wrong": 30,
+      "tasks": 51,
+      "rate": 0.5882352941176471
+    },
+    "codex": {
+      "tasks_with_wrong": 36,
+      "tasks": 52,
+      "rate": 0.6923076923076923
+    }
+  },
+  "final_pattern_split": {
+    "QUAL-01": 31,
+    "ARRAY-01": 6,
+    "OTHER": 2
+  }
+}

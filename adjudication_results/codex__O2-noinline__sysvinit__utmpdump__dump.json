@@ -1,0 +1,67 @@
+[
+  {
+    "function": "dump",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "第1个参数",
+        "source_type": "FILE *",
+        "decompiled_type": "FILE *",
+        "match": "correct",
+        "evidence_source_line": "164: dump(FILE *fp, int forever, int oldfmt)",
+        "evidence_decompiled_line": "20: void dump(FILE *input, int follow, int old_format)"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "164: dump(FILE *fp, int forever, int oldfmt)",
+        "evidence_decompiled_line": "20: void dump(FILE *input, int follow, int old_format)"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "164: dump(FILE *fp, int forever, int oldfmt)",
+        "evidence_decompiled_line": "20: void dump(FILE *input, int follow, int old_format)"
+      },
+      {
+        "source_role": "局部变量 ut",
+        "source_type": "struct utmp",
+        "decompiled_type": "struct utmp entry",
+        "match": "correct",
+        "evidence_source_line": "166: struct utmp ut; 179: while (fread(&ut, sizeof ut, 1, fp) == 1); 180: print_utline(ut);",
+        "evidence_decompiled_line": "36: struct utmp entry; 38: while (fread(&entry, sizeof(entry), 1, input) == 1); 39: print_utline(entry);"
+      },
+      {
+        "source_role": "局部变量 uto",
+        "source_type": "struct oldutmp",
+        "decompiled_type": "struct old_utmp entry",
+        "match": "correct",
+        "evidence_source_line": "167: struct oldutmp uto; 176: while (fread(&uto, sizeof uto, 1, fp) == 1); 177: print_utline(oldtonew(uto));",
+        "evidence_decompiled_line": "31: struct old_utmp entry; 33: while (fread(&entry, sizeof(entry), 1, input) == 1); 34: print_utline(old_to_new(entry));"
+      },
+      {
+        "source_role": "结构体 oldutmp",
+        "source_type": "struct oldutmp { short; int; char[12]; char[4]; long; char[8]; char[16]; long; }",
+        "decompiled_type": "struct old_utmp { short; int; char[12]; char[4]; long; char[8]; char[16]; long; }",
+        "match": "correct",
+        "evidence_source_line": "2-11: struct oldutmp fields are short, int, char[12], char[4], long, char[8], char[16], long",
+        "evidence_decompiled_line": "6-15: struct old_utmp fields are short, int, char[12], char[4], long, char[8], char[16], long"
+      },
+      {
+        "source_role": "结构体 utmp",
+        "source_type": "struct utmp (system/header-defined)",
+        "decompiled_type": "struct utmp from <utmp.h>",
+        "match": "undeterminable",
+        "evidence_source_line": "166, 170, 179-180: source uses struct utmp and sizeof ut but does not define its field layout in dump",
+        "evidence_decompiled_line": "4, 24-25, 36-39: decompiler includes <utmp.h>, uses sizeof(struct utmp), and passes entry by value"
+      }
+    ],
+    "reasoning": "The three parameters match by ABI position and width; only names differ. Both source records are stack locals consumed by fread with sizeof and then passed to print_utline, and the decompiler preserves those roles (with branch-local scope). The explicitly visible oldutmp/old_utmp field count, order, array sizes, and scalar types match, so no pointer collapse, integer-width loss, prototype mismatch, or layout mismatch is evidenced. No static local exists in dump, so the free-discovery/static-to-global concern is rejected. The concrete system struct utmp layout is not declared in the permitted dump source excerpt, so that layout comparison is undeterminable rather than guessed."
+  }
+]

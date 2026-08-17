@@ -1,0 +1,37 @@
+[
+  {
+    "function": "inflate_fast",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {"source_role":"第1个参数","source_type":"z_streamp (z_stream *)","decompiled_type":"z_streamp (z_stream *)","match":"correct","evidence_source_line":"384-387: inflate_fast (z_streamp strm, unsigned start); ... z_streamp strm;","evidence_decompiled_line":"56: void inflate_fast(z_streamp strm, unsigned start)"},
+      {"source_role":"第2个参数","source_type":"unsigned","decompiled_type":"unsigned","match":"correct","evidence_source_line":"384-387: inflate_fast (z_streamp strm, unsigned start); ... unsigned start;","evidence_decompiled_line":"56: void inflate_fast(z_streamp strm, unsigned start)"},
+      {"source_role":"局部变量 state","source_type":"struct inflate_state *","decompiled_type":"struct inflate_state *","match":"correct","evidence_source_line":"389: struct inflate_state *state;","evidence_decompiled_line":"58: struct inflate_state *state;"},
+      {"source_role":"局部变量 in","source_type":"unsigned char *","decompiled_type":"const unsigned char *","match":"wrong","evidence_source_line":"391: unsigned char *in;","evidence_decompiled_line":"59: const unsigned char *in;"},
+      {"source_role":"局部变量 last","source_type":"unsigned char *","decompiled_type":"const unsigned char *","match":"wrong","evidence_source_line":"392: unsigned char *last;","evidence_decompiled_line":"60: const unsigned char *last;"},
+      {"source_role":"局部变量 out","source_type":"unsigned char *","decompiled_type":"unsigned char *","match":"correct","evidence_source_line":"393: unsigned char *out;","evidence_decompiled_line":"61: unsigned char *out;"},
+      {"source_role":"局部变量 beg","source_type":"unsigned char *","decompiled_type":"unsigned char *","match":"correct","evidence_source_line":"394: unsigned char *beg;","evidence_decompiled_line":"62: unsigned char *beg;"},
+      {"source_role":"局部变量 end","source_type":"unsigned char *","decompiled_type":"unsigned char *","match":"correct","evidence_source_line":"395: unsigned char *end;","evidence_decompiled_line":"63: unsigned char *end;"},
+      {"source_role":"局部变量 wsize","source_type":"unsigned","decompiled_type":"unsigned","match":"correct","evidence_source_line":"398: unsigned wsize;","evidence_decompiled_line":"64: unsigned wsize;"},
+      {"source_role":"局部变量 whave","source_type":"unsigned","decompiled_type":"unsigned","match":"correct","evidence_source_line":"399: unsigned whave;","evidence_decompiled_line":"65: unsigned whave;"},
+      {"source_role":"局部变量 wnext","source_type":"unsigned","decompiled_type":"unsigned","match":"correct","evidence_source_line":"400: unsigned wnext;","evidence_decompiled_line":"66: unsigned wnext;"},
+      {"source_role":"局部变量 window","source_type":"unsigned char *","decompiled_type":"unsigned char *","match":"correct","evidence_source_line":"401: unsigned char *window;","evidence_decompiled_line":"67: unsigned char *window;"},
+      {"source_role":"局部变量 hold","source_type":"unsigned long","decompiled_type":"unsigned long","match":"correct","evidence_source_line":"402: unsigned long hold;","evidence_decompiled_line":"68: unsigned long hold;"},
+      {"source_role":"局部变量 bits","source_type":"unsigned","decompiled_type":"unsigned","match":"correct","evidence_source_line":"403: unsigned bits;","evidence_decompiled_line":"69: unsigned bits;"},
+      {"source_role":"局部变量 lcode","source_type":"code const *","decompiled_type":"code const *","match":"correct","evidence_source_line":"404: code const *lcode;","evidence_decompiled_line":"70: code const *lcode;"},
+      {"source_role":"局部变量 dcode","source_type":"code const *","decompiled_type":"code const *","match":"correct","evidence_source_line":"405: code const *dcode;","evidence_decompiled_line":"71: code const *dcode;"},
+      {"source_role":"局部变量 lmask","source_type":"unsigned","decompiled_type":"unsigned","match":"correct","evidence_source_line":"406: unsigned lmask;","evidence_decompiled_line":"72: unsigned lmask;"},
+      {"source_role":"局部变量 dmask","source_type":"unsigned","decompiled_type":"unsigned","match":"correct","evidence_source_line":"407: unsigned dmask;","evidence_decompiled_line":"73: unsigned dmask;"},
+      {"source_role":"局部变量 here","source_type":"code const *","decompiled_type":"code (结构体值对象)","match":"wrong","evidence_source_line":"408: code const *here; 445-447: here = lcode + (hold & lmask); op = (unsigned)(here->bits);","evidence_decompiled_line":"74: code here; 108-110: here = lcode[hold & lmask]; op = (unsigned)(here.bits);"},
+      {"source_role":"局部变量 op","source_type":"unsigned","decompiled_type":"unsigned","match":"correct","evidence_source_line":"409: unsigned op;","evidence_decompiled_line":"75: unsigned op;"},
+      {"source_role":"局部变量 len","source_type":"unsigned","decompiled_type":"unsigned","match":"correct","evidence_source_line":"411: unsigned len;","evidence_decompiled_line":"77: unsigned len;"},
+      {"source_role":"局部变量 dist","source_type":"unsigned","decompiled_type":"unsigned","match":"correct","evidence_source_line":"412: unsigned dist;","evidence_decompiled_line":"78: unsigned dist;"},
+      {"source_role":"局部变量 from","source_type":"unsigned char *","decompiled_type":"unsigned char *","match":"correct","evidence_source_line":"413: unsigned char *from;","evidence_decompiled_line":"79: unsigned char *from;"},
+      {"source_role":"结构体 code","source_type":"3字段: unsigned char op, unsigned char bits, unsigned short val","decompiled_type":"3字段: unsigned char op, unsigned char bits, unsigned short val","match":"correct","evidence_source_line":"291-295: typedef struct { unsigned char op; unsigned char bits; unsigned short val; } code;","evidence_decompiled_line":"11-16: typedef struct { unsigned char op; unsigned char bits; unsigned short val; } code;"},
+      {"source_role":"结构体 z_stream","source_type":"字段前缀 next_in, avail_in, total_in, next_out, avail_out, total_out, msg, state","decompiled_type":"相同字段前缀及类型","match":"correct","evidence_source_line":"47-57: z_stream_s fields next_in through state","evidence_decompiled_line":"41-49: z_stream_s fields next_in through state"},
+      {"source_role":"结构体 inflate_state","source_type":"首字段 strm 后为 mode，且 wsize 前存在 last/wrap/havedict/flags/dmax/check/total/head/wbits","decompiled_type":"首字段 mode 后直接为 wsize/whave/wnext/window","match":"wrong","evidence_source_line":"339-357: struct inflate_state { z_streamp strm; inflate_mode mode; ... unsigned wsize; ... }","evidence_decompiled_line":"24-38: struct inflate_state { inflate_mode mode; ... uInt wsize; ... }"}
+    ],
+    "reasoning":"参数按 ABI 位置一致。大多数局部变量的宽度、指针层级和数据流一致；in/last 增加了源码没有的 const 限定，here 则将源码指向 code 表项的指针降为结构体值。code 布局一致。反编译版 inflate_state 省略源码前置字段并改变字段偏移，按内存布局判定不匹配；z_stream 的函数访问所需前缀布局一致。由此确认存在 PTR-01 和 LAYOUT-01；未发现 SC-01、ST-01、INT-01 或 FN-01。"
+  }
+]

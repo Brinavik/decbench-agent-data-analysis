@@ -1,0 +1,283 @@
+[
+  {
+    "function": "inflate_table",
+    "decompiler": "claude-code",
+    "hypothesis": "free_discovery",
+    "verdict": "rejected",
+    "entities": [
+      {
+        "source_role": "函数返回值",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "302: int __attribute__((visibility (\"hidden\"))) inflate_table (codetype type, unsigned short *lens, unsigned codes, code * *table, unsigned *bits, unsigned short *work)",
+        "evidence_decompiled_line": "18: int inflate_table(codetype type, unsigned short *lens, unsigned codes,"
+      },
+      {
+        "source_role": "第1个参数",
+        "source_type": "codetype（枚举值，按值传递）",
+        "decompiled_type": "codetype（枚举值，按值传递）",
+        "match": "correct",
+        "evidence_source_line": "302: int ... inflate_table (codetype type, unsigned short *lens, unsigned codes, code * *table, unsigned *bits, unsigned short *work)",
+        "evidence_decompiled_line": "18: int inflate_table(codetype type, unsigned short *lens, unsigned codes,"
+      },
+      {
+        "source_role": "第2个参数",
+        "source_type": "unsigned short *",
+        "decompiled_type": "unsigned short *",
+        "match": "correct",
+        "evidence_source_line": "312: unsigned short *lens;",
+        "evidence_decompiled_line": "18: int inflate_table(codetype type, unsigned short *lens, unsigned codes,"
+      },
+      {
+        "source_role": "第3个参数",
+        "source_type": "unsigned",
+        "decompiled_type": "unsigned",
+        "match": "correct",
+        "evidence_source_line": "313: unsigned codes;",
+        "evidence_decompiled_line": "18: int inflate_table(codetype type, unsigned short *lens, unsigned codes,"
+      },
+      {
+        "source_role": "第4个参数",
+        "source_type": "code **",
+        "decompiled_type": "code **",
+        "match": "correct",
+        "evidence_source_line": "314: code * *table;",
+        "evidence_decompiled_line": "19:              code **table, unsigned *bits, unsigned short *work)"
+      },
+      {
+        "source_role": "第5个参数",
+        "source_type": "unsigned *",
+        "decompiled_type": "unsigned *",
+        "match": "correct",
+        "evidence_source_line": "315: unsigned *bits;",
+        "evidence_decompiled_line": "19:              code **table, unsigned *bits, unsigned short *work)"
+      },
+      {
+        "source_role": "第6个参数",
+        "source_type": "unsigned short *",
+        "decompiled_type": "unsigned short *",
+        "match": "correct",
+        "evidence_source_line": "316: unsigned short *work;",
+        "evidence_decompiled_line": "19:              code **table, unsigned *bits, unsigned short *work)"
+      },
+      {
+        "source_role": "局部变量len",
+        "source_type": "unsigned",
+        "decompiled_type": "unsigned",
+        "match": "correct",
+        "evidence_source_line": "318:     unsigned len;",
+        "evidence_decompiled_line": "21:     unsigned len;               /* a code's length in bits */"
+      },
+      {
+        "source_role": "局部变量sym",
+        "source_type": "unsigned",
+        "decompiled_type": "unsigned",
+        "match": "correct",
+        "evidence_source_line": "319:     unsigned sym;",
+        "evidence_decompiled_line": "22:     unsigned sym;               /* index of code symbols */"
+      },
+      {
+        "source_role": "局部变量min",
+        "source_type": "unsigned",
+        "decompiled_type": "unsigned",
+        "match": "correct",
+        "evidence_source_line": "320:     unsigned min, max;",
+        "evidence_decompiled_line": "23:     unsigned min, max;          /* minimum and maximum code lengths */"
+      },
+      {
+        "source_role": "局部变量max",
+        "source_type": "unsigned",
+        "decompiled_type": "unsigned",
+        "match": "correct",
+        "evidence_source_line": "320:     unsigned min, max;",
+        "evidence_decompiled_line": "23:     unsigned min, max;          /* minimum and maximum code lengths */"
+      },
+      {
+        "source_role": "局部变量root",
+        "source_type": "unsigned",
+        "decompiled_type": "unsigned",
+        "match": "correct",
+        "evidence_source_line": "321:     unsigned root;",
+        "evidence_decompiled_line": "24:     unsigned root;              /* number of index bits for root table */"
+      },
+      {
+        "source_role": "局部变量curr",
+        "source_type": "unsigned",
+        "decompiled_type": "unsigned",
+        "match": "correct",
+        "evidence_source_line": "322:     unsigned curr;",
+        "evidence_decompiled_line": "25:     unsigned curr;              /* number of index bits for current table */"
+      },
+      {
+        "source_role": "局部变量drop",
+        "source_type": "unsigned",
+        "decompiled_type": "unsigned",
+        "match": "correct",
+        "evidence_source_line": "323:     unsigned drop;",
+        "evidence_decompiled_line": "26:     unsigned drop;              /* code bits to drop for sub-table */"
+      },
+      {
+        "source_role": "局部变量left",
+        "source_type": "int",
+        "decompiled_type": "int",
+        "match": "correct",
+        "evidence_source_line": "324:     int left;",
+        "evidence_decompiled_line": "27:     int left;                   /* number of prefix codes available */"
+      },
+      {
+        "source_role": "局部变量used",
+        "source_type": "unsigned",
+        "decompiled_type": "unsigned",
+        "match": "correct",
+        "evidence_source_line": "325:     unsigned used;",
+        "evidence_decompiled_line": "28:     unsigned used;              /* code entries in table used */"
+      },
+      {
+        "source_role": "局部变量huff",
+        "source_type": "unsigned",
+        "decompiled_type": "unsigned",
+        "match": "correct",
+        "evidence_source_line": "326:     unsigned huff;",
+        "evidence_decompiled_line": "29:     unsigned huff;              /* Huffman code */"
+      },
+      {
+        "source_role": "局部变量incr",
+        "source_type": "unsigned",
+        "decompiled_type": "unsigned",
+        "match": "correct",
+        "evidence_source_line": "327:     unsigned incr;",
+        "evidence_decompiled_line": "30:     unsigned incr;              /* for incrementing code, index */"
+      },
+      {
+        "source_role": "局部变量fill",
+        "source_type": "unsigned",
+        "decompiled_type": "unsigned",
+        "match": "correct",
+        "evidence_source_line": "328:     unsigned fill;",
+        "evidence_decompiled_line": "31:     unsigned fill;              /* index for replicating entries */"
+      },
+      {
+        "source_role": "局部变量low",
+        "source_type": "unsigned",
+        "decompiled_type": "unsigned",
+        "match": "correct",
+        "evidence_source_line": "329:     unsigned low;",
+        "evidence_decompiled_line": "32:     unsigned low;               /* low bits for current root entry */"
+      },
+      {
+        "source_role": "局部变量mask",
+        "source_type": "unsigned",
+        "decompiled_type": "unsigned",
+        "match": "correct",
+        "evidence_source_line": "330:     unsigned mask;",
+        "evidence_decompiled_line": "33:     unsigned mask;              /* mask for low root bits */"
+      },
+      {
+        "source_role": "局部变量here",
+        "source_type": "code",
+        "decompiled_type": "code",
+        "match": "correct",
+        "evidence_source_line": "331:     code here;",
+        "evidence_decompiled_line": "34:     code here;                  /* table entry for duplication */"
+      },
+      {
+        "source_role": "局部变量next",
+        "source_type": "code *",
+        "decompiled_type": "code *",
+        "match": "correct",
+        "evidence_source_line": "332:     code *next;",
+        "evidence_decompiled_line": "35:     code *next;                 /* next available space in table */"
+      },
+      {
+        "source_role": "局部变量base",
+        "source_type": "const unsigned short *",
+        "decompiled_type": "const unsigned short *",
+        "match": "correct",
+        "evidence_source_line": "333:     const unsigned short *base;",
+        "evidence_decompiled_line": "36:     const unsigned short *base;     /* base value table to use */"
+      },
+      {
+        "source_role": "局部变量extra",
+        "source_type": "const unsigned short *",
+        "decompiled_type": "const unsigned short *",
+        "match": "correct",
+        "evidence_source_line": "334:     const unsigned short *extra;",
+        "evidence_decompiled_line": "37:     const unsigned short *extra;    /* extra bits table to use */"
+      },
+      {
+        "source_role": "局部变量match",
+        "source_type": "unsigned",
+        "decompiled_type": "unsigned",
+        "match": "correct",
+        "evidence_source_line": "335:     unsigned match;",
+        "evidence_decompiled_line": "38:     unsigned match;             /* use base and extra for symbol >= match */"
+      },
+      {
+        "source_role": "局部数组count",
+        "source_type": "unsigned short[16]",
+        "decompiled_type": "unsigned short[16]",
+        "match": "correct",
+        "evidence_source_line": "336:     unsigned short count[15 +1];",
+        "evidence_decompiled_line": "39:     unsigned short count[MAXBITS + 1];  /* number of codes of each length */"
+      },
+      {
+        "source_role": "局部数组offs",
+        "source_type": "unsigned short[16]",
+        "decompiled_type": "unsigned short[16]",
+        "match": "correct",
+        "evidence_source_line": "337:     unsigned short offs[15 +1];",
+        "evidence_decompiled_line": "40:     unsigned short offs[MAXBITS + 1];   /* offsets in table for each length */"
+      },
+      {
+        "source_role": "函数内静态局部对象lbase",
+        "source_type": "static const unsigned short[31]",
+        "decompiled_type": "static const unsigned short[31]",
+        "match": "correct",
+        "evidence_source_line": "338:     static const unsigned short lbase[31] = {",
+        "evidence_decompiled_line": "41:     static const unsigned short lbase[31] = { /* Length codes 257..285 base */"
+      },
+      {
+        "source_role": "函数内静态局部对象lext",
+        "source_type": "static const unsigned short[31]",
+        "decompiled_type": "static const unsigned short[31]",
+        "match": "correct",
+        "evidence_source_line": "341:     static const unsigned short lext[31] = {",
+        "evidence_decompiled_line": "44:     static const unsigned short lext[31] = { /* Length codes 257..285 extra */"
+      },
+      {
+        "source_role": "函数内静态局部对象dbase",
+        "source_type": "static const unsigned short[32]",
+        "decompiled_type": "static const unsigned short[32]",
+        "match": "correct",
+        "evidence_source_line": "344:     static const unsigned short dbase[32] = {",
+        "evidence_decompiled_line": "47:     static const unsigned short dbase[32] = { /* Distance codes 0..29 base */"
+      },
+      {
+        "source_role": "函数内静态局部对象dext",
+        "source_type": "static const unsigned short[32]",
+        "decompiled_type": "static const unsigned short[32]",
+        "match": "correct",
+        "evidence_source_line": "348:     static const unsigned short dext[32] = {",
+        "evidence_decompiled_line": "51:     static const unsigned short dext[32] = { /* Distance codes 0..29 extra */"
+      },
+      {
+        "source_role": "结构体code",
+        "source_type": "匿名typedef结构体code；字段布局为offset 0: unsigned char op，offset 1: unsigned char bits，offset 2: unsigned short val；通常总大小4字节、对齐2字节",
+        "decompiled_type": "匿名typedef结构体code；字段布局为offset 0: unsigned char op，offset 1: unsigned char bits，offset 2: unsigned short val；通常总大小4字节、对齐2字节",
+        "match": "correct",
+        "evidence_source_line": "291-295: typedef struct { unsigned char op; unsigned char bits; unsigned short val; } code;",
+        "evidence_decompiled_line": "8-12: typedef struct { unsigned char op; unsigned char bits; unsigned short val; } code;"
+      },
+      {
+        "source_role": "枚举typedef codetype",
+        "source_type": "enum codetype，依次为CODES=0、LENS=1、DISTS=2",
+        "decompiled_type": "enum codetype，依次为CODES=0、LENS=1、DISTS=2",
+        "match": "correct",
+        "evidence_source_line": "296-300: typedef enum { CODES, LENS, DISTS } codetype;",
+        "evidence_decompiled_line": "2-6: typedef enum { CODES, LENS, DISTS } codetype;"
+      }
+    ],
+    "reasoning": "按ABI参数位置核对，第1至第6参数及返回类型完全一致；尤其第4参数在两边均为code **，函数体中的*table、(*table)[low]和*(*table)++也支持双重指针层级，未见PTR-01或FN-01。自动局部变量依据计数、位运算、负值检测、数组索引和指针递增等数据流用途逐项对齐，宽度、符号及const限定一致，未见INT-01。code在两边均为两个unsigned char后接一个unsigned short，字段数量、顺序、偏移和类型序列一致，未见ST-01或LAYOUT-01。四个常量表在两边都声明于函数体内且保留static const、元素类型和长度，未见SC-01。仅依据指定函数及其本文件内直接类型声明，可以拒绝所列类型/结构恢复错误；反编译第215行与源码第509行的下标表达式不同属于非类型语义差异，不改变本次类型结论。"
+  }
+]

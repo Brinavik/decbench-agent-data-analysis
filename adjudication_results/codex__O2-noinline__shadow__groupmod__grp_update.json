@@ -1,0 +1,83 @@
+[
+  {
+    "function": "grp_update",
+    "decompiler": "codex",
+    "hypothesis": "free_discovery",
+    "verdict": "confirmed",
+    "entities": [
+      {
+        "source_role": "函数签名（无参数）",
+        "source_type": "static void (void)",
+        "decompiled_type": "void (void)",
+        "match": "correct",
+        "evidence_source_line": "源码845: static void grp_update (void)",
+        "evidence_decompiled_line": "反编译42: void grp_update(void)"
+      },
+      {
+        "source_role": "局部变量 grp",
+        "source_type": "struct group",
+        "decompiled_type": "struct group (group_entry)",
+        "match": "correct",
+        "evidence_source_line": "源码847、871-872: struct group grp; grp = *ogrp; new_grent (&grp);",
+        "evidence_decompiled_line": "反编译46、58-59: struct group group_entry; group_entry = *group; update_group(&group_entry);"
+      },
+      {
+        "source_role": "局部变量 ogrp",
+        "source_type": "const struct group *",
+        "decompiled_type": "const struct group * (group)",
+        "match": "correct",
+        "evidence_source_line": "源码848、860、871: const struct group *ogrp; ogrp = gr_locate (group_name); grp = *ogrp;",
+        "evidence_decompiled_line": "反编译44、50、58: const struct group *group; group = gr_locate(group_name); group_entry = *group;"
+      },
+      {
+        "source_role": "局部变量 sgrp",
+        "source_type": "struct sgrp",
+        "decompiled_type": "struct sgrp (shadow_entry)",
+        "match": "correct",
+        "evidence_source_line": "源码851、880-881、892: struct sgrp sgrp; sgrp = *osgrp; memset (&sgrp, 0, sizeof sgrp);",
+        "evidence_decompiled_line": "反编译47、64、67: struct sgrp shadow_entry; shadow_entry = *shadow_group; memset(&shadow_entry, 0, sizeof(shadow_entry));"
+      },
+      {
+        "source_role": "局部变量 osgrp",
+        "source_type": "const struct sgrp *",
+        "decompiled_type": "const struct sgrp * (shadow_group)",
+        "match": "correct",
+        "evidence_source_line": "源码852-853、876、898: const struct sgrp *osgrp = ((void *)0); osgrp = sgr_locate (group_name); osgrp = &sgrp;",
+        "evidence_decompiled_line": "反编译45、62、73: const struct sgrp *shadow_group = NULL; shadow_group = sgr_locate(group_name); shadow_group = &shadow_entry;"
+      },
+      {
+        "source_role": "静态局部变量 empty",
+        "source_type": "static char *",
+        "decompiled_type": "extern char * (empty_list)",
+        "match": "wrong",
+        "evidence_source_line": "源码884-886、895: static char *empty = ((void *)0); sgrp.sg_adm = &empty;",
+        "evidence_decompiled_line": "反编译22、70: extern char *empty_list; shadow_entry.sg_adm = &empty_list;"
+      },
+      {
+        "source_role": "局部变量 token",
+        "source_type": "char *",
+        "decompiled_type": "char * (member)",
+        "match": "correct",
+        "evidence_source_line": "源码908、926-939: char *token; token = strtok(user_list, \",\"); ... token = strtok(((void *)0), \",\");",
+        "evidence_decompiled_line": "反编译48、94-96: char *member; for (member = strtok(user_list, \",\"); member != NULL; member = strtok(NULL, \",\"))"
+      },
+      {
+        "source_role": "结构体 sgrp",
+        "source_type": "{ char *sg_name; char *sg_passwd; char **sg_adm; char **sg_mem; }",
+        "decompiled_type": "struct sgrp（声明来自 <gshadow.h>，反编译文本未展开）",
+        "match": "undeterminable",
+        "evidence_source_line": "源码33-38: struct sgrp 的四个字段依次为 char *、char *、char **、char **。",
+        "evidence_decompiled_line": "反编译2、68-71: #include <gshadow.h>；依次使用 sg_name、sg_passwd、sg_adm、sg_mem，但未显示字段偏移或定义。"
+      },
+      {
+        "source_role": "结构体 group",
+        "source_type": "struct group（本源码文件内未展开定义）",
+        "decompiled_type": "struct group（声明来自 <grp.h>，反编译文本未展开）",
+        "match": "undeterminable",
+        "evidence_source_line": "源码847、883、893、896: 仅在函数中以 struct group 和 gr_passwd、gr_name、gr_mem 字段使用，未给出定义。",
+        "evidence_decompiled_line": "反编译3、46、66、68、71: #include <grp.h>；仅使用 struct group 及 gr_passwd、gr_name、gr_mem，未显示布局。"
+      }
+    ],
+    "reasoning": "无参数，故 ABI 位置不存在。自动局部量按整结构复制、取址传给更新函数、NULL 流和 strtok 循环对齐，未见 PTR-01、INT-01 或 ABI 签名 FN-01 证据。源码中仅在该函数块内定义的 static empty 经 sg_adm 的取地址赋值与反编译 empty_list 的同一取地址赋值对齐；后者在函数外被声明为 extern，直接证实 SC-01。反编译代码未展示两个结构体的偏移、大小或完整字段定义，不能严格确认或否定 LAYOUT-01。"
+  }
+]
