@@ -1,0 +1,103 @@
+{
+  "report_meta": {
+    "report_id": "rootcause__cronie__crontab__get_range",
+    "case": {
+      "project": "cronie",
+      "opt_level": "O2-noinline",
+      "binary": "crontab",
+      "function": "get_range",
+      "size_lines": 137
+    },
+    "input_files": {
+      "source": "decbench-large/sources/cronie/entry.c",
+      "codex_decompiled": "decbench-large/results/codex/O2-noinline/cronie/crontab.c",
+      "claude_code_decompiled": "decbench-large/results/claude-code/O2-noinline/cronie/crontab.c",
+      "ghidra_decompiled": "decbench_deep_cases/results/ghidra/O2-noinline/cronie/crontab.c",
+      "ida_decompiled": "decbench_deep_cases/results/ida/O2-noinline/cronie/crontab.c",
+      "codex_trace_md": "decbench_deep_cases/results/codex/traces/O2-noinline__cronie__crontab__get_range.md",
+      "claude_code_trace_md": "decbench_deep_cases/results/claude-code/traces/O2-noinline__cronie__crontab__get_range.md"
+    },
+    "decbench_scores": {
+      "codex": {
+        "type_match": 0.8181818181818182,
+        "byte_match": 0.2920962199312715,
+        "ged": 50.0
+      },
+      "claude-code": {
+        "type_match": 0.5454545454545454,
+        "byte_match": 0.2616822429906542,
+        "ged": 43.0
+      }
+    }
+  },
+  "errors": [],
+  "correct_recoveries": [
+    {
+      "agent": "codex",
+      "entity": "完整函数签名",
+      "source_type": "static int get_range(bitstr_t *, int, int, const char *[], FILE *)",
+      "decompiled_type": "int get_range(bitstr_t *, int, int, const char *[], FILE *)",
+      "note": "返回/参数类型全部正确；仅 static 无法从 binary 确证，未计为确认错误。"
+    },
+    {
+      "agent": "codex",
+      "entity": "局部 ch/i/num1/num2/num3",
+      "source_type": "int",
+      "decompiled_type": "int",
+      "note": "字符/EOF与范围运算宽度正确。"
+    },
+    {
+      "agent": "codex",
+      "entity": "bitstr_t",
+      "source_type": "unsigned char typedef",
+      "decompiled_type": "unsigned char typedef",
+      "note": "typedef 与一级指针正确。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "完整函数签名",
+      "source_type": "static int get_range(bitstr_t *, int, int, const char *[], FILE *)",
+      "decompiled_type": "int get_range(bitstr_t *, int, int, const char *[], FILE *)",
+      "note": "ABI 可见部分全部正确；static 不可判定。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "names",
+      "source_type": "const char *[]",
+      "decompiled_type": "const char *[]",
+      "note": "双指针与 const 正确。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "局部 ch/i/num1/num2/num3",
+      "source_type": "int",
+      "decompiled_type": "int",
+      "note": "全部正确。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "FILE 参数",
+      "source_type": "FILE *",
+      "decompiled_type": "FILE *",
+      "note": "库类型正确。"
+    }
+  ],
+  "summary": {
+    "error_count_by_agent": {
+      "codex": 0,
+      "claude-code": 0
+    },
+    "error_count_by_pattern": {},
+    "error_count_by_root_cause": {},
+    "error_count_by_attribution": {},
+    "correct_count_by_agent": {
+      "codex": 3,
+      "claude-code": 4
+    },
+    "key_findings": [
+      "本 case 无确认类型错误，是高 type_match 反例。",
+      "两 agent 都准确恢复五参数签名和整数局部，但 GED 仍很高，表明控制流重构差异不等价于类型失败。",
+      "源码 static 在 stripped binary 中不可判定，因此按约束没有把缺失 static 强行计错。"
+    ]
+  }
+}

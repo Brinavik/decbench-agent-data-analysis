@@ -1,0 +1,96 @@
+{
+  "report_meta": {
+    "report_id": "rootcause__shadow__vipw__main",
+    "case": {
+      "project": "shadow",
+      "opt_level": "O2-noinline",
+      "binary": "vipw",
+      "function": "main",
+      "size_lines": 137
+    },
+    "input_files": {
+      "source": "decbench-large/sources/shadow/vipw.c",
+      "codex_decompiled": "decbench-large/results/codex/O2-noinline/shadow/vipw.c",
+      "claude_code_decompiled": "decbench-large/results/claude-code/O2-noinline/shadow/vipw.c",
+      "ghidra_decompiled": "decbench_deep_cases/results/ghidra/O2-noinline/shadow/vipw.c",
+      "ida_decompiled": "decbench_deep_cases/results/ida/O2-noinline/shadow/vipw.c",
+      "codex_trace_md": "decbench_deep_cases/results/codex/traces/O2-noinline__shadow__vipw__main.md",
+      "claude_code_trace_md": "decbench_deep_cases/results/claude-code/traces/O2-noinline__shadow__vipw__main.md"
+    },
+    "decbench_scores": {
+      "codex": {
+        "type_match": 0.4,
+        "byte_match": 0.0,
+        "ged": 2.0
+      },
+      "claude-code": {
+        "type_match": 0.5,
+        "byte_match": 0.0,
+        "ged": 0.0
+      }
+    }
+  },
+  "errors": [],
+  "correct_recoveries": [
+    {
+      "agent": "codex",
+      "entity": "main 完整签名",
+      "source_type": "int main(int argc, char **argv)",
+      "decompiled_type": "int main(int argc, char **argv)",
+      "note": "返回类型、参数宽度和指针层级正确。"
+    },
+    {
+      "agent": "codex",
+      "entity": "long_options",
+      "source_type": "static struct option[]",
+      "decompiled_type": "static struct option[]",
+      "note": "存储类别、结构体数组和静态初始化正确。"
+    },
+    {
+      "agent": "codex",
+      "entity": "do_vipw/editshadow",
+      "source_type": "_Bool",
+      "decompiled_type": "bool",
+      "note": "等价布尔类型。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "main 完整签名",
+      "source_type": "int main(int argc, char **argv)",
+      "decompiled_type": "int main(int argc, char **argv)",
+      "note": "正确。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "long_options",
+      "source_type": "static struct option[]",
+      "decompiled_type": "static struct option[]",
+      "note": "正确恢复 static 数组。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "函数指针参数",
+      "source_type": "int (*)(void)",
+      "decompiled_type": "int (*)(void)",
+      "note": "vipwedit helper 原型中的函数指针正确。"
+    }
+  ],
+  "summary": {
+    "error_count_by_agent": {
+      "codex": 0,
+      "claude-code": 0
+    },
+    "error_count_by_pattern": {},
+    "error_count_by_root_cause": {},
+    "error_count_by_attribution": {},
+    "correct_count_by_agent": {
+      "codex": 3,
+      "claude-code": 3
+    },
+    "key_findings": [
+      "本 case 未发现可人工确认的类型/声明错误；type_match 非满分主要反映评测实体覆盖/对齐口径，而非明确错误模式。",
+      "两 agent 都恢复 main 与 static long_options，说明大型函数并不必然导致存储类别或签名失败。",
+      "Claude GED=0 但 byte_match=0，继续说明结构/类型/字节指标彼此独立。"
+    ]
+  }
+}

@@ -1,0 +1,297 @@
+{
+  "report_meta": {
+    "report_id": "rootcause__zlib__minigzip64__inflate_fast",
+    "case": {
+      "project": "zlib",
+      "opt_level": "O2-noinline",
+      "binary": "minigzip64",
+      "function": "inflate_fast",
+      "size_lines": 395
+    },
+    "input_files": {
+      "source": "decbench-large/sources/zlib/inffast.c",
+      "codex_decompiled": "decbench-large/results/codex/O2-noinline/zlib/minigzip64.c",
+      "claude_code_decompiled": "decbench-large/results/claude-code/O2-noinline/zlib/minigzip64.c",
+      "ghidra_decompiled": "decbench_deep_cases/results/ghidra/O2-noinline/zlib/minigzip64.c",
+      "ida_decompiled": "decbench_deep_cases/results/ida/O2-noinline/zlib/minigzip64.c",
+      "codex_trace_md": "decbench_deep_cases/results/codex/traces/O2-noinline__zlib__minigzip64__inflate_fast.md",
+      "claude_code_trace_md": "decbench_deep_cases/results/claude-code/traces/O2-noinline__zlib__minigzip64__inflate_fast.md"
+    },
+    "decbench_scores": {
+      "codex": {
+        "type_match": 0.09090909090909091,
+        "byte_match": 0.12278308321964529,
+        "ged": 0.0
+      },
+      "claude-code": {
+        "type_match": 0.09090909090909091,
+        "byte_match": 0.12278308321964529,
+        "ged": 0.0
+      }
+    }
+  },
+  "errors": [
+    {
+      "error_id": "E-CX-001",
+      "agent": "codex",
+      "pattern": "QUAL-01",
+      "entity": {
+        "source_role": "局部输入游标 in",
+        "source_declaration": "unsigned char *in",
+        "source_line": "390",
+        "decompiled_declaration": "const unsigned char *in",
+        "decompiled_line": "106"
+      },
+      "description": "增加 const。",
+      "trace_evidence": {
+        "excerpt": "const unsigned char *in;\nconst unsigned char *last;",
+        "reasoning_step": "识别 zlib 输入流为只读后，把语义只读性提升为源码限定符。"
+      },
+      "root_cause": {
+        "category": "a_llm_reasoning_defect",
+        "detail": "trace/输出已识别 exact inffast，但仍未遵循该版本源码的 Bytef * 声明。"
+      },
+      "attribution": "llm_common_difficulty"
+    },
+    {
+      "error_id": "E-CX-002",
+      "agent": "codex",
+      "pattern": "QUAL-01",
+      "entity": {
+        "source_role": "局部输入边界 last",
+        "source_declaration": "unsigned char *last",
+        "source_line": "391",
+        "decompiled_declaration": "const unsigned char *last",
+        "decompiled_line": "107"
+      },
+      "description": "增加 const。",
+      "trace_evidence": {
+        "excerpt": "const unsigned char *in;\nconst unsigned char *last;",
+        "reasoning_step": "与 in 一并在局部声明合成时加入 const。"
+      },
+      "root_cause": {
+        "category": "a_llm_reasoning_defect",
+        "detail": "源函数身份明确且可从已知 zlib 模式恢复；两 LLM 同受现代 API/只读语义先验影响。"
+      },
+      "attribution": "llm_common_difficulty"
+    },
+    {
+      "error_id": "E-CX-003",
+      "agent": "codex",
+      "pattern": "PTR-01",
+      "entity": {
+        "source_role": "局部码表项 here",
+        "source_declaration": "code const *here",
+        "source_line": "407",
+        "decompiled_declaration": "code here",
+        "decompiled_line": "121"
+      },
+      "description": "把指向表项的指针改为按值结构体对象。",
+      "trace_evidence": {
+        "excerpt": "code here;",
+        "reasoning_step": "为便于表达 here=lcode[index] 的按值逻辑，在控制流重构时消除了一级指针。"
+      },
+      "root_cause": {
+        "category": "c_large_function_complexity",
+        "detail": "大型热循环中同一变量跨 dolen/dodist 二级表查找复用，按值化保持行为却破坏源码声明。"
+      },
+      "attribution": "function_inherent_difficulty"
+    },
+    {
+      "error_id": "E-CX-004",
+      "agent": "codex",
+      "pattern": "QUAL-01",
+      "entity": {
+        "source_role": "struct z_stream_s 的 next_in/msg 字段",
+        "source_declaration": "next_in: unsigned char *; msg: char *",
+        "source_line": "43,49",
+        "decompiled_declaration": "next_in: const unsigned char *; msg: const char *",
+        "decompiled_line": "47,53"
+      },
+      "description": "两个结构体字段被增加 const。",
+      "trace_evidence": {
+        "excerpt": "const unsigned char *next_in;",
+        "reasoning_step": "套用更强的输入/消息只读语义构造完整 z_stream 视图；同一结构体内 msg 也被声明为 const char *。"
+      },
+      "root_cause": {
+        "category": "a_llm_reasoning_defect",
+        "detail": "已识别 zlib 类型却采用了语义上合理但与该源码版本不一致的限定符。"
+      },
+      "attribution": "function_inherent_difficulty"
+    },
+    {
+      "error_id": "E-CL-001",
+      "agent": "claude-code",
+      "pattern": "QUAL-01",
+      "entity": {
+        "source_role": "局部输入游标 in",
+        "source_declaration": "unsigned char *in",
+        "source_line": "390",
+        "decompiled_declaration": "const unsigned char *in",
+        "decompiled_line": "59"
+      },
+      "description": "增加 const。",
+      "trace_evidence": {
+        "excerpt": "const unsigned char *in;    /* local strm->next_in */",
+        "reasoning_step": "从只读消费模式推断 const。"
+      },
+      "root_cause": {
+        "category": "a_llm_reasoning_defect",
+        "detail": "trace 明确识别 exact inffast，仍受语义先验影响。"
+      },
+      "attribution": "llm_common_difficulty"
+    },
+    {
+      "error_id": "E-CL-002",
+      "agent": "claude-code",
+      "pattern": "QUAL-01",
+      "entity": {
+        "source_role": "局部输入边界 last",
+        "source_declaration": "unsigned char *last",
+        "source_line": "391",
+        "decompiled_declaration": "const unsigned char *last",
+        "decompiled_line": "60"
+      },
+      "description": "增加 const。",
+      "trace_evidence": {
+        "excerpt": "const unsigned char *last;  /* have enough input while in < last */",
+        "reasoning_step": "与 in 同步派生 const。"
+      },
+      "root_cause": {
+        "category": "a_llm_reasoning_defect",
+        "detail": "已知源码函数身份下仍改变声明。"
+      },
+      "attribution": "llm_common_difficulty"
+    },
+    {
+      "error_id": "E-CL-003",
+      "agent": "claude-code",
+      "pattern": "PTR-01",
+      "entity": {
+        "source_role": "局部码表项 here",
+        "source_declaration": "code const *here",
+        "source_line": "407",
+        "decompiled_declaration": "code here",
+        "decompiled_line": "74"
+      },
+      "description": "把一级指针改为按值对象。",
+      "trace_evidence": {
+        "excerpt": "code here;                  /* retrieved table entry */",
+        "reasoning_step": "把反汇编中的4字节表项加载重写成 C 结构体值复制。"
+      },
+      "root_cause": {
+        "category": "c_large_function_complexity",
+        "detail": "长循环和两级查表使按值表达更自然，但与源码实体层级不一致。"
+      },
+      "attribution": "function_inherent_difficulty"
+    },
+    {
+      "error_id": "E-CL-004",
+      "agent": "claude-code",
+      "pattern": "LAYOUT-01",
+      "entity": {
+        "source_role": "struct inflate_state",
+        "source_declaration": "完整35字段，mode 前有 strm，wsize 前有 last/wrap/.../wbits",
+        "source_line": "334-382",
+        "decompiled_declaration": "从 mode 直接接 wsize/whave/wnext/window 的最小字段视图",
+        "decompiled_line": "24-38"
+      },
+      "description": "省略大量前置和尾部字段，字段偏移在普通 C 布局下不成立。",
+      "trace_evidence": {
+        "excerpt": "**State fields**: `[strm+0x38]` → `state`; loaded `wsize/whave/wnext/window/hold/bits`, `lencode`/`distcode` tables, and `lenbits`/`distbits` used to build `lmask`/`dmask` via `(1<<bits)-1`.",
+        "reasoning_step": "只收集目标函数访问字段，未把汇编偏移编码为显式 padding，也未恢复完整已识别类型。"
+      },
+      "root_cause": {
+        "category": "c_large_function_complexity",
+        "detail": "395行函数只覆盖状态结构的一部分；字段多且偏移跨度大。"
+      },
+      "attribution": "function_inherent_difficulty"
+    }
+  ],
+  "correct_recoveries": [
+    {
+      "agent": "codex",
+      "entity": "函数签名",
+      "source_type": "void (z_streamp, unsigned)",
+      "decompiled_type": "void (z_streamp, unsigned)",
+      "note": "返回和参数 ABI 正确。"
+    },
+    {
+      "agent": "codex",
+      "entity": "struct inflate_state",
+      "source_type": "35字段源码序列",
+      "decompiled_type": "35字段等宽序列",
+      "note": "Codex 完整恢复关键布局。"
+    },
+    {
+      "agent": "codex",
+      "entity": "hold/bits",
+      "source_type": "unsigned long / unsigned",
+      "decompiled_type": "unsigned long / unsigned",
+      "note": "位缓冲宽度正确。"
+    },
+    {
+      "agent": "codex",
+      "entity": "struct code",
+      "source_type": "u8,u8,u16",
+      "decompiled_type": "u8,u8,u16",
+      "note": "字段宽度/顺序正确。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "函数签名",
+      "source_type": "void (z_streamp, unsigned)",
+      "decompiled_type": "void (z_streamp, unsigned)",
+      "note": "trace 依据寄存器和边界公式正确恢复。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "z_stream 前缀",
+      "source_type": "next_in/avail_in/...",
+      "decompiled_type": "相同字段与类型",
+      "note": "未给 z_stream 输入字段增加 const。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "lcode/dcode",
+      "source_type": "code const *",
+      "decompiled_type": "code const *",
+      "note": "表基址指针正确。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "窗口游标 from",
+      "source_type": "unsigned char *",
+      "decompiled_type": "unsigned char *",
+      "note": "一级指针正确。"
+    }
+  ],
+  "summary": {
+    "error_count_by_agent": {
+      "codex": 4,
+      "claude-code": 4
+    },
+    "error_count_by_pattern": {
+      "QUAL-01": 5,
+      "PTR-01": 2,
+      "LAYOUT-01": 1
+    },
+    "error_count_by_root_cause": {
+      "a_llm_reasoning_defect": 5,
+      "c_large_function_complexity": 3
+    },
+    "error_count_by_attribution": {
+      "llm_common_difficulty": 4,
+      "function_inherent_difficulty": 4
+    },
+    "correct_count_by_agent": {
+      "codex": 4,
+      "claude-code": 4
+    },
+    "key_findings": [
+      "GED=0 但 type_match 极低，证明控制流/行为等价不保证声明实体等价。",
+      "两 agent 都把 in/last const 化并把 here 按值化，是大型循环重写中的共同类型失真。",
+      "Claude 的最小 inflate_state 没有显式 padding，不能作为偏移正确的 C 布局。"
+    ]
+  }
+}

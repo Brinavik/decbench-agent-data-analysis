@@ -1,0 +1,178 @@
+{
+  "report_meta": {
+    "report_id": "rootcause__sysvinit__shutdown__wall",
+    "case": {
+      "project": "sysvinit",
+      "opt_level": "O2-noinline",
+      "binary": "shutdown",
+      "function": "wall",
+      "size_lines": 165
+    },
+    "input_files": {
+      "source": "decbench-large/sources/sysvinit/dowall.c",
+      "codex_decompiled": "decbench-large/results/codex/O2-noinline/sysvinit/shutdown.c",
+      "claude_code_decompiled": "decbench-large/results/claude-code/O2-noinline/sysvinit/shutdown.c",
+      "ghidra_decompiled": "decbench_deep_cases/results/ghidra/O2-noinline/sysvinit/shutdown.c",
+      "ida_decompiled": "decbench_deep_cases/results/ida/O2-noinline/sysvinit/shutdown.c",
+      "codex_trace_md": "decbench_deep_cases/results/codex/traces/O2-noinline__sysvinit__shutdown__wall.md",
+      "claude_code_trace_md": "decbench_deep_cases/results/claude-code/traces/O2-noinline__sysvinit__shutdown__wall.md"
+    },
+    "decbench_scores": {
+      "codex": {
+        "type_match": 0.10526315789473684,
+        "byte_match": 0.925764192139738,
+        "ged": 5.0
+      },
+      "claude-code": {
+        "type_match": 0.10526315789473684,
+        "byte_match": 0.5985401459854015,
+        "ged": 10.0
+      }
+    }
+  },
+  "errors": [
+    {
+      "error_id": "E-CX-001",
+      "agent": "codex",
+      "pattern": "QUAL-01",
+      "entity": {
+        "source_role": "函数第1参数 text",
+        "source_declaration": "const char *text",
+        "source_line": "133",
+        "decompiled_declaration": "char *message",
+        "decompiled_line": "15"
+      },
+      "description": "丢失 const。",
+      "trace_evidence": {
+        "excerpt": "void sub_4540(char *message, int remote)",
+        "reasoning_step": "最终原型依据寄存器/传递行为生成，未保留不可由 ABI 观察的 const。"
+      },
+      "root_cause": {
+        "category": "b_info_missing",
+        "detail": "函数内只读使用不能证明源码是否声明 const。"
+      },
+      "attribution": "function_inherent_difficulty"
+    },
+    {
+      "error_id": "E-CL-001",
+      "agent": "claude-code",
+      "pattern": "QUAL-01",
+      "entity": {
+        "source_role": "函数第1参数 text",
+        "source_declaration": "const char *text",
+        "source_line": "133",
+        "decompiled_declaration": "char *msg",
+        "decompiled_line": "22"
+      },
+      "description": "丢失 const。",
+      "trace_evidence": {
+        "excerpt": "**Signature:** `void sub_4540(char *msg, int remote)` — this is a `wall`-style message broadcaster.",
+        "reasoning_step": "签名推断只使用 rdi→msg、esi→remote 的 ABI 证据；未恢复 const。"
+      },
+      "root_cause": {
+        "category": "b_info_missing",
+        "detail": "const 不进入调用约定。"
+      },
+      "attribution": "function_inherent_difficulty"
+    },
+    {
+      "error_id": "E-CL-002",
+      "agent": "claude-code",
+      "pattern": "ARRAY-01",
+      "entity": {
+        "source_role": "局部终端路径缓冲 term",
+        "source_declaration": "char term[32 + strlen(\"/dev/\") + 1]（38）",
+        "source_line": "139-143",
+        "decompiled_declaration": "char line[dev_len + 0x30]（53）",
+        "decompiled_line": "24"
+      },
+      "description": "数组长度多加15字节。",
+      "trace_evidence": {
+        "excerpt": "size_t dev_len = strlen(\"/dev/\");\nchar line[dev_len + 0x30];      /* \"/dev/\" + terminal name */",
+        "reasoning_step": "把动态栈对齐/分配量 0x30 当成源码字符容量，而不是对 38 字节 VLA 的16字节对齐。"
+      },
+      "root_cause": {
+        "category": "a_llm_reasoning_defect",
+        "detail": "汇编栈分配包含对齐；将对齐后的空间误写进数组界限。"
+      },
+      "attribution": "function_inherent_difficulty"
+    }
+  ],
+  "correct_recoveries": [
+    {
+      "agent": "codex",
+      "entity": "函数返回类型",
+      "source_type": "void",
+      "decompiled_type": "void",
+      "note": "正确。"
+    },
+    {
+      "agent": "codex",
+      "entity": "term 数组长度",
+      "source_type": "38",
+      "decompiled_type": "sizeof(ut->ut_line)+strlen(\"/dev/\")+1",
+      "note": "等价恢复。"
+    },
+    {
+      "agent": "codex",
+      "entity": "line/hostname",
+      "source_type": "char[256] / char[65]",
+      "decompiled_type": "char[256] / char[65]",
+      "note": "固定数组正确。"
+    },
+    {
+      "agent": "codex",
+      "entity": "struct sigaction/utmp",
+      "source_type": "源码系统结构体",
+      "decompiled_type": "相同系统结构体",
+      "note": "没有自造冲突布局。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "函数返回类型和第2参数",
+      "source_type": "void, int",
+      "decompiled_type": "void, int",
+      "note": "正确。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "header/host",
+      "source_type": "char[256] / char[65]",
+      "decompiled_type": "char[256] / char[65]",
+      "note": "固定缓冲恢复正确。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "time/local pointers",
+      "source_type": "time_t; char *",
+      "decompiled_type": "time_t; char *",
+      "note": "时间及字符串游标类型正确。"
+    }
+  ],
+  "summary": {
+    "error_count_by_agent": {
+      "codex": 1,
+      "claude-code": 2
+    },
+    "error_count_by_pattern": {
+      "QUAL-01": 2,
+      "ARRAY-01": 1
+    },
+    "error_count_by_root_cause": {
+      "b_info_missing": 2,
+      "a_llm_reasoning_defect": 1
+    },
+    "error_count_by_attribution": {
+      "function_inherent_difficulty": 3
+    },
+    "correct_count_by_agent": {
+      "codex": 4,
+      "claude-code": 3
+    },
+    "key_findings": [
+      "两 LLM 同时丢失参数 const，而 Ghidra/IDA 也未恢复，属于二进制固有信息缺失。",
+      "Claude 将栈对齐量混入 VLA 逻辑长度，是反汇编到源码数组声明映射的典型缺陷。",
+      "Codex 对 VLA 用 ut_line 字段宽度表达，数组恢复优于 Claude。"
+    ]
+  }
+}

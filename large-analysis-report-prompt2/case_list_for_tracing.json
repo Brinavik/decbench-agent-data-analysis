@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "selection_scope": {
+    "valid_tasks": 103,
+    "large_functions": 52,
+    "selected_functions": 7,
+    "selected_projects": 7,
+    "opt": "O2-noinline"
+  },
+  "score_bands": {
+    "low": "type_match < 0.15",
+    "mid_low": "0.15 <= type_match < 0.40",
+    "mid_high": "0.40 <= type_match < 0.60",
+    "high": "type_match >= 0.60"
+  },
+  "covered_patterns": [
+    "SC-01",
+    "ST-01",
+    "PTR-01",
+    "INT-01",
+    "FN-01",
+    "LAYOUT-01",
+    "QUAL-01",
+    "ARRAY-01",
+    "OTHER"
+  ],
+  "cases": [
+    {
+      "project": "openssh-portable",
+      "opt": "O2-noinline",
+      "binary": "ssh-sk-helper",
+      "function": "cert_parse",
+      "size": 138,
+      "metrics": {
+        "codex": {
+          "type_match": 0.07142857142857142,
+          "byte_match": 0.922360248447205,
+          "ged": 12.0
+        },
+        "claude-code": {
+          "type_match": 0.14285714285714285,
+          "byte_match": 0.0,
+          "ged": 5.0
+        }
+      },
+      "hit_patterns": {
+        "codex": [
+          "FN-01",
+          "SC-01",
+          "ST-01"
+        ],
+        "claude-code": [
+          "FN-01",
+          "LAYOUT-01"
+        ],
+        "union": [
+          "SC-01",
+          "ST-01",
+          "FN-01",
+          "LAYOUT-01"
+        ]
+      },
+      "selection_reason": "低分段的高密度多模式样本；同一函数同时暴露函数签名、存储类别、结构体定义冲突和结构体布局问题，并可对比 codex 与 claude-code 的不同失真路径。"
+    },
+    {
+      "project": "zlib",
+      "opt": "O2-noinline",
+      "binary": "minigzip64",
+      "function": "inflate_fast",
+      "size": 395,
+      "metrics": {
+        "codex": {
+          "type_match": 0.09090909090909091,
+          "byte_match": 0.12278308321964529,
+          "ged": 0.0
+        },
+        "claude-code": {
+          "type_match": 0.09090909090909091,
+          "byte_match": 0.12278308321964529,
+          "ged": 0.0
+        }
+      },
+      "hit_patterns": {
+        "codex": [
+          "LAYOUT-01",
+          "PTR-01",
+          "QUAL-01"
+        ],
+        "claude-code": [
+          "LAYOUT-01",
+          "PTR-01",
+          "QUAL-01"
+        ],
+        "union": [
+          "PTR-01",
+          "LAYOUT-01",
+          "QUAL-01"
+        ]
+      },
+      "selection_reason": "低分段且两种 LLM 的指标和模式完全一致；覆盖低频 PTR-01，并把它与常见布局错误和 const 限定丢失放在同一控制流高度相似（GED=0）的案例中分析。"
+    },
+    {
+      "project": "sysvinit",
+      "opt": "O2-noinline",
+      "binary": "shutdown",
+      "function": "wall",
+      "size": 165,
+      "metrics": {
+        "codex": {
+          "type_match": 0.10526315789473684,
+          "byte_match": 0.925764192139738,
+          "ged": 5.0
+        },
+        "claude-code": {
+          "type_match": 0.10526315789473684,
+          "byte_match": 0.5985401459854015,
+          "ged": 10.0
+        }
+      },
+      "hit_patterns": {
+        "codex": [
+          "FN-01"
+        ],
+        "claude-code": [
+          "ARRAY-01",
+          "FN-01"
+        ],
+        "union": [
+          "FN-01",
+          "ARRAY-01"
+        ]
+      },
+      "selection_reason": "低分段的 ARRAY-01 代表；两种 LLM 的 type_match 相同，但 byte_match 和具体错误模式不同，适合追踪数组长度恢复对最终指标的影响。"
+    },
+    {
+      "project": "gnutls",
+      "opt": "O2-noinline",
+      "binary": "gnutls-cli",
+      "function": "send_ocsp_request",
+      "size": 146,
+      "metrics": {
+        "codex": {
+          "type_match": 0.17142857142857143,
+          "byte_match": 0.3738601823708207,
+          "ged": 5.0
+        },
+        "claude-code": {
+          "type_match": 0.34285714285714286,
+          "byte_match": 0.4056603773584906,
+          "ged": 10.0
+        }
+      },
+      "hit_patterns": {
+        "codex": [
+          "FN-01",
+          "INT-01",
+          "SC-01"
+        ],
+        "claude-code": [
+          "QUAL-01"
+        ],
+        "union": [
+          "SC-01",
+          "INT-01",
+          "FN-01",
+          "QUAL-01"
+        ]
+      },
+      "selection_reason": "中低分段的跨 agent 对照样本；codex 集中出现签名、整数宽度和存储类别错误，claude-code 主要出现限定符错误，可比较不同推理策略造成的错误谱差异。"
+    },
+    {
+      "project": "e2fsprogs",
+      "opt": "O2-noinline",
+      "binary": "e2fsck",
+      "function": "check_ea_in_inode",
+      "size": 159,
+      "metrics": {
+        "codex": {
+          "type_match": 0.35714285714285715,
+          "byte_match": 0.2708333333333333,
+          "ged": 4.0
+        },
+        "claude-code": {
+          "type_match": 0.21428571428571427,
+          "byte_match": 0.0,
+          "ged": 17.0
+        }
+      },
+      "hit_patterns": {
+        "codex": [],
+        "claude-code": [
+          "FN-01",
+          "OTHER"
+        ],
+        "union": [
+          "FN-01",
+          "OTHER"
+        ]
+      },
+      "selection_reason": "中低分段中唯一命中残余 OTHER 的函数；包含输出标量被替换为结构体以及 helper 返回值被拆成独立临时变量，适合作为现有分类边界的压力测试。"
+    },
+    {
+      "project": "shadow",
+      "opt": "O2-noinline",
+      "binary": "vipw",
+      "function": "main",
+      "size": 137,
+      "metrics": {
+        "codex": {
+          "type_match": 0.4,
+          "byte_match": 0.0,
+          "ged": 2.0
+        },
+        "claude-code": {
+          "type_match": 0.5,
+          "byte_match": 0.0,
+          "ged": 0.0
+        }
+      },
+      "hit_patterns": {
+        "codex": [],
+        "claude-code": [],
+        "union": []
+      },
+      "selection_reason": "反例 1；位于中高分段且两种 LLM 均未命中已知错误模式，用于检查 type_match 非满分是否来自未覆盖实体、不可判定项或指标与人工模式标注的口径差异。"
+    },
+    {
+      "project": "cronie",
+      "opt": "O2-noinline",
+      "binary": "crontab",
+      "function": "get_range",
+      "size": 137,
+      "metrics": {
+        "codex": {
+          "type_match": 0.8181818181818182,
+          "byte_match": 0.2920962199312715,
+          "ged": 50.0
+        },
+        "claude-code": {
+          "type_match": 0.5454545454545454,
+          "byte_match": 0.2616822429906542,
+          "ged": 43.0
+        }
+      },
+      "hit_patterns": {
+        "codex": [],
+        "claude-code": [],
+        "union": []
+      },
+      "selection_reason": "反例 2；codex 是所选集合的高分端（type_match=0.818），两种 LLM 均未命中已知模式，但 GED 较高，可用于区分类型恢复质量与控制流/结构相似度。"
+    }
+  ]
+}

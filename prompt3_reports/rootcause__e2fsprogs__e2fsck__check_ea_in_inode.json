@@ -1,0 +1,179 @@
+{
+  "report_meta": {
+    "report_id": "rootcause__e2fsprogs__e2fsck__check_ea_in_inode",
+    "case": {
+      "project": "e2fsprogs",
+      "opt_level": "O2-noinline",
+      "binary": "e2fsck",
+      "function": "check_ea_in_inode",
+      "size_lines": 159
+    },
+    "input_files": {
+      "source": "decbench-large/sources/e2fsprogs/pass1.c",
+      "codex_decompiled": "decbench-large/results/codex/O2-noinline/e2fsprogs/e2fsck.c",
+      "claude_code_decompiled": "decbench-large/results/claude-code/O2-noinline/e2fsprogs/e2fsck.c",
+      "ghidra_decompiled": "decbench_deep_cases/results/ghidra/O2-noinline/e2fsprogs/e2fsck.c",
+      "ida_decompiled": "decbench_deep_cases/results/ida/O2-noinline/e2fsprogs/e2fsck.c",
+      "codex_trace_md": "decbench_deep_cases/results/codex/traces/O2-noinline__e2fsprogs__e2fsck__check_ea_in_inode.md",
+      "claude_code_trace_md": "decbench_deep_cases/results/claude-code/traces/O2-noinline__e2fsprogs__e2fsck__check_ea_in_inode.md"
+    },
+    "decbench_scores": {
+      "codex": {
+        "type_match": 0.35714285714285715,
+        "byte_match": 0.2708333333333333,
+        "ged": 4.0
+      },
+      "claude-code": {
+        "type_match": 0.21428571428571427,
+        "byte_match": 0.0,
+        "ged": 17.0
+      }
+    }
+  },
+  "errors": [
+    {
+      "error_id": "E-CL-001",
+      "agent": "claude-code",
+      "pattern": "FN-01",
+      "entity": {
+        "source_role": "函数返回类型",
+        "source_declaration": "static void check_ea_in_inode(...) ",
+        "source_line": "4252-4253",
+        "decompiled_declaration": "static int check_ea_in_inode(...)",
+        "decompiled_line": "115-116"
+      },
+      "description": "把 void 恢复为 int，并在各路径 return 0。",
+      "trace_evidence": {
+        "excerpt": "**Signature** — `(e2fsck_t ctx, struct problem_context *pctx, struct ea_quota *ea_ibody_quota)`",
+        "reasoning_step": "总结只列出参数且正确解释 rdx 输出结构，但最终代码无证据地选择 int；错误在最终签名合成阶段引入。"
+      },
+      "root_cause": {
+        "category": "a_llm_reasoning_defect",
+        "detail": "所有调用点忽略返回值，Ghidra/IDA/Codex均恢复 void。"
+      },
+      "attribution": "claude_code_specific"
+    },
+    {
+      "error_id": "E-CL-002",
+      "agent": "claude-code",
+      "pattern": "OTHER",
+      "entity": {
+        "source_role": "分支局部 quota_blocks",
+        "source_declaration": "blk64_t quota_blocks",
+        "source_line": "4342",
+        "decompiled_declaration": "struct ea_quota ea_ibody_val_quota",
+        "decompiled_line": "178"
+      },
+      "description": "把 helper 的单一块计数输出标量替换为双字段 quota 结构体。",
+      "trace_evidence": {
+        "excerpt": "Entries with `e_value_inum != 0` go through the helper at `0x1f600` (`check_ea_inode`) and accumulate quota",
+        "reasoning_step": "看到 caller 最终同时维护 blocks/inodes 后，按领域语义联想到 ea_quota，并错误重构 helper 原型。"
+      },
+      "root_cause": {
+        "category": "a_llm_reasoning_defect",
+        "detail": "汇编只把一个8字节栈槽地址传给 helper，inodes 明确由 caller 自增。"
+      },
+      "attribution": "claude_code_specific"
+    },
+    {
+      "error_id": "E-CL-003",
+      "agent": "claude-code",
+      "pattern": "OTHER",
+      "entity": {
+        "source_role": "helper 返回值/源码 problem 赋值",
+        "source_declaration": "源码直接 problem = check_large_ea_inode(...)",
+        "source_line": "4344-4346",
+        "decompiled_declaration": "int ret; ret = check_ea_inode(...); problem = ret",
+        "decompiled_line": "179-185"
+      },
+      "description": "把源码 problem 的赋值拆成额外 int ret 实体。",
+      "trace_evidence": {
+        "excerpt": "int ret;\nret = check_ea_inode(ctx, entry, pctx, &ea_ibody_val_quota);\nif (ret) { problem = ret;",
+        "reasoning_step": "长分支结构重写时引入语义临时变量；行为近似但实体映射不一致。"
+      },
+      "root_cause": {
+        "category": "c_large_function_complexity",
+        "detail": "优化后二者常共用寄存器，源码是否有独立临时量通常不可判定。"
+      },
+      "attribution": "function_inherent_difficulty"
+    }
+  ],
+  "correct_recoveries": [
+    {
+      "agent": "codex",
+      "entity": "函数签名",
+      "source_type": "void (e2fsck_t, problem_context *, ea_quota *)",
+      "decompiled_type": "相同",
+      "note": "返回类型与三参数正确。"
+    },
+    {
+      "agent": "codex",
+      "entity": "quota_blocks",
+      "source_type": "blk64_t/uint64_t",
+      "decompiled_type": "uint64_t",
+      "note": "输出标量及宽度正确。"
+    },
+    {
+      "agent": "codex",
+      "entity": "ext2_ext_attr_entry",
+      "source_type": "u8,u8,u16,u32,u32,u32",
+      "decompiled_type": "相同",
+      "note": "字段布局正确。"
+    },
+    {
+      "agent": "codex",
+      "entity": "storage_size/remain/hash",
+      "source_type": "unsigned int/unsigned int/__u32",
+      "decompiled_type": "uint32_t/uint32_t/uint32_t",
+      "note": "等宽无符号恢复。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "三个参数",
+      "source_type": "e2fsck_t, problem_context *, ea_quota *",
+      "decompiled_type": "相同",
+      "note": "参数均正确。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "entry/start/header/end",
+      "source_type": "结构体指针与 char *游标",
+      "decompiled_type": "相同",
+      "note": "主要游标类型正确。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "ext2_ext_attr_entry",
+      "source_type": "源码字段序列",
+      "decompiled_type": "相同字段序列",
+      "note": "布局正确。"
+    }
+  ],
+  "summary": {
+    "error_count_by_agent": {
+      "claude-code": 3,
+      "codex": 0
+    },
+    "error_count_by_pattern": {
+      "FN-01": 1,
+      "OTHER": 2
+    },
+    "error_count_by_root_cause": {
+      "a_llm_reasoning_defect": 2,
+      "c_large_function_complexity": 1
+    },
+    "error_count_by_attribution": {
+      "claude_code_specific": 2,
+      "function_inherent_difficulty": 1
+    },
+    "correct_count_by_agent": {
+      "codex": 4,
+      "claude-code": 3
+    },
+    "key_findings": [
+      "Codex 在该 case 没有确认的声明错误，是重要反例。",
+      "Claude 正确解释 rdx 为 ea_quota，却把被调 helper 的单标量输出也类比成 ea_quota，属于领域联想过度。",
+      "Claude 的 int 返回类型与所有其他工具相反，是明确的 Claude-code 特性。"
+    ]
+  }
+}

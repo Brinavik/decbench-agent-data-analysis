@@ -1,0 +1,202 @@
+{
+  "report_meta": {
+    "report_id": "rootcause__gnutls__gnutls-cli__send_ocsp_request",
+    "case": {
+      "project": "gnutls",
+      "opt_level": "O2-noinline",
+      "binary": "gnutls-cli",
+      "function": "send_ocsp_request",
+      "size_lines": 146
+    },
+    "input_files": {
+      "source": "decbench-large/sources/gnutls/ocsptool-common.c",
+      "codex_decompiled": "decbench-large/results/codex/O2-noinline/gnutls/gnutls-cli.c",
+      "claude_code_decompiled": "decbench-large/results/claude-code/O2-noinline/gnutls/gnutls-cli.c",
+      "ghidra_decompiled": "decbench_deep_cases/results/ghidra/O2-noinline/gnutls/gnutls-cli.c",
+      "ida_decompiled": "decbench_deep_cases/results/ida/O2-noinline/gnutls/gnutls-cli.c",
+      "codex_trace_md": "decbench_deep_cases/results/codex/traces/O2-noinline__gnutls__gnutls-cli__send_ocsp_request.md",
+      "claude_code_trace_md": "decbench_deep_cases/results/claude-code/traces/O2-noinline__gnutls__gnutls-cli__send_ocsp_request.md"
+    },
+    "decbench_scores": {
+      "codex": {
+        "type_match": 0.17142857142857143,
+        "byte_match": 0.3738601823708207,
+        "ged": 5.0
+      },
+      "claude-code": {
+        "type_match": 0.34285714285714286,
+        "byte_match": 0.4056603773584906,
+        "ged": 10.0
+      }
+    }
+  },
+  "errors": [
+    {
+      "error_id": "E-CX-001",
+      "agent": "codex",
+      "pattern": "QUAL-01",
+      "entity": {
+        "source_role": "函数第5参数 nonce",
+        "source_declaration": "gnutls_datum_t *nonce",
+        "source_line": "6907",
+        "decompiled_declaration": "const gnutls_datum_t *nonce",
+        "decompiled_line": "53"
+      },
+      "description": "增加 const。",
+      "trace_evidence": {
+        "excerpt": "extern void sub_13c00(gnutls_x509_crt_t crt, gnutls_x509_crt_t issuer,\n                      gnutls_datum_t *request,\n                      const gnutls_datum_t *nonce);",
+        "reasoning_step": "根据 generate_request 只读消费推断 const，并传播到目标函数原型。"
+      },
+      "root_cause": {
+        "category": "b_info_missing",
+        "detail": "所指对象是否 const 不进入 ABI；本函数不写 nonce。"
+      },
+      "attribution": "function_inherent_difficulty"
+    },
+    {
+      "error_id": "E-CX-002",
+      "agent": "codex",
+      "pattern": "INT-01",
+      "entity": {
+        "source_role": "局部 headers_size",
+        "source_declaration": "unsigned int headers_size",
+        "source_line": "6919",
+        "decompiled_declaration": "size_t header_size",
+        "decompiled_line": "67"
+      },
+      "description": "把32位 unsigned int 恢复为64位 size_t。",
+      "trace_evidence": {
+        "excerpt": "header_size = strlen(request_header);",
+        "reasoning_step": "由 strlen 返回类型推断 size_t，随后用显式强转适配32位发送长度；错误在类型传播阶段引入。"
+      },
+      "root_cause": {
+        "category": "a_llm_reasoning_defect",
+        "detail": "汇编向发送 helper 传 edx，且强转本身暴露了目标宽度。"
+      },
+      "attribution": "function_inherent_difficulty"
+    },
+    {
+      "error_id": "E-CX-003",
+      "agent": "codex",
+      "pattern": "INT-01",
+      "entity": {
+        "source_role": "局部 ret",
+        "source_declaration": "int ret",
+        "source_line": "6910",
+        "decompiled_declaration": "ssize_t ret",
+        "decompiled_line": "69"
+      },
+      "description": "把32位 int 恢复为64位 ssize_t。",
+      "trace_evidence": {
+        "excerpt": "ssize_t ret;",
+        "reasoning_step": "套用 POSIX recv 返回 ssize_t 的库原型先验到项目包装函数 socket_recv。"
+      },
+      "root_cause": {
+        "category": "a_llm_reasoning_defect",
+        "detail": "该 helper 是自定义包装且汇编/错误码消费均使用32位；Claude、Ghidra、IDA恢复为 int。"
+      },
+      "attribution": "codex_specific"
+    },
+    {
+      "error_id": "E-CX-004",
+      "agent": "codex",
+      "pattern": "SC-01",
+      "entity": {
+        "source_role": "文件静态接收缓冲 buffer",
+        "source_declaration": "static char buffer[4097]",
+        "source_line": "6796",
+        "decompiled_declaration": "extern unsigned char sub_94700[]",
+        "decompiled_line": "49"
+      },
+      "description": "把文件内 static 定长数组声明为无界 extern，且 char 改 unsigned char。",
+      "trace_evidence": {
+        "excerpt": "extern unsigned char sub_94700[];",
+        "reasoning_step": "识别到跨 helper 共享全局地址，但未从 .bss 尺寸/符号可见性恢复 static 与4097界限。"
+      },
+      "root_cause": {
+        "category": "b_info_missing",
+        "detail": "stripped 后源级名称/链接属性不可见；数组边界需结合全局布局推断。"
+      },
+      "attribution": "function_inherent_difficulty"
+    }
+  ],
+  "correct_recoveries": [
+    {
+      "agent": "codex",
+      "entity": "前4个参数",
+      "source_type": "const char *, 两个证书句柄, gnutls_datum_t *",
+      "decompiled_type": "相同",
+      "note": "参数角色和指针层级正确。"
+    },
+    {
+      "agent": "codex",
+      "entity": "gnutls_datum_t",
+      "source_type": "u8 *data; unsigned int size",
+      "decompiled_type": "相同",
+      "note": "布局正确。"
+    },
+    {
+      "agent": "codex",
+      "entity": "HTTP累积对象",
+      "source_type": "gnutls_datum_t",
+      "decompiled_type": "gnutls_datum_t",
+      "note": "正确。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "完整函数签名",
+      "source_type": "int (..., gnutls_datum_t *nonce)",
+      "decompiled_type": "int (..., gnutls_datum_t *nonce)",
+      "note": "含 nonce 非 const，全部正确。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "ret",
+      "source_type": "int",
+      "decompiled_type": "int",
+      "note": "没有套用 ssize_t 先验。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "静态 buffer",
+      "source_type": "static char[4097]",
+      "decompiled_type": "static char[4097]",
+      "note": "存储类别、元素类型与界限正确。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "ud/req",
+      "source_type": "gnutls_datum_t",
+      "decompiled_type": "gnutls_datum_t",
+      "note": "结构体局部正确。"
+    }
+  ],
+  "summary": {
+    "error_count_by_agent": {
+      "codex": 4,
+      "claude-code": 0
+    },
+    "error_count_by_pattern": {
+      "QUAL-01": 1,
+      "INT-01": 2,
+      "SC-01": 1
+    },
+    "error_count_by_root_cause": {
+      "b_info_missing": 2,
+      "a_llm_reasoning_defect": 2
+    },
+    "error_count_by_attribution": {
+      "function_inherent_difficulty": 3,
+      "codex_specific": 1
+    },
+    "correct_count_by_agent": {
+      "codex": 3,
+      "claude-code": 4
+    },
+    "key_findings": [
+      "Codex 的 ret=ssize_t 是独有错误：Claude 与两传统反编译器都保留32位 int。",
+      "Codex 对 headers_size 进行了从 strlen 返回值的过度类型传播。",
+      "Claude 通过分析 append 对同一全局地址的读取，正确恢复 static buffer[4097]，是强反例。"
+    ]
+  }
+}

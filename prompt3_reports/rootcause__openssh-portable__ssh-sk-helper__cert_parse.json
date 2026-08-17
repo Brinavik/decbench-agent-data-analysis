@@ -1,0 +1,230 @@
+{
+  "report_meta": {
+    "report_id": "rootcause__openssh-portable__ssh-sk-helper__cert_parse",
+    "case": {
+      "project": "openssh-portable",
+      "opt_level": "O2-noinline",
+      "binary": "ssh-sk-helper",
+      "function": "cert_parse",
+      "size_lines": 138
+    },
+    "input_files": {
+      "source": "decbench-large/sources/openssh-portable/sshkey.c",
+      "codex_decompiled": "decbench-large/results/codex/O2-noinline/openssh-portable/ssh-sk-helper.c",
+      "claude_code_decompiled": "decbench-large/results/claude-code/O2-noinline/openssh-portable/ssh-sk-helper.c",
+      "ghidra_decompiled": "decbench_deep_cases/results/ghidra/O2-noinline/openssh-portable/ssh-sk-helper.c",
+      "ida_decompiled": "decbench_deep_cases/results/ida/O2-noinline/openssh-portable/ssh-sk-helper.c",
+      "codex_trace_md": "decbench_deep_cases/results/codex/traces/O2-noinline__openssh-portable__ssh-sk-helper__cert_parse.md",
+      "claude_code_trace_md": "decbench_deep_cases/results/claude-code/traces/O2-noinline__openssh-portable__ssh-sk-helper__cert_parse.md"
+    },
+    "decbench_scores": {
+      "codex": {
+        "type_match": 0.07142857142857142,
+        "byte_match": 0.922360248447205,
+        "ged": 12.0
+      },
+      "claude-code": {
+        "type_match": 0.14285714285714285,
+        "byte_match": 0.0,
+        "ged": 5.0
+      }
+    }
+  },
+  "errors": [
+    {
+      "error_id": "E-CX-001",
+      "agent": "codex",
+      "pattern": "SC-01",
+      "entity": {
+        "source_role": "函数 cert_parse 的内部链接属性",
+        "source_declaration": "static int cert_parse(struct sshbuf *b, struct sshkey *key, struct sshbuf *certbuf)",
+        "source_line": "3862-3863",
+        "decompiled_declaration": "int cert_parse(struct sshbuf *b, struct sshkey *key, const struct sshbuf *certbuf)",
+        "decompiled_line": "57-58"
+      },
+      "description": "丢失 static，使源码的内部链接函数成为外部链接声明。",
+      "trace_evidence": {
+        "excerpt": "int\nsub_14ea0(struct sshbuf *b, struct sshkey *key, const struct sshbuf *certbuf)",
+        "reasoning_step": "最终写文件阶段直接生成非 static 定义；trace 没有单独论证链接属性。"
+      },
+      "root_cause": {
+        "category": "b_info_missing",
+        "detail": "目标为 stripped binary；局部符号的 internal linkage 通常不由函数机器码编码。"
+      },
+      "attribution": "function_inherent_difficulty"
+    },
+    {
+      "error_id": "E-CX-002",
+      "agent": "codex",
+      "pattern": "QUAL-01",
+      "entity": {
+        "source_role": "函数第3参数 certbuf",
+        "source_declaration": "struct sshbuf *certbuf",
+        "source_line": "3863",
+        "decompiled_declaration": "const struct sshbuf *certbuf",
+        "decompiled_line": "58"
+      },
+      "description": "给所指对象增加了源码不存在的 const。",
+      "trace_evidence": {
+        "excerpt": "sub_14ea0(struct sshbuf *b, struct sshkey *key, const struct sshbuf *certbuf)",
+        "reasoning_step": "在最终原型合成时按只读用法推断 const；机器码只显示该参数被传给读取/复制 helper。"
+      },
+      "root_cause": {
+        "category": "b_info_missing",
+        "detail": "指针所指对象是否由 C 类型标为 const 不进入 ABI；该函数内也未直接写 certbuf。"
+      },
+      "attribution": "function_inherent_difficulty"
+    },
+    {
+      "error_id": "E-CX-003",
+      "agent": "codex",
+      "pattern": "LAYOUT-01",
+      "entity": {
+        "source_role": "struct sshkey",
+        "source_declaration": "22 个具名字段；cert 在偏移 0x80，且其后还有4字段",
+        "source_line": "987-1018",
+        "decompiled_declaration": "struct sshkey { int type; unsigned char opaque[124]; struct sshkey_cert *cert; }",
+        "decompiled_line": "24-28"
+      },
+      "description": "只保留本函数访问到的 type/cert，用 opaque 数组吞并中间字段并遗漏 cert 后字段。",
+      "trace_evidence": {
+        "excerpt": "The function extends to `0x1539c`; I’ve identified a shared cleanup path and several nested iterator loops. I’m now resolving the nearby internal-call semantics and the context layout from their raw assembly and dynamic symbols so the final C uses coherent types rather than opaque register-shaped variables.",
+        "reasoning_step": "上下文布局恢复阶段只确认 type@0 与 cert@0x80；最终仍采用 opaque[124] 的最小视图。"
+      },
+      "root_cause": {
+        "category": "b_info_missing",
+        "detail": "当前函数只观察 type 与 cert 偏移，无法推出未访问字段的名称、类型及尾部字段。"
+      },
+      "attribution": "function_inherent_difficulty"
+    },
+    {
+      "error_id": "E-CL-001",
+      "agent": "claude-code",
+      "pattern": "QUAL-01",
+      "entity": {
+        "source_role": "函数第3参数 certbuf",
+        "source_declaration": "struct sshbuf *certbuf",
+        "source_line": "3863",
+        "decompiled_declaration": "const struct sshbuf *certbuf",
+        "decompiled_line": "66"
+      },
+      "description": "给所指对象增加了源码不存在的 const。",
+      "trace_evidence": {
+        "excerpt": "**Signature** `(struct sshbuf *b, struct sshkey *key, struct sshbuf *certbuf)` — `rdi`/`rsi`/`rdx`; `key->cert` lives at offset `0x80`.",
+        "reasoning_step": "总结阶段已写出正确非 const 签名，但落盘原型又改成 const，错误在最终代码合成阶段引入。"
+      },
+      "root_cause": {
+        "category": "a_llm_reasoning_defect",
+        "detail": "trace 自身的正确签名与最终声明矛盾，不是缺少线索导致的必然选择。"
+      },
+      "attribution": "function_inherent_difficulty"
+    },
+    {
+      "error_id": "E-CL-002",
+      "agent": "claude-code",
+      "pattern": "LAYOUT-01",
+      "entity": {
+        "source_role": "struct sshkey",
+        "source_declaration": "22 个具名字段；cert 在偏移 0x80，且其后还有4字段",
+        "source_line": "987-1018",
+        "decompiled_declaration": "struct sshkey { int type; char pad[0x80-sizeof(int)]; struct sshkey_cert *cert; }",
+        "decompiled_line": "37-41"
+      },
+      "description": "用 pad 代替全部中间字段，并遗漏 cert 后字段。",
+      "trace_evidence": {
+        "excerpt": "`key->cert` lives at offset `0x80`.",
+        "reasoning_step": "从偏移证据恢复了最小布局，但把“可观察偏移视图”误当作完整源码结构体。"
+      },
+      "root_cause": {
+        "category": "b_info_missing",
+        "detail": "单函数只访问 type/cert，不能恢复未访问字段；最小视图在行为上足够但 type_match 不匹配。"
+      },
+      "attribution": "function_inherent_difficulty"
+    }
+  ],
+  "correct_recoveries": [
+    {
+      "agent": "codex",
+      "entity": "第1参数 b",
+      "source_type": "struct sshbuf *",
+      "decompiled_type": "struct sshbuf *",
+      "note": "ABI 槽位和 helper 数据流一致。"
+    },
+    {
+      "agent": "codex",
+      "entity": "第2参数 key",
+      "source_type": "struct sshkey *",
+      "decompiled_type": "struct sshkey *",
+      "note": "正确恢复一级指针。"
+    },
+    {
+      "agent": "codex",
+      "entity": "局部 signed_len/siglen/key_id_len",
+      "source_type": "size_t",
+      "decompiled_type": "size_t",
+      "note": "长度类型及用途正确。"
+    },
+    {
+      "agent": "codex",
+      "entity": "struct sshkey_cert",
+      "source_type": "12字段源码布局",
+      "decompiled_type": "12字段等宽布局",
+      "note": "字段顺序、宽度和 LP64 偏移全部正确。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "函数存储类别",
+      "source_type": "static",
+      "decompiled_type": "static",
+      "note": "Claude 保留了 internal linkage。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "第1/2参数",
+      "source_type": "struct sshbuf * / struct sshkey *",
+      "decompiled_type": "struct sshbuf * / struct sshkey *",
+      "note": "ABI 与语义均正确。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "struct sshkey_cert",
+      "source_type": "12字段源码布局",
+      "decompiled_type": "12字段源码布局",
+      "note": "字段级恢复正确。"
+    },
+    {
+      "agent": "claude-code",
+      "entity": "sig",
+      "source_type": "u_char *",
+      "decompiled_type": "u_char *",
+      "note": "typedef 与指针层级正确。"
+    }
+  ],
+  "summary": {
+    "error_count_by_agent": {
+      "codex": 3,
+      "claude-code": 2
+    },
+    "error_count_by_pattern": {
+      "SC-01": 1,
+      "QUAL-01": 2,
+      "LAYOUT-01": 2
+    },
+    "error_count_by_root_cause": {
+      "b_info_missing": 4,
+      "a_llm_reasoning_defect": 1
+    },
+    "error_count_by_attribution": {
+      "function_inherent_difficulty": 5
+    },
+    "correct_count_by_agent": {
+      "codex": 4,
+      "claude-code": 4
+    },
+    "key_findings": [
+      "两 agent 都精确恢复 sshkey_cert，却只能为 sshkey 构造偏移视图，说明被访问字段覆盖率决定结构体完整度。",
+      "Claude 的 trace 先给出正确非 const 签名、最终代码却加入 const，是明确的最终合成不一致。",
+      "Ghidra/IDA 对参数及 sshkey 布局更不精确，因此按规则这些错误归为函数本身难点。"
+    ]
+  }
+}
